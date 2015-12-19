@@ -48,7 +48,6 @@ public class InstanceRuleVisualisation extends JPanel {
 	private DefaultListModel<String> modelListPartialPath = null;
 
 
-	
 
 	// selected options from menu
 	private int iSelectedObservationID=-1;
