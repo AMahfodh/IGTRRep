@@ -28,9 +28,11 @@ public class DBRecord {
 
         String drivers = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/TraceOutput_DB?allowMultiQueries=true";
-        String username = "";
-        String password = "";
-
+ //       String username = "";
+ //       String password = "";
+        String username = "loly";
+        String password = "541541";
+        
         System.setProperty(drivers,"");
         return DriverManager.getConnection(url,username,password);
     }

@@ -373,9 +373,9 @@ public class GraphT {
 			
 			GNode sNode=this.gNodes.get(iNodeIndex);
 			
-			if (sNode.isInitialized && this.graphType==0){
-				continue;
-			}
+			//if (sNode.isInitialized && this.graphType==0){
+			//	continue;
+			//}
 			
 			if (!DBRecord.saveGraphNodes(this.graphType, this.graphID, sNode)){
 				return false;
@@ -587,7 +587,13 @@ public class GraphT {
     
     
     protected void addEdge(GEdge ge){
-    	
+
+    	if (this.gEdges== null || this.edgesIndexs ==null){
+    		this.gEdges = new ArrayList<GEdge>();
+    		this.edgesIndexs = new ArrayList<String>();
+    	}
+
+
     	this.edgesIndexs.add(ge.edgeID);
     	this.gEdges.add(ge);
     }

@@ -8,7 +8,7 @@ public class GEdge {
 	public String targetID=null;
 	public boolean isMinimal=false;
 	public int distance=-1;
-	public String sourceTargetType=null;
+	public String sourceTargetType="";
 	
     
     public GEdge(String eSourceID, String eTargetID){
