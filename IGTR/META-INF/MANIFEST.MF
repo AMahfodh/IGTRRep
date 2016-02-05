@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IGTR
+Bundle-SymbolicName: IGTR
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: IGTR.jar,
+ jGraph.jar,
+ commons-codec-1.9.jar,
+ mysql-connector-java-5.1.27-bin.jar,
+ daikon.jar
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.10.2",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.10.2"
