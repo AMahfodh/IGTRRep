@@ -582,7 +582,11 @@ public class GraphT {
     
     
     public int getEdgeIndex (String edgeID){    	
-    	return this.edgesIndexs.indexOf(edgeID);    	
+    	if (this.edgesIndexs == null){
+    		return -1;
+    	} else {
+    		return this.edgesIndexs.indexOf(edgeID);
+    	}
     }
     
     
