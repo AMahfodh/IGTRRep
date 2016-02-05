@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.27-bin.jar"/>
 	<classpathentry kind="lib" path="daikon.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
