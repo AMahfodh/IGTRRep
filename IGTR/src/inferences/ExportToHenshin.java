@@ -8,21 +8,22 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import com.sun.rowset.CachedRowSetImpl;
 
-public class ImportToHenshin {
+public class ExportToHenshin {
 
-	private String ecoreName="nanoXML";
+	private String ecoreName=null;
 	private String encryptedXmiId= this.getEncryptedXmiId();
 	
 	private PrintWriter henshinWriter=null;	
 	private ArrayList<String> attributeConstraints= new ArrayList<String>();
 
 
-	public boolean generateHenshinModel() throws Exception{
+	public boolean exportHenshinModel(String strLocation, String ecoreFileName) throws Exception{
 
 
 		// get all abstract rule attributes based on mapped abstract node IDs	
 		System.out.println("preparing all abstract rules for exporting to Henshin tool ..");				
-		this.henshinWriter = new PrintWriter("E:\\PhD\\Works\\vcValidation\\nanoXML.henshin", "UTF-8");
+		this.ecoreName=ecoreFileName;
+		this.henshinWriter = new PrintWriter(strLocation, "UTF-8");
 
 
 
@@ -457,14 +458,5 @@ public class ImportToHenshin {
 		return "_" + DigestUtils.sha1Hex(System.nanoTime()+"").substring(0, 8);
 	}
 
-
-
-	public static void main(String[] args) throws Exception {
-
-
-		ImportToHenshin generateHenshinFile= new ImportToHenshin();
-		generateHenshinFile.generateHenshinModel();
-
-	}
 
 }

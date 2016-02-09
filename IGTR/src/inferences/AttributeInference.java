@@ -14,14 +14,21 @@ import com.sun.rowset.CachedRowSetImpl;
 
 public class AttributeInference {
 
-	//Logger GTlogger = Logger.getLogger("GTlog"); 	
-	private String strPathDirectory="E:\\PhD\\Works\\learning_attribute\\cvsOutputs\\";
+
+	private String strPathDirectory=null;
 		
 	
-	public AttributeInference(){}
+	public AttributeInference(){
+		
+		this.strPathDirectory= new File("").getAbsolutePath() + 
+				File.separator + "Perl" + File.separator + "DaikonOutput" + File.separator;
+		System.out.println(this.strPathDirectory);
+	}
 	
 	
 	public boolean generateCSVToBeUsedByPerl(){
+		
+
 		
 		// open connection
 		DBRecord.openConnection();
@@ -344,10 +351,10 @@ public class AttributeInference {
 	
 	private boolean convertCVStoDaikonInput(String csvPath) throws IOException, InterruptedException{
 		
-		
+		String perlLocation = new File("").getAbsolutePath() +  File.separator + "Perl" + File.separator ;
 		// run perl script
 		Process proc = Runtime.getRuntime().exec(
-				"perl " + strPathDirectory + "convertcsv.pl "+ csvPath);
+				"perl " + perlLocation + "convertcsv.pl "+ csvPath);
 		
 		
 		proc.waitFor();
@@ -502,7 +509,7 @@ public class AttributeInference {
 	
 	
 	
-	public void storeDaikonOutputInDB(){
+	public void storeDaikonOutputBackToDB(){
 
 
 		System.out.println("\n -----------------------------");

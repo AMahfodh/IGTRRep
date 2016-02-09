@@ -50,7 +50,7 @@ public class RuleInference {
 		this.queryRuleGeneralisation();
 
 		
-		System.out.println("\t ===> current-Time after classification computing max-rule:" + System.nanoTime());		
+		//System.out.println("\t ===> current-Time after classification computing max-rule:" + System.nanoTime());		
 		minTime = System.nanoTime()-minTime;		
 		MO=System.nanoTime();
 		
@@ -66,25 +66,25 @@ public class RuleInference {
 
 		
 		
-		
+		/*
 		System.out.println("\t ===>total minTime=" + (minTime - maxTime));
 		System.out.println("\t ===>total maxTime=" + maxTime);
 		System.out.println("\t ===>total MO time=" + (System.nanoTime()-MO));
 		System.out.println("\t ===>");
+		*/
 		
 		
 		
 		
 		
-		
-		System.out.println("\t ===> current-Time after Inferring mo and starting with NAC:" + System.nanoTime());
+		//System.out.println("\t ===> current-Time after Inferring mo and starting with NAC:" + System.nanoTime());
 		
 		
 		// infer NACs
-		System.out.println("Inferring NACs ..");
-		this.GTlogger.info("Inferring NACs ..");
-		this.inferNACs();
-		System.out.println("Inferring NACs completed");
+		//System.out.println("Inferring NACs ..");
+		//this.GTlogger.info("Inferring NACs ..");
+		//this.inferNACs();
+		//System.out.println("Inferring NACs completed");
 		
 		
 		
