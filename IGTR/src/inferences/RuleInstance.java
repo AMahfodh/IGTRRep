@@ -152,6 +152,9 @@ public class RuleInstance  {
 					
 			GEdge checkPreMinimalEdge = preGraph.gEdges.get(iEdge);
 			
+			this.setEdgeSourceTargetType(checkPreMinimalEdge, preGraph);
+			
+			
 			if (checkPreMinimalEdge.isMinimal){				
 				continue;
 			}
@@ -169,6 +172,9 @@ public class RuleInstance  {
 					
 			GEdge checkPostMinimalEdge = postGraph.gEdges.get(iEdge);
 			
+			this.setEdgeSourceTargetType(checkPostMinimalEdge, postGraph);
+			
+			
 			if (checkPostMinimalEdge.isMinimal){
 				continue;
 			}
@@ -180,6 +186,25 @@ public class RuleInstance  {
 		}
 		
 		
+	}
+	
+	
+	private void setEdgeSourceTargetType(GEdge eEdg, GraphT gT){
+				
+		// get source type
+		GNode nSrouceAndTargetType = gT.getNode(eEdg.sourceID);
+		if (nSrouceAndTargetType==null){
+			return;
+		}
+		eEdg.sourceTargetType = nSrouceAndTargetType.nodeType + "/" + eEdg.edgeType;
+		
+		
+		// get target type
+		//nSrouceAndTargetType = gT.getNode(eEdg.targetID);
+		//if (nSrouceAndTargetType==null){
+		//	return;
+		//}
+		//eEdg.sourceTargetType += "/" + nSrouceAndTargetType.nodeType;
 	}
 	
 

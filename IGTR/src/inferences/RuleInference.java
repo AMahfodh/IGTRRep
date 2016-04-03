@@ -238,19 +238,19 @@ public class RuleInference {
 	
 	private void generateNodesEdgesAbstractIDs(int iGraphID, boolean isRHS){
 		
-		String strOID_GraphType= this.iObservationId + "L";
+		String isLorR= "L";
 		if (isRHS){
-			strOID_GraphType= this.iObservationId + "R";
+			isLorR= "R";
 		}
 		
 		String strSQLStatement=""
 				+ "select @i:=0; "
 				+ "update TblNode "
-				+ "set AbstractID = CONCAT('N" + strOID_GraphType + "', (select @i:=@i + 1)) "
+				+ "set AbstractID = CONCAT('N" + this.iObservationId + "', (select @i:=@i + 1), '" + isLorR + "') "
 				+ "where Graph_IDREFF =" + iGraphID
 				+ ";"
 				+ "update TblEdge "
-				+ "set AbstractID = CONCAT('E" + strOID_GraphType + "', (select @i:=@i + 1)) "
+				+ "set AbstractID = CONCAT('E" + this.iObservationId + "', (select @i:=@i + 1), '" + isLorR + "') "
 				+ "where Graph_IDREFF =" + iGraphID
 				+ ";";
 	

@@ -16,13 +16,13 @@ public class AttributeInference {
 
 
 	private String strPathDirectory=null;
-		
+	private String charSeparator = String.valueOf(((char)007));
+	
 	
 	public AttributeInference(){
 		
 		this.strPathDirectory= new File("").getAbsolutePath() + 
-				File.separator + "Perl" + File.separator + "DaikonOutput" + File.separator;
-		System.out.println(this.strPathDirectory);
+				File.separator + "Perl" + File.separator + "DaikonOutput" + File.separator;		
 	}
 	
 	
@@ -240,7 +240,7 @@ public class AttributeInference {
 			
 			if (crsStrReturn.next()){
 				
-				String[] arrayPassedAndReturn = crsStrReturn.getString(1).split(",");
+				String[] arrayPassedAndReturn = crsStrReturn.getString(1).split(this.charSeparator);
 				
 				for (int i=0; i<arrayPassedAndReturn.length; i++){
 					
@@ -265,9 +265,9 @@ public class AttributeInference {
 						}
 						
 						// to numerate parameters indexes						
-						if (!strHolder.toLowerCase().contains("return")){
-							strHolder +="_Par" + (i+1);
-						}
+						//if (!strHolder.toLowerCase().contains("return")){
+						//	strHolder +="_Par" + (i+1);
+						//}
 						
 					}
 					
@@ -458,10 +458,10 @@ public class AttributeInference {
 
 					ProcessBuilder builder = new ProcessBuilder(
 							"cmd.exe", "/c", 
-							"java -cp E:\\PhD\\Works\\daikon\\daikon.jar daikon.Daikon --nohierarchy " + 
+							"java -cp " + new File("daikon.jar").getAbsolutePath() + 
+							" daikon.Daikon --nohierarchy " + 
 							strDaikonCommand + ".decls " + 
 							strDaikonCommand + ".dtrace");
-					
 					
 					builder.directory(new File(this.strPathDirectory));
 					builder.redirectErrorStream(true);

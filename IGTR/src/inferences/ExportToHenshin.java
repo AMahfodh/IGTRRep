@@ -3,6 +3,8 @@ package inferences;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -10,19 +12,24 @@ import com.sun.rowset.CachedRowSetImpl;
 
 public class ExportToHenshin {
 
-	private String ecoreName=null;
+	private String strEcoreName=null;
+	private String strEcorePrefix=null;
 	private String encryptedXmiId= this.getEncryptedXmiId();
+
+	private PrintWriter henshinWriter=null;		
+	private ArrayList<String> listInvariantConstraints = new ArrayList<String>(); 
+	private Set<String> setInvConstraintsAsParameters = new HashSet<String>();
+	private String charSeparator = String.valueOf(((char)007));
+	private boolean printingRuleWithMultiObjects=false;
 	
-	private PrintWriter henshinWriter=null;	
-	private ArrayList<String> attributeConstraints= new ArrayList<String>();
-
-
+	
+	
+	
 	public boolean exportHenshinModel(String strLocation, String ecoreFileName) throws Exception{
 
 
-		// get all abstract rule attributes based on mapped abstract node IDs	
-		System.out.println("preparing all abstract rules for exporting to Henshin tool ..");				
-		this.ecoreName=ecoreFileName;
+		// exporting all abstract (maximal) rules and rule with multi objects				
+		this.strEcoreName=ecoreFileName;
 		this.henshinWriter = new PrintWriter(strLocation, "UTF-8");
 
 
@@ -31,16 +38,30 @@ public class ExportToHenshin {
 
 
 
-		// get all abstract rules that [isAbstract=true] ...		
+
+		System.out.println("preparing all maximal rules ..");
+		// preparing all maximal rules for exporting them to Henshin ..
 		CachedRowSetImpl crsAllAbstractRule= DBRecord.getByQueryStatement(
-				"select RuleName, Observation_IDREFF from TblBasicRule "
-						+ "where isAbstract=true and isApplicable=true;");
+				"select RuleName, Observation_IDREFF, 0 from TblBasicRule "
+						+ " where isAbstract=true and isApplicable=true"
+						+ " union all "
+						+ " select RuleName, Observation_IDREFF, 1 from TblBasicRule "
+						+ " where isAbstract=true and isApplicable=true "
+						+ " and isAbstractMO=true;");
 
 		try {
 
 			while (crsAllAbstractRule.next()){
 
-				this.printRule(crsAllAbstractRule.getString(1), crsAllAbstractRule.getInt(2));
+				if (!this.printingRuleWithMultiObjects && 
+					crsAllAbstractRule.getInt(3)==1){
+					
+					this.printingRuleWithMultiObjects=true;
+					System.out.println("pritning rules with MOs ..");
+				}
+				
+				this.printRule(crsAllAbstractRule.getString(1), 
+						crsAllAbstractRule.getInt(2));
 
 			}			
 
@@ -49,8 +70,6 @@ public class ExportToHenshin {
 			e.printStackTrace();
 			return false;
 		}
-
-
 
 
 		this.printHeaderAndFooterFile(false);
@@ -74,9 +93,11 @@ public class ExportToHenshin {
 	private void printHeaderAndFooterFile(boolean isHeader){
 
 		if (isHeader){
+			this.strEcorePrefix="http://www.eclipse.org/emf/2002/Ecore#//";
+			
 			this.henshinWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator());
-			this.henshinWriter.write("<henshin:Module xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore\"  xmlns:henshin=\"http://www.eclipse.org/emf/2011/Henshin\" xmi:id=\"_qWu8UPNUEeS14" + this.encryptedXmiId + "\">" + System.lineSeparator());
-			this.henshinWriter.write("<imports href=\"" + this.ecoreName + ".ecore#/\"/>" + System.lineSeparator());
+			this.henshinWriter.write("<henshin:Module xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:ecore=\"http://www.eclipse.org/emf/2002/Ecore#/\"  xmlns:henshin=\"http://www.eclipse.org/emf/2011/Henshin#/\" xmi:id=\"_qWu8UPNUEeS14" + this.encryptedXmiId + "\" name=\"ExtractedRules2Ecore\" >" + System.lineSeparator());
+			//this.henshinWriter.write("<imports href=\"" + this.ecoreName + ".ecore#/\"/>" + System.lineSeparator());
 		}
 		else {
 			this.henshinWriter.write("</henshin:Module>" + System.lineSeparator());
@@ -88,16 +109,15 @@ public class ExportToHenshin {
 	private void printRule(String ruleName, int iObservation){
 
 		System.out.println(ruleName + " " + iObservation);
-		//this.printAttributeConstants(iObservation);
 
 		this.henshinWriter.write("<units xsi:type=\"henshin:Rule\" xmi:id=\"_X" + iObservation + "" + this.encryptedXmiId + "\" name=\"" + iObservation + "_" + ruleName + "\">" + System.lineSeparator());
 
+		// print parameters and also generate required ones based on inferred invariants 
 		this.printRuleParameters(iObservation);
 
 
 		int iLHSGraphID=-1;
 		int iRHSGraphID=-1;
-
 		CachedRowSetImpl crsGraphsIDAndRuleName = DBRecord.getByQueryStatement(
 				"select graphType, GraphID  from TblGraph  "
 						+ "where Observation_IDREFF=" + iObservation + ";");
@@ -119,23 +139,25 @@ public class ExportToHenshin {
 			e.printStackTrace();
 		}
 
-
-		this.printNodesWithAttributes(new GraphT(iLHSGraphID, true, false, true), false);
-
-		this.printNodesWithAttributes(new GraphT(iRHSGraphID, true, false, true), true);
+		if (!this.printingRuleWithMultiObjects){
+			this.printNodesWithAttributes(new GraphT(iLHSGraphID, true, false, true), false);		
+			this.printNodesWithAttributes(new GraphT(iRHSGraphID, true, false, true), true);			
+		}
+		else {
+			// for node with MO
+		}
+	
 
 		this.henshinWriter.write("</units>" + System.lineSeparator());
 	}
 
 
 
-
-
-
-
 	private void printRuleParameters(int iObservation){
 
 		System.out.println("\t printing rule parameters .." );
+
+		this.loadInvariantConstraints(iObservation);
 
 
 		String[] listOfParameters =null;
@@ -145,7 +167,7 @@ public class ExportToHenshin {
 
 		try {
 			if (crsRuleParameters.next()){
-				listOfParameters=crsRuleParameters.getString(1).split(",");				
+				listOfParameters=crsRuleParameters.getString(1).split(this.charSeparator);				
 			}
 		} 
 		catch (SQLException e) {
@@ -159,7 +181,8 @@ public class ExportToHenshin {
 		}	
 
 
-		for (int i=0; i<listOfParameters.length; i++){
+		int i=0;
+		for (i=0; i<listOfParameters.length; i++){
 
 			int iEqualIndex= listOfParameters[i].indexOf("=");
 
@@ -176,29 +199,119 @@ public class ExportToHenshin {
 
 
 
-			//	par[1]
-			this.henshinWriter.write("	<parameters xmi:id=\"_XF7_P" + i + "" + iObservation + "" + this.encryptedXmiId + "\" name=\"Par" + (i+1)  + "\"/>" + System.lineSeparator());
-			/*
-			par[0]=par[0].trim();
+			//	par[0] type, par[1] name and par[2] is value
+			this.henshinWriter.write("	<parameters xmi:id=\"_XF7_P" + i + "" + iObservation + "" + this.encryptedXmiId + "\" name=\"" + par[1]  + "\"/>" + System.lineSeparator());
+		}
 
-			if (par[0].equalsIgnoreCase("int")){
-				this.henshinWriter.write("		<type xsi:type=\"ecore:EDataType\" href=\"http://www.eclipse.org/emf/2002/Ecore#//EInt\"/>" + System.lineSeparator());
-			}
-			else if (par[0].equalsIgnoreCase("string")){
-				this.henshinWriter.write("		<type xsi:type=\"ecore:EDataType\" href=\"http://www.eclipse.org/emf/2002/Ecore#//EString\"/>" + System.lineSeparator());
-			}
-			else if (par[0].toLowerCase().contains(("xmlelement"))){				
-				this.henshinWriter.write("		<type xsi:type=\"ecore:EClass\" href=\"" + this.ecoreName + ".ecore#//XMLElement\"/>" + System.lineSeparator());
-			}
-			else {
-				System.out.println("\t\tundefined parameter type in eCore " + par[0]);
-			}
 
-			this.henshinWriter.write("	</parameters>" + System.lineSeparator());
- 			*/
+		// add extra parameters as variables
+		for (String extraParameters : this.setInvConstraintsAsParameters){				
+
+			this.henshinWriter.write("	<parameters xmi:id=\"_XF7_P" + (++i) + "" + iObservation + "" + this.encryptedXmiId + "\" name=\"" + extraParameters  + "\"/>" + System.lineSeparator());
+	
+			//String strEDataType="EString";
+			//if ("EString EInt".contains(strEDataType)){
+			//	this.henshinWriter.write("		<type xsi:type=\"ecore:EDataType\" href=\"http://www.eclipse.org/emf/2002/Ecore#//" + strEDataType + "\"/>" + System.lineSeparator());
+			//}
+			//this.henshinWriter.write("	</parameters>" + System.lineSeparator());
+		}
+	}
+
+
+
+	private void loadInvariantConstraints (int iObservationID){
+
+
+		// clear current set/list of invariants
+		this.setInvConstraintsAsParameters.clear();
+		this.listInvariantConstraints.clear();
+
+
+
+		// load invariants from DB    		
+		System.out.println("\t load constraints for [" + iObservationID + "].." );
+		CachedRowSetImpl crsConstants = DBRecord.getByQueryStatement(
+				"select RuleAttributeConditions from TblObservationOutput "
+						+ "where (RuleAttributeConditions is not null or RuleAttributeConditions='') and Observation_ID="
+						+ iObservationID + ";");
+
+		try {
+
+			if (crsConstants.next()){
+
+				char chars[] = crsConstants.getString(1).toCharArray();
+
+				String strLineInvariant="";
+				for(int i=0; i<chars.length; i++){
+
+					if (chars[i]=='\n'){
+
+						this.addInvariantToCurrentSet(strLineInvariant);
+						strLineInvariant="";
+						continue;
+					}
+
+					strLineInvariant+=chars[i];
+				}
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 	}
+
+
+
+	private void addInvariantToCurrentSet(String strLineInvariant){
+
+		strLineInvariant = strLineInvariant.trim().replace("Pre_", "").replace("Post_", "");
+		this.listInvariantConstraints.add(strLineInvariant);
+
+
+		// extracting left variable 
+		int iSpaceIndex = strLineInvariant.indexOf(" ");
+
+		if (iSpaceIndex==-1){
+			return;
+		}
+
+		String leftVar = strLineInvariant.substring(0, iSpaceIndex);
+		if (leftVar.startsWith("N") &&
+				(leftVar.contains("L_") ||	
+						leftVar.contains("R_"))){
+
+			this.setInvConstraintsAsParameters.add(leftVar);
+		}
+
+
+
+
+		// and here for the right variable
+		iSpaceIndex = strLineInvariant.lastIndexOf(" ") + 1;
+		if (iSpaceIndex>4 && iSpaceIndex < strLineInvariant.length()){
+
+			strLineInvariant = strLineInvariant.substring(iSpaceIndex);
+
+			if (strLineInvariant.startsWith("N") &&
+					(strLineInvariant.contains("L_") ||	
+							strLineInvariant.contains("R_"))){
+				this.setInvConstraintsAsParameters.add(strLineInvariant);
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -207,6 +320,7 @@ public class ExportToHenshin {
 
 	private void printNodesWithAttributes(GraphT lrhs, boolean isRHS){
 
+		
 		System.out.println("\t node and attributes for side .. " + isRHS);
 		String side="";
 
@@ -234,29 +348,13 @@ public class ExportToHenshin {
 			if (printNode.iParameterIndex>0){
 				nodeIdName=" name=\"Par" + printNode.iParameterIndex + "\"";
 			}
-			
+
 
 			this.henshinWriter.write("      <nodes xmi:id=\"_" + side + printNode.nodeID + "" + this.encryptedXmiId + "\"" + nodeIdName + incomingOutgoingEdges + ">" + System.lineSeparator());
-
-
-			if (printNode.nodeType.trim().equalsIgnoreCase("XMLElement")){
-				this.henshinWriter.write("        <type href=\"" + this.ecoreName + ".ecore#//XMLElement\"/>" + System.lineSeparator());
-			}
-			else if (printNode.nodeType.trim().equalsIgnoreCase("Vector")){
-				this.henshinWriter.write("        <type href=\"" + this.ecoreName + ".ecore#//Vector\"/>" + System.lineSeparator());
-			}
-			else if (printNode.nodeType.trim().equalsIgnoreCase("XMLAttribute")){
-				this.henshinWriter.write("        <type href=\"" + this.ecoreName + ".ecore#//XMLAttribute\"/>" + System.lineSeparator());
-			}
-			else {
-				System.out.println("\t\t Error undefined node type in eCore " + printNode.nodeID + " and type is " + printNode.nodeType);
-			}
-
+			this.henshinWriter.write("        <type href=\"" + this.strEcorePrefix + printNode.nodeType + "\"/>" + System.lineSeparator());
 
 			// print attributes
-			//this.printNodesAttributes(printNode);
-
-
+			this.printNodesAttributes(printNode);
 			this.henshinWriter.write("      </nodes>" + System.lineSeparator());
 		}
 
@@ -269,35 +367,11 @@ public class ExportToHenshin {
 			GEdge printEdge = lrhs.gEdges.get(i);
 
 			this.henshinWriter.write("      <edges xmi:id=\"_edg" + lrhs.graphID + "" + i + "" + this.encryptedXmiId + "\" source=\"_" + side + printEdge.sourceID + "" + this.encryptedXmiId + "\" target=\"_" + side + printEdge.targetID + "" + this.encryptedXmiId + "\">" + System.lineSeparator());
-			
-			
-			String edgeType=printEdge.sourceTargetType.trim();
-			
-						
-			if (edgeType.equalsIgnoreCase("Vector_XMLElement")){
-				edgeType="Vector/children";
-			} 
-			else if (edgeType.equalsIgnoreCase("Vector_XMLAttribute")){
-				edgeType="Vector/attributes";
-			}
-			else if (edgeType.equalsIgnoreCase("XMLElement_XMLElement")){
-				edgeType="XMLElement/parent";
-			}
-			else if (edgeType.equalsIgnoreCase("XMLElement_Vector")){
-				edgeType = printEdge.edgeType.toLowerCase().trim();
-				if (edgeType.startsWith("chi")){
-					edgeType="XMLElement/children";
-				}
-				else if (edgeType.startsWith("att")){
-					edgeType="XMLElement/attributes";
-				}
-			}
-			
-			
-			
-			this.henshinWriter.write("      	<type href=\"" + this.ecoreName + ".ecore#//" + edgeType + "\"/>" + System.lineSeparator());
-			this.henshinWriter.write("      </edges>" + System.lineSeparator());
 
+			// sourceType/targetType
+			this.henshinWriter.write("      	<type href=\"" + this.strEcorePrefix + printEdge.sourceTargetType + "\"/>" + System.lineSeparator());
+			
+			this.henshinWriter.write("      </edges>" + System.lineSeparator());
 		}
 
 
@@ -305,10 +379,13 @@ public class ExportToHenshin {
 
 
 
-		// closing tage
+		// closing rule tag
 		if (isRHS){
 			this.henshinWriter.write("</rhs>" + System.lineSeparator());
+			
+			this.printInvariantConstants();
 			this.printNodesMappings(lrhs);
+			
 		}
 		else {
 			this.henshinWriter.write("</lhs>" + System.lineSeparator());
@@ -317,51 +394,49 @@ public class ExportToHenshin {
 	}
 
 
+
 	private String getIncomingOutgoingConnectedEdges(GNode gNode, GraphT lrhs){
 
-		//incoming="_XHCLQH_5EeKZZICbS5P5TQ" outgoing="_XHCyUH_5EeKZZICbS5P5TQ"
-		// \"_edg" + lrhs.graphID + "" + i + "" + this.encryptedXmiId + "\"
-		
-		
 		String incoming="";
 		String outgoing="";
-		
+
 		for (int i=0; i<lrhs.gEdges.size(); i++){
 
 			GEdge printEdge = lrhs.gEdges.get(i);
-			
+
 			String edgeID= "_edg" + lrhs.graphID + "" + i + "" + this.encryptedXmiId;			
-			
+
 			if (gNode.nodeID.equalsIgnoreCase(printEdge.targetID)){
 				incoming+= edgeID + " ";
 			}
-			
+
 			if (gNode.nodeID.equalsIgnoreCase(printEdge.sourceID)){
 				outgoing+= edgeID + " ";
 			}
 		}
-		
+
 		if (incoming.length()!=0){
 			incoming = "incoming=\"" + incoming.trim() + "\"";
 		}
-		
+
 		if (outgoing.length()!=0){
 			outgoing = "outgoing=\"" + outgoing.trim() + "\"";
 		}
-		
-		
+
+
 		incoming = " " + incoming + " " + outgoing;
-		
+
 		if (incoming.trim().length()==0){
 			return "";
 		}
 		else {
 			return incoming;
 		}
-		
+
 	}
 
 
+	
 	private void printNodesAttributes(GNode gNode){
 
 
@@ -374,20 +449,28 @@ public class ExportToHenshin {
 
 			GAttribute nodeAttribute = gNode.gAttribute.get(j);
 
-			// avoid ref attributes
+			// to exclude ref attributes
 			if (nodeAttribute.attIsObjectRelation){
 				continue;
 			}
 
-			//this.henshinWriter.write("        <attributes xmi:id=\"_ATT" + gNode.nodeID + "" + j + this.encryptedXmiId + "\" value=\"\">" + System.lineSeparator());			
-			//this.henshinWriter.write("          <type href=\"" + this.ecoreName + ".ecore#//" + gNode.nodeType + "/" + nodeAttribute.attName + "\"/>" + System.lineSeparator());
-			//this.henshinWriter.write("        </attributes>" + System.lineSeparator());
+			
+			String strNodeAttType = null;
+			
+			if (nodeAttribute.attName.equalsIgnoreCase("name")){
+				strNodeAttType = "ENamedElement/" + nodeAttribute.attName;
+			}
+			else
+			{
+				strNodeAttType = gNode.nodeType + "/" + nodeAttribute.attName;
+			}
+			
+			this.henshinWriter.write("        <attributes xmi:id=\"_ATT" + gNode.nodeID + "" + j + this.encryptedXmiId + "\" value=\"" + gNode.AbstractID + "_" + nodeAttribute.attName + "\">" + System.lineSeparator());			
+			this.henshinWriter.write("          <type href=\"" + this.strEcorePrefix + strNodeAttType + "\"/>" + System.lineSeparator());
+			this.henshinWriter.write("        </attributes>" + System.lineSeparator());
 
 		}
 	}
-
-
-
 
 
 
@@ -414,42 +497,23 @@ public class ExportToHenshin {
 
 
 
-	private void printAttributeConstants(int iObservationID){
 
-		System.out.println("\t filling attribute constraints .." );
 
-		this.attributeConstraints.clear();
-
-		// load invariants from database    		
-		CachedRowSetImpl crsAttributeConstants = DBRecord.getByQueryStatement(
-				"select RuleAttributeConditions from TblObservationOutput "
-						+ "where (RuleAttributeConditions is not null or RuleAttributeConditions='') and Observation_ID="
-						+ iObservationID + ";");
-
-		try {
-
-			if (crsAttributeConstants.next()){
-
-				char chars[] = crsAttributeConstants.getString(1).toCharArray();
-
-				String strLineCollection="";
-				for(int i=0; i<chars.length; i++){
-
-					if (chars[i]=='\n'){
-						attributeConstraints.add(strLineCollection);
-						strLineCollection="";
-						continue;
-					}
-
-					strLineCollection+=chars[i];
-				}
-			}
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
+	
+	
+	private void printInvariantConstants(){
+		
+		if (this.printingRuleWithMultiObjects){
+			return;
 		}
-
+		
+		int iInv=0;
+		for (String strInv : listInvariantConstraints){
+			this.henshinWriter.write("<attributeConditions xmi:id=\"_inv" + (iInv++) + this.encryptedXmiId+ "\"" + " name=\"InvCondition" + iInv + "\" conditionText=\"" + strInv.replace("\"", "&quot;") + "\"/>" + System.lineSeparator());			
+		}
 	}
+
+
 
 
 

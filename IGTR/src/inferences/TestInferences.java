@@ -31,8 +31,10 @@ public class TestInferences {
 				new File("").getAbsolutePath() + 
 					File.separator + "HenshinOutput" + 
 					File.separator + "myModel.henshin", 
-				"ecoreFileName");
+				"");
 		
+
+
 	}
 	
 	
