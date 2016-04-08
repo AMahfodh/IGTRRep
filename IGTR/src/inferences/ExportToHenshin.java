@@ -45,7 +45,7 @@ public class ExportToHenshin {
 				"select RuleName, Observation_IDREFF, 0 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true"
 						+ " union all "
-						+ " select RuleName, Observation_IDREFF, 1 from TblBasicRule "
+						+ " select CONCAT(RuleName, '_MO') as RuleName, Observation_IDREFF, 1 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true "
 						+ " and isAbstractMO=true;");
 
@@ -145,6 +145,22 @@ public class ExportToHenshin {
 		}
 		else {
 			// for node with MO
+			GraphT graphWithMo = new GraphT();
+			
+			// loading lhs graph
+			graphWithMo.graphID=iLHSGraphID;
+			graphWithMo.graphType=0;
+			graphWithMo.LoadMultiObjects(false, true);
+			this.printNodesWithAttributes(graphWithMo, false);
+			
+			
+			// loading rhs graph
+			graphWithMo=new GraphT();
+			graphWithMo.graphID=iRHSGraphID;
+			graphWithMo.graphType=1;
+			graphWithMo.LoadMultiObjects(false, true);
+			this.printNodesWithAttributes(graphWithMo, true);			
+			
 		}
 	
 
@@ -155,6 +171,11 @@ public class ExportToHenshin {
 
 	private void printRuleParameters(int iObservation){
 
+		// currently I didn't consider data (parameters/attributes) conditions on rule with multi objects
+		if (this.printingRuleWithMultiObjects){
+			return;
+		}
+		
 		System.out.println("\t printing rule parameters .." );
 
 		this.loadInvariantConstraints(iObservation);
@@ -342,6 +363,17 @@ public class ExportToHenshin {
 
 			GNode printNode = lrhs.gNodes.get(i);
 
+			
+			
+			// update node id
+			if (this.printingRuleWithMultiObjects){
+				String preNodeID= printNode.AbstractID;
+				printNode.AbstractID = printNode.nodeID;
+				printNode.nodeID=preNodeID;
+			}
+			
+			
+			
 			String incomingOutgoingEdges=this.getIncomingOutgoingConnectedEdges(printNode, lrhs);
 
 			String nodeIdName="";
@@ -350,11 +382,24 @@ public class ExportToHenshin {
 			}
 
 
-			this.henshinWriter.write("      <nodes xmi:id=\"_" + side + printNode.nodeID + "" + this.encryptedXmiId + "\"" + nodeIdName + incomingOutgoingEdges + ">" + System.lineSeparator());
+			this.henshinWriter.write("<nodes xmi:id=\"_" + side + printNode.nodeID + "" + this.encryptedXmiId + "\"" + nodeIdName + incomingOutgoingEdges + ">" + System.lineSeparator());
 			this.henshinWriter.write("        <type href=\"" + this.strEcorePrefix + printNode.nodeType + "\"/>" + System.lineSeparator());
 
-			// print attributes
-			this.printNodesAttributes(printNode);
+			
+			
+			
+			// print attributes for normal node only
+			if (!this.printingRuleWithMultiObjects){
+				this.printNodesAttributes(printNode);
+			}
+			else {
+				// print tags for multi object node..
+				if (printNode.isMulti){
+					this.henshinWriter.write("<multiRules><multiMappings /></multiRules>");
+				}
+			}
+			
+			
 			this.henshinWriter.write("      </nodes>" + System.lineSeparator());
 		}
 
@@ -503,6 +548,7 @@ public class ExportToHenshin {
 	
 	private void printInvariantConstants(){
 		
+		// no data conditions on rule with multi objects 
 		if (this.printingRuleWithMultiObjects){
 			return;
 		}

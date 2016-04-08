@@ -41,7 +41,9 @@ public class RuleInstance  {
 	
 	protected boolean save(){
 		
-		
+		//if (!this.ruleName.equals("pullUpEAttribute")){
+		//	return false;
+		//}
 		this.adjustGraphElements();
 		
 		

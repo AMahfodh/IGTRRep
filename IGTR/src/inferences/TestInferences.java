@@ -13,16 +13,16 @@ public class TestInferences {
 		
 		
 		// commit generalisation 		
-		int iMinRepeatedMultiObjects =2;
-		new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
+		//int iMinRepeatedMultiObjects =1;
+		//new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
 		
 		
 		
 		// learning invariant constraints on rule attributes and parameters 
-		AttributeInference learningInvariantConstraints = new AttributeInference();		
-		learningInvariantConstraints.generateCSVToBeUsedByPerl();
-		learningInvariantConstraints.exeDaikon();
-		learningInvariantConstraints.storeDaikonOutputBackToDB();
+		//AttributeInference learningInvariantConstraints = new AttributeInference();		
+		//learningInvariantConstraints.generateCSVToBeUsedByPerl();
+		//learningInvariantConstraints.exeDaikon();
+		//learningInvariantConstraints.storeDaikonOutputBackToDB();
 		
 		
 		

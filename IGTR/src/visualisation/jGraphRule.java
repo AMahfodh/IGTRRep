@@ -529,6 +529,8 @@ public class jGraphRule extends JPanel  {
 			lMinimalstyleMO.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
 			lMinimalstyleMO.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_LEFT);
 			lMinimalstyleMO.put(mxConstants.STYLE_FILLCOLOR, "#FF8989");
+			lMinimalstyleMO.put(mxConstants.STYLE_SHADOW, "true");
+			
 			stylesheet.putCellStyle("MinimalStyleMO", lMinimalstyleMO);			
 		}
 		else {

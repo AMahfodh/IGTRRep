@@ -1,273 +1,2328 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore#/"  xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin#/" xmi:id="_qWu8UPNUEeS14_24f32539" name="ExtractedRules2Ecore" >
-<units xsi:type="henshin:Rule" xmi:id="_X28452_24f32539" name="28452_createEClass">
-	<parameters xmi:id="_XF7_P028452_24f32539" name="parName1"/>
-	<parameters xmi:id="_XF7_P128452_24f32539" name="parName2"/>
-	<parameters xmi:id="_XF7_P328452_24f32539" name="N284521L_nsURI"/>
-	<parameters xmi:id="_XF7_P428452_24f32539" name="N284521L_nsPrefix"/>
-	<parameters xmi:id="_XF7_P528452_24f32539" name="N284522R_nsPrefix"/>
-	<parameters xmi:id="_XF7_P628452_24f32539" name="N284522R_nsURI"/>
-	<parameters xmi:id="_XF7_P728452_24f32539" name="N284522R_name"/>
-	<parameters xmi:id="_XF7_P828452_24f32539" name="N284521L_name"/>
-	<parameters xmi:id="_XF7_P928452_24f32539" name="N284521R_abstract"/>
-	<parameters xmi:id="_XF7_P1028452_24f32539" name="N284521R_interface"/>
-	<parameters xmi:id="_XF7_P1128452_24f32539" name="N284521R_name"/>
-<lhs xmi:id="_XL122_24f32539" name="LHS">
-      <nodes xmi:id="_Lc0_24f32539">
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore#/"  xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin#/" xmi:id="_qWu8UPNUEeS14_f1cbaea8" name="ExtractedRules2Ecore" >
+<units xsi:type="henshin:Rule" xmi:id="_X28662_f1cbaea8" name="28662_createEClass">
+	<parameters xmi:id="_XF7_P028662_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128662_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328662_f1cbaea8" name="N286621R_interface"/>
+	<parameters xmi:id="_XF7_P428662_f1cbaea8" name="N286621R_name"/>
+	<parameters xmi:id="_XF7_P528662_f1cbaea8" name="N286621L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P628662_f1cbaea8" name="N286621L_nsURI"/>
+	<parameters xmi:id="_XF7_P728662_f1cbaea8" name="N286622R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P828662_f1cbaea8" name="N286621R_abstract"/>
+	<parameters xmi:id="_XF7_P928662_f1cbaea8" name="N286621L_name"/>
+	<parameters xmi:id="_XF7_P1028662_f1cbaea8" name="N286622R_name"/>
+	<parameters xmi:id="_XF7_P1128662_f1cbaea8" name="N286622R_nsURI"/>
+<lhs xmi:id="_XL542_f1cbaea8" name="LHS">
+<nodes xmi:id="_Lc0_f1cbaea8">
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        <attributes xmi:id="_ATTc00_24f32539" value="N284521L_name">
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286621L_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_ATTc01_24f32539" value="N284521L_nsPrefix">
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286621L_nsPrefix">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
         </attributes>
-        <attributes xmi:id="_ATTc02_24f32539" value="N284521L_nsURI">
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286621L_nsURI">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
         </attributes>
       </nodes>
 </lhs>
-<rhs xmi:id="_XR123_24f32539" name="RHS">
-      <nodes xmi:id="_Rb0_24f32539" incoming="_edg1230_24f32539" >
+<rhs xmi:id="_XR543_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5430_f1cbaea8" >
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-        <attributes xmi:id="_ATTb00_24f32539" value="N284521R_abstract">
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286621R_abstract">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
         </attributes>
-        <attributes xmi:id="_ATTb01_24f32539" value="N284521R_interface">
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286621R_interface">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
         </attributes>
-        <attributes xmi:id="_ATTb02_24f32539" value="N284521R_name">
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286621R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes xmi:id="_Rc0_24f32539"  outgoing="_edg1230_24f32539">
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5430_f1cbaea8">
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        <attributes xmi:id="_ATTc00_24f32539" value="N284522R_name">
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286622R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_ATTc01_24f32539" value="N284522R_nsPrefix">
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286622R_nsPrefix">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
         </attributes>
-        <attributes xmi:id="_ATTc02_24f32539" value="N284522R_nsURI">
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286622R_nsURI">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_edg1230_24f32539" source="_Rc0_24f32539" target="_Rb0_24f32539">
+      <edges xmi:id="_edg5430_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
       </edges>
 </rhs>
-<attributeConditions xmi:id="_inv0_24f32539" name="InvCondition1" conditionText="N284521L_name == &quot;original&quot;"/>
-<attributeConditions xmi:id="_inv1_24f32539" name="InvCondition2" conditionText="N284521L_nsURI == &quot;http://original&quot;"/>
-<attributeConditions xmi:id="_inv2_24f32539" name="InvCondition3" conditionText="N284521R_abstract == &quot;false&quot;"/>
-<attributeConditions xmi:id="_inv3_24f32539" name="InvCondition4" conditionText="N284521R_name == &quot;NewClass&quot;"/>
-<attributeConditions xmi:id="_inv4_24f32539" name="InvCondition5" conditionText="parName1 == &quot;parValue1&quot;"/>
-<attributeConditions xmi:id="_inv5_24f32539" name="InvCondition6" conditionText="parName2 == &quot;parValue2&quot;"/>
-<attributeConditions xmi:id="_inv6_24f32539" name="InvCondition7" conditionText="N284521L_name == N284521L_nsPrefix"/>
-<attributeConditions xmi:id="_inv7_24f32539" name="InvCondition8" conditionText="N284521L_name == N284522R_name"/>
-<attributeConditions xmi:id="_inv8_24f32539" name="InvCondition9" conditionText="N284521L_name == N284522R_nsPrefix"/>
-<attributeConditions xmi:id="_inv9_24f32539" name="InvCondition10" conditionText="N284521L_nsURI == N284522R_nsURI"/>
-<attributeConditions xmi:id="_inv10_24f32539" name="InvCondition11" conditionText="N284521R_abstract == N284521R_interface"/>
-<mappings xmi:id="_XG1231_24f32539" origin="_Lc0_24f32539" image="_Rc0_24f32539"/>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286621L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286621L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286621R_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286621R_name == &quot;NewClass&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286621L_name == N286621L_nsPrefix"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286621L_name == N286622R_name"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286621L_name == N286622R_nsPrefix"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286621L_nsURI == N286622R_nsURI"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286621R_abstract == N286621R_interface"/>
+<mappings xmi:id="_XG5431_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
 </units>
-<units xsi:type="henshin:Rule" xmi:id="_X28453_24f32539" name="28453_createEReference">
-	<parameters xmi:id="_XF7_P028453_24f32539" name="parName1"/>
-	<parameters xmi:id="_XF7_P128453_24f32539" name="parName2"/>
-	<parameters xmi:id="_XF7_P328453_24f32539" name="N284533L_name"/>
-	<parameters xmi:id="_XF7_P428453_24f32539" name="N284531L_nsURI"/>
-	<parameters xmi:id="_XF7_P528453_24f32539" name="N284533R_interface"/>
-	<parameters xmi:id="_XF7_P628453_24f32539" name="N284531R_name"/>
-	<parameters xmi:id="_XF7_P728453_24f32539" name="N284531R_changeable"/>
-	<parameters xmi:id="_XF7_P828453_24f32539" name="N284531R_lowerBound"/>
-	<parameters xmi:id="_XF7_P928453_24f32539" name="N284531L_nsPrefix"/>
-	<parameters xmi:id="_XF7_P1028453_24f32539" name="N284531R_derived"/>
-	<parameters xmi:id="_XF7_P1128453_24f32539" name="N284531L_name"/>
-	<parameters xmi:id="_XF7_P1228453_24f32539" name="N284531R_containment"/>
-	<parameters xmi:id="_XF7_P1328453_24f32539" name="N284531R_unsettable"/>
-	<parameters xmi:id="_XF7_P1428453_24f32539" name="N284531R_upperBound"/>
-	<parameters xmi:id="_XF7_P1528453_24f32539" name="N284534R_abstract"/>
-	<parameters xmi:id="_XF7_P1628453_24f32539" name="N284533R_name"/>
-	<parameters xmi:id="_XF7_P1728453_24f32539" name="N284532L_abstract"/>
-	<parameters xmi:id="_XF7_P1828453_24f32539" name="N284531R_volatile"/>
-	<parameters xmi:id="_XF7_P1928453_24f32539" name="N284531R_unique"/>
-	<parameters xmi:id="_XF7_P2028453_24f32539" name="N284532R_name"/>
-	<parameters xmi:id="_XF7_P2128453_24f32539" name="N284531R_resolveProxies"/>
-	<parameters xmi:id="_XF7_P2228453_24f32539" name="N284531R_transient"/>
-	<parameters xmi:id="_XF7_P2328453_24f32539" name="N284532R_nsURI"/>
-	<parameters xmi:id="_XF7_P2428453_24f32539" name="N284533L_interface"/>
-	<parameters xmi:id="_XF7_P2528453_24f32539" name="N284533R_abstract"/>
-	<parameters xmi:id="_XF7_P2628453_24f32539" name="N284533L_abstract"/>
-	<parameters xmi:id="_XF7_P2728453_24f32539" name="N284532R_nsPrefix"/>
-	<parameters xmi:id="_XF7_P2828453_24f32539" name="N284531R_ordered"/>
-	<parameters xmi:id="_XF7_P2928453_24f32539" name="N284534R_name"/>
-	<parameters xmi:id="_XF7_P3028453_24f32539" name="N284534R_interface"/>
-	<parameters xmi:id="_XF7_P3128453_24f32539" name="N284532L_name"/>
-	<parameters xmi:id="_XF7_P3228453_24f32539" name="N284532L_interface"/>
-<lhs xmi:id="_XL124_24f32539" name="LHS">
-      <nodes xmi:id="_Lc0_24f32539"  outgoing="_edg1240_24f32539 _edg1241_24f32539">
-        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        <attributes xmi:id="_ATTc00_24f32539" value="N284531L_name">
+<units xsi:type="henshin:Rule" xmi:id="_X28665_f1cbaea8" name="28665_createEClassAsInterfaceInEPackage">
+	<parameters xmi:id="_XF7_P028665_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128665_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328665_f1cbaea8" name="N286651L_interface"/>
+	<parameters xmi:id="_XF7_P428665_f1cbaea8" name="N286653R_name"/>
+	<parameters xmi:id="_XF7_P528665_f1cbaea8" name="N286653R_nsURI"/>
+	<parameters xmi:id="_XF7_P628665_f1cbaea8" name="N286652L_nsURI"/>
+	<parameters xmi:id="_XF7_P728665_f1cbaea8" name="N286653R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P828665_f1cbaea8" name="N286652L_name"/>
+	<parameters xmi:id="_XF7_P928665_f1cbaea8" name="N286652R_name"/>
+	<parameters xmi:id="_XF7_P1028665_f1cbaea8" name="N286652L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P1128665_f1cbaea8" name="N286651L_name"/>
+	<parameters xmi:id="_XF7_P1228665_f1cbaea8" name="N286651R_interface"/>
+	<parameters xmi:id="_XF7_P1328665_f1cbaea8" name="N286651L_abstract"/>
+	<parameters xmi:id="_XF7_P1428665_f1cbaea8" name="N286652R_abstract"/>
+	<parameters xmi:id="_XF7_P1528665_f1cbaea8" name="N286651R_abstract"/>
+	<parameters xmi:id="_XF7_P1628665_f1cbaea8" name="N286651R_name"/>
+	<parameters xmi:id="_XF7_P1728665_f1cbaea8" name="N286652R_interface"/>
+<lhs xmi:id="_XL548_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg5480_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286651L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286651L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286651L_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_ATTc01_24f32539" value="N284531L_nsPrefix">
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg5480_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286652L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286652L_nsPrefix">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
         </attributes>
-        <attributes xmi:id="_ATTc02_24f32539" value="N284531L_nsURI">
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286652L_nsURI">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
         </attributes>
       </nodes>
-      <nodes xmi:id="_Lc1_24f32539" incoming="_edg1240_24f32539" >
-        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-        <attributes xmi:id="_ATTc10_24f32539" value="N284532L_abstract">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
-        </attributes>
-        <attributes xmi:id="_ATTc11_24f32539" value="N284532L_interface">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
-        </attributes>
-        <attributes xmi:id="_ATTc12_24f32539" value="N284532L_name">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
-        </attributes>
-      </nodes>
-      <nodes xmi:id="_Lc2_24f32539" incoming="_edg1241_24f32539" >
-        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-        <attributes xmi:id="_ATTc20_24f32539" value="N284533L_abstract">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
-        </attributes>
-        <attributes xmi:id="_ATTc21_24f32539" value="N284533L_interface">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
-        </attributes>
-        <attributes xmi:id="_ATTc22_24f32539" value="N284533L_name">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
-        </attributes>
-      </nodes>
-      <edges xmi:id="_edg1240_24f32539" source="_Lc0_24f32539" target="_Lc1_24f32539">
-      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
-      </edges>
-      <edges xmi:id="_edg1241_24f32539" source="_Lc0_24f32539" target="_Lc2_24f32539">
+      <edges xmi:id="_edg5480_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
       </edges>
 </lhs>
-<rhs xmi:id="_XR125_24f32539" name="RHS">
-      <nodes xmi:id="_Rb0_24f32539" incoming="_edg1253_24f32539" outgoing="_edg1250_24f32539">
-        <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
-        <attributes xmi:id="_ATTb00_24f32539" value="N284531R_changeable">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/changeable"/>
+<rhs xmi:id="_XR549_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5490_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286651R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
         </attributes>
-        <attributes xmi:id="_ATTb01_24f32539" value="N284531R_containment">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/containment"/>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286651R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
         </attributes>
-        <attributes xmi:id="_ATTb02_24f32539" value="N284531R_derived">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/derived"/>
-        </attributes>
-        <attributes xmi:id="_ATTb03_24f32539" value="N284531R_lowerBound">
-          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/lowerBound"/>
-        </attributes>
-        <attributes xmi:id="_ATTb04_24f32539" value="N284531R_name">
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286651R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_ATTb05_24f32539" value="N284531R_ordered">
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8" incoming="_edg5491_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb10_f1cbaea8" value="N286652R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb11_f1cbaea8" value="N286652R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb12_f1cbaea8" value="N286652R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5490_f1cbaea8 _edg5491_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286653R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286653R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286653R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5490_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5491_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286651L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286651L_name == &quot;A&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286652L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286652L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286651R_abstract == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286651L_abstract == N286651L_interface"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286651L_abstract == N286652R_abstract"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286651L_abstract == N286652R_interface"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286651L_name == N286651R_name"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286651L_name == N286652R_name"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286652L_name == N286652L_nsPrefix"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286652L_name == N286653R_name"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286652L_name == N286653R_nsPrefix"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286652L_nsURI == N286653R_nsURI"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286651R_abstract == N286651R_interface"/>
+<mappings xmi:id="_XG5492_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28666_f1cbaea8" name="28666_createEReference">
+	<parameters xmi:id="_XF7_P028666_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128666_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328666_f1cbaea8" name="N286661L_nsURI"/>
+	<parameters xmi:id="_XF7_P428666_f1cbaea8" name="N286663R_interface"/>
+	<parameters xmi:id="_XF7_P528666_f1cbaea8" name="N286662L_name"/>
+	<parameters xmi:id="_XF7_P628666_f1cbaea8" name="N286661R_containment"/>
+	<parameters xmi:id="_XF7_P728666_f1cbaea8" name="N286662R_name"/>
+	<parameters xmi:id="_XF7_P828666_f1cbaea8" name="N286664R_abstract"/>
+	<parameters xmi:id="_XF7_P928666_f1cbaea8" name="N286662L_abstract"/>
+	<parameters xmi:id="_XF7_P1028666_f1cbaea8" name="N286661R_ordered"/>
+	<parameters xmi:id="_XF7_P1128666_f1cbaea8" name="N286661R_resolveProxies"/>
+	<parameters xmi:id="_XF7_P1228666_f1cbaea8" name="N286661R_transient"/>
+	<parameters xmi:id="_XF7_P1328666_f1cbaea8" name="N286661R_changeable"/>
+	<parameters xmi:id="_XF7_P1428666_f1cbaea8" name="N286661R_unsettable"/>
+	<parameters xmi:id="_XF7_P1528666_f1cbaea8" name="N286661R_name"/>
+	<parameters xmi:id="_XF7_P1628666_f1cbaea8" name="N286661L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P1728666_f1cbaea8" name="N286664R_name"/>
+	<parameters xmi:id="_XF7_P1828666_f1cbaea8" name="N286661R_lowerBound"/>
+	<parameters xmi:id="_XF7_P1928666_f1cbaea8" name="N286661R_upperBound"/>
+	<parameters xmi:id="_XF7_P2028666_f1cbaea8" name="N286663L_name"/>
+	<parameters xmi:id="_XF7_P2128666_f1cbaea8" name="N286662R_nsURI"/>
+	<parameters xmi:id="_XF7_P2228666_f1cbaea8" name="N286663R_name"/>
+	<parameters xmi:id="_XF7_P2328666_f1cbaea8" name="N286663R_abstract"/>
+	<parameters xmi:id="_XF7_P2428666_f1cbaea8" name="N286663L_abstract"/>
+	<parameters xmi:id="_XF7_P2528666_f1cbaea8" name="N286663L_interface"/>
+	<parameters xmi:id="_XF7_P2628666_f1cbaea8" name="N286661L_name"/>
+	<parameters xmi:id="_XF7_P2728666_f1cbaea8" name="N286664R_interface"/>
+	<parameters xmi:id="_XF7_P2828666_f1cbaea8" name="N286661R_volatile"/>
+	<parameters xmi:id="_XF7_P2928666_f1cbaea8" name="N286662R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P3028666_f1cbaea8" name="N286661R_unique"/>
+	<parameters xmi:id="_XF7_P3128666_f1cbaea8" name="N286661R_derived"/>
+	<parameters xmi:id="_XF7_P3228666_f1cbaea8" name="N286662L_interface"/>
+<lhs xmi:id="_XL550_f1cbaea8" name="LHS">
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg5500_f1cbaea8 _edg5501_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286661L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286661L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286661L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg5500_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286662L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286662L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286662L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc2_f1cbaea8" incoming="_edg5501_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc20_f1cbaea8" value="N286663L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc21_f1cbaea8" value="N286663L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc22_f1cbaea8" value="N286663L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5500_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5501_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR551_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5513_f1cbaea8" outgoing="_edg5510_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286661R_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286661R_containment">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/containment"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286661R_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTb03_f1cbaea8" value="N286661R_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb04_f1cbaea8" value="N286661R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb05_f1cbaea8" value="N286661R_ordered">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/ordered"/>
         </attributes>
-        <attributes xmi:id="_ATTb06_24f32539" value="N284531R_resolveProxies">
+        <attributes xmi:id="_ATTb06_f1cbaea8" value="N286661R_resolveProxies">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/resolveProxies"/>
         </attributes>
-        <attributes xmi:id="_ATTb07_24f32539" value="N284531R_transient">
+        <attributes xmi:id="_ATTb07_f1cbaea8" value="N286661R_transient">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/transient"/>
         </attributes>
-        <attributes xmi:id="_ATTb08_24f32539" value="N284531R_unique">
+        <attributes xmi:id="_ATTb08_f1cbaea8" value="N286661R_unique">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/unique"/>
         </attributes>
-        <attributes xmi:id="_ATTb09_24f32539" value="N284531R_unsettable">
+        <attributes xmi:id="_ATTb09_f1cbaea8" value="N286661R_unsettable">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/unsettable"/>
         </attributes>
-        <attributes xmi:id="_ATTb010_24f32539" value="N284531R_upperBound">
+        <attributes xmi:id="_ATTb010_f1cbaea8" value="N286661R_upperBound">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/upperBound"/>
         </attributes>
-        <attributes xmi:id="_ATTb011_24f32539" value="N284531R_volatile">
+        <attributes xmi:id="_ATTb011_f1cbaea8" value="N286661R_volatile">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/volatile"/>
         </attributes>
       </nodes>
-      <nodes xmi:id="_Rc0_24f32539"  outgoing="_edg1251_24f32539 _edg1252_24f32539">
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5511_f1cbaea8 _edg5512_f1cbaea8">
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-        <attributes xmi:id="_ATTc00_24f32539" value="N284532R_name">
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286662R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
-        <attributes xmi:id="_ATTc01_24f32539" value="N284532R_nsPrefix">
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286662R_nsPrefix">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
         </attributes>
-        <attributes xmi:id="_ATTc02_24f32539" value="N284532R_nsURI">
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286662R_nsURI">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
         </attributes>
       </nodes>
-      <nodes xmi:id="_Rc1_24f32539" incoming="_edg1251_24f32539" outgoing="_edg1253_24f32539">
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg5511_f1cbaea8" outgoing="_edg5513_f1cbaea8">
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-        <attributes xmi:id="_ATTc10_24f32539" value="N284533R_abstract">
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286663R_abstract">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
         </attributes>
-        <attributes xmi:id="_ATTc11_24f32539" value="N284533R_interface">
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286663R_interface">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
         </attributes>
-        <attributes xmi:id="_ATTc12_24f32539" value="N284533R_name">
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286663R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
       </nodes>
-      <nodes xmi:id="_Rc2_24f32539" incoming="_edg1250_24f32539 _edg1252_24f32539" >
+<nodes xmi:id="_Rc2_f1cbaea8" incoming="_edg5510_f1cbaea8 _edg5512_f1cbaea8" >
         <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-        <attributes xmi:id="_ATTc20_24f32539" value="N284534R_abstract">
+        <attributes xmi:id="_ATTc20_f1cbaea8" value="N286664R_abstract">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
         </attributes>
-        <attributes xmi:id="_ATTc21_24f32539" value="N284534R_interface">
+        <attributes xmi:id="_ATTc21_f1cbaea8" value="N286664R_interface">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
         </attributes>
-        <attributes xmi:id="_ATTc22_24f32539" value="N284534R_name">
+        <attributes xmi:id="_ATTc22_f1cbaea8" value="N286664R_name">
           <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
         </attributes>
       </nodes>
-      <edges xmi:id="_edg1250_24f32539" source="_Rb0_24f32539" target="_Rc2_24f32539">
+      <edges xmi:id="_edg5510_f1cbaea8" source="_Rb0_f1cbaea8" target="_Rc2_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EReference/eType"/>
       </edges>
-      <edges xmi:id="_edg1251_24f32539" source="_Rc0_24f32539" target="_Rc1_24f32539">
+      <edges xmi:id="_edg5511_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
       </edges>
-      <edges xmi:id="_edg1252_24f32539" source="_Rc0_24f32539" target="_Rc2_24f32539">
+      <edges xmi:id="_edg5512_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc2_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
       </edges>
-      <edges xmi:id="_edg1253_24f32539" source="_Rc1_24f32539" target="_Rb0_24f32539">
+      <edges xmi:id="_edg5513_f1cbaea8" source="_Rc1_f1cbaea8" target="_Rb0_f1cbaea8">
       	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
       </edges>
 </rhs>
-<attributeConditions xmi:id="_inv0_24f32539" name="InvCondition1" conditionText="N284531L_name == &quot;original&quot;"/>
-<attributeConditions xmi:id="_inv1_24f32539" name="InvCondition2" conditionText="N284531L_nsURI == &quot;http://original&quot;"/>
-<attributeConditions xmi:id="_inv2_24f32539" name="InvCondition3" conditionText="N284532L_abstract == &quot;false&quot;"/>
-<attributeConditions xmi:id="_inv3_24f32539" name="InvCondition4" conditionText="N284532L_name == &quot;Class1&quot;"/>
-<attributeConditions xmi:id="_inv4_24f32539" name="InvCondition5" conditionText="N284533L_name == &quot;Class2&quot;"/>
-<attributeConditions xmi:id="_inv5_24f32539" name="InvCondition6" conditionText="N284531R_changeable == &quot;true&quot;"/>
-<attributeConditions xmi:id="_inv6_24f32539" name="InvCondition7" conditionText="N284531R_lowerBound == 0.0"/>
-<attributeConditions xmi:id="_inv7_24f32539" name="InvCondition8" conditionText="N284531R_name == &quot;EReference0&quot;"/>
-<attributeConditions xmi:id="_inv8_24f32539" name="InvCondition9" conditionText="N284531R_upperBound == 1.0"/>
-<attributeConditions xmi:id="_inv9_24f32539" name="InvCondition10" conditionText="parName1 == &quot;parValue1&quot;"/>
-<attributeConditions xmi:id="_inv10_24f32539" name="InvCondition11" conditionText="parName2 == &quot;parValue2&quot;"/>
-<attributeConditions xmi:id="_inv11_24f32539" name="InvCondition12" conditionText="N284531L_name == N284531L_nsPrefix"/>
-<attributeConditions xmi:id="_inv12_24f32539" name="InvCondition13" conditionText="N284531L_name == N284532R_name"/>
-<attributeConditions xmi:id="_inv13_24f32539" name="InvCondition14" conditionText="N284531L_name == N284532R_nsPrefix"/>
-<attributeConditions xmi:id="_inv14_24f32539" name="InvCondition15" conditionText="N284531L_nsURI == N284532R_nsURI"/>
-<attributeConditions xmi:id="_inv15_24f32539" name="InvCondition16" conditionText="N284532L_abstract == N284532L_interface"/>
-<attributeConditions xmi:id="_inv16_24f32539" name="InvCondition17" conditionText="N284532L_abstract == N284533L_abstract"/>
-<attributeConditions xmi:id="_inv17_24f32539" name="InvCondition18" conditionText="N284532L_abstract == N284533L_interface"/>
-<attributeConditions xmi:id="_inv18_24f32539" name="InvCondition19" conditionText="N284532L_abstract == N284531R_containment"/>
-<attributeConditions xmi:id="_inv19_24f32539" name="InvCondition20" conditionText="N284532L_abstract == N284531R_derived"/>
-<attributeConditions xmi:id="_inv20_24f32539" name="InvCondition21" conditionText="N284532L_abstract == N284531R_transient"/>
-<attributeConditions xmi:id="_inv21_24f32539" name="InvCondition22" conditionText="N284532L_abstract == N284531R_unsettable"/>
-<attributeConditions xmi:id="_inv22_24f32539" name="InvCondition23" conditionText="N284532L_abstract == N284531R_volatile"/>
-<attributeConditions xmi:id="_inv23_24f32539" name="InvCondition24" conditionText="N284532L_abstract == N284533R_abstract"/>
-<attributeConditions xmi:id="_inv24_24f32539" name="InvCondition25" conditionText="N284532L_abstract == N284533R_interface"/>
-<attributeConditions xmi:id="_inv25_24f32539" name="InvCondition26" conditionText="N284532L_abstract == N284534R_abstract"/>
-<attributeConditions xmi:id="_inv26_24f32539" name="InvCondition27" conditionText="N284532L_abstract == N284534R_interface"/>
-<attributeConditions xmi:id="_inv27_24f32539" name="InvCondition28" conditionText="N284532L_name == N284533R_name"/>
-<attributeConditions xmi:id="_inv28_24f32539" name="InvCondition29" conditionText="N284533L_name == N284534R_name"/>
-<attributeConditions xmi:id="_inv29_24f32539" name="InvCondition30" conditionText="N284531R_changeable == N284531R_ordered"/>
-<attributeConditions xmi:id="_inv30_24f32539" name="InvCondition31" conditionText="N284531R_changeable == N284531R_resolveProxies"/>
-<attributeConditions xmi:id="_inv31_24f32539" name="InvCondition32" conditionText="N284531R_changeable == N284531R_unique"/>
-<mappings xmi:id="_XG1251_24f32539" origin="_Lc0_24f32539" image="_Rc0_24f32539"/>
-<mappings xmi:id="_XG1252_24f32539" origin="_Lc1_24f32539" image="_Rc1_24f32539"/>
-<mappings xmi:id="_XG1253_24f32539" origin="_Lc2_24f32539" image="_Rc2_24f32539"/>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286661L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286661L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286662L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286662L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286663L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286661R_changeable == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286661R_lowerBound == 0.0"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286661R_name == &quot;EReference0&quot;"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286661R_upperBound == 1.0"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286661L_name == N286661L_nsPrefix"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286661L_name == N286662R_name"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286661L_name == N286662R_nsPrefix"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286661L_nsURI == N286662R_nsURI"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286662L_abstract == N286662L_interface"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286662L_abstract == N286663L_abstract"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286662L_abstract == N286663L_interface"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="N286662L_abstract == N286661R_containment"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="N286662L_abstract == N286661R_derived"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286662L_abstract == N286661R_transient"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286662L_abstract == N286661R_unsettable"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286662L_abstract == N286661R_volatile"/>
+<attributeConditions xmi:id="_inv23_f1cbaea8" name="InvCondition24" conditionText="N286662L_abstract == N286663R_abstract"/>
+<attributeConditions xmi:id="_inv24_f1cbaea8" name="InvCondition25" conditionText="N286662L_abstract == N286663R_interface"/>
+<attributeConditions xmi:id="_inv25_f1cbaea8" name="InvCondition26" conditionText="N286662L_abstract == N286664R_abstract"/>
+<attributeConditions xmi:id="_inv26_f1cbaea8" name="InvCondition27" conditionText="N286662L_abstract == N286664R_interface"/>
+<attributeConditions xmi:id="_inv27_f1cbaea8" name="InvCondition28" conditionText="N286662L_name == N286663R_name"/>
+<attributeConditions xmi:id="_inv28_f1cbaea8" name="InvCondition29" conditionText="N286663L_name == N286664R_name"/>
+<attributeConditions xmi:id="_inv29_f1cbaea8" name="InvCondition30" conditionText="N286661R_changeable == N286661R_ordered"/>
+<attributeConditions xmi:id="_inv30_f1cbaea8" name="InvCondition31" conditionText="N286661R_changeable == N286661R_resolveProxies"/>
+<attributeConditions xmi:id="_inv31_f1cbaea8" name="InvCondition32" conditionText="N286661R_changeable == N286661R_unique"/>
+<mappings xmi:id="_XG5511_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG5512_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+<mappings xmi:id="_XG5513_f1cbaea8" origin="_Lc2_f1cbaea8" image="_Rc2_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28685_f1cbaea8" name="28685_createEClassAsInterfaceInEPackage">
+	<parameters xmi:id="_XF7_P028685_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128685_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328685_f1cbaea8" name="N286852R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P428685_f1cbaea8" name="N286852R_name"/>
+	<parameters xmi:id="_XF7_P528685_f1cbaea8" name="N286851L_nsURI"/>
+	<parameters xmi:id="_XF7_P628685_f1cbaea8" name="N286851R_abstract"/>
+	<parameters xmi:id="_XF7_P728685_f1cbaea8" name="N286851L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P828685_f1cbaea8" name="N286851R_name"/>
+	<parameters xmi:id="_XF7_P928685_f1cbaea8" name="N286851R_interface"/>
+	<parameters xmi:id="_XF7_P1028685_f1cbaea8" name="N286851L_name"/>
+	<parameters xmi:id="_XF7_P1128685_f1cbaea8" name="N286852R_nsURI"/>
+<lhs xmi:id="_XL588_f1cbaea8" name="LHS">
+<nodes xmi:id="_Lc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286851L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286851L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286851L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+</lhs>
+<rhs xmi:id="_XR589_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5890_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286851R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286851R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286851R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5890_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286852R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286852R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286852R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5890_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286851L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286851L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286851R_abstract == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286851R_name one of { &quot;A&quot;, &quot;B&quot; }"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286851L_name == N286851L_nsPrefix"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286851L_name == N286852R_name"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286851L_name == N286852R_nsPrefix"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286851L_nsURI == N286852R_nsURI"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286851R_abstract == N286851R_interface"/>
+<mappings xmi:id="_XG5891_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28689_f1cbaea8" name="28689_pullUpEAttribute">
+	<parameters xmi:id="_XF7_P028689_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128689_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328689_f1cbaea8" name="N286892R_changeable"/>
+	<parameters xmi:id="_XF7_P428689_f1cbaea8" name="N286891L_interface"/>
+	<parameters xmi:id="_XF7_P528689_f1cbaea8" name="N286894R_nsURI"/>
+	<parameters xmi:id="_XF7_P628689_f1cbaea8" name="N286892R_unsettable"/>
+	<parameters xmi:id="_XF7_P728689_f1cbaea8" name="N286892L_volatile"/>
+	<parameters xmi:id="_XF7_P828689_f1cbaea8" name="N286892R_unique"/>
+	<parameters xmi:id="_XF7_P928689_f1cbaea8" name="N286895R_name"/>
+	<parameters xmi:id="_XF7_P1028689_f1cbaea8" name="N286892L_lowerBound"/>
+	<parameters xmi:id="_XF7_P1128689_f1cbaea8" name="N286892L_changeable"/>
+	<parameters xmi:id="_XF7_P1228689_f1cbaea8" name="N286892L_transient"/>
+	<parameters xmi:id="_XF7_P1328689_f1cbaea8" name="N286892R_volatile"/>
+	<parameters xmi:id="_XF7_P1428689_f1cbaea8" name="N286892R_name"/>
+	<parameters xmi:id="_XF7_P1528689_f1cbaea8" name="N286895L_name"/>
+	<parameters xmi:id="_XF7_P1628689_f1cbaea8" name="N286894R_name"/>
+	<parameters xmi:id="_XF7_P1728689_f1cbaea8" name="N286892L_name"/>
+	<parameters xmi:id="_XF7_P1828689_f1cbaea8" name="N286895R_interface"/>
+	<parameters xmi:id="_XF7_P1928689_f1cbaea8" name="N286892L_upperBound"/>
+	<parameters xmi:id="_XF7_P2028689_f1cbaea8" name="N286891L_name"/>
+	<parameters xmi:id="_XF7_P2128689_f1cbaea8" name="N286892R_lowerBound"/>
+	<parameters xmi:id="_XF7_P2228689_f1cbaea8" name="N286891L_abstract"/>
+	<parameters xmi:id="_XF7_P2328689_f1cbaea8" name="N286891R_abstract"/>
+	<parameters xmi:id="_XF7_P2428689_f1cbaea8" name="N286891R_interface"/>
+	<parameters xmi:id="_XF7_P2528689_f1cbaea8" name="N286893L_serializable"/>
+	<parameters xmi:id="_XF7_P2628689_f1cbaea8" name="N286892L_unsettable"/>
+	<parameters xmi:id="_XF7_P2728689_f1cbaea8" name="N286892L_ordered"/>
+	<parameters xmi:id="_XF7_P2828689_f1cbaea8" name="N286894L_nsURI"/>
+	<parameters xmi:id="_XF7_P2928689_f1cbaea8" name="N286893R_serializable"/>
+	<parameters xmi:id="_XF7_P3028689_f1cbaea8" name="N286891R_name"/>
+	<parameters xmi:id="_XF7_P3128689_f1cbaea8" name="N286895R_abstract"/>
+	<parameters xmi:id="_XF7_P3228689_f1cbaea8" name="N286892R_ordered"/>
+	<parameters xmi:id="_XF7_P3328689_f1cbaea8" name="N286894L_name"/>
+	<parameters xmi:id="_XF7_P3428689_f1cbaea8" name="N286892L_derived"/>
+	<parameters xmi:id="_XF7_P3528689_f1cbaea8" name="N286892R_derived"/>
+	<parameters xmi:id="_XF7_P3628689_f1cbaea8" name="N286892L_unique"/>
+	<parameters xmi:id="_XF7_P3728689_f1cbaea8" name="N286895L_interface"/>
+	<parameters xmi:id="_XF7_P3828689_f1cbaea8" name="N286894R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P3928689_f1cbaea8" name="N286892R_iD"/>
+	<parameters xmi:id="_XF7_P4028689_f1cbaea8" name="N286892R_upperBound"/>
+	<parameters xmi:id="_XF7_P4128689_f1cbaea8" name="N286893L_name"/>
+	<parameters xmi:id="_XF7_P4228689_f1cbaea8" name="N286895L_abstract"/>
+	<parameters xmi:id="_XF7_P4328689_f1cbaea8" name="N286894L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P4428689_f1cbaea8" name="N286892L_iD"/>
+	<parameters xmi:id="_XF7_P4528689_f1cbaea8" name="N286892R_transient"/>
+	<parameters xmi:id="_XF7_P4628689_f1cbaea8" name="N286893R_name"/>
+<lhs xmi:id="_XL596_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg5961_f1cbaea8 _edg5964_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286891L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286891L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286891L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8" incoming="_edg5965_f1cbaea8" outgoing="_edg5960_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa10_f1cbaea8" value="N286892L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa11_f1cbaea8" value="N286892L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa12_f1cbaea8" value="N286892L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa13_f1cbaea8" value="N286892L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa14_f1cbaea8" value="N286892L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa15_f1cbaea8" value="N286892L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa16_f1cbaea8" value="N286892L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa17_f1cbaea8" value="N286892L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa18_f1cbaea8" value="N286892L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa19_f1cbaea8" value="N286892L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa110_f1cbaea8" value="N286892L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La2_f1cbaea8" incoming="_edg5960_f1cbaea8 _edg5962_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTa20_f1cbaea8" value="N286893L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa21_f1cbaea8" value="N286893L_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg5961_f1cbaea8 _edg5962_f1cbaea8 _edg5963_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286894L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286894L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286894L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg5963_f1cbaea8" outgoing="_edg5964_f1cbaea8 _edg5965_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286895L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286895L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286895L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5960_f1cbaea8" source="_La1_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg5961_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5962_f1cbaea8" source="_Lc0_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5963_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5964_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg5965_f1cbaea8" source="_Lc1_f1cbaea8" target="_La1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR597_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5972_f1cbaea8 _edg5975_f1cbaea8" outgoing="_edg5970_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286891R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286891R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286891R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8" incoming="_edg5970_f1cbaea8" outgoing="_edg5971_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTb10_f1cbaea8" value="N286892R_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb11_f1cbaea8" value="N286892R_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTb12_f1cbaea8" value="N286892R_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTb13_f1cbaea8" value="N286892R_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb14_f1cbaea8" value="N286892R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb15_f1cbaea8" value="N286892R_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTb16_f1cbaea8" value="N286892R_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTb17_f1cbaea8" value="N286892R_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTb18_f1cbaea8" value="N286892R_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb19_f1cbaea8" value="N286892R_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb110_f1cbaea8" value="N286892R_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb2_f1cbaea8" incoming="_edg5971_f1cbaea8 _edg5973_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTb20_f1cbaea8" value="N286893R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb21_f1cbaea8" value="N286893R_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5972_f1cbaea8 _edg5973_f1cbaea8 _edg5974_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286894R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286894R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286894R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg5974_f1cbaea8" outgoing="_edg5975_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286895R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286895R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286895R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5970_f1cbaea8" source="_Rb0_f1cbaea8" target="_Rb1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg5971_f1cbaea8" source="_Rb1_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg5972_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5973_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5974_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5975_f1cbaea8" source="_Rc1_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286892L_lowerBound == N286892R_lowerBound"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286892L_upperBound == N286892R_upperBound"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286891L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286891L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286892L_changeable == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286892L_lowerBound == 0.0"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286892L_name == &quot;EAttribute0&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286892L_upperBound == 1.0"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286893L_name == &quot;EDataType0&quot;"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286894L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286894L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286895L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286891R_name == &quot;EClass1&quot;"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286891L_abstract == N286891L_interface"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286891L_abstract == N286892L_derived"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286891L_abstract == N286892L_iD"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="N286891L_abstract == N286892L_transient"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="N286891L_abstract == N286892L_unsettable"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286891L_abstract == N286892L_volatile"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286891L_abstract == N286895L_abstract"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286891L_abstract == N286895L_interface"/>
+<attributeConditions xmi:id="_inv23_f1cbaea8" name="InvCondition24" conditionText="N286891L_abstract == N286891R_abstract"/>
+<attributeConditions xmi:id="_inv24_f1cbaea8" name="InvCondition25" conditionText="N286891L_abstract == N286891R_interface"/>
+<attributeConditions xmi:id="_inv25_f1cbaea8" name="InvCondition26" conditionText="N286891L_abstract == N286892R_derived"/>
+<attributeConditions xmi:id="_inv26_f1cbaea8" name="InvCondition27" conditionText="N286891L_abstract == N286892R_iD"/>
+<attributeConditions xmi:id="_inv27_f1cbaea8" name="InvCondition28" conditionText="N286891L_abstract == N286892R_transient"/>
+<attributeConditions xmi:id="_inv28_f1cbaea8" name="InvCondition29" conditionText="N286891L_abstract == N286892R_unsettable"/>
+<attributeConditions xmi:id="_inv29_f1cbaea8" name="InvCondition30" conditionText="N286891L_abstract == N286892R_volatile"/>
+<attributeConditions xmi:id="_inv30_f1cbaea8" name="InvCondition31" conditionText="N286891L_abstract == N286895R_abstract"/>
+<attributeConditions xmi:id="_inv31_f1cbaea8" name="InvCondition32" conditionText="N286891L_abstract == N286895R_interface"/>
+<attributeConditions xmi:id="_inv32_f1cbaea8" name="InvCondition33" conditionText="N286892L_changeable == N286892L_ordered"/>
+<attributeConditions xmi:id="_inv33_f1cbaea8" name="InvCondition34" conditionText="N286892L_changeable == N286892L_unique"/>
+<attributeConditions xmi:id="_inv34_f1cbaea8" name="InvCondition35" conditionText="N286892L_changeable == N286893L_serializable"/>
+<attributeConditions xmi:id="_inv35_f1cbaea8" name="InvCondition36" conditionText="N286892L_changeable == N286892R_changeable"/>
+<attributeConditions xmi:id="_inv36_f1cbaea8" name="InvCondition37" conditionText="N286892L_changeable == N286892R_ordered"/>
+<attributeConditions xmi:id="_inv37_f1cbaea8" name="InvCondition38" conditionText="N286892L_changeable == N286892R_unique"/>
+<attributeConditions xmi:id="_inv38_f1cbaea8" name="InvCondition39" conditionText="N286892L_changeable == N286893R_serializable"/>
+<attributeConditions xmi:id="_inv39_f1cbaea8" name="InvCondition40" conditionText="N286892L_name == N286892R_name"/>
+<attributeConditions xmi:id="_inv40_f1cbaea8" name="InvCondition41" conditionText="N286893L_name == N286893R_name"/>
+<attributeConditions xmi:id="_inv41_f1cbaea8" name="InvCondition42" conditionText="N286894L_name == N286894L_nsPrefix"/>
+<attributeConditions xmi:id="_inv42_f1cbaea8" name="InvCondition43" conditionText="N286894L_name == N286894R_name"/>
+<attributeConditions xmi:id="_inv43_f1cbaea8" name="InvCondition44" conditionText="N286894L_name == N286894R_nsPrefix"/>
+<attributeConditions xmi:id="_inv44_f1cbaea8" name="InvCondition45" conditionText="N286894L_nsURI == N286894R_nsURI"/>
+<attributeConditions xmi:id="_inv45_f1cbaea8" name="InvCondition46" conditionText="N286895L_name == N286895R_name"/>
+<mappings xmi:id="_XG5973_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG5974_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28690_f1cbaea8" name="28690_pullUpEAttribute">
+	<parameters xmi:id="_XF7_P028690_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128690_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328690_f1cbaea8" name="N286904L_name"/>
+	<parameters xmi:id="_XF7_P428690_f1cbaea8" name="N286904R_name"/>
+	<parameters xmi:id="_XF7_P528690_f1cbaea8" name="N286901L_abstract"/>
+	<parameters xmi:id="_XF7_P628690_f1cbaea8" name="N286902R_lowerBound"/>
+	<parameters xmi:id="_XF7_P728690_f1cbaea8" name="N286905L_changeable"/>
+	<parameters xmi:id="_XF7_P828690_f1cbaea8" name="N286901L_interface"/>
+	<parameters xmi:id="_XF7_P928690_f1cbaea8" name="N286907L_name"/>
+	<parameters xmi:id="_XF7_P1028690_f1cbaea8" name="N286905L_unique"/>
+	<parameters xmi:id="_XF7_P1128690_f1cbaea8" name="N286902R_transient"/>
+	<parameters xmi:id="_XF7_P1228690_f1cbaea8" name="N286902L_changeable"/>
+	<parameters xmi:id="_XF7_P1328690_f1cbaea8" name="N286907L_interface"/>
+	<parameters xmi:id="_XF7_P1428690_f1cbaea8" name="N286903R_name"/>
+	<parameters xmi:id="_XF7_P1528690_f1cbaea8" name="N286902R_unique"/>
+	<parameters xmi:id="_XF7_P1628690_f1cbaea8" name="N286902R_changeable"/>
+	<parameters xmi:id="_XF7_P1728690_f1cbaea8" name="N286902L_ordered"/>
+	<parameters xmi:id="_XF7_P1828690_f1cbaea8" name="N286903L_name"/>
+	<parameters xmi:id="_XF7_P1928690_f1cbaea8" name="N286905R_nsURI"/>
+	<parameters xmi:id="_XF7_P2028690_f1cbaea8" name="N286902R_iD"/>
+	<parameters xmi:id="_XF7_P2128690_f1cbaea8" name="N286902L_unique"/>
+	<parameters xmi:id="_XF7_P2228690_f1cbaea8" name="N286906R_name"/>
+	<parameters xmi:id="_XF7_P2328690_f1cbaea8" name="N286905L_derived"/>
+	<parameters xmi:id="_XF7_P2428690_f1cbaea8" name="N286906R_abstract"/>
+	<parameters xmi:id="_XF7_P2528690_f1cbaea8" name="N286906L_name"/>
+	<parameters xmi:id="_XF7_P2628690_f1cbaea8" name="N286906L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P2728690_f1cbaea8" name="N286902R_derived"/>
+	<parameters xmi:id="_XF7_P2828690_f1cbaea8" name="N286904R_interface"/>
+	<parameters xmi:id="_XF7_P2928690_f1cbaea8" name="N286903L_serializable"/>
+	<parameters xmi:id="_XF7_P3028690_f1cbaea8" name="N286902L_transient"/>
+	<parameters xmi:id="_XF7_P3128690_f1cbaea8" name="N286902R_ordered"/>
+	<parameters xmi:id="_XF7_P3228690_f1cbaea8" name="N286903R_serializable"/>
+	<parameters xmi:id="_XF7_P3328690_f1cbaea8" name="N286901R_interface"/>
+	<parameters xmi:id="_XF7_P3428690_f1cbaea8" name="N286905L_transient"/>
+	<parameters xmi:id="_XF7_P3528690_f1cbaea8" name="N286905L_unsettable"/>
+	<parameters xmi:id="_XF7_P3628690_f1cbaea8" name="N286902R_volatile"/>
+	<parameters xmi:id="_XF7_P3728690_f1cbaea8" name="N286905R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P3828690_f1cbaea8" name="N286905L_volatile"/>
+	<parameters xmi:id="_XF7_P3928690_f1cbaea8" name="N286905L_upperBound"/>
+	<parameters xmi:id="_XF7_P4028690_f1cbaea8" name="N286905L_iD"/>
+	<parameters xmi:id="_XF7_P4128690_f1cbaea8" name="N286902L_upperBound"/>
+	<parameters xmi:id="_XF7_P4228690_f1cbaea8" name="N286902L_name"/>
+	<parameters xmi:id="_XF7_P4328690_f1cbaea8" name="N286902R_name"/>
+	<parameters xmi:id="_XF7_P4428690_f1cbaea8" name="N286906L_nsURI"/>
+	<parameters xmi:id="_XF7_P4528690_f1cbaea8" name="N286905L_ordered"/>
+	<parameters xmi:id="_XF7_P4628690_f1cbaea8" name="N286905L_name"/>
+	<parameters xmi:id="_XF7_P4728690_f1cbaea8" name="N286902L_unsettable"/>
+	<parameters xmi:id="_XF7_P4828690_f1cbaea8" name="N286902L_volatile"/>
+	<parameters xmi:id="_XF7_P4928690_f1cbaea8" name="N286904R_abstract"/>
+	<parameters xmi:id="_XF7_P5028690_f1cbaea8" name="N286904L_abstract"/>
+	<parameters xmi:id="_XF7_P5128690_f1cbaea8" name="N286905L_lowerBound"/>
+	<parameters xmi:id="_XF7_P5228690_f1cbaea8" name="N286902L_lowerBound"/>
+	<parameters xmi:id="_XF7_P5328690_f1cbaea8" name="N286902L_iD"/>
+	<parameters xmi:id="_XF7_P5428690_f1cbaea8" name="N286905R_name"/>
+	<parameters xmi:id="_XF7_P5528690_f1cbaea8" name="N286902L_derived"/>
+	<parameters xmi:id="_XF7_P5628690_f1cbaea8" name="N286907L_abstract"/>
+	<parameters xmi:id="_XF7_P5728690_f1cbaea8" name="N286902R_unsettable"/>
+	<parameters xmi:id="_XF7_P5828690_f1cbaea8" name="N286901R_name"/>
+	<parameters xmi:id="_XF7_P5928690_f1cbaea8" name="N286902R_upperBound"/>
+	<parameters xmi:id="_XF7_P6028690_f1cbaea8" name="N286901R_abstract"/>
+	<parameters xmi:id="_XF7_P6128690_f1cbaea8" name="N286906R_interface"/>
+	<parameters xmi:id="_XF7_P6228690_f1cbaea8" name="N286901L_name"/>
+	<parameters xmi:id="_XF7_P6328690_f1cbaea8" name="N286904L_interface"/>
+<lhs xmi:id="_XL598_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg5981_f1cbaea8 _edg5984_f1cbaea8 _edg5988_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286901L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286901L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286901L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8" incoming="_edg5989_f1cbaea8" outgoing="_edg5980_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa10_f1cbaea8" value="N286902L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa11_f1cbaea8" value="N286902L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa12_f1cbaea8" value="N286902L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa13_f1cbaea8" value="N286902L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa14_f1cbaea8" value="N286902L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa15_f1cbaea8" value="N286902L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa16_f1cbaea8" value="N286902L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa17_f1cbaea8" value="N286902L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa18_f1cbaea8" value="N286902L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa19_f1cbaea8" value="N286902L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa110_f1cbaea8" value="N286902L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La2_f1cbaea8" incoming="_edg5980_f1cbaea8 _edg5983_f1cbaea8 _edg5985_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTa20_f1cbaea8" value="N286903L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa21_f1cbaea8" value="N286903L_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La3_f1cbaea8" incoming="_edg5986_f1cbaea8" outgoing="_edg5981_f1cbaea8 _edg5982_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa30_f1cbaea8" value="N286904L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa31_f1cbaea8" value="N286904L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa32_f1cbaea8" value="N286904L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La4_f1cbaea8" incoming="_edg5982_f1cbaea8" outgoing="_edg5983_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa40_f1cbaea8" value="N286905L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa41_f1cbaea8" value="N286905L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa42_f1cbaea8" value="N286905L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa43_f1cbaea8" value="N286905L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa44_f1cbaea8" value="N286905L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa45_f1cbaea8" value="N286905L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa46_f1cbaea8" value="N286905L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa47_f1cbaea8" value="N286905L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa48_f1cbaea8" value="N286905L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa49_f1cbaea8" value="N286905L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa410_f1cbaea8" value="N286905L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg5984_f1cbaea8 _edg5985_f1cbaea8 _edg5986_f1cbaea8 _edg5987_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286906L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286906L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286906L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg5987_f1cbaea8" outgoing="_edg5988_f1cbaea8 _edg5989_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286907L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286907L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286907L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5980_f1cbaea8" source="_La1_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg5981_f1cbaea8" source="_La3_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg5982_f1cbaea8" source="_La3_f1cbaea8" target="_La4_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg5983_f1cbaea8" source="_La4_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg5984_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5985_f1cbaea8" source="_Lc0_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5986_f1cbaea8" source="_Lc0_f1cbaea8" target="_La3_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5987_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5988_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg5989_f1cbaea8" source="_Lc1_f1cbaea8" target="_La1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR599_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg5992_f1cbaea8 _edg5993_f1cbaea8 _edg5997_f1cbaea8" outgoing="_edg5990_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286901R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286901R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286901R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8" incoming="_edg5990_f1cbaea8" outgoing="_edg5991_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTb10_f1cbaea8" value="N286902R_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb11_f1cbaea8" value="N286902R_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTb12_f1cbaea8" value="N286902R_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTb13_f1cbaea8" value="N286902R_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb14_f1cbaea8" value="N286902R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb15_f1cbaea8" value="N286902R_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTb16_f1cbaea8" value="N286902R_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTb17_f1cbaea8" value="N286902R_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTb18_f1cbaea8" value="N286902R_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb19_f1cbaea8" value="N286902R_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb110_f1cbaea8" value="N286902R_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb2_f1cbaea8" incoming="_edg5991_f1cbaea8 _edg5994_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTb20_f1cbaea8" value="N286903R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb21_f1cbaea8" value="N286903R_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb3_f1cbaea8" incoming="_edg5995_f1cbaea8" outgoing="_edg5992_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb30_f1cbaea8" value="N286904R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb31_f1cbaea8" value="N286904R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb32_f1cbaea8" value="N286904R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg5993_f1cbaea8 _edg5994_f1cbaea8 _edg5995_f1cbaea8 _edg5996_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286905R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286905R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286905R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg5996_f1cbaea8" outgoing="_edg5997_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286906R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286906R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286906R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg5990_f1cbaea8" source="_Rb0_f1cbaea8" target="_Rb1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg5991_f1cbaea8" source="_Rb1_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg5992_f1cbaea8" source="_Rb3_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg5993_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5994_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5995_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb3_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5996_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg5997_f1cbaea8" source="_Rc1_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286902L_lowerBound == N286905L_lowerBound"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286902L_lowerBound == N286902R_lowerBound"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286902L_upperBound == N286905L_upperBound"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286902L_upperBound == N286902R_upperBound"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286901L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286901L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286902L_changeable == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286902L_lowerBound == 0.0"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286902L_name == &quot;EAttribute0&quot;"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286902L_upperBound == 1.0"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286903L_name == &quot;EDataType0&quot;"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286904L_name == &quot;Class3&quot;"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286906L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286906L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286907L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286901L_abstract == N286901L_interface"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="N286901L_abstract == N286902L_derived"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="N286901L_abstract == N286902L_iD"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286901L_abstract == N286902L_transient"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286901L_abstract == N286902L_unsettable"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286901L_abstract == N286902L_volatile"/>
+<attributeConditions xmi:id="_inv23_f1cbaea8" name="InvCondition24" conditionText="N286901L_abstract == N286904L_abstract"/>
+<attributeConditions xmi:id="_inv24_f1cbaea8" name="InvCondition25" conditionText="N286901L_abstract == N286904L_interface"/>
+<attributeConditions xmi:id="_inv25_f1cbaea8" name="InvCondition26" conditionText="N286901L_abstract == N286905L_derived"/>
+<attributeConditions xmi:id="_inv26_f1cbaea8" name="InvCondition27" conditionText="N286901L_abstract == N286905L_iD"/>
+<attributeConditions xmi:id="_inv27_f1cbaea8" name="InvCondition28" conditionText="N286901L_abstract == N286905L_transient"/>
+<attributeConditions xmi:id="_inv28_f1cbaea8" name="InvCondition29" conditionText="N286901L_abstract == N286905L_unsettable"/>
+<attributeConditions xmi:id="_inv29_f1cbaea8" name="InvCondition30" conditionText="N286901L_abstract == N286905L_volatile"/>
+<attributeConditions xmi:id="_inv30_f1cbaea8" name="InvCondition31" conditionText="N286901L_abstract == N286907L_abstract"/>
+<attributeConditions xmi:id="_inv31_f1cbaea8" name="InvCondition32" conditionText="N286901L_abstract == N286907L_interface"/>
+<attributeConditions xmi:id="_inv32_f1cbaea8" name="InvCondition33" conditionText="N286901L_abstract == N286901R_abstract"/>
+<attributeConditions xmi:id="_inv33_f1cbaea8" name="InvCondition34" conditionText="N286901L_abstract == N286901R_interface"/>
+<attributeConditions xmi:id="_inv34_f1cbaea8" name="InvCondition35" conditionText="N286901L_abstract == N286902R_derived"/>
+<attributeConditions xmi:id="_inv35_f1cbaea8" name="InvCondition36" conditionText="N286901L_abstract == N286902R_iD"/>
+<attributeConditions xmi:id="_inv36_f1cbaea8" name="InvCondition37" conditionText="N286901L_abstract == N286902R_transient"/>
+<attributeConditions xmi:id="_inv37_f1cbaea8" name="InvCondition38" conditionText="N286901L_abstract == N286902R_unsettable"/>
+<attributeConditions xmi:id="_inv38_f1cbaea8" name="InvCondition39" conditionText="N286901L_abstract == N286902R_volatile"/>
+<attributeConditions xmi:id="_inv39_f1cbaea8" name="InvCondition40" conditionText="N286901L_abstract == N286904R_abstract"/>
+<attributeConditions xmi:id="_inv40_f1cbaea8" name="InvCondition41" conditionText="N286901L_abstract == N286904R_interface"/>
+<attributeConditions xmi:id="_inv41_f1cbaea8" name="InvCondition42" conditionText="N286901L_abstract == N286906R_abstract"/>
+<attributeConditions xmi:id="_inv42_f1cbaea8" name="InvCondition43" conditionText="N286901L_abstract == N286906R_interface"/>
+<attributeConditions xmi:id="_inv43_f1cbaea8" name="InvCondition44" conditionText="N286901L_name == N286901R_name"/>
+<attributeConditions xmi:id="_inv44_f1cbaea8" name="InvCondition45" conditionText="N286902L_changeable == N286902L_ordered"/>
+<attributeConditions xmi:id="_inv45_f1cbaea8" name="InvCondition46" conditionText="N286902L_changeable == N286902L_unique"/>
+<attributeConditions xmi:id="_inv46_f1cbaea8" name="InvCondition47" conditionText="N286902L_changeable == N286903L_serializable"/>
+<attributeConditions xmi:id="_inv47_f1cbaea8" name="InvCondition48" conditionText="N286902L_changeable == N286905L_changeable"/>
+<attributeConditions xmi:id="_inv48_f1cbaea8" name="InvCondition49" conditionText="N286902L_changeable == N286905L_ordered"/>
+<attributeConditions xmi:id="_inv49_f1cbaea8" name="InvCondition50" conditionText="N286902L_changeable == N286905L_unique"/>
+<attributeConditions xmi:id="_inv50_f1cbaea8" name="InvCondition51" conditionText="N286902L_changeable == N286902R_changeable"/>
+<attributeConditions xmi:id="_inv51_f1cbaea8" name="InvCondition52" conditionText="N286902L_changeable == N286902R_ordered"/>
+<attributeConditions xmi:id="_inv52_f1cbaea8" name="InvCondition53" conditionText="N286902L_changeable == N286902R_unique"/>
+<attributeConditions xmi:id="_inv53_f1cbaea8" name="InvCondition54" conditionText="N286902L_changeable == N286903R_serializable"/>
+<attributeConditions xmi:id="_inv54_f1cbaea8" name="InvCondition55" conditionText="N286902L_name == N286905L_name"/>
+<attributeConditions xmi:id="_inv55_f1cbaea8" name="InvCondition56" conditionText="N286902L_name == N286902R_name"/>
+<attributeConditions xmi:id="_inv56_f1cbaea8" name="InvCondition57" conditionText="N286903L_name == N286903R_name"/>
+<attributeConditions xmi:id="_inv57_f1cbaea8" name="InvCondition58" conditionText="N286904L_name == N286904R_name"/>
+<attributeConditions xmi:id="_inv58_f1cbaea8" name="InvCondition59" conditionText="N286906L_name == N286906L_nsPrefix"/>
+<attributeConditions xmi:id="_inv59_f1cbaea8" name="InvCondition60" conditionText="N286906L_name == N286905R_name"/>
+<attributeConditions xmi:id="_inv60_f1cbaea8" name="InvCondition61" conditionText="N286906L_name == N286905R_nsPrefix"/>
+<attributeConditions xmi:id="_inv61_f1cbaea8" name="InvCondition62" conditionText="N286906L_nsURI == N286905R_nsURI"/>
+<attributeConditions xmi:id="_inv62_f1cbaea8" name="InvCondition63" conditionText="N286907L_name == N286906R_name"/>
+<mappings xmi:id="_XG5994_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG5995_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28691_f1cbaea8" name="28691_pullUpEAttribute">
+	<parameters xmi:id="_XF7_P028691_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128691_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328691_f1cbaea8" name="N286917L_iD"/>
+	<parameters xmi:id="_XF7_P428691_f1cbaea8" name="N286914L_name"/>
+	<parameters xmi:id="_XF7_P528691_f1cbaea8" name="N286918L_nsURI"/>
+	<parameters xmi:id="_XF7_P628691_f1cbaea8" name="N286915L_unsettable"/>
+	<parameters xmi:id="_XF7_P728691_f1cbaea8" name="N286912R_iD"/>
+	<parameters xmi:id="_XF7_P828691_f1cbaea8" name="N286912L_upperBound"/>
+	<parameters xmi:id="_XF7_P928691_f1cbaea8" name="N286917L_unsettable"/>
+	<parameters xmi:id="_XF7_P1028691_f1cbaea8" name="N286912L_unique"/>
+	<parameters xmi:id="_XF7_P1128691_f1cbaea8" name="N286912R_unique"/>
+	<parameters xmi:id="_XF7_P1228691_f1cbaea8" name="N286914R_name"/>
+	<parameters xmi:id="_XF7_P1328691_f1cbaea8" name="N286911L_interface"/>
+	<parameters xmi:id="_XF7_P1428691_f1cbaea8" name="N286916L_interface"/>
+	<parameters xmi:id="_XF7_P1528691_f1cbaea8" name="N286915L_upperBound"/>
+	<parameters xmi:id="_XF7_P1628691_f1cbaea8" name="N286917L_upperBound"/>
+	<parameters xmi:id="_XF7_P1728691_f1cbaea8" name="N286917L_name"/>
+	<parameters xmi:id="_XF7_P1828691_f1cbaea8" name="N286919L_interface"/>
+	<parameters xmi:id="_XF7_P1928691_f1cbaea8" name="N286915L_volatile"/>
+	<parameters xmi:id="_XF7_P2028691_f1cbaea8" name="N286912L_unsettable"/>
+	<parameters xmi:id="_XF7_P2128691_f1cbaea8" name="N286918L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P2228691_f1cbaea8" name="N286912R_transient"/>
+	<parameters xmi:id="_XF7_P2328691_f1cbaea8" name="N286917R_name"/>
+	<parameters xmi:id="_XF7_P2428691_f1cbaea8" name="N286916L_abstract"/>
+	<parameters xmi:id="_XF7_P2528691_f1cbaea8" name="N286917L_ordered"/>
+	<parameters xmi:id="_XF7_P2628691_f1cbaea8" name="N286912R_derived"/>
+	<parameters xmi:id="_XF7_P2728691_f1cbaea8" name="N286919L_abstract"/>
+	<parameters xmi:id="_XF7_P2828691_f1cbaea8" name="N286915R_abstract"/>
+	<parameters xmi:id="_XF7_P2928691_f1cbaea8" name="N286916R_nsURI"/>
+	<parameters xmi:id="_XF7_P3028691_f1cbaea8" name="N286918L_name"/>
+	<parameters xmi:id="_XF7_P3128691_f1cbaea8" name="N286911R_name"/>
+	<parameters xmi:id="_XF7_P3228691_f1cbaea8" name="N286917L_volatile"/>
+	<parameters xmi:id="_XF7_P3328691_f1cbaea8" name="N286915R_name"/>
+	<parameters xmi:id="_XF7_P3428691_f1cbaea8" name="N286917L_transient"/>
+	<parameters xmi:id="_XF7_P3528691_f1cbaea8" name="N286912L_derived"/>
+	<parameters xmi:id="_XF7_P3628691_f1cbaea8" name="N286911L_name"/>
+	<parameters xmi:id="_XF7_P3728691_f1cbaea8" name="N286912R_changeable"/>
+	<parameters xmi:id="_XF7_P3828691_f1cbaea8" name="N286917L_derived"/>
+	<parameters xmi:id="_XF7_P3928691_f1cbaea8" name="N286912L_transient"/>
+	<parameters xmi:id="_XF7_P4028691_f1cbaea8" name="N286917L_changeable"/>
+	<parameters xmi:id="_XF7_P4128691_f1cbaea8" name="N286916R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P4228691_f1cbaea8" name="N286912R_lowerBound"/>
+	<parameters xmi:id="_XF7_P4328691_f1cbaea8" name="N286912L_iD"/>
+	<parameters xmi:id="_XF7_P4428691_f1cbaea8" name="N286919L_name"/>
+	<parameters xmi:id="_XF7_P4528691_f1cbaea8" name="N286914R_interface"/>
+	<parameters xmi:id="_XF7_P4628691_f1cbaea8" name="N286917R_interface"/>
+	<parameters xmi:id="_XF7_P4728691_f1cbaea8" name="N286915L_transient"/>
+	<parameters xmi:id="_XF7_P4828691_f1cbaea8" name="N286911R_abstract"/>
+	<parameters xmi:id="_XF7_P4928691_f1cbaea8" name="N286911R_interface"/>
+	<parameters xmi:id="_XF7_P5028691_f1cbaea8" name="N286915L_changeable"/>
+	<parameters xmi:id="_XF7_P5128691_f1cbaea8" name="N286914L_abstract"/>
+	<parameters xmi:id="_XF7_P5228691_f1cbaea8" name="N286917L_unique"/>
+	<parameters xmi:id="_XF7_P5328691_f1cbaea8" name="N286912L_ordered"/>
+	<parameters xmi:id="_XF7_P5428691_f1cbaea8" name="N286915L_derived"/>
+	<parameters xmi:id="_XF7_P5528691_f1cbaea8" name="N286912L_lowerBound"/>
+	<parameters xmi:id="_XF7_P5628691_f1cbaea8" name="N286912L_name"/>
+	<parameters xmi:id="_XF7_P5728691_f1cbaea8" name="N286911L_abstract"/>
+	<parameters xmi:id="_XF7_P5828691_f1cbaea8" name="N286915L_name"/>
+	<parameters xmi:id="_XF7_P5928691_f1cbaea8" name="N286912L_changeable"/>
+	<parameters xmi:id="_XF7_P6028691_f1cbaea8" name="N286912R_name"/>
+	<parameters xmi:id="_XF7_P6128691_f1cbaea8" name="N286917L_lowerBound"/>
+	<parameters xmi:id="_XF7_P6228691_f1cbaea8" name="N286912R_volatile"/>
+	<parameters xmi:id="_XF7_P6328691_f1cbaea8" name="N286912R_ordered"/>
+	<parameters xmi:id="_XF7_P6428691_f1cbaea8" name="N286913L_name"/>
+	<parameters xmi:id="_XF7_P6528691_f1cbaea8" name="N286913R_name"/>
+	<parameters xmi:id="_XF7_P6628691_f1cbaea8" name="N286915L_iD"/>
+	<parameters xmi:id="_XF7_P6728691_f1cbaea8" name="N286917R_abstract"/>
+	<parameters xmi:id="_XF7_P6828691_f1cbaea8" name="N286915L_lowerBound"/>
+	<parameters xmi:id="_XF7_P6928691_f1cbaea8" name="N286912L_volatile"/>
+	<parameters xmi:id="_XF7_P7028691_f1cbaea8" name="N286916R_name"/>
+	<parameters xmi:id="_XF7_P7128691_f1cbaea8" name="N286916L_name"/>
+	<parameters xmi:id="_XF7_P7228691_f1cbaea8" name="N286914L_interface"/>
+	<parameters xmi:id="_XF7_P7328691_f1cbaea8" name="N286914R_abstract"/>
+	<parameters xmi:id="_XF7_P7428691_f1cbaea8" name="N286913L_serializable"/>
+	<parameters xmi:id="_XF7_P7528691_f1cbaea8" name="N286915L_ordered"/>
+	<parameters xmi:id="_XF7_P7628691_f1cbaea8" name="N286915R_interface"/>
+	<parameters xmi:id="_XF7_P7728691_f1cbaea8" name="N286913R_serializable"/>
+	<parameters xmi:id="_XF7_P7828691_f1cbaea8" name="N286912R_upperBound"/>
+	<parameters xmi:id="_XF7_P7928691_f1cbaea8" name="N286915L_unique"/>
+	<parameters xmi:id="_XF7_P8028691_f1cbaea8" name="N286912R_unsettable"/>
+<lhs xmi:id="_XL600_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg6001_f1cbaea8 _edg6004_f1cbaea8 _edg6007_f1cbaea8 _edg60012_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286911L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286911L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286911L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8" incoming="_edg60013_f1cbaea8" outgoing="_edg6000_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa10_f1cbaea8" value="N286912L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa11_f1cbaea8" value="N286912L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa12_f1cbaea8" value="N286912L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa13_f1cbaea8" value="N286912L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa14_f1cbaea8" value="N286912L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa15_f1cbaea8" value="N286912L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa16_f1cbaea8" value="N286912L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa17_f1cbaea8" value="N286912L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa18_f1cbaea8" value="N286912L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa19_f1cbaea8" value="N286912L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa110_f1cbaea8" value="N286912L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La2_f1cbaea8" incoming="_edg6000_f1cbaea8 _edg6003_f1cbaea8 _edg6006_f1cbaea8 _edg6008_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTa20_f1cbaea8" value="N286913L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa21_f1cbaea8" value="N286913L_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La3_f1cbaea8" incoming="_edg6009_f1cbaea8" outgoing="_edg6001_f1cbaea8 _edg6002_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa30_f1cbaea8" value="N286914L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa31_f1cbaea8" value="N286914L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa32_f1cbaea8" value="N286914L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La4_f1cbaea8" incoming="_edg6002_f1cbaea8" outgoing="_edg6003_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa40_f1cbaea8" value="N286915L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa41_f1cbaea8" value="N286915L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa42_f1cbaea8" value="N286915L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa43_f1cbaea8" value="N286915L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa44_f1cbaea8" value="N286915L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa45_f1cbaea8" value="N286915L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa46_f1cbaea8" value="N286915L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa47_f1cbaea8" value="N286915L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa48_f1cbaea8" value="N286915L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa49_f1cbaea8" value="N286915L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa410_f1cbaea8" value="N286915L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La5_f1cbaea8" incoming="_edg60010_f1cbaea8" outgoing="_edg6004_f1cbaea8 _edg6005_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa50_f1cbaea8" value="N286916L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa51_f1cbaea8" value="N286916L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa52_f1cbaea8" value="N286916L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La6_f1cbaea8" incoming="_edg6005_f1cbaea8" outgoing="_edg6006_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTa60_f1cbaea8" value="N286917L_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa61_f1cbaea8" value="N286917L_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTa62_f1cbaea8" value="N286917L_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTa63_f1cbaea8" value="N286917L_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa64_f1cbaea8" value="N286917L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTa65_f1cbaea8" value="N286917L_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTa66_f1cbaea8" value="N286917L_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTa67_f1cbaea8" value="N286917L_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTa68_f1cbaea8" value="N286917L_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTa69_f1cbaea8" value="N286917L_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTa610_f1cbaea8" value="N286917L_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg6007_f1cbaea8 _edg6008_f1cbaea8 _edg6009_f1cbaea8 _edg60010_f1cbaea8 _edg60011_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286918L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286918L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286918L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg60011_f1cbaea8" outgoing="_edg60012_f1cbaea8 _edg60013_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286919L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286919L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286919L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6000_f1cbaea8" source="_La1_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6001_f1cbaea8" source="_La3_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6002_f1cbaea8" source="_La3_f1cbaea8" target="_La4_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg6003_f1cbaea8" source="_La4_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6004_f1cbaea8" source="_La5_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6005_f1cbaea8" source="_La5_f1cbaea8" target="_La6_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg6006_f1cbaea8" source="_La6_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6007_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6008_f1cbaea8" source="_Lc0_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6009_f1cbaea8" source="_Lc0_f1cbaea8" target="_La3_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg60010_f1cbaea8" source="_Lc0_f1cbaea8" target="_La5_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg60011_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg60012_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg60013_f1cbaea8" source="_Lc1_f1cbaea8" target="_La1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR601_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg6012_f1cbaea8 _edg6013_f1cbaea8 _edg6014_f1cbaea8 _edg6019_f1cbaea8" outgoing="_edg6010_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286911R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286911R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286911R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8" incoming="_edg6010_f1cbaea8" outgoing="_edg6011_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+        <attributes xmi:id="_ATTb10_f1cbaea8" value="N286912R_changeable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/changeable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb11_f1cbaea8" value="N286912R_derived">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/derived"/>
+        </attributes>
+        <attributes xmi:id="_ATTb12_f1cbaea8" value="N286912R_iD">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/iD"/>
+        </attributes>
+        <attributes xmi:id="_ATTb13_f1cbaea8" value="N286912R_lowerBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/lowerBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb14_f1cbaea8" value="N286912R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb15_f1cbaea8" value="N286912R_ordered">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/ordered"/>
+        </attributes>
+        <attributes xmi:id="_ATTb16_f1cbaea8" value="N286912R_transient">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/transient"/>
+        </attributes>
+        <attributes xmi:id="_ATTb17_f1cbaea8" value="N286912R_unique">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unique"/>
+        </attributes>
+        <attributes xmi:id="_ATTb18_f1cbaea8" value="N286912R_unsettable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/unsettable"/>
+        </attributes>
+        <attributes xmi:id="_ATTb19_f1cbaea8" value="N286912R_upperBound">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/upperBound"/>
+        </attributes>
+        <attributes xmi:id="_ATTb110_f1cbaea8" value="N286912R_volatile">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/volatile"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb2_f1cbaea8" incoming="_edg6011_f1cbaea8 _edg6015_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+        <attributes xmi:id="_ATTb20_f1cbaea8" value="N286913R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTb21_f1cbaea8" value="N286913R_serializable">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType/serializable"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb3_f1cbaea8" incoming="_edg6016_f1cbaea8" outgoing="_edg6012_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb30_f1cbaea8" value="N286914R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb31_f1cbaea8" value="N286914R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb32_f1cbaea8" value="N286914R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb4_f1cbaea8" incoming="_edg6017_f1cbaea8" outgoing="_edg6013_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb40_f1cbaea8" value="N286915R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb41_f1cbaea8" value="N286915R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb42_f1cbaea8" value="N286915R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg6014_f1cbaea8 _edg6015_f1cbaea8 _edg6016_f1cbaea8 _edg6017_f1cbaea8 _edg6018_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286916R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286916R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286916R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg6018_f1cbaea8" outgoing="_edg6019_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286917R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286917R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286917R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6010_f1cbaea8" source="_Rb0_f1cbaea8" target="_Rb1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg6011_f1cbaea8" source="_Rb1_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6012_f1cbaea8" source="_Rb3_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6013_f1cbaea8" source="_Rb4_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6014_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6015_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6016_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb3_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6017_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb4_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6018_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6019_f1cbaea8" source="_Rc1_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286912L_lowerBound == N286915L_lowerBound"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286912L_lowerBound == N286917L_lowerBound"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286912L_lowerBound == N286912R_lowerBound"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286912L_upperBound == N286915L_upperBound"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286912L_upperBound == N286917L_upperBound"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286912L_upperBound == N286912R_upperBound"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286911L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286911L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286912L_changeable == &quot;true&quot;"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286912L_lowerBound == 0.0"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286912L_name == &quot;EAttribute0&quot;"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286912L_upperBound == 1.0"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286913L_name == &quot;EDataType0&quot;"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286914L_name == &quot;Class3&quot;"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286916L_name == &quot;Class4&quot;"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286918L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286918L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286919L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286911L_abstract == N286911L_interface"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286911L_abstract == N286912L_derived"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286911L_abstract == N286912L_iD"/>
+<attributeConditions xmi:id="_inv23_f1cbaea8" name="InvCondition24" conditionText="N286911L_abstract == N286912L_transient"/>
+<attributeConditions xmi:id="_inv24_f1cbaea8" name="InvCondition25" conditionText="N286911L_abstract == N286912L_unsettable"/>
+<attributeConditions xmi:id="_inv25_f1cbaea8" name="InvCondition26" conditionText="N286911L_abstract == N286912L_volatile"/>
+<attributeConditions xmi:id="_inv26_f1cbaea8" name="InvCondition27" conditionText="N286911L_abstract == N286914L_abstract"/>
+<attributeConditions xmi:id="_inv27_f1cbaea8" name="InvCondition28" conditionText="N286911L_abstract == N286914L_interface"/>
+<attributeConditions xmi:id="_inv28_f1cbaea8" name="InvCondition29" conditionText="N286911L_abstract == N286915L_derived"/>
+<attributeConditions xmi:id="_inv29_f1cbaea8" name="InvCondition30" conditionText="N286911L_abstract == N286915L_iD"/>
+<attributeConditions xmi:id="_inv30_f1cbaea8" name="InvCondition31" conditionText="N286911L_abstract == N286915L_transient"/>
+<attributeConditions xmi:id="_inv31_f1cbaea8" name="InvCondition32" conditionText="N286911L_abstract == N286915L_unsettable"/>
+<attributeConditions xmi:id="_inv32_f1cbaea8" name="InvCondition33" conditionText="N286911L_abstract == N286915L_volatile"/>
+<attributeConditions xmi:id="_inv33_f1cbaea8" name="InvCondition34" conditionText="N286911L_abstract == N286916L_abstract"/>
+<attributeConditions xmi:id="_inv34_f1cbaea8" name="InvCondition35" conditionText="N286911L_abstract == N286916L_interface"/>
+<attributeConditions xmi:id="_inv35_f1cbaea8" name="InvCondition36" conditionText="N286911L_abstract == N286917L_derived"/>
+<attributeConditions xmi:id="_inv36_f1cbaea8" name="InvCondition37" conditionText="N286911L_abstract == N286917L_iD"/>
+<attributeConditions xmi:id="_inv37_f1cbaea8" name="InvCondition38" conditionText="N286911L_abstract == N286917L_transient"/>
+<attributeConditions xmi:id="_inv38_f1cbaea8" name="InvCondition39" conditionText="N286911L_abstract == N286917L_unsettable"/>
+<attributeConditions xmi:id="_inv39_f1cbaea8" name="InvCondition40" conditionText="N286911L_abstract == N286917L_volatile"/>
+<attributeConditions xmi:id="_inv40_f1cbaea8" name="InvCondition41" conditionText="N286911L_abstract == N286919L_abstract"/>
+<attributeConditions xmi:id="_inv41_f1cbaea8" name="InvCondition42" conditionText="N286911L_abstract == N286919L_interface"/>
+<attributeConditions xmi:id="_inv42_f1cbaea8" name="InvCondition43" conditionText="N286911L_abstract == N286911R_abstract"/>
+<attributeConditions xmi:id="_inv43_f1cbaea8" name="InvCondition44" conditionText="N286911L_abstract == N286911R_interface"/>
+<attributeConditions xmi:id="_inv44_f1cbaea8" name="InvCondition45" conditionText="N286911L_abstract == N286912R_derived"/>
+<attributeConditions xmi:id="_inv45_f1cbaea8" name="InvCondition46" conditionText="N286911L_abstract == N286912R_iD"/>
+<attributeConditions xmi:id="_inv46_f1cbaea8" name="InvCondition47" conditionText="N286911L_abstract == N286912R_transient"/>
+<attributeConditions xmi:id="_inv47_f1cbaea8" name="InvCondition48" conditionText="N286911L_abstract == N286912R_unsettable"/>
+<attributeConditions xmi:id="_inv48_f1cbaea8" name="InvCondition49" conditionText="N286911L_abstract == N286912R_volatile"/>
+<attributeConditions xmi:id="_inv49_f1cbaea8" name="InvCondition50" conditionText="N286911L_abstract == N286914R_abstract"/>
+<attributeConditions xmi:id="_inv50_f1cbaea8" name="InvCondition51" conditionText="N286911L_abstract == N286914R_interface"/>
+<attributeConditions xmi:id="_inv51_f1cbaea8" name="InvCondition52" conditionText="N286911L_abstract == N286915R_abstract"/>
+<attributeConditions xmi:id="_inv52_f1cbaea8" name="InvCondition53" conditionText="N286911L_abstract == N286915R_interface"/>
+<attributeConditions xmi:id="_inv53_f1cbaea8" name="InvCondition54" conditionText="N286911L_abstract == N286917R_abstract"/>
+<attributeConditions xmi:id="_inv54_f1cbaea8" name="InvCondition55" conditionText="N286911L_abstract == N286917R_interface"/>
+<attributeConditions xmi:id="_inv55_f1cbaea8" name="InvCondition56" conditionText="N286911L_name == N286911R_name"/>
+<attributeConditions xmi:id="_inv56_f1cbaea8" name="InvCondition57" conditionText="N286912L_changeable == N286912L_ordered"/>
+<attributeConditions xmi:id="_inv57_f1cbaea8" name="InvCondition58" conditionText="N286912L_changeable == N286912L_unique"/>
+<attributeConditions xmi:id="_inv58_f1cbaea8" name="InvCondition59" conditionText="N286912L_changeable == N286913L_serializable"/>
+<attributeConditions xmi:id="_inv59_f1cbaea8" name="InvCondition60" conditionText="N286912L_changeable == N286915L_changeable"/>
+<attributeConditions xmi:id="_inv60_f1cbaea8" name="InvCondition61" conditionText="N286912L_changeable == N286915L_ordered"/>
+<attributeConditions xmi:id="_inv61_f1cbaea8" name="InvCondition62" conditionText="N286912L_changeable == N286915L_unique"/>
+<attributeConditions xmi:id="_inv62_f1cbaea8" name="InvCondition63" conditionText="N286912L_changeable == N286917L_changeable"/>
+<attributeConditions xmi:id="_inv63_f1cbaea8" name="InvCondition64" conditionText="N286912L_changeable == N286917L_ordered"/>
+<attributeConditions xmi:id="_inv64_f1cbaea8" name="InvCondition65" conditionText="N286912L_changeable == N286917L_unique"/>
+<attributeConditions xmi:id="_inv65_f1cbaea8" name="InvCondition66" conditionText="N286912L_changeable == N286912R_changeable"/>
+<attributeConditions xmi:id="_inv66_f1cbaea8" name="InvCondition67" conditionText="N286912L_changeable == N286912R_ordered"/>
+<attributeConditions xmi:id="_inv67_f1cbaea8" name="InvCondition68" conditionText="N286912L_changeable == N286912R_unique"/>
+<attributeConditions xmi:id="_inv68_f1cbaea8" name="InvCondition69" conditionText="N286912L_changeable == N286913R_serializable"/>
+<attributeConditions xmi:id="_inv69_f1cbaea8" name="InvCondition70" conditionText="N286912L_name == N286915L_name"/>
+<attributeConditions xmi:id="_inv70_f1cbaea8" name="InvCondition71" conditionText="N286912L_name == N286917L_name"/>
+<attributeConditions xmi:id="_inv71_f1cbaea8" name="InvCondition72" conditionText="N286912L_name == N286912R_name"/>
+<attributeConditions xmi:id="_inv72_f1cbaea8" name="InvCondition73" conditionText="N286913L_name == N286913R_name"/>
+<attributeConditions xmi:id="_inv73_f1cbaea8" name="InvCondition74" conditionText="N286914L_name == N286914R_name"/>
+<attributeConditions xmi:id="_inv74_f1cbaea8" name="InvCondition75" conditionText="N286916L_name == N286915R_name"/>
+<attributeConditions xmi:id="_inv75_f1cbaea8" name="InvCondition76" conditionText="N286918L_name == N286918L_nsPrefix"/>
+<attributeConditions xmi:id="_inv76_f1cbaea8" name="InvCondition77" conditionText="N286918L_name == N286916R_name"/>
+<attributeConditions xmi:id="_inv77_f1cbaea8" name="InvCondition78" conditionText="N286918L_name == N286916R_nsPrefix"/>
+<attributeConditions xmi:id="_inv78_f1cbaea8" name="InvCondition79" conditionText="N286918L_nsURI == N286916R_nsURI"/>
+<attributeConditions xmi:id="_inv79_f1cbaea8" name="InvCondition80" conditionText="N286919L_name == N286917R_name"/>
+<mappings xmi:id="_XG6015_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6016_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28692_f1cbaea8" name="28692_removeEmptySuperEClass">
+	<parameters xmi:id="_XF7_P028692_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128692_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328692_f1cbaea8" name="N286922L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P428692_f1cbaea8" name="N286921R_nsURI"/>
+	<parameters xmi:id="_XF7_P528692_f1cbaea8" name="N286921L_interface"/>
+	<parameters xmi:id="_XF7_P628692_f1cbaea8" name="N286923L_name"/>
+	<parameters xmi:id="_XF7_P728692_f1cbaea8" name="N286922R_interface"/>
+	<parameters xmi:id="_XF7_P828692_f1cbaea8" name="N286921L_abstract"/>
+	<parameters xmi:id="_XF7_P928692_f1cbaea8" name="N286922R_name"/>
+	<parameters xmi:id="_XF7_P1028692_f1cbaea8" name="N286922R_abstract"/>
+	<parameters xmi:id="_XF7_P1128692_f1cbaea8" name="N286922L_name"/>
+	<parameters xmi:id="_XF7_P1228692_f1cbaea8" name="N286922L_nsURI"/>
+	<parameters xmi:id="_XF7_P1328692_f1cbaea8" name="N286921R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P1428692_f1cbaea8" name="N286923L_interface"/>
+	<parameters xmi:id="_XF7_P1528692_f1cbaea8" name="N286921R_name"/>
+	<parameters xmi:id="_XF7_P1628692_f1cbaea8" name="N286923L_abstract"/>
+	<parameters xmi:id="_XF7_P1728692_f1cbaea8" name="N286921L_name"/>
+<lhs xmi:id="_XL602_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg6020_f1cbaea8 _edg6022_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286921L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286921L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286921L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg6020_f1cbaea8 _edg6021_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286922L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286922L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286922L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg6021_f1cbaea8" outgoing="_edg6022_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286923L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286923L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286923L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6020_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6021_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6022_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR603_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg6030_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286921R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286921R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286921R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg6030_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286922R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286922R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286922R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6030_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286921L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286921L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286922L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286922L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286923L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="N286921L_abstract == N286921L_interface"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286921L_abstract == N286923L_abstract"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286921L_abstract == N286923L_interface"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286921L_abstract == N286922R_abstract"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286921L_abstract == N286922R_interface"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286922L_name == N286922L_nsPrefix"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286922L_name == N286921R_name"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286922L_name == N286921R_nsPrefix"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286922L_nsURI == N286921R_nsURI"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286923L_name == N286922R_name"/>
+<mappings xmi:id="_XG6030_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6031_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28693_f1cbaea8" name="28693_removeEmptySuperEClass">
+	<parameters xmi:id="_XF7_P028693_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128693_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328693_f1cbaea8" name="N286933L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P428693_f1cbaea8" name="N286934L_name"/>
+	<parameters xmi:id="_XF7_P528693_f1cbaea8" name="N286933L_nsURI"/>
+	<parameters xmi:id="_XF7_P628693_f1cbaea8" name="N286932L_abstract"/>
+	<parameters xmi:id="_XF7_P728693_f1cbaea8" name="N286931L_interface"/>
+	<parameters xmi:id="_XF7_P828693_f1cbaea8" name="N286933R_interface"/>
+	<parameters xmi:id="_XF7_P928693_f1cbaea8" name="N286934L_abstract"/>
+	<parameters xmi:id="_XF7_P1028693_f1cbaea8" name="N286931R_name"/>
+	<parameters xmi:id="_XF7_P1128693_f1cbaea8" name="N286932R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P1228693_f1cbaea8" name="N286931L_abstract"/>
+	<parameters xmi:id="_XF7_P1328693_f1cbaea8" name="N286931R_interface"/>
+	<parameters xmi:id="_XF7_P1428693_f1cbaea8" name="N286931R_abstract"/>
+	<parameters xmi:id="_XF7_P1528693_f1cbaea8" name="N286931L_name"/>
+	<parameters xmi:id="_XF7_P1628693_f1cbaea8" name="N286932R_name"/>
+	<parameters xmi:id="_XF7_P1728693_f1cbaea8" name="N286932L_name"/>
+	<parameters xmi:id="_XF7_P1828693_f1cbaea8" name="N286932L_interface"/>
+	<parameters xmi:id="_XF7_P1928693_f1cbaea8" name="N286932R_nsURI"/>
+	<parameters xmi:id="_XF7_P2028693_f1cbaea8" name="N286933L_name"/>
+	<parameters xmi:id="_XF7_P2128693_f1cbaea8" name="N286934L_interface"/>
+	<parameters xmi:id="_XF7_P2228693_f1cbaea8" name="N286933R_abstract"/>
+	<parameters xmi:id="_XF7_P2328693_f1cbaea8" name="N286933R_name"/>
+<lhs xmi:id="_XL604_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg6040_f1cbaea8 _edg6041_f1cbaea8 _edg6044_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286931L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286931L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286931L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8" incoming="_edg6042_f1cbaea8" outgoing="_edg6040_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa10_f1cbaea8" value="N286932L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa11_f1cbaea8" value="N286932L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa12_f1cbaea8" value="N286932L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg6041_f1cbaea8 _edg6042_f1cbaea8 _edg6043_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286933L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286933L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286933L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg6043_f1cbaea8" outgoing="_edg6044_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286934L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286934L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286934L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6040_f1cbaea8" source="_La1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6041_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6042_f1cbaea8" source="_Lc0_f1cbaea8" target="_La1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6043_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6044_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR605_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg6050_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286931R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286931R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286931R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg6050_f1cbaea8 _edg6051_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286932R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286932R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286932R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg6051_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286933R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286933R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286933R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6050_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6051_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286931L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286931L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286932L_name == &quot;EClass3&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286933L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286933L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286934L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="N286931L_abstract == N286931L_interface"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286931L_abstract == N286932L_abstract"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286931L_abstract == N286932L_interface"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286931L_abstract == N286934L_abstract"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286931L_abstract == N286934L_interface"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286931L_abstract == N286931R_abstract"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286931L_abstract == N286931R_interface"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286931L_abstract == N286933R_abstract"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286931L_abstract == N286933R_interface"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286932L_name == N286931R_name"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="N286933L_name == N286933L_nsPrefix"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="N286933L_name == N286932R_name"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286933L_name == N286932R_nsPrefix"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286933L_nsURI == N286932R_nsURI"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286934L_name == N286933R_name"/>
+<mappings xmi:id="_XG6051_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6052_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28694_f1cbaea8" name="28694_removeEmptySuperEClass">
+	<parameters xmi:id="_XF7_P028694_f1cbaea8" name="parName1"/>
+	<parameters xmi:id="_XF7_P128694_f1cbaea8" name="parName2"/>
+	<parameters xmi:id="_XF7_P328694_f1cbaea8" name="N286944L_name"/>
+	<parameters xmi:id="_XF7_P428694_f1cbaea8" name="N286944R_name"/>
+	<parameters xmi:id="_XF7_P528694_f1cbaea8" name="N286941L_interface"/>
+	<parameters xmi:id="_XF7_P628694_f1cbaea8" name="N286943L_abstract"/>
+	<parameters xmi:id="_XF7_P728694_f1cbaea8" name="N286943L_name"/>
+	<parameters xmi:id="_XF7_P828694_f1cbaea8" name="N286942R_interface"/>
+	<parameters xmi:id="_XF7_P928694_f1cbaea8" name="N286941R_interface"/>
+	<parameters xmi:id="_XF7_P1028694_f1cbaea8" name="N286944R_abstract"/>
+	<parameters xmi:id="_XF7_P1128694_f1cbaea8" name="N286944L_nsPrefix"/>
+	<parameters xmi:id="_XF7_P1228694_f1cbaea8" name="N286943R_name"/>
+	<parameters xmi:id="_XF7_P1328694_f1cbaea8" name="N286942L_name"/>
+	<parameters xmi:id="_XF7_P1428694_f1cbaea8" name="N286944L_nsURI"/>
+	<parameters xmi:id="_XF7_P1528694_f1cbaea8" name="N286941L_abstract"/>
+	<parameters xmi:id="_XF7_P1628694_f1cbaea8" name="N286941R_abstract"/>
+	<parameters xmi:id="_XF7_P1728694_f1cbaea8" name="N286944R_interface"/>
+	<parameters xmi:id="_XF7_P1828694_f1cbaea8" name="N286942L_interface"/>
+	<parameters xmi:id="_XF7_P1928694_f1cbaea8" name="N286945L_name"/>
+	<parameters xmi:id="_XF7_P2028694_f1cbaea8" name="N286945L_abstract"/>
+	<parameters xmi:id="_XF7_P2128694_f1cbaea8" name="N286945L_interface"/>
+	<parameters xmi:id="_XF7_P2228694_f1cbaea8" name="N286942R_name"/>
+	<parameters xmi:id="_XF7_P2328694_f1cbaea8" name="N286943R_nsURI"/>
+	<parameters xmi:id="_XF7_P2428694_f1cbaea8" name="N286941R_name"/>
+	<parameters xmi:id="_XF7_P2528694_f1cbaea8" name="N286942R_abstract"/>
+	<parameters xmi:id="_XF7_P2628694_f1cbaea8" name="N286943R_nsPrefix"/>
+	<parameters xmi:id="_XF7_P2728694_f1cbaea8" name="N286942L_abstract"/>
+	<parameters xmi:id="_XF7_P2828694_f1cbaea8" name="N286941L_name"/>
+	<parameters xmi:id="_XF7_P2928694_f1cbaea8" name="N286943L_interface"/>
+<lhs xmi:id="_XL606_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8" incoming="_edg6060_f1cbaea8 _edg6061_f1cbaea8 _edg6062_f1cbaea8 _edg6066_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa00_f1cbaea8" value="N286941L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa01_f1cbaea8" value="N286941L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa02_f1cbaea8" value="N286941L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8" incoming="_edg6063_f1cbaea8" outgoing="_edg6060_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa10_f1cbaea8" value="N286942L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa11_f1cbaea8" value="N286942L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa12_f1cbaea8" value="N286942L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_La2_f1cbaea8" incoming="_edg6064_f1cbaea8" outgoing="_edg6061_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTa20_f1cbaea8" value="N286943L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTa21_f1cbaea8" value="N286943L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTa22_f1cbaea8" value="N286943L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8"  outgoing="_edg6062_f1cbaea8 _edg6063_f1cbaea8 _edg6064_f1cbaea8 _edg6065_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286944L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286944L_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286944L_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8" incoming="_edg6065_f1cbaea8" outgoing="_edg6066_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286945L_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286945L_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286945L_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6060_f1cbaea8" source="_La1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6061_f1cbaea8" source="_La2_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6062_f1cbaea8" source="_Lc0_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6063_f1cbaea8" source="_Lc0_f1cbaea8" target="_La1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6064_f1cbaea8" source="_Lc0_f1cbaea8" target="_La2_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6065_f1cbaea8" source="_Lc0_f1cbaea8" target="_Lc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6066_f1cbaea8" source="_Lc1_f1cbaea8" target="_La0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR607_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8" incoming="_edg6070_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb00_f1cbaea8" value="N286941R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb01_f1cbaea8" value="N286941R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb02_f1cbaea8" value="N286941R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8" incoming="_edg6071_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTb10_f1cbaea8" value="N286942R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTb11_f1cbaea8" value="N286942R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTb12_f1cbaea8" value="N286942R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8"  outgoing="_edg6070_f1cbaea8 _edg6071_f1cbaea8 _edg6072_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        <attributes xmi:id="_ATTc00_f1cbaea8" value="N286943R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+        <attributes xmi:id="_ATTc01_f1cbaea8" value="N286943R_nsPrefix">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsPrefix"/>
+        </attributes>
+        <attributes xmi:id="_ATTc02_f1cbaea8" value="N286943R_nsURI">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/nsURI"/>
+        </attributes>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8" incoming="_edg6072_f1cbaea8" >
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        <attributes xmi:id="_ATTc10_f1cbaea8" value="N286944R_abstract">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/abstract"/>
+        </attributes>
+        <attributes xmi:id="_ATTc11_f1cbaea8" value="N286944R_interface">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/interface"/>
+        </attributes>
+        <attributes xmi:id="_ATTc12_f1cbaea8" value="N286944R_name">
+          <type href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_edg6070_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb0_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6071_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rb1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6072_f1cbaea8" source="_Rc0_f1cbaea8" target="_Rc1_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<attributeConditions xmi:id="_inv0_f1cbaea8" name="InvCondition1" conditionText="N286941L_abstract == &quot;false&quot;"/>
+<attributeConditions xmi:id="_inv1_f1cbaea8" name="InvCondition2" conditionText="N286941L_name == &quot;Class1&quot;"/>
+<attributeConditions xmi:id="_inv2_f1cbaea8" name="InvCondition3" conditionText="N286942L_name == &quot;EClass3&quot;"/>
+<attributeConditions xmi:id="_inv3_f1cbaea8" name="InvCondition4" conditionText="N286943L_name == &quot;Class4&quot;"/>
+<attributeConditions xmi:id="_inv4_f1cbaea8" name="InvCondition5" conditionText="N286944L_name == &quot;original&quot;"/>
+<attributeConditions xmi:id="_inv5_f1cbaea8" name="InvCondition6" conditionText="N286944L_nsURI == &quot;http://original&quot;"/>
+<attributeConditions xmi:id="_inv6_f1cbaea8" name="InvCondition7" conditionText="N286945L_name == &quot;Class2&quot;"/>
+<attributeConditions xmi:id="_inv7_f1cbaea8" name="InvCondition8" conditionText="parName1 == &quot;parValue1&quot;"/>
+<attributeConditions xmi:id="_inv8_f1cbaea8" name="InvCondition9" conditionText="parName2 == &quot;parValue2&quot;"/>
+<attributeConditions xmi:id="_inv9_f1cbaea8" name="InvCondition10" conditionText="N286941L_abstract == N286941L_interface"/>
+<attributeConditions xmi:id="_inv10_f1cbaea8" name="InvCondition11" conditionText="N286941L_abstract == N286942L_abstract"/>
+<attributeConditions xmi:id="_inv11_f1cbaea8" name="InvCondition12" conditionText="N286941L_abstract == N286942L_interface"/>
+<attributeConditions xmi:id="_inv12_f1cbaea8" name="InvCondition13" conditionText="N286941L_abstract == N286943L_abstract"/>
+<attributeConditions xmi:id="_inv13_f1cbaea8" name="InvCondition14" conditionText="N286941L_abstract == N286943L_interface"/>
+<attributeConditions xmi:id="_inv14_f1cbaea8" name="InvCondition15" conditionText="N286941L_abstract == N286945L_abstract"/>
+<attributeConditions xmi:id="_inv15_f1cbaea8" name="InvCondition16" conditionText="N286941L_abstract == N286945L_interface"/>
+<attributeConditions xmi:id="_inv16_f1cbaea8" name="InvCondition17" conditionText="N286941L_abstract == N286941R_abstract"/>
+<attributeConditions xmi:id="_inv17_f1cbaea8" name="InvCondition18" conditionText="N286941L_abstract == N286941R_interface"/>
+<attributeConditions xmi:id="_inv18_f1cbaea8" name="InvCondition19" conditionText="N286941L_abstract == N286942R_abstract"/>
+<attributeConditions xmi:id="_inv19_f1cbaea8" name="InvCondition20" conditionText="N286941L_abstract == N286942R_interface"/>
+<attributeConditions xmi:id="_inv20_f1cbaea8" name="InvCondition21" conditionText="N286941L_abstract == N286944R_abstract"/>
+<attributeConditions xmi:id="_inv21_f1cbaea8" name="InvCondition22" conditionText="N286941L_abstract == N286944R_interface"/>
+<attributeConditions xmi:id="_inv22_f1cbaea8" name="InvCondition23" conditionText="N286942L_name == N286941R_name"/>
+<attributeConditions xmi:id="_inv23_f1cbaea8" name="InvCondition24" conditionText="N286943L_name == N286942R_name"/>
+<attributeConditions xmi:id="_inv24_f1cbaea8" name="InvCondition25" conditionText="N286944L_name == N286944L_nsPrefix"/>
+<attributeConditions xmi:id="_inv25_f1cbaea8" name="InvCondition26" conditionText="N286944L_name == N286943R_name"/>
+<attributeConditions xmi:id="_inv26_f1cbaea8" name="InvCondition27" conditionText="N286944L_name == N286943R_nsPrefix"/>
+<attributeConditions xmi:id="_inv27_f1cbaea8" name="InvCondition28" conditionText="N286944L_nsURI == N286943R_nsURI"/>
+<attributeConditions xmi:id="_inv28_f1cbaea8" name="InvCondition29" conditionText="N286945L_name == N286944R_name"/>
+<mappings xmi:id="_XG6072_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6073_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28665_f1cbaea8" name="28665_createEClassAsInterfaceInEPackage_MO">
+<lhs xmi:id="_XL548_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+      <edges xmi:id="_edg5480_f1cbaea8" source="_LN286652L_f1cbaea8" target="_LN286651L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR549_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+      <edges xmi:id="_edg5490_f1cbaea8" source="_RN286653R_f1cbaea8" target="_RN286651R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<mappings xmi:id="_XG5491_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28691_f1cbaea8" name="28691_pullUpEAttribute_MO">
+<lhs xmi:id="_XL600_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_La2_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+      </nodes>
+<nodes xmi:id="_La3_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+      <edges xmi:id="_edg6000_f1cbaea8" source="_LN286912L_f1cbaea8" target="_LN286913L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6001_f1cbaea8" source="_LN286914L_f1cbaea8" target="_LN286911L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6002_f1cbaea8" source="_LN286914L_f1cbaea8" target="_LN286912L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg6003_f1cbaea8" source="_LN286918L_f1cbaea8" target="_LN286911L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6004_f1cbaea8" source="_LN286918L_f1cbaea8" target="_LN286913L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6005_f1cbaea8" source="_LN286918L_f1cbaea8" target="_LN286914L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6006_f1cbaea8" source="_LN286918L_f1cbaea8" target="_LN286919L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6007_f1cbaea8" source="_LN286919L_f1cbaea8" target="_LN286911L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6008_f1cbaea8" source="_LN286919L_f1cbaea8" target="_LN286912L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR601_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+<nodes xmi:id="_Rb1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      </nodes>
+<nodes xmi:id="_Rb2_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+      </nodes>
+<nodes xmi:id="_Rb3_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+      <edges xmi:id="_edg6010_f1cbaea8" source="_RN286911R_f1cbaea8" target="_RN286912R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eStructuralFeatures"/>
+      </edges>
+      <edges xmi:id="_edg6011_f1cbaea8" source="_RN286912R_f1cbaea8" target="_RN286913R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute/eType"/>
+      </edges>
+      <edges xmi:id="_edg6012_f1cbaea8" source="_RN286914R_f1cbaea8" target="_RN286911R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6013_f1cbaea8" source="_RN286916R_f1cbaea8" target="_RN286911R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6014_f1cbaea8" source="_RN286916R_f1cbaea8" target="_RN286913R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6015_f1cbaea8" source="_RN286916R_f1cbaea8" target="_RN286914R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6016_f1cbaea8" source="_RN286916R_f1cbaea8" target="_RN286917R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6017_f1cbaea8" source="_RN286917R_f1cbaea8" target="_RN286911R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</rhs>
+<mappings xmi:id="_XG6014_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6015_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
+</units>
+<units xsi:type="henshin:Rule" xmi:id="_X28694_f1cbaea8" name="28694_removeEmptySuperEClass_MO">
+<lhs xmi:id="_XL606_f1cbaea8" name="LHS">
+<nodes xmi:id="_La0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+<nodes xmi:id="_La1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_Lc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+<nodes xmi:id="_Lc1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+      <edges xmi:id="_edg6060_f1cbaea8" source="_LN286942L_f1cbaea8" target="_LN286941L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+      <edges xmi:id="_edg6061_f1cbaea8" source="_LN286944L_f1cbaea8" target="_LN286941L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6062_f1cbaea8" source="_LN286944L_f1cbaea8" target="_LN286942L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6063_f1cbaea8" source="_LN286944L_f1cbaea8" target="_LN286945L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6064_f1cbaea8" source="_LN286945L_f1cbaea8" target="_LN286941L_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EClass/eSuperTypes"/>
+      </edges>
+</lhs>
+<rhs xmi:id="_XR607_f1cbaea8" name="RHS">
+<nodes xmi:id="_Rb0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+<multiRules><multiMappings /></multiRules>      </nodes>
+<nodes xmi:id="_Rc0_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+      </nodes>
+<nodes xmi:id="_Rc1_f1cbaea8">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      </nodes>
+      <edges xmi:id="_edg6070_f1cbaea8" source="_RN286943R_f1cbaea8" target="_RN286941R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+      <edges xmi:id="_edg6071_f1cbaea8" source="_RN286943R_f1cbaea8" target="_RN286944R_f1cbaea8">
+      	<type href="http://www.eclipse.org/emf/2002/Ecore#//EPackage/eClassifiers"/>
+      </edges>
+</rhs>
+<mappings xmi:id="_XG6071_f1cbaea8" origin="_Lc0_f1cbaea8" image="_Rc0_f1cbaea8"/>
+<mappings xmi:id="_XG6072_f1cbaea8" origin="_Lc1_f1cbaea8" image="_Rc1_f1cbaea8"/>
 </units>
 </henshin:Module>

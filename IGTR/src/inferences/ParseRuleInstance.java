@@ -1,5 +1,6 @@
 package inferences;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +62,12 @@ public class ParseRuleInstance {
 	 * @param pathB
 	 */
 	public void parse(String modelType, String ruleName, String pathA, String pathB) {
+		
+		if (!new File(pathA).exists() || 
+			!new File(pathB).exists()){
+			return;
+		}
+		
 		modelA = EMFResourceUtil.loadModel(pathA);
 		modelB = EMFResourceUtil.loadModel(pathB);
 

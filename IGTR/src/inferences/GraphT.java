@@ -272,6 +272,7 @@ public class GraphT {
 				loadNode.isReturn=crsNodesEdges.getBoolean(9);
 				loadNode.isMulti=crsNodesEdges.getBoolean(10);
 				loadNode.iParameterIndex=crsNodesEdges.getShort(11);
+				loadNode.AbstractID=crsNodesEdges.getString(12);
 				
 				//** load attributes 				
 				CachedRowSetImpl crsNodesAttributes= DBRecord.getByQueryStatement(
