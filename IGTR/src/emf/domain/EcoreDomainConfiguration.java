@@ -7,8 +7,10 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import emf.matching.IMatcher;
+import emf.matching.NamedElementMatcher;
 import emf.matching.UUIDMatcher;
 
 public class EcoreDomainConfiguration implements IDomainConfiguration {
@@ -67,7 +69,17 @@ public class EcoreDomainConfiguration implements IDomainConfiguration {
 	}
 
 	@Override
-	public IMatcher createMatcher() {
-		return new UUIDMatcher();
+	public IMatcher createMatcher(Resource modelA, Resource modelB) {		
+		UUIDMatcher uuidMatcher = new UUIDMatcher(this);
+		if (uuidMatcher.canHandle(modelA, modelB)){
+			return uuidMatcher;
+		}
+		
+		NamedElementMatcher namedElementMatcher = new NamedElementMatcher(this);
+		if (namedElementMatcher.canHandle(modelA, modelB)){
+			return namedElementMatcher;
+		}
+		
+		return null;
 	}
 }

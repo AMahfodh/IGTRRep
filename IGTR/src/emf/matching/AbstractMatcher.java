@@ -4,6 +4,8 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import emf.domain.IDomainConfiguration;
+
 /**
  * An abstract implementation of the IMatcher interface. A subclass has to
  * implement the methods
@@ -11,6 +13,11 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public abstract class AbstractMatcher implements IMatcher {
 
+	/**
+	 * The domain configuration
+	 */
+	protected IDomainConfiguration domainConfiguration;
+	
 	/**
 	 * The matching.
 	 */
@@ -25,6 +32,11 @@ public abstract class AbstractMatcher implements IMatcher {
 	 * The B version of the model.
 	 */
 	protected Resource modelB;
+
+	public AbstractMatcher(IDomainConfiguration domainConfiguration) {
+		super();
+		this.domainConfiguration = domainConfiguration;
+	}
 
 	@Override
 	public Matching createMatching(Resource modelA, Resource modelB) {

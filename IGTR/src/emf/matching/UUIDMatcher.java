@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 
+import emf.domain.IDomainConfiguration;
 import emf.util.EMFModelUtil;
 
 /**
@@ -16,6 +17,11 @@ import emf.util.EMFModelUtil;
  * 
  */
 public class UUIDMatcher extends AbstractMatcher {
+
+	public UUIDMatcher(IDomainConfiguration domainConfiguration) {
+		super(domainConfiguration);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * We check if the resources really have XMI IDs.
@@ -61,6 +67,10 @@ public class UUIDMatcher extends AbstractMatcher {
 		TreeIterator<EObject> iter = r.getAllContents();
 		while (iter.hasNext()) {
 			EObject element = iter.next();
+			if (domainConfiguration.getUnconsideredNodeTypes().contains(element.eClass())){
+				continue;
+			}
+			
 			String id = EMFModelUtil.getXmiId(element);
 			if (id == null) {
 				return false;

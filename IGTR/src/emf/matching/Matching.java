@@ -2,6 +2,7 @@ package emf.matching;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -75,12 +76,17 @@ public class Matching {
 	@Override
 	public String toString() {
 		String res = super.toString() + "\n";
-		for (EObject objA : correspondencesA2B.keySet()) {
+		for (Iterator<EObject> iterator = correspondencesA2B.keySet().iterator(); iterator.hasNext();) {
+			EObject objA = iterator.next();
 			EObject objB = correspondencesA2B.get(objA);
-			res += " " + objA + " <-> " + objB + "\n";
+			res += " " + objA + " <-> " + objB;
+			
+			if (iterator.hasNext()){
+				res += "\n";
+			}
 		}
+		
 		return res;
 	}
-	
 	
 }

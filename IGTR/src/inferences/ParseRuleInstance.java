@@ -34,7 +34,7 @@ public class ParseRuleInstance {
 	// Domain Configuration
 	private IDomainConfiguration domainConfig;
 
-	// Traces: eObjects in models to nodes in graphs (and vice versa)
+	// Bidirectional Traces: eObjects in models to nodes in graphs (and vice versa)
 	private Map<EObject, GNode> modelA2lhs;
 	private Map<EObject, GNode> modelB2rhs;
 	private Map<GNode, EObject> lhs2modelA;
@@ -81,7 +81,8 @@ public class ParseRuleInstance {
 		counterB = new IDGenerator("b");
 
 		domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
-		IMatcher matcher = domainConfig.createMatcher();
+		IMatcher matcher = domainConfig.createMatcher(modelA, modelB);
+		System.out.println("Using matcher " + matcher.getClass().getName());
 		matching = matcher.createMatching(modelA, modelB);
 		System.out.println(matching);
 

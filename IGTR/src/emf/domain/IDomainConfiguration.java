@@ -5,6 +5,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import emf.matching.IMatcher;
 
@@ -21,5 +22,5 @@ public interface IDomainConfiguration {
 
 	public Set<EAttribute> getUnconsideredAttributeTypes();
 	
-	public IMatcher createMatcher();
+	public IMatcher createMatcher(Resource modelA, Resource modelB);
 }
