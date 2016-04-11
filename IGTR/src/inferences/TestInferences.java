@@ -1,10 +1,12 @@
 package inferences;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class TestInferences {
 
@@ -30,11 +32,7 @@ public class TestInferences {
 		new ExportToHenshin().exportHenshinModel(
 				new File("").getAbsolutePath() + 
 					File.separator + "HenshinOutput" + 
-					File.separator + "myModel.henshin", 
-				"");
-		
-
-
+					File.separator + "myModel.henshin");
 	}
 	
 	
