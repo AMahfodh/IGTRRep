@@ -10,7 +10,11 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecutor;
+
 import com.sun.rowset.CachedRowSetImpl;
+
 
 public class AttributeInference {
 
@@ -350,16 +354,15 @@ public class AttributeInference {
 	
 	
 	private boolean convertCVStoDaikonInput(String csvPath) throws IOException, InterruptedException{
+
+		CommandLine cmdLine = new CommandLine("perl");
+		cmdLine.addArgument(new File("").getAbsolutePath() +  File.separator + "Perl" + File.separator + "convertcsv.pl ");
+		cmdLine.addArgument(csvPath);
 		
-		String perlLocation = new File("").getAbsolutePath() +  File.separator + "Perl" + File.separator ;
-		// run perl script
-		Process proc = Runtime.getRuntime().exec(
-				"perl " + perlLocation + "convertcsv.pl "+ csvPath);
-		
-		
-		proc.waitFor();
-		
-		if(proc.exitValue() == 0)
+		DefaultExecutor executor = new DefaultExecutor();
+		//executor.setExitValue(1);
+
+		if(executor.execute(cmdLine) == 0)
 		{
 			System.out.println("Perl-command successful");
 			return true;
@@ -451,18 +454,17 @@ public class AttributeInference {
 				
 				
 				
-				
-
-				// run Daikon JAR				
+				// run Daikon JAR
 				try {
 
 					ProcessBuilder builder = new ProcessBuilder(
-							"cmd.exe", "/c", 
-							"java -cp " + new File("daikon.jar").getAbsolutePath() + 
-							" daikon.Daikon --nohierarchy " + 
-							strDaikonCommand + ".decls " + 
+							"java", "-classpath",
+							new File("daikon.jar").getAbsolutePath(),
+							"daikon.Daikon", "--nohierarchy",
+							strDaikonCommand + ".decls ",
 							strDaikonCommand + ".dtrace");
 					
+
 					builder.directory(new File(this.strPathDirectory));
 					builder.redirectErrorStream(true);
 					
