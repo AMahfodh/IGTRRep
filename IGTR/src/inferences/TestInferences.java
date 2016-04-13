@@ -26,6 +26,7 @@ public class TestInferences {
 		
 		
 		
+		
 		// exportToHenshin
 		//new ExportToHenshin().exportHenshinModel(
 		//		new File("").getAbsolutePath() + 
