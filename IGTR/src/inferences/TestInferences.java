@@ -15,31 +15,17 @@ public class TestInferences {
 		
 		
 		// commit generalisation 		
-		//int iMinRepeatedMultiObjects =1;
-		//new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
+		int iMinRepeatedMultiObjects =1;
+		new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
 		
 		
 		
 		// learning invariant constraints on rule attributes and parameters 
-		//AttributeInference learningInvariantConstraints = new AttributeInference();		
-		//learningInvariantConstraints.generateCSVToBeUsedByPerl();
-		//learningInvariantConstraints.exeDaikon();
-		//learningInvariantConstraints.storeDaikonOutputBackToDB();
-		
-		
-		
-		// exportToHenshin
-		new ExportToHenshin().exportHenshinModel(
-				new File("").getAbsolutePath() + 
-					File.separator + "HenshinOutput" + 
-					File.separator + "myModel.henshin");
+		AttributeInference learningInvariantConstraints = new AttributeInference();		
+		learningInvariantConstraints.generateCSVToBeUsedByPerl();
+		learningInvariantConstraints.exeDaikon();
+		learningInvariantConstraints.storeDaikonOutputBackToDB();	
 	}
-	
-	
-	
-	
-	
-	
 	
 	public static void main(String[] args) throws Exception {
 		
