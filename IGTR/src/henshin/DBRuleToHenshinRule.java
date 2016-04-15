@@ -24,6 +24,11 @@ import com.sun.rowset.CachedRowSetImpl;
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
 
+/**
+ * Transforms a DBRule to a Henshin rule.
+ * 
+ * @author kehrer
+ */
 public class DBRuleToHenshinRule {
 
 	// The Henshin factory
