@@ -9,4 +9,5 @@ Bundle-ClassPath: IGTR.jar,
  mysql-connector-java-5.1.27-bin.jar,
  daikon.jar
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.10.2",
- org.eclipse.emf.ecore.xmi;bundle-version="2.10.2"
+ org.eclipse.emf.ecore.xmi;bundle-version="2.10.2",
+ org.eclipse.emf.henshin.model;bundle-version="1.2.0"

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -13,7 +14,7 @@ import emf.matching.IMatcher;
 import emf.matching.NamedElementMatcher;
 import emf.matching.UUIDMatcher;
 
-public class EcoreDomainConfiguration implements IDomainConfiguration {
+public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 
 	private Set<EClass> unconsideredNodeTypes;
 	private Set<EReference> unconsideredEdgeTypes;
@@ -82,4 +83,11 @@ public class EcoreDomainConfiguration implements IDomainConfiguration {
 		
 		return null;
 	}
+
+	@Override
+	public EPackage getEPackage() {
+		return EcorePackage.eINSTANCE;
+	}
+	
+	
 }

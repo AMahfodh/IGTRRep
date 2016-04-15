@@ -668,7 +668,7 @@ public class GraphT {
     
     */
     
-    protected void printGraph(){
+    public void printGraph(){
     	this.printGraph(false);
     }
     

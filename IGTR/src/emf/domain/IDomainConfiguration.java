@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -21,6 +22,14 @@ public interface IDomainConfiguration {
 	public Set<EReference> getUnconsideredEdgeTypes();
 
 	public Set<EAttribute> getUnconsideredAttributeTypes();
-	
+
 	public IMatcher createMatcher(Resource modelA, Resource modelB);
+
+	public EPackage getEPackage();
+	
+	public EClass deriveNodeType(String name);
+
+	public EReference deriveEdgeType(EClass srcNodeType, String name);
+
+	public EAttribute deriveAttributeType(EClass nodeType, String name);
 }
