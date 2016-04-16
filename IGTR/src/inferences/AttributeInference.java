@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
 
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -63,11 +64,28 @@ public class AttributeInference {
 						crsAllAbstractRule.getString(2) + ".csv";
 				
 				
-				PrintWriter csvWriter = new PrintWriter(csvPath, "UTF-8");				
+				PrintWriter csvWriter = new PrintWriter(csvPath, "UTF-8");								
 				
-				this.printCVSLines(crsAllAbstractRule.getInt(1), crsAllAbstractRule.getString(2), csvWriter);
+				if (!this.printCVSLines(
+						crsAllAbstractRule.getInt(1), 
+						crsAllAbstractRule.getString(2), 
+						csvWriter)){
+					
+					csvWriter.close();
+					
+					new File(csvPath).delete();
+					
+					System.out.println(
+							"Deleting an empty (*.csv) file : " + 
+							crsAllAbstractRule.getInt(1) + "_" +
+							crsAllAbstractRule.getString(2) + ".csv");
+					
+					continue;
+				}
 				
-				csvWriter.close();	
+				
+				csvWriter.close();
+				
 				
 				if (!this.convertCVStoDaikonInput(csvPath)){
 					// delete csv file as well as all daikon files
@@ -79,7 +97,7 @@ public class AttributeInference {
 			}			
 			
 		}
-		catch (SQLException | IOException | InterruptedException  e) {		
+		catch (SQLException | IOException e) {		
 			e.printStackTrace();
 			return false;
 		}
@@ -104,7 +122,7 @@ public class AttributeInference {
 	
 	
 	
-	private void printCVSLines(int O_ID, String strMethodName , PrintWriter csvWriter){
+	private boolean printCVSLines(int O_ID, String strMethodName , PrintWriter csvWriter){
 		
 		System.out.println(" ------------- " + O_ID + " " + strMethodName + " ----------------");
 		
@@ -145,7 +163,7 @@ public class AttributeInference {
 			
 			// check if header is being filled out
 			if (strHeaderLine.length()==0 || strAbstractIDs.length()==0){
-				return;
+				return false;
 			}
 			
 			
@@ -228,6 +246,7 @@ public class AttributeInference {
 		
 		
 		System.out.println();
+		return true;
 	}
 	
 	
@@ -353,7 +372,7 @@ public class AttributeInference {
 	
 	
 	
-	private boolean convertCVStoDaikonInput(String csvPath) throws IOException, InterruptedException{
+	private boolean convertCVStoDaikonInput(String csvPath) throws ExecuteException, IOException {
 
 		CommandLine cmdLine = new CommandLine("perl");
 		cmdLine.addArgument(new File("").getAbsolutePath() +  File.separator + "Perl" + File.separator + "convertcsv.pl ");
@@ -372,7 +391,6 @@ public class AttributeInference {
 			System.out.println("Perl-command failure");
 			return false;			
 		}
-		
 	}
 	
 	
@@ -386,9 +404,9 @@ public class AttributeInference {
 			// csv file
 			File file = new File(this.strPathDirectory + ruleName + ".csv");			
 			if(file.delete()){
-				System.out.println("deleting " + ruleName + ".csv is ok!");
+				System.out.println("deleting " + ruleName + ".csv !");
 			}
-			else{
+			else if(file.exists()){
 				System.out.println("deleting " + ruleName + ".csv is failed.");
 			}
 
@@ -397,9 +415,9 @@ public class AttributeInference {
 			// daikon decls file
 			file = new File(this.strPathDirectory + ruleName + ".decls");			
 			if(file.delete()){
-				System.out.println("deleting " + ruleName + ".decls is ok!");
+				System.out.println("deleting " + ruleName + ".decls !");
 			}
-			else{
+			else if(file.exists()){
 				System.out.println("deleting " + ruleName + ".decls is failed.");
 			}
 			
@@ -408,9 +426,9 @@ public class AttributeInference {
 			// daikon dtrace
 			file = new File(this.strPathDirectory + ruleName + ".dtrace");			
 			if(file.delete()){
-				System.out.println("deleting " + ruleName + ".dtrace is ok!");
+				System.out.println("deleting " + ruleName + ".dtrace !");
 			}
-			else{
+			else if(file.exists()){
 				System.out.println("deleting " + ruleName + ".dtrace is failed.");
 			}
 			
