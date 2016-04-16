@@ -6,7 +6,6 @@ import inferences.GEdge;
 import inferences.GNode;
 import inferences.GraphT;
 
-import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
