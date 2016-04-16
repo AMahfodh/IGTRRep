@@ -479,7 +479,7 @@ public class AttributeInference {
 							"java", "-classpath",
 							new File("daikon.jar").getAbsolutePath(),
 							"daikon.Daikon", "--nohierarchy",
-							strDaikonCommand + ".decls ",
+							strDaikonCommand + ".decls",
 							strDaikonCommand + ".dtrace");
 					
 
