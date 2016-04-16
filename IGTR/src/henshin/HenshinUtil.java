@@ -83,11 +83,18 @@ public class HenshinUtil {
 		}
 	}
 
-	public static String getGraphName(boolean isRHS) {
-		if (isRHS) {
-			return "Rhs";
-		} else {
-			return "Lhs";
+	public static String getGraphName(boolean isRHS, boolean isMulti) {
+		String res = "";
+		if (isMulti){
+			res += "m_";
 		}
+		
+		if (isRHS) {
+			res += "Rhs";
+		} else {
+			res += "Lhs";
+		}
+		
+		return res;
 	}
 }

@@ -1,5 +1,6 @@
 package inferences;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -464,4 +465,8 @@ public class ExportToHenshin {
 		return "_" + DigestUtils.sha1Hex(System.nanoTime() + "").substring(0, 8);
 	}
 
+	public static void main(String[] args) throws Exception {
+		new ExportToHenshin().exportHenshinModel(new File("").getAbsolutePath() + File.separator + "HenshinOutput"
+				+ File.separator + "old.henshin");
+	}
 }
