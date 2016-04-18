@@ -64,7 +64,10 @@ public class ExportAllToHenshin {
 
 		// Create Henshin rules (with multi-objects)
 		System.out.println("Creating Henshin rules with multi-objects ..");
-
+		for (DBRule dbRule : dbRulesWithMO) {
+			transformRule(dbRule, hModule);
+		}
+		
 		// Save Henshin file
 		System.out.println("Save Henshin file ..");
 		HenshinUtil.serializeModule(hModule, strLocation);

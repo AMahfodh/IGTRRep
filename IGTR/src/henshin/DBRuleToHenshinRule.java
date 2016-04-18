@@ -38,49 +38,80 @@ public class DBRuleToHenshinRule {
 	private String modelType = "ecore";
 	private IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
 
-	// HenshinRule
+	// The rule to be transformed
 	private DBRule dbRule;
-	private Rule hRule;
 
 	// Mappings
+	@SuppressWarnings("unused")
 	private Map<GraphT, Graph> lhsGraph_2_hLhsGraph = new HashMap<GraphT, Graph>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, GraphT> hLhsGraph_2_lhsGraph = new HashMap<GraphT, GraphT>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, Graph> rhsGraph_2_hRhsGraph = new HashMap<GraphT, Graph>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, GraphT> hRhsGraph_2_rhsGraph = new HashMap<GraphT, GraphT>();
 
+	@SuppressWarnings("unused")
 	private Map<GraphT, Graph> m_lhsGraph_2_hLhsGraph = new HashMap<GraphT, Graph>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, GraphT> m_hLhsGraph_2_lhsGraph = new HashMap<GraphT, GraphT>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, Graph> m_rhsGraph_2_hRhsGraph = new HashMap<GraphT, Graph>();
+	@SuppressWarnings("unused")
 	private Map<GraphT, GraphT> m_hRhsGraph_2_rhsGraph = new HashMap<GraphT, GraphT>();
 
+	@SuppressWarnings("unused")
 	private Map<GNode, Node> lhsNode_2_hLhsNode = new HashMap<GNode, Node>();
+	@SuppressWarnings("unused")
 	private Map<Node, GNode> hLhsNode_2_lhsNode = new HashMap<Node, GNode>();
+	@SuppressWarnings("unused")
 	private Map<GNode, Node> rhsNode_2_hRhsNode = new HashMap<GNode, Node>();
+	@SuppressWarnings("unused")
 	private Map<Node, GNode> hRhsNode_2_rhsNode = new HashMap<Node, GNode>();
 
+	@SuppressWarnings("unused")
 	private Map<GNode, Node> m_lhsNode_2_hLhsNode = new HashMap<GNode, Node>();
+	@SuppressWarnings("unused")
 	private Map<Node, GNode> m_hLhsNode_2_lhsNode = new HashMap<Node, GNode>();
+	@SuppressWarnings("unused")
 	private Map<GNode, Node> m_rhsNode_2_hRhsNode = new HashMap<GNode, Node>();
+	@SuppressWarnings("unused")
 	private Map<Node, GNode> m_hRhsNode_2_rhsNode = new HashMap<Node, GNode>();
 
+	@SuppressWarnings("unused")
 	private Map<GEdge, Edge> lhsEdge_2_hLhsEdge = new HashMap<GEdge, Edge>();
+	@SuppressWarnings("unused")
 	private Map<Edge, GEdge> hLhsEdge_2_lhsEdge = new HashMap<Edge, GEdge>();
+	@SuppressWarnings("unused")
 	private Map<GEdge, Edge> rhsEdge_2_hRhsEdge = new HashMap<GEdge, Edge>();
+	@SuppressWarnings("unused")
 	private Map<Edge, GEdge> hRhsEdge_2_rhsEdge = new HashMap<Edge, GEdge>();
 
+	@SuppressWarnings("unused")
 	private Map<GEdge, Edge> m_lhsEdge_2_hLhsEdge = new HashMap<GEdge, Edge>();
+	@SuppressWarnings("unused")
 	private Map<Edge, GEdge> m_hLhsEdge_2_lhsEdge = new HashMap<Edge, GEdge>();
+	@SuppressWarnings("unused")
 	private Map<GEdge, Edge> m_rhsEdge_2_hRhsEdge = new HashMap<GEdge, Edge>();
+	@SuppressWarnings("unused")
 	private Map<Edge, GEdge> m_hRhsEdge_2_rhsEdge = new HashMap<Edge, GEdge>();
 
+	@SuppressWarnings("unused")
 	private Map<GAttribute, Attribute> lhsAttribute_2_hLhsAttribute = new HashMap<GAttribute, Attribute>();
+	@SuppressWarnings("unused")
 	private Map<Attribute, GAttribute> hLhsAttribute_2_lhsAttribute = new HashMap<Attribute, GAttribute>();
+	@SuppressWarnings("unused")
 	private Map<GAttribute, Attribute> rhsAttribute_2_hRhsAttribute = new HashMap<GAttribute, Attribute>();
+	@SuppressWarnings("unused")
 	private Map<Attribute, GAttribute> hRhsAttribute_2_rhsAttribute = new HashMap<Attribute, GAttribute>();
 
+	@SuppressWarnings("unused")
 	private Map<GAttribute, Attribute> m_lhsAttribute_2_hLhsAttribute = new HashMap<GAttribute, Attribute>();
+	@SuppressWarnings("unused")
 	private Map<Attribute, GAttribute> m_hLhsAttribute_2_lhsAttribute = new HashMap<Attribute, GAttribute>();
+	@SuppressWarnings("unused")
 	private Map<GAttribute, Attribute> m_rhsAttribute_2_hRhsAttribute = new HashMap<GAttribute, Attribute>();
+	@SuppressWarnings("unused")
 	private Map<Attribute, GAttribute> m_hRhsAttribute_2_rhsAttribute = new HashMap<Attribute, GAttribute>();
 
 	// ================================================================================
@@ -95,7 +126,7 @@ public class DBRuleToHenshinRule {
 		System.out.println("Transforming: " + dbRule);
 
 		this.dbRule = dbRule;
-		this.hRule = hFactory.createRule(dbRule.name);
+		Rule hRule = hFactory.createRule(dbRule.name);
 
 		// Print parameters and also generate required ones based on
 		// inferred
@@ -133,7 +164,7 @@ public class DBRuleToHenshinRule {
 			putToMappings(rhs, hRhs, getMapPair(ElementKind.GRAPH, true, false));
 
 			// Mappings LHS -> RHS
-			transformLhs2RhsMappings(lhs, rhs, false);
+			createLhs2RhsMappings(lhs, rhs, false, hRule);
 
 			// Construct rule
 			hRule.setLhs(hLhs);
@@ -154,15 +185,26 @@ public class DBRuleToHenshinRule {
 			rhsWithMo.LoadMultiObjects(false, true);
 
 			// Construct the kernel rule
-			Graph hLhs = transformGraph(lhsWithMo, false, true);
-			Graph hRhs = transformGraph(rhsWithMo, true, true);
-			// TODO map g2h
-			
+			Graph hLhs = transformGraph(lhsWithMo, false, false);
+			Graph hRhs = transformGraph(rhsWithMo, true, false);
+			createLhs2RhsMappings(lhsWithMo, rhsWithMo, false, hRule);
+			hRule.setLhs(hLhs);
+			hRule.setRhs(hRhs);
+
 			// Construct the multi rule
-			// TODO construct
+			Rule m_hRule = hFactory.createRule(dbRule.name + "_multi");
+			hRule.getMultiRules().add(m_hRule);
+			Graph m_hLhs = transformGraph(lhsWithMo, false, true);
+			Graph m_hRhs = transformGraph(rhsWithMo, true, true);
+			createLhs2RhsMappings(lhsWithMo, rhsWithMo, true, m_hRule);
+			m_hRule.setLhs(m_hLhs);
+			m_hRule.setRhs(m_hRhs);
+
+			// Kernel-rule to multi-rule mappings
+			createKernel2MultiMappings(lhsWithMo, rhsWithMo, m_hRule);
 		}
 
-		return this.hRule;
+		return hRule;
 	}
 
 	/**
@@ -174,19 +216,20 @@ public class DBRuleToHenshinRule {
 	 */
 	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {
 		System.out.println("Transform Graph: " + HenshinUtil.getGraphName(isRHS, isMulti));
-		graph.printGraph();
+		//graph.printGraph();
 
 		Graph hGraph = hFactory.createGraph(HenshinUtil.getGraphName(isRHS, isMulti));
 
 		// Create Henshin nodes
 		for (GNode node : graph.gNodes) {
-			if (!isMulti && node.isMulti) {
-				// Skip multi-nodes when creating kernel rule
+			
+			// Skip multi-nodes when creating kernel rule
+			if (!isMulti && node.isMulti) {				
 				continue;
 			}
 
-			Node hNode = hFactory.createNode(hGraph, domainConfig.deriveNodeType(node.nodeType), node.nodeID);
-			hNode.setName(node.nodeID);
+			Node hNode = hFactory.createNode(hGraph, domainConfig.deriveNodeType(node.nodeType), "");
+			hNode.setName(getNodeID(node, false));
 
 			// Put to mappings
 			putToMappings(node, hNode, getMapPair(ElementKind.NODE, isRHS, isMulti));
@@ -196,9 +239,17 @@ public class DBRuleToHenshinRule {
 		}
 
 		// Create Henshin Edges
-		for (GEdge edge : graph.gEdges) {
-			GNode srcNode = getNodeByID(edge.sourceID, isRHS, isMulti);
-			GNode tgtNode = getNodeByID(edge.targetID, isRHS, isMulti);
+		for (GEdge edge : graph.gEdges) {						
+			GNode srcNode = getNodeByID(edge.sourceID, isRHS, isMulti, true);
+			GNode tgtNode = getNodeByID(edge.targetID, isRHS, isMulti, true);
+			
+			// Skip multi-edges when creating kernel rule
+			if (!isMulti) {
+				if ((srcNode == null) || (tgtNode == null) || srcNode.isMulti || tgtNode.isMulti) {					
+					continue;
+				}
+			}
+
 			Node hSrcNode = getHNode(srcNode, isRHS, isMulti);
 			Node hTgtNode = getHNode(tgtNode, isRHS, isMulti);
 
@@ -206,7 +257,7 @@ public class DBRuleToHenshinRule {
 					domainConfig.deriveEdgeType(hSrcNode.getType(), edge.edgeType));
 
 			// Put to mappings
-			putToMappings(edge, hEdge, getMapPair(ElementKind.EDGE, isRHS, isMulti));			
+			putToMappings(edge, hEdge, getMapPair(ElementKind.EDGE, isRHS, isMulti));
 		}
 
 		return hGraph;
@@ -232,15 +283,15 @@ public class DBRuleToHenshinRule {
 					domainConfig.deriveAttributeType(hNode.getType(), attribute.attName), attribute.attName);
 
 			// Put to mappings
-			putToMappings(attribute, hAttribute, getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));			
+			putToMappings(attribute, hAttribute, getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
 		}
 	}
 
-	private void transformLhs2RhsMappings(GraphT lhs, GraphT rhs, boolean isMulti) {
+	private void createLhs2RhsMappings(GraphT lhs, GraphT rhs, boolean isMulti, Rule hRule) {
 		// Iterate over LHS nodes and check if we have corresponding RHS
 		// node
 		for (GNode lhsNode : lhs.gNodes) {
-			GNode rhsNode = getNodeByID(lhsNode.nodeID, true, isMulti);
+			GNode rhsNode = getNodeByID(getNodeID(lhsNode, false), true, isMulti, false);
 			if (rhsNode != null) {
 				// Create Mapping
 				Node hLhsNode = getHNode(lhsNode, false, isMulti);
@@ -251,11 +302,59 @@ public class DBRuleToHenshinRule {
 		}
 	}
 
-	private GNode getNodeByID(String id, boolean isRHS, boolean isMulti) {
+	/**
+	 * Iterate over Kernel and map all nodes (Kernel rule has to be embedded
+	 * completely into multi).
+	 * 
+	 * @param lhs
+	 * @param rhs
+	 * @param hMultiRule
+	 */
+	private void createKernel2MultiMappings(GraphT lhs, GraphT rhs, Rule hMultiRule) {
+		// LHS nodes
+		for (GNode node : lhs.gNodes) {
+			if (node.isMulti){
+				continue;
+			}
+			Node hKernel = getHNode(node, false, false);
+			Node hMulti = getHNode(node, false, true);
+
+			// Create Mapping
+			Mapping mapping = hFactory.createMapping(hKernel, hMulti);
+			hMultiRule.getMultiMappings().add(mapping);
+		}
+
+		// RHS nodes
+		for (GNode node : rhs.gNodes) {
+			if (node.isMulti){
+				continue;
+			}
+			Node hKernel = getHNode(node, true, false);
+			Node hMulti = getHNode(node, true, true);
+
+			// Create Mapping
+			Mapping mapping = hFactory.createMapping(hKernel, hMulti);
+			hMultiRule.getMultiMappings().add(mapping);
+		}
+	}
+
+	private String getNodeID(GNode node, boolean isIntraGraph) {
+		if (isIntraGraph) {
+			return node.nodeID;
+		} else {
+			if (dbRule.isMulti) {
+				return node.AbstractID;
+			} else {
+				return node.nodeID;
+			}
+		}
+	}
+
+	private GNode getNodeByID(String id, boolean isRHS, boolean isMulti, boolean isIntraGraph) {		
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		for (Object o : mapPair.g2h.keySet()) {
 			GNode node = (GNode) o;
-			if (node.nodeID.equals(id)) {
+			if (getNodeID(node, isIntraGraph).equals(id)) {
 				return node;
 			}
 		}
@@ -268,11 +367,13 @@ public class DBRuleToHenshinRule {
 		return (Node) mapPair.g2h.get(node);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void putToMappings(Object gElement, EObject hElement, MapPair mapPair) {
 		mapPair.g2h.put(gElement, hElement);
 		mapPair.h2g.put(hElement, gElement);
 	}
 
+	@SuppressWarnings("rawtypes")
 	private MapPair getMapPair(ElementKind kind, boolean isRHS, boolean isMulti) {
 		// Kind
 		String kind_name = "";
@@ -307,13 +408,13 @@ public class DBRuleToHenshinRule {
 			g2h_name = "m_";
 			h2g_name = "m_";
 		}
-		g2h_name = g_name + kind_name + "_2_" + h_name + kind_name;
-		h2g_name = h_name + kind_name + "_2_" + g_name + kind_name;
+		g2h_name += g_name + kind_name + "_2_" + h_name + kind_name;
+		h2g_name += h_name + kind_name + "_2_" + g_name + kind_name;
 
 		// Get fields using Java reflection
 		Map g2h = null;
 		Map h2g = null;
-		try {			
+		try {
 			g2h = (Map) this.getClass().getDeclaredField(g2h_name).get(this);
 			h2g = (Map) this.getClass().getDeclaredField(h2g_name).get(this);
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
@@ -323,6 +424,7 @@ public class DBRuleToHenshinRule {
 		return new MapPair(g2h, h2g);
 	}
 
+	@SuppressWarnings("rawtypes")
 	class MapPair {
 		Map g2h;
 		Map h2g;
