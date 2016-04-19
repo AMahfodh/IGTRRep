@@ -1,0 +1,7 @@
+# For invariants configuration ...
+#daikon.inv.binary.sequenceScalar.Member.enabled=false
+
+
+# For derived configuration variables ...
+#daikon.derive.unary.SequenceInitial.enabled = 1
+#daikon.derive.unary.SequenceSum.enabled = 1

@@ -38,9 +38,9 @@ public class RuleInference {
 		this.GTlogger.info("Preparing and classifying rule's instances for generalisation process ..");
 		this.prepareAndSetRuleClassification();
 
-
-
-
+		
+		
+		
 
 
 		//define abstract for query rule based on their smallest size .. 
@@ -65,6 +65,12 @@ public class RuleInference {
 		System.out.println("Inferring rules with multi-objects completed");
 
 
+
+		
+		
+		
+		// update unnecessary context specified by domain expert in all rules
+		this.updateUnnecessaryContext();
 
 		/*
 		System.out.println("\t ===>total minTime=" + (minTime - maxTime));
@@ -125,6 +131,8 @@ public class RuleInference {
 	 *	11	- isMinimalRuleMatched()
 	 *	12	- setMaximalContextRule()
 	 *	13	- setContextIntersection()
+	 *	
+	 *	14	- updateUnnecessaryContext()  new.. specified by domain expert 
 	 *
 	 * */
 
@@ -1141,6 +1149,38 @@ public class RuleInference {
 
 
 
+	private void updateUnnecessaryContext(){
+		
+		// updating unnecessary context specified by domain expert in all rules
+		
+		System.out.println("updateing unnecessary context as spefified by domain expert ..");
+		
+		DBRecord.executeSqlStatement(
+				 "DROP TABLE IF EXISTS QueryTempTbl2; "
+				
+				+ "CREATE TABLE QueryTempTbl2 "
+				+ "select AbstractID as aID from TblNode "
+				+ "where isMinimal=false "
+				+ "and isRequiredContext=true "
+				+ "and isUnnecessaryContext=true; "
+
+				+ "update TblNode set isToBeDeleted=true "
+				+ "where Graph_IDREFF>0 and AbstractID in (select aID from QueryTempTbl2); "
+
+				+"update TblEdge set isToBeDeleted=true "
+				+ "where Graph_IDREFF>0 and "
+				+ "(sourceID in (select nodeID from TblNode where isToBeDeleted=true and TblNode.Graph_IDREFF=TblEdge.Graph_IDREFF)"
+				+ "or "
+				+ "targetID in (select nodeID from TblNode where isToBeDeleted=true and TblNode.Graph_IDREFF=TblEdge.Graph_IDREFF)"
+				+ ");", true);	
+				
+	}
+	
+	
+	
+	
+	
+	
 
 
 
@@ -1407,6 +1447,8 @@ public class RuleInference {
 
 
 
+	
+	
 	private class MORule {
 
 		private int iGraphSideId;	
@@ -1474,6 +1516,65 @@ public class RuleInference {
 			return hasMO;
 		}
 
+		
+		private String strSQLtoLoadNodes(){
+
+			if (!this.isRHS){
+				return 	"select "
+						+ "nodeID,"
+						+ "nodeType,"
+						+ "minSubGraphID,"
+						+ "isMinimal,"
+						+ "isInitialized,"
+						+ "iDistance,"
+						+ "AbstractID,"
+						+ "isParameters,"
+						+ "isCollection "
+						+ "from TblNode "
+						+ "where Graph_IDREFF=" + this.iGraphSideId;
+			}
+
+
+			// sql for rhs including first multi nodes from lhs and then other remaining nodes
+			return 	"select "
+					+ "nodeID,"
+					+ "nodeType,"
+					+ "minSubGraphID,"
+					+ "isMinimal,"
+					+ "isInitialized,"
+					+ "iDistance,"
+					+ "AbstractID,"
+					+ "isParameters,"
+					+ "isCollection "
+					+ "from TblNode "
+					+ "where Graph_IDREFF=" + this.iGraphSideId
+					+ " and nodeID in ("
+					
+					+ "		select nodeID from TblNode where AbstractID in ("
+					+ "			select TblRuleMoNodes.AbstractID from TblRuleMoNodes "
+					+ "			where ruleMo_IDREFF=" + this.iObservationID + 
+					" 			and graphType=0 and isMulti=1)) "
+
+					+ "UNION ALL "
+		
+					+ "select "
+					+ "nodeID,"
+					+ "nodeType,"
+					+ "minSubGraphID,"
+					+ "isMinimal,"
+					+ "isInitialized,"
+					+ "iDistance,"
+					+ "AbstractID,"
+					+ "isParameters,"
+					+ "isCollection "
+					+ "from TblNode "
+					+ "where Graph_IDREFF=" + this.iGraphSideId
+					+ " and nodeID not in ("
+					+ "		select nodeID from TblNode where AbstractID in ("
+					+ "			select TblRuleMoNodes.AbstractID from TblRuleMoNodes "
+					+ "			where ruleMo_IDREFF=" + this.iObservationID 
+					+ " 		and graphType=0 and isMulti=1))";
+		}
 
 		private void load(){
 
@@ -1483,18 +1584,7 @@ public class RuleInference {
 
 			// loading by graph id
 			CachedRowSetImpl crsNodesEdges= DBRecord.getByQueryStatement(
-					"select "
-							+ "nodeID,"
-							+ "nodeType,"
-							+ "minSubGraphID,"
-							+ "isMinimal,"
-							+ "isInitialized,"
-							+ "iDistance,"
-							+ "AbstractID,"
-							+ "isParameters,"
-							+ "isCollection "
-							+ "from TblNode "
-							+ "where Graph_IDREFF=" + this.iGraphSideId, true);
+					this.strSQLtoLoadNodes(), true);
 
 
 			//**	load nodes 
@@ -1679,8 +1769,8 @@ public class RuleInference {
 
 			// [2] Check minimal effect, distance and isInitialized
 			if (node_i.isMinimal != node_j.isMinimal ||
-					node_i.distance != node_j.distance ||
-					node_i.isInitialized != node_j.isInitialized ){
+				node_i.distance != node_j.distance ||
+				node_i.isInitialized != node_j.isInitialized){
 				return false;
 			}
 
@@ -1773,11 +1863,13 @@ public class RuleInference {
 
 		private boolean hasSharedElemetns(GNode node_i, GNode node_j){
 
+	
+			try {
+				
 			// ============================================================ 
 			// check matching all edges (incoming/outgoing) in both sides 
 			// this would also include checking effect in the opposite graph
-			// ----------------------------------------------------------------		
-			try {
+			// ----------------------------------------------------------------	
 				if (DBRecord.getByQueryStatement(					
 						"select * from"
 								+ "(	(select CONCAT("
@@ -1801,7 +1893,7 @@ public class RuleInference {
 								+ " group by collectedColumns) "
 								+ ") as T_MatchedStructure "
 								+ "group by "
-								+ "T_MatchedStructure.collectedColumns,"							
+								+ "T_MatchedStructure.collectedColumns, "							
 								+ "T_MatchedStructure.abstractCount "
 								+ "HAVING COUNT(*)=1 limit 1;"
 
@@ -1809,6 +1901,211 @@ public class RuleInference {
 
 					return false;
 				}
+				
+				
+				
+				
+				
+				
+				// check the match of neighbor nodes as a source connection in the same graph
+				if (DBRecord.getByQueryStatement(					
+						"select * from ("
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE1.nodeID) as abstractCount "
+								+ "		from TblNode TE1 "
+								+ "		where TE1.Graph_IDREFF =" + this.iGraphSideId
+								+ "		and TE1.nodeID in (select TEdge1.targetID from"
+								+ "			TblEdge TEdge1 where TEdge1.Graph_IDREFF =" + this.iGraphSideId
+								+ "			and TEdge1.sourceID = '" + node_i.nodeID + "')"
+								+ "	group by collectedColumns	"
+								
+								+ "UNION ALL "
+																
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE2.nodeID) as abstractCount "
+								+ "		from TblNode TE2 "
+								+ "		where TE2.Graph_IDREFF =" + this.iGraphSideId
+								+ "		and TE2.nodeID in (select TEdge2.targetID from"
+								+ "			TblEdge TEdge2 where TEdge2.Graph_IDREFF =" + this.iGraphSideId
+								+ "			and TEdge2.sourceID = '" + node_j.nodeID + "')"
+								+ "	group by collectedColumns	"
+								
+								+ ") as T_NeighborMatchedStructure group by "
+								+ "T_NeighborMatchedStructure.collectedColumns, "							
+								+ "T_NeighborMatchedStructure.abstractCount "
+								+ "HAVING COUNT(*)=1 limit 1;"
+						
+						, true).next()){
+
+					return false;
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				// and then check the match of neighbor nodes as a target connection  in the same graph
+				if (DBRecord.getByQueryStatement(					
+						"select * from ("
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE1.nodeID) as abstractCount "
+								+ "		from TblNode TE1 "
+								+ "		where TE1.Graph_IDREFF =" + this.iGraphSideId
+								+ "		and TE1.nodeID in (select TEdge1.sourceID from"
+								+ "			TblEdge TEdge1 where TEdge1.Graph_IDREFF =" + this.iGraphSideId
+								+ "			and TEdge1.targetID = '" + node_i.nodeID + "')"
+								+ "	group by collectedColumns	"
+								
+								+ "UNION ALL "
+																
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE2.nodeID) as abstractCount "
+								+ "		from TblNode TE2 "
+								+ "		where TE2.Graph_IDREFF =" + this.iGraphSideId
+								+ "		and TE2.nodeID in (select TEdge2.sourceID from"
+								+ "			TblEdge TEdge2 where TEdge2.Graph_IDREFF =" + this.iGraphSideId
+								+ "			and TEdge2.targetID = '" + node_j.nodeID + "')"
+								+ "	group by collectedColumns	"
+								
+								+ ") as T_NeighborMatchedStructure group by "
+								+ "T_NeighborMatchedStructure.collectedColumns,"							
+								+ "T_NeighborMatchedStructure.abstractCount "
+								+ "HAVING COUNT(*)=1 limit 1;"
+						
+						, true).next()){
+
+					return false;
+				}
+				
+				
+
+				
+				// check the neighbor nodes in the other graph
+				if (!node_i.isInitialized){
+
+					int iOtherGraphId=this.iGraphSideId;
+					if (this.isRHS){
+						iOtherGraphId--;
+					}
+					else {
+						iOtherGraphId++;
+					}
+					
+
+
+
+
+					// check the match of neighbor nodes as a source connection in the other graph
+					if (DBRecord.getByQueryStatement(					
+							"select * from ("
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE1.nodeID) as abstractCount "
+								+ "		from TblNode TE1 "
+								+ "		where TE1.Graph_IDREFF =" + iOtherGraphId
+								+ "		and TE1.nodeID in (select TEdge1.targetID from"
+								+ "			TblEdge TEdge1 where TEdge1.Graph_IDREFF =" + iOtherGraphId
+								+ "			and TEdge1.sourceID = '" + node_i.nodeID + "')"
+								+ "	group by collectedColumns	"
+
+								+ "UNION ALL "
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE2.nodeID) as abstractCount "
+								+ "		from TblNode TE2 "
+								+ "		where TE2.Graph_IDREFF =" + iOtherGraphId
+								+ "		and TE2.nodeID in (select TEdge2.targetID from"
+								+ "			TblEdge TEdge2 where TEdge2.Graph_IDREFF =" + iOtherGraphId
+								+ "			and TEdge2.sourceID = '" + node_j.nodeID + "')"
+								+ "	group by collectedColumns	"
+
+								+ ") as T_NeighborMatchedStructure group by "
+								+ "T_NeighborMatchedStructure.collectedColumns, "							
+								+ "T_NeighborMatchedStructure.abstractCount "
+								+ "HAVING COUNT(*)=1 limit 1;"
+
+						, true).next()){
+
+						return false;
+					}
+
+
+
+
+					// and then check the match of neighbor nodes as a target connection  in the other graph
+					if (DBRecord.getByQueryStatement(					
+							"select * from ("
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE1.nodeID) as abstractCount "
+								+ "		from TblNode TE1 "
+								+ "		where TE1.Graph_IDREFF =" + iOtherGraphId
+								+ "		and TE1.nodeID in (select TEdge1.sourceID from"
+								+ "			TblEdge TEdge1 where TEdge1.Graph_IDREFF =" + iOtherGraphId
+								+ "			and TEdge1.targetID = '" + node_i.nodeID + "')"
+								+ "	group by collectedColumns	"
+
+								+ "UNION ALL "
+
+								+ " select	CONCAT(nodeType, "
+								+ "				isThis, isMinimal, "
+								+ "				isRequiredContext, "
+								+ "				isInitialized, minSubGraphID, "
+								+ "				iDistance) as collectedColumns, "
+								+ "			count(TE2.nodeID) as abstractCount "
+								+ "		from TblNode TE2 "
+								+ "		where TE2.Graph_IDREFF =" + iOtherGraphId
+								+ "		and TE2.nodeID in (select TEdge2.sourceID from"
+								+ "			TblEdge TEdge2 where TEdge2.Graph_IDREFF =" + iOtherGraphId
+								+ "			and TEdge2.targetID = '" + node_j.nodeID + "')"
+								+ "	group by collectedColumns	"
+
+								+ ") as T_NeighborMatchedStructure group by "
+								+ "T_NeighborMatchedStructure.collectedColumns,"							
+								+ "T_NeighborMatchedStructure.abstractCount "
+								+ "HAVING COUNT(*)=1 limit 1;"
+
+						, true).next()){
+
+						return false;
+					}
+
+				}
+				
 			}
 
 			catch (SQLException e) {		

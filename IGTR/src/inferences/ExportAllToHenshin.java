@@ -126,6 +126,6 @@ public class ExportAllToHenshin {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new ExportAllToHenshin().exportHenshinModel(new File("").getAbsolutePath() + File.separator + "HenshinOutput");
+		new ExportAllToHenshin().exportHenshinModel(args[0]);
 	}
 }

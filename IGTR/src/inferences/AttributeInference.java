@@ -13,8 +13,12 @@ import java.util.Scanner;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
+import org.apache.commons.io.FileUtils;
 
 import com.sun.rowset.CachedRowSetImpl;
+
+import daikon.Daikon;
+import daikon.DaikonSimple;
 
 
 public class AttributeInference {
@@ -34,6 +38,13 @@ public class AttributeInference {
 	public boolean generateCSVToBeUsedByPerl(){
 		
 
+		// clear directory
+		try {
+			FileUtils.cleanDirectory(new File(this.strPathDirectory));
+		} catch (IOException e1) {			
+			e1.printStackTrace();
+		}
+		
 		
 		// open connection
 		DBRecord.openConnection();
@@ -118,6 +129,8 @@ public class AttributeInference {
 		
 		return true;
 	}
+	
+	
 	
 	
 	
@@ -471,18 +484,21 @@ public class AttributeInference {
 				
 				
 				
-				
 				// run Daikon JAR
 				try {
 
 					ProcessBuilder builder = new ProcessBuilder(
 							"java", "-classpath",
 							new File("daikon.jar").getAbsolutePath(),
-							"daikon.Daikon", "--nohierarchy",
+							"daikon.Daikon", 
+							"--nohierarchy", 
+							//"--suppress_redundant",
+							//"--config=" + new File("DaikonSettings.txt").getAbsolutePath(),
+							"--format=Daikon", // other available format are : Java, JML, DBC, ESC..
+							"--conf_limit=0.99",							
 							strDaikonCommand + ".decls",
 							strDaikonCommand + ".dtrace");
 					
-
 					builder.directory(new File(this.strPathDirectory));
 					builder.redirectErrorStream(true);
 					

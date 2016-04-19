@@ -312,8 +312,9 @@ public class DBRecord {
 					+ "isReturn,"
 					+ "isParameters,"
 					+ "accessedInfo,"
-					+ "iParameterIndex) "
-					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ "iParameterIndex,"
+					+ "isUnnecessaryContext) "
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 							
 			
 			
@@ -331,7 +332,7 @@ public class DBRecord {
 			pStatement.setBoolean(10, saveGNode.isParameters);
 			pStatement.setString(11, saveGNode.strAccessedInfo);
 			pStatement.setInt(12, saveGNode.iParameterIndex);
-			
+			pStatement.setBoolean(13, saveGNode.isUnnecessaryContext);
 			
 			if (pStatement.executeUpdate()==1){
 				

@@ -23,6 +23,9 @@ public class GNode {
 	public int iSubGraphID=-1;
 	
 	
+	// to be specified by domain expert 
+	public boolean isUnnecessaryContext=false;
+	
 	
     // arraylist(s) attributes, to improve this, we could use hash-table
     protected ArrayList<String> attributeName = null;	// for searching

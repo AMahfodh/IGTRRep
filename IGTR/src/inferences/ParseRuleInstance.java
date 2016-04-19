@@ -231,6 +231,17 @@ public class ParseRuleInstance {
 	private GNode eObject2Node(EObject obj, String id) {
 		GNode node = new GNode(id, obj.eClass().getName());
 
+		
+		/* Just to for testing, 
+			assume that the node 'EPackage' has been specified by domain expert to be unnecessary context!
+		*/
+		if (node.nodeType.equalsIgnoreCase("EPackage")){
+			node.isUnnecessaryContext=true;
+		}
+		
+		
+		
+		
 		// attributes
 		for (EAttribute eAttribute : obj.eClass().getEAllAttributes()) {
 			if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)

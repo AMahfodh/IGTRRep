@@ -12,8 +12,7 @@ public class TestInferences {
 
 	
 	public void commitLearning() throws Exception{
-		
-		
+				
 		// commit generalisation 		
 		int iMinRepeatedMultiObjects =1;
 		new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
@@ -24,7 +23,14 @@ public class TestInferences {
 		AttributeInference learningInvariantConstraints = new AttributeInference();		
 		learningInvariantConstraints.generateCSVToBeUsedByPerl();
 		learningInvariantConstraints.exeDaikon();
-		learningInvariantConstraints.storeDaikonOutputBackToDB();	
+		learningInvariantConstraints.storeDaikonOutputBackToDB();
+		
+				
+		// export all rules to Henshin
+		ExportAllToHenshin.main(
+				new String[]{
+						new File("").getAbsolutePath() + File.separator + "HenshinOutput"});
+
 	}
 	
 	public static void main(String[] args) throws Exception {

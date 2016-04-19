@@ -73,7 +73,7 @@ public class jGraphRule extends JPanel  {
 
 
 	private boolean isTreeLayout=false;
-	private boolean enableEditing=false;	
+	private boolean enableEditing=true;	
 	private JMenuItem attMenuItem=null;
 
 	private ArrayList<String> attributeConstraints=null;
