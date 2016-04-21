@@ -67,7 +67,7 @@ public class ExportAllToHenshin {
 		for (DBRule dbRule : dbRulesWithMO) {
 			transformRule(dbRule, hModule);
 		}
-		
+
 		// Save Henshin file
 		System.out.println("Save Henshin file ..");
 		HenshinUtil.serializeModule(hModule, strLocation);
@@ -126,6 +126,6 @@ public class ExportAllToHenshin {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new ExportAllToHenshin().exportHenshinModel(args[0]);
+		new ExportAllToHenshin().exportHenshinModel(new File("").getAbsolutePath() + File.separator + "HenshinOutput");
 	}
 }

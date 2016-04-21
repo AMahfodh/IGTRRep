@@ -32,14 +32,15 @@ import emf.domain.IDomainConfiguration;
 public class DBRuleToHenshinRule {
 
 	// The Henshin factory
-	private HenshinFactory hFactory = HenshinFactory.eINSTANCE;
+	HenshinFactory hFactory = HenshinFactory.eINSTANCE;
 
 	// Domain info
-	private String modelType = "ecore";
-	private IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
+	String modelType = "ecore";
+	IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
 
-	// The rule to be transformed
-	private DBRule dbRule;
+	// The rules
+	DBRule dbRule;
+	Rule hRule;
 
 	// Mappings
 	@SuppressWarnings("unused")
@@ -126,7 +127,7 @@ public class DBRuleToHenshinRule {
 		System.out.println("Transforming: " + dbRule);
 
 		this.dbRule = dbRule;
-		Rule hRule = hFactory.createRule(dbRule.name);
+		hRule = hFactory.createRule(dbRule.name);
 
 		// Print parameters and also generate required ones based on
 		// inferred
@@ -169,6 +170,10 @@ public class DBRuleToHenshinRule {
 			// Construct rule
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
+			
+			// Retrieve object parameters
+			ObjectParameterRetriever objRetriever = new ObjectParameterRetriever(this);
+			objRetriever.retrieve();
 
 		} else {
 			// loading lhs graph (with MO)
@@ -191,6 +196,9 @@ public class DBRuleToHenshinRule {
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
 
+			ObjectParameterRetriever objRetriever = new ObjectParameterRetriever(this);
+			objRetriever.retrieve();
+			
 			// Construct the multi rule
 			Rule m_hRule = hFactory.createRule(dbRule.name + "_multi");
 			hRule.getMultiRules().add(m_hRule);
