@@ -368,9 +368,6 @@ public class AttributeInference {
 			}
 		}
 
-		if (strAttributeValue.length()>15){
-			strAttributeValue= strAttributeValue.substring(0,15);
-		}
 		return strAttributeValue;
 	}
 	
