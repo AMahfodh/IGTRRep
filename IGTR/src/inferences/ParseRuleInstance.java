@@ -98,10 +98,8 @@ public class ParseRuleInstance {
 		createEdges(modelA, gLHS, modelA2lhs);
 		createEdges(modelB, gRHS, modelB2rhs);
 
-		// TODO: Extract the rule parameters
-		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();
-		ruleParameters.add(new GParameter("parType1", "parName1", "parValue1"));
-		ruleParameters.add(new GParameter("parType2", "parName2", "parValue2"));
+		// Empty parameter list since we retrieve params from maximal rule
+		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();		
 
 		// Finally, create rule instance object...
 		RuleInstance createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
@@ -231,13 +229,14 @@ public class ParseRuleInstance {
 	private GNode eObject2Node(EObject obj, String id) {
 		GNode node = new GNode(id, obj.eClass().getName());
 
-		
-		/* Just to for testing, 
-			assume that the node 'EPackage' has been specified by domain expert to be unnecessary context!
-		*/
-		if (node.nodeType.equalsIgnoreCase("EPackage")){
-			node.isUnnecessaryContext=true;
-		}
+
+//TODO: Handle unnecessary context properly!		
+//		/* Just to for testing, 
+//			assume that the node 'EPackage' has been specified by domain expert to be unnecessary context!
+//		*/
+//		if (node.nodeType.equalsIgnoreCase("EPackage")){
+//			node.isUnnecessaryContext=true;
+//		}
 		
 		
 		

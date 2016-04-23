@@ -174,6 +174,10 @@ public class DBRuleToHenshinRule {
 			// Retrieve object parameters
 			ObjectParameterRetriever objRetriever = new ObjectParameterRetriever(this);
 			objRetriever.retrieve();
+			
+			// TODO
+			InvariantConstraintHandler invariantHandler = new InvariantConstraintHandler(this);
+			invariantHandler.retrieve();
 
 		} else {
 			// loading lhs graph (with MO)
@@ -210,6 +214,10 @@ public class DBRuleToHenshinRule {
 
 			// Kernel-rule to multi-rule mappings
 			createKernel2MultiMappings(lhsWithMo, rhsWithMo, m_hRule);
+			
+			// TODO
+			InvariantConstraintHandler invariantHandler = new InvariantConstraintHandler(this);
+			invariantHandler.retrieve();
 		}
 
 		return hRule;
@@ -237,7 +245,13 @@ public class DBRuleToHenshinRule {
 			}
 
 			Node hNode = hFactory.createNode(hGraph, domainConfig.deriveNodeType(node.nodeType), "");
-			hNode.setName(getNodeID(node, false));
+			String nodeID = null;
+			if (dbRule.isMulti){
+				nodeID = "AbstractID";
+			}else{
+				nodeID = "nodeID";
+			}
+			hNode.setName(getNodeID(node, nodeID));
 
 			// Put to mappings
 			putToMappings(node, hNode, getMapPair(ElementKind.NODE, isRHS, isMulti));
@@ -248,8 +262,8 @@ public class DBRuleToHenshinRule {
 
 		// Create Henshin Edges
 		for (GEdge edge : graph.gEdges) {						
-			GNode srcNode = getNodeByID(edge.sourceID, isRHS, isMulti, true);
-			GNode tgtNode = getNodeByID(edge.targetID, isRHS, isMulti, true);
+			GNode srcNode = getNodeByID(edge.sourceID, isRHS, isMulti, "nodeID");
+			GNode tgtNode = getNodeByID(edge.targetID, isRHS, isMulti, "nodeID");
 			
 			// Skip multi-edges when creating kernel rule
 			if (!isMulti) {
@@ -299,7 +313,13 @@ public class DBRuleToHenshinRule {
 		// Iterate over LHS nodes and check if we have corresponding RHS
 		// node
 		for (GNode lhsNode : lhs.gNodes) {
-			GNode rhsNode = getNodeByID(getNodeID(lhsNode, false), true, isMulti, false);
+			String nodeID = null;
+			if (dbRule.isMulti){
+				nodeID = "AbstractID";
+			}else{
+				nodeID = "nodeID";
+			}
+			GNode rhsNode = getNodeByID(getNodeID(lhsNode, nodeID), true, isMulti, nodeID);
 			if (rhsNode != null) {
 				// Create Mapping
 				Node hLhsNode = getHNode(lhsNode, false, isMulti);
@@ -346,23 +366,32 @@ public class DBRuleToHenshinRule {
 		}
 	}
 
-	private String getNodeID(GNode node, boolean isIntraGraph) {
-		if (isIntraGraph) {
-			return node.nodeID;
-		} else {
-			if (dbRule.isMulti) {
-				return node.AbstractID;
-			} else {
-				return node.nodeID;
-			}
+	private String getNodeID(GNode node, String nodeIdField) {
+		String res = null;
+		try {
+			res = (String) GNode.class.getDeclaredField(nodeIdField).get(node);		
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+			e.printStackTrace();
 		}
+		
+		return res;
+
+//		if (isIntraGraph) {
+//			return node.nodeID;
+//		} else {
+//			if (dbRule.isMulti) {
+//				return node.AbstractID;
+//			} else {
+//				return node.nodeID;
+//			}
+//		}
 	}
 
-	private GNode getNodeByID(String id, boolean isRHS, boolean isMulti, boolean isIntraGraph) {		
+	public GNode getNodeByID(String id, boolean isRHS, boolean isMulti, String nodeIdField) {		
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		for (Object o : mapPair.g2h.keySet()) {
 			GNode node = (GNode) o;
-			if (getNodeID(node, isIntraGraph).equals(id)) {
+			if (getNodeID(node, nodeIdField).equals(id)) {
 				return node;
 			}
 		}
@@ -370,7 +399,7 @@ public class DBRuleToHenshinRule {
 		return null;
 	}
 
-	private Node getHNode(GNode node, boolean isRHS, boolean isMulti) {
+	public Node getHNode(GNode node, boolean isRHS, boolean isMulti) {
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		return (Node) mapPair.g2h.get(node);
 	}
@@ -382,7 +411,7 @@ public class DBRuleToHenshinRule {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private MapPair getMapPair(ElementKind kind, boolean isRHS, boolean isMulti) {
+	public MapPair getMapPair(ElementKind kind, boolean isRHS, boolean isMulti) {
 		// Kind
 		String kind_name = "";
 		if (kind.equals(ElementKind.GRAPH)) {
@@ -442,10 +471,6 @@ public class DBRuleToHenshinRule {
 			this.g2h = g2h;
 			this.h2g = h2g;
 		}
-	}
-
-	enum ElementKind {
-		GRAPH, NODE, EDGE, ATTRIBUTE
 	}
 
 	// private void printRuleParameters(int iObservation) {

@@ -12,7 +12,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.henshin.model.HenshinFactory;
+import org.eclipse.emf.henshin.model.Mapping;
+import org.eclipse.emf.henshin.model.MappingList;
 import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceFactory;
 
@@ -96,5 +99,15 @@ public class HenshinUtil {
 		}
 		
 		return res;
+	}
+	
+	public static boolean isMapped(Node src, Node tgt, MappingList mappings){
+		for (Mapping mapping : mappings) {
+			if ((mapping.getOrigin() == src) && (mapping.getImage() == tgt)){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
