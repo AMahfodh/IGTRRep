@@ -20,16 +20,15 @@ public class TestInferences {
 		
 		
 		// learning invariant constraints on rule attributes and parameters 
-		AttributeInference learningInvariantConstraints = new AttributeInference();		
-		learningInvariantConstraints.generateCSVToBeUsedByPerl();
-		learningInvariantConstraints.exeDaikon();
-		learningInvariantConstraints.storeDaikonOutputBackToDB();
+		new AttributeInference().commit();		
 		
 				
+		
+		
 		// export all rules to Henshin
-		ExportAllToHenshin.main(
-				new String[]{
-						new File("").getAbsolutePath() + File.separator + "HenshinOutput"});
+		//ExportAllToHenshin.main(
+		//		new String[]{
+		//				new File("").getAbsolutePath() + File.separator + "HenshinOutput"});
 
 	}
 	

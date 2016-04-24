@@ -51,7 +51,10 @@ public class ParseRuleInstance {
 	// LHS and RHS graphs
 	private GraphT gLHS;
 	private GraphT gRHS;
-
+	protected int iRuleInstanceID=0;
+	
+	
+	
 	/**
 	 * Parses an example, i.e. a pair of models (original model and changed
 	 * model) into a graph representing a "rule instance".
@@ -101,13 +104,33 @@ public class ParseRuleInstance {
 		// Empty parameter list since we retrieve params from maximal rule
 		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();		
 
-		// Finally, create rule instance object...
-		RuleInstance createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
-
+		
+		// Finally, create rule or NAC instance ..
+		RuleInstance createNewRule=null;
+		
+		if (this.iRuleInstanceID!=0){
+			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS, true, this.iRuleInstanceID);
+		}
+		else {
+			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
+		}
+		
 		// ...and save it
 		System.out.println("is it saved? " + createNewRule.save());
+		this.iRuleInstanceID=createNewRule.ruleInsID;		
 	}
 
+	
+	/** 
+	 * overload parse method, allowing to instantiate and store NAC examples ..
+	 * */
+	public void parse(String modelType, String ruleName, String pathA, String pathB, int INACReference) {
+		this.iRuleInstanceID=INACReference;
+		this.parse(modelType, ruleName, pathA, pathB);
+	}
+	
+	
+	
 	/**
 	 * Traverses the matching and maps all eObjects to graph nodes.
 	 */

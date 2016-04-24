@@ -10,7 +10,7 @@ public class RuleInstance  {
 
 	
 	
-	private int ruleInsID=-1;
+	protected int ruleInsID=-1;
 	private int iObjectsCount=0;
 	private boolean hasEffect=false;
 	private String charSeparator = String.valueOf(((char)007));
@@ -21,42 +21,109 @@ public class RuleInstance  {
 	private GraphT gLHS=null;
 	private GraphT gRHS=null;
 	
+	private boolean isNAC=false;
+	private int iNacReferenceID=-1;
 	
-
+	
 	public RuleInstance(
 			String strRruleName,
 			ArrayList<GParameter> strRuleParameters,
 			GraphT insLHS,
 			GraphT insRHS){
-		
-		
+
+		this(strRruleName, strRuleParameters, insLHS, insRHS, false, 0);
+	}
+	
+	
+	public RuleInstance(
+			String strRruleName,
+			ArrayList<GParameter> strRuleParameters,
+			GraphT insLHS,
+			GraphT insRHS,
+			boolean IsNac,
+			int INacReferenceID){
+				
 		this.ruleName=strRruleName.trim();
 		this.ruleParameters=strRuleParameters;
 		this.gLHS=insLHS;
 		this.gRHS=insRHS;
+		this.isNAC=IsNac;
+		this.iNacReferenceID=INacReferenceID;
 	}
 	
 	
 	
 	
+	
+	
+
 	protected boolean save(){
-		
-		//if (!this.ruleName.equals("pullUpEAttribute")){
-		//	return false;
-		//}
+
+
 		this.adjustGraphElements();
-		
-		
-		if (saving()){
-			System.out.println("rule instance saved: id= " + this.ruleInsID);
-			return true;
+
+
+		// open DB connection
+		DBRecord.openConnection();
+
+
+		this.ruleInsID = DBRecord.setNewObservation(this.ruleName);		
+		if (this.ruleInsID<1 ||
+				!DBRecord.endCurrentObservation(
+						this.ruleInsID, 
+						this.ruleName,
+						this.strGetRuleParameters(), "")){
+
+			System.out.println("fault: unable to save rule (or NAC) instance!");
+			return false;		
+		}
+
+
+
+
+		// save meta
+		if (!DBRecord.initialSavingBasicRule(
+				this.ruleInsID, 
+				this.ruleName,
+				!this.isNAC,
+				0, 							// iTotalExecutedObjects
+				0, 							// iScopeObjectsCount
+				this.iObjectsCount,			
+				0,							//internalStateStep
+				this.hasEffect, 			
+				this.iNacReferenceID,		//parentRuleId
+				DigestUtils.sha1Hex(this.ruleName))){
+
+			System.out.println("fault: unable to save rule/NAC meta!");
+			return false;	
+		}
+
+
+		// save rule elements (nodes, attributes and edges)
+		this.saveRuleElements();
+
+
+		// close DB connection 
+		DBRecord.closeConnection(); 
+
+
+
+
+		if (this.isNAC){
+			System.out.println("NAC instance saved: id= " + this.ruleInsID + " (rule reference id:" + this.iNacReferenceID + ")");
 		}
 		else {
-			return false;
+			System.out.println("rule instance saved: id= " + this.ruleInsID);
 		}
-		 
+
+		
+		return true;
 	}
+
+
 	
+	
+
 	
 	
 	
@@ -65,7 +132,7 @@ public class RuleInstance  {
 		
 		boolean setThisObject=false;
 		this.iObjectsCount= this.gLHS.gNodes.size();
-		this.hasEffect=true;
+		this.hasEffect=false;
 				
 		
 		
@@ -99,6 +166,7 @@ public class RuleInstance  {
 				if (this.isThereChange(preNode, postNode)){
 					preNode.isMinimal=true;
 					postNode.isMinimal=true;
+					this.hasEffect=true;
 				}
 				
 			}
@@ -116,6 +184,7 @@ public class RuleInstance  {
 				gNode.isMinimal=true;
 				gNode.isInitialized=true;	// created node				
 				this.iObjectsCount++;
+				this.hasEffect=true;
     		}
     	}
     		
@@ -157,13 +226,15 @@ public class RuleInstance  {
 			this.setEdgeSourceTargetType(checkPreMinimalEdge, preGraph);
 			
 			
-			if (checkPreMinimalEdge.isMinimal){				
+			if (checkPreMinimalEdge.isMinimal){	
+				this.hasEffect=true;
 				continue;
 			}
 			
 			// check if this edge not exist in the post graph
 			if (postGraph.getEdgeIndex(checkPreMinimalEdge.edgeID)==-1){
 				checkPreMinimalEdge.isMinimal=true;
+				this.hasEffect=true;
 			}
 		}
 		
@@ -178,12 +249,14 @@ public class RuleInstance  {
 			
 			
 			if (checkPostMinimalEdge.isMinimal){
+				this.hasEffect=true;
 				continue;
 			}
 			
 			// check if this edge not exist in the post graph
 			if (preGraph.getEdgeIndex(checkPostMinimalEdge.edgeID)==-1){
 				checkPostMinimalEdge.isMinimal=true;
+				this.hasEffect=true;
 			}
 		}
 		
@@ -265,45 +338,8 @@ public class RuleInstance  {
 	
 
 	
-    private boolean saving(){
-		
-    	
-    	// open DB connection
-		DBRecord.openConnection();
-		
-		
-		this.ruleInsID = DBRecord.setNewObservation(this.ruleName);		
-		if (ruleInsID<1 ||
-				!DBRecord.endCurrentObservation(
-					this.ruleInsID, 
-					this.ruleName,					// this should be operationSignature 				
-					this.strGetRuleParameters(),
-					"")){
-		
-			System.out.println("fault: unable to save rule instance!");
-			return false;		
-		}
-		
-		
-		
-	    
-        	// save rule meta
-    	if (!DBRecord.initialSavingBasicRule(
-    			this.ruleInsID, 
-				this.ruleName,
-				true,
-				0, 							// iTotalExecutedObjects
-				0, 							// iScopeObjectsCount
-				this.iObjectsCount,			
-				0,							//internalStateStep
-				this.hasEffect, 			
-				-1,							 //parentRuleId
-				DigestUtils.sha1Hex(this.ruleName))){
-    		
-    		System.out.println("fault: unable to save rule meta!");
-			return false;	
-    	}
-    	
+    
+    private void saveRuleElements(){
     	
 
 		// Override graphTypes for gLhs and gRhs
@@ -317,22 +353,22 @@ public class RuleInstance  {
     	// save nodes and edges for both graphs    	
     	if (!gLHS.saveNodes()){    		
     		System.out.println("fault: unable to save rule elements (nodes) in LHS!");
-			return false;
+			return;
     	}
     	if (!gRHS.saveNodes()){
     		
     		System.out.println("fault: unable to save rule elements (nodes) in RHS!");
-			return false;
+			return;
     	}  	
     	if (!gLHS.saveEdges()){
     		
     		System.out.println("fault: unable to save rule elements (edges) in LHS!");
-			return false;
+			return;
     	}
     	if (!gRHS.saveEdges()){
     		
     		System.out.println("fault: unable to save rule elements (edges) in RHS!");
-			return false;
+			return;
     	}
 
     	
@@ -340,15 +376,7 @@ public class RuleInstance  {
     	// update minimal node defined by minimal edges
     	this.updateMinimalNodeFromEdgeMinimal(gLHS.graphID, gRHS.graphID);
     	
-    	
-    	
-		// close DB connection 
-		DBRecord.closeConnection(); 
-    	
-    	
-    	return true;
-	}
-	
+    }
     
     
     

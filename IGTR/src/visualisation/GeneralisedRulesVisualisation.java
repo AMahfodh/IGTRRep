@@ -1,6 +1,8 @@
 package visualisation;
 
 import inferences.DBRecord;
+import inferences.GNACs;
+import inferences.GNACs.NACinstance;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -84,8 +86,10 @@ public class GeneralisedRulesVisualisation extends JPanel {
 
 	// selected rule item
 	RuleItem selectedRuleItem =null;
-	//private int iObservationId=-1;
-
+	
+	// list of NACs
+	GNACs gNACs =null;
+	
 
 
 	public GeneralisedRulesVisualisation() {
@@ -621,7 +625,7 @@ public class GeneralisedRulesVisualisation extends JPanel {
 		CachedRowSetImpl crsOperationList = DBRecord.getByQueryStatement(
 				"select MethodSignatureUniqueID, RuleName, MethodSignature, Observation_IDREFF, groupID "
 						+ "from TblBasicRule inner join TblObservationOutput on TblObservationOutput.Observation_ID = TblBasicRule.Observation_IDREFF "
-						+ "where isAbstract=true group by CONCAT(RuleName, groupID) order by MethodSignatureUniqueID, hasEffect DESC, groupID;");
+						+ "where isApplicable=true and isAbstract=true group by CONCAT(RuleName, groupID) order by MethodSignatureUniqueID, hasEffect DESC, groupID;");
 
 		try {
 
@@ -921,7 +925,25 @@ public class GeneralisedRulesVisualisation extends JPanel {
 		this.setEnabledAll(NACpanel, true);
 
 
-		// fill NACs		
+		// fill NACs
+		this.gNACs = new GNACs(this.selectedRuleItem.observation_Graph_ID);
+		
+		// add NAC list
+		int iNAC=1;
+		
+		for (NACinstance nacInstance: this.gNACs.NACs){
+			
+			this.NACComboBox.addItem(
+					new RuleItem(
+							"NAC " + (iNAC++), 
+							nacInstance.getNACGraphID(),
+							-2,
+							false));
+		}
+		
+		
+		
+		/*
 		CachedRowSetImpl crsNACs = DBRecord.getByQueryStatement(""
 				+ "select TblGraph.GraphID "
 				+ "from TblBasicRule INNER JOIN TblGraph "
@@ -951,7 +973,8 @@ public class GeneralisedRulesVisualisation extends JPanel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		*/
+		
 		// to view the first NAC
 		if (this.NACComboBox.getItemCount()>1){
 			this.NACComboBox.setSelectedIndex(1);
@@ -1119,7 +1142,7 @@ public class GeneralisedRulesVisualisation extends JPanel {
 
 			// for NAC title
 			if (iGroupID==-2){        		
-				return this.ruleName + " : observationID " + this.observation_Graph_ID;
+				return this.ruleName + " : graph id " + this.observation_Graph_ID;
 			}
 
 

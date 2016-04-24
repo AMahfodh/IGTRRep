@@ -35,7 +35,19 @@ public class AttributeInference {
 	}
 	
 	
-	public boolean generateCSVToBeUsedByPerl(){
+	public void commit(){
+		this.generateCSVToBeUsedByPerl();
+		this.exeDaikon();
+		this.storeDaikonOutputBackToDB();
+	}
+	
+	
+	
+	
+	
+	
+	
+	private boolean generateCSVToBeUsedByPerl(){
 		
 
 		// clear directory
@@ -454,7 +466,7 @@ public class AttributeInference {
 	
 	
 	
-	public void exeDaikon(){
+	private void exeDaikon(){
 
 		System.out.println("\n -----------------------------");
 		System.out.println("Executing daikon engine ..");
@@ -474,8 +486,8 @@ public class AttributeInference {
 				
 				
 				// check if daikon already generate archive rule.inv file
-				if (new File(this.strPathDirectory + strDaikonCommand + ".inv.gz").exists()){
-					System.out.println("Daikon output [" + strDaikonCommand + "] is already exists");	
+				if (!new File(this.strPathDirectory + strDaikonCommand + ".dtrace").exists()){
+					System.out.println("Error: missing daikon file [" + strDaikonCommand + ".dtrace]");	
 					continue;
 				}
 				
@@ -542,7 +554,7 @@ public class AttributeInference {
 	
 	
 	
-	public void storeDaikonOutputBackToDB(){
+	private void storeDaikonOutputBackToDB(){
 
 
 		System.out.println("\n -----------------------------");

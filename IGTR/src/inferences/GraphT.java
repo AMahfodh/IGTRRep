@@ -149,7 +149,7 @@ public class GraphT {
     			//** load attributes 
 
     			CachedRowSetImpl crsNodesAttributes= DBRecord.getByQueryStatement(
-    					"select AttributeName, AttributeValue, generalisedValue, isAssignedToParameter "
+    					"select AttributeName, AttributeType, AttributeValue, generalisedValue, isAssignedToParameter "
     							+ "from TblNodeAttributes "
     							+ "where isObjectRelation=false and "
     							+ "Graph_IDREFF=" + this.graphID
@@ -157,12 +157,13 @@ public class GraphT {
 
     			while (crsNodesAttributes.next()){
 
-    				GAttribute loadAttribute = new GAttribute(crsNodesAttributes.getString(1),
-    						"",
-    						crsNodesAttributes.getString(2));
+    				GAttribute loadAttribute = new GAttribute(
+    						crsNodesAttributes.getString(1),
+    						crsNodesAttributes.getString(2),
+    						crsNodesAttributes.getString(3));
 
-    				loadAttribute.attGeneralisedValue=crsNodesAttributes.getString(3);
-    				loadAttribute.attIsAssignedToParameter=crsNodesAttributes.getBoolean(4);
+    				loadAttribute.attGeneralisedValue=crsNodesAttributes.getString(4);
+    				loadAttribute.attIsAssignedToParameter=crsNodesAttributes.getBoolean(5);
 
     				loadNode.addAttribute(loadAttribute);
     			}
@@ -698,15 +699,14 @@ public class GraphT {
     			GAttribute gAtt= gn.gAttribute.get(j);
     			System.out.print("\n\t\t\t Name[" + gAtt.attName + "]");
     			System.out.print("\t Type[" + gAtt.attType+ "]");    			
-    			System.out.print("\t isMin["  + gAtt.attIsMinimal+ "]");
-    			System.out.print("\t isRequired["  + gAtt.attIsRequiredContext+ "]");
-    			System.out.print("\t isRelation["  + gAtt.attIsObjectRelation+ "]");    			
-    			System.out.print("\t attValue["  + gAtt.attValue+ "]");
-    			System.out.print("\t attGeneralisedValue["  + gAtt.attGeneralisedValue+ "]");
-    			System.out.print("\t attHashValue["  + gAtt.attHashValue+ "]");
-    			System.out.print("\t attIsAssignedToParameter["  + gAtt.attIsAssignedToParameter+ "]");
-    			System.out.print("\t attLastUpdatedValue["  + gAtt.attLastUpdatedValue+ "]");
-    			
+    			//System.out.print("\t isMin["  + gAtt.attIsMinimal+ "]");
+    			//System.out.print("\t isRequired["  + gAtt.attIsRequiredContext+ "]");
+    			//System.out.print("\t isRelation["  + gAtt.attIsObjectRelation+ "]");    			
+    			//System.out.print("\t attValue["  + gAtt.attValue+ "]");
+    			//System.out.print("\t attGeneralisedValue["  + gAtt.attGeneralisedValue+ "]");
+    			//System.out.print("\t attHashValue["  + gAtt.attHashValue+ "]");
+    			//System.out.print("\t attIsAssignedToParameter["  + gAtt.attIsAssignedToParameter+ "]");
+    			//System.out.print("\t attLastUpdatedValue["  + gAtt.attLastUpdatedValue+ "]");
     		}
     	}
     	

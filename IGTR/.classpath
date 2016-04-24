@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="Tracing/RuleInstanceExtraction.java|inferences/ParsRuleInstances.java" kind="src" path="src"/>
+	<classpathentry excluding="Tracing/RuleInstanceExtraction.java|inferences/ParsRuleInstances.java|visualisation/myTest.java|inferences/ExportToHenshin.java" kind="src" path="src"/>
 	<classpathentry kind="lib" path="jGraph.jar"/>
 	<classpathentry kind="lib" path="commons-codec-1.9.jar"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.27-bin.jar"/>
