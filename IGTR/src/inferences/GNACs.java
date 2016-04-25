@@ -102,9 +102,13 @@ public class GNACs {
 					for (int i = 0; i < chars.length; i++) {
 
 						if (chars[i] == '\n') {
-
-							strLineInvariant = strLineInvariant.trim().replace("Pre_", "").replace("Post_", "");
-							strAttributesConstraints.add(strLineInvariant);
+							
+							strLineInvariant = this.strFilterOutConstraint(strLineInvariant);
+							
+							if (strLineInvariant.length()!=0){
+								strAttributesConstraints.add(strLineInvariant);
+							}
+							
 							strLineInvariant = "";
 							continue;
 						}
@@ -119,5 +123,19 @@ public class GNACs {
 			
 			return strAttributesConstraints;
 		}
+		
+		
+		private String strFilterOutConstraint(String strLineInvariant){
+			
+			if ((!strLineInvariant.contains("_Pre_") && !strLineInvariant.contains("_Post_")) ||
+				strLineInvariant.contains("\"") ||
+				strLineInvariant.contains("{")){
+				return "";
+			}
+			
+			strLineInvariant = strLineInvariant.trim().replace("Pre_", "").replace("Post_", "");
+			return strLineInvariant;
+		}
+		
 	}
 }

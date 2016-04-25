@@ -19,7 +19,7 @@ public class testExportNACtoHenshin {
 		// for loading NACs you need just to pass observation-Id	
 		
 		
-		int observationId = 401;	// example 
+		int observationId = 513;	// example 
 		System.out.println("test printing a list of NACs for: " + observationId);
 			
 		
@@ -35,7 +35,12 @@ public class testExportNACtoHenshin {
 			
 			// attribute constraints relevant to this NAC
 			ArrayList<String> strListAttributesConstraints= nacInstance.getAttributesConstraints();			
-			System.out.println("attributes constraints : " + strListAttributesConstraints.toString());
+			System.out.println("Attributes constraints (" + strListAttributesConstraints.size() + "): ");
+			
+			for (String strConstraint : strListAttributesConstraints){
+				System.out.println("\t" + strConstraint);
+			}
+			
 		}
 		
 

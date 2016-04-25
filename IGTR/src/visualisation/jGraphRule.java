@@ -3,6 +3,8 @@ package visualisation;
 import inferences.DBRecord;
 import inferences.GAttribute;
 import inferences.GEdge;
+import inferences.GNACs;
+import inferences.GNACs.NACinstance;
 import inferences.GNode;
 import inferences.GraphT;
 
@@ -77,7 +79,7 @@ public class jGraphRule extends JPanel  {
 	private JMenuItem attMenuItem=null;
 
 	private ArrayList<String> attributeConstraints=null;
-
+	private NACinstance nacRule=null;
 
 
 	public jGraphRule(String graphTitle){
@@ -780,6 +782,26 @@ public class jGraphRule extends JPanel  {
 		this.visualiseGraph();
 	}
 
+	
+	
+	protected void visualiseGraph(
+			int graphID,
+			boolean IsInstance,
+			boolean IsMultiObject,
+			boolean IsRHS_Post,
+			boolean IsViewingMinimalRule,
+			int IlevelOption,
+			NACinstance NACRule){
+		
+		this.nacRule = NACRule;
+		this.visualiseGraph(
+				graphID, 
+				IsInstance, 
+				IsMultiObject, 
+				IsRHS_Post, 
+				IsViewingMinimalRule, 
+				IlevelOption);
+	}
 
 
 
@@ -1293,10 +1315,18 @@ public class jGraphRule extends JPanel  {
 
 	private void loadAttributeConstants(){
 
+		
 
 		if (this.attributeConstraints!=null){
 			return;
 		}
+		
+		// works only with NAC view ..
+		if (this.nacRule!=null){
+			this.attributeConstraints = this.nacRule.getAttributesConstraints();
+			return;
+		}
+		
 		this.attributeConstraints= new ArrayList<String>();
 
 

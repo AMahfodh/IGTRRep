@@ -43,18 +43,21 @@ public class RuleInference {
 		
 
 
-		//define abstract for query rule based on their smallest size .. 
+		//define abstract for query rule based on their smallest distinct structure size .. 
 		this.ruleMethodSignatureUniqueID="";
 		System.out.println("Generalising query rules ..");
 		this.GTlogger.info("Generalising query rules ..");
 		this.queryRuleGeneralisation();
 
+		
 
 		//System.out.println("\t ===> current-Time after classification computing max-rule:" + System.nanoTime());		
-		minTime = System.nanoTime()-minTime;		
-		MO=System.nanoTime();
+		//minTime = System.nanoTime()-minTime;		
+		//MO=System.nanoTime();
 
 
+		
+		
 
 
 		// infer multi-objects
@@ -87,10 +90,10 @@ public class RuleInference {
 
 
 		// infer NACs
-		//System.out.println("Inferring NACs ..");
-		//this.GTlogger.info("Inferring NACs ..");
-		//this.inferNACs();
-		//System.out.println("Inferring NACs completed");
+		System.out.println("Inferring NACs ..");
+		this.GTlogger.info("Inferring NACs ..");
+		this.inferNACs();
+		System.out.println("Inferring NACs completed");
 
 
 
@@ -1186,7 +1189,7 @@ public class RuleInference {
 
 
 	/**	
-	 * Methods used to Generalise query rules instances based on their smallest size
+	 * Methods used to generalise query rules instances based on their smallest distinct structure size
 	 *
 	 *	1 - queryRuleGeneralisation()
 	 * 	2 - setAbstractToQueryRule() 
@@ -2437,15 +2440,33 @@ public class RuleInference {
 
 
 
-	/** Method used to infer NACs for operations that produce two different effect, one is empty and
-	 * 		the other not. This operation must not have any multi-objects
+	/**
+	 * remove redundant NACs, specified already with the examples
+	 * [isApplicable=false, hasEffect=false]
 	 * 
-	 * 		not finished yet..
+	 * TODO ..
+	 * 
 	 */	
 
 	private void inferNACs(){
 
+				
+		DBRecord.executeSqlStatement(
+				"DROP TEMPORARY TABLE IF EXISTS NACTempTbl; "
 
+				+ "CREATE TEMPORARY TABLE NACTempTbl "
+				+ " select Observation_IDREFF from TblBasicRule "
+				+ " where (userDecision is null or userDecision=false)"
+				+ " and isApplicable=false"
+				+ " and parentRuleId>0; "
+
+				+ "Update TblBasicRule set isAbstract=true "
+				+ " where Observation_IDREFF in (select Observation_IDREFF from NACTempTbl) "
+				+ " and Observation_IDREFF >= 0;"
+
+				+ " DROP TEMPORARY TABLE IF EXISTS NACTempTbl;", true);
+		
+		/*
 		DBRecord.executeAnySqlStatement(
 				"DROP TEMPORARY TABLE IF EXISTS QueryTempTbl; "
 
@@ -2484,7 +2505,7 @@ public class RuleInference {
 		+ " and hasEffect=false"
 		+ " and MethodSignatureUniqueID in "
 		+ " (select MethodSignatureUniqueID from QueryTempTbl);", true);
-
+		 */
 	}
 
 

@@ -994,7 +994,8 @@ public class GeneralisedRulesVisualisation extends JPanel {
 				false,
 				false,
 				this.isViewingMinimalRule, 
-				this.iLevelOption);
+				this.iLevelOption,
+				this.gNACs.NACs.get(this.NACComboBox.getSelectedIndex()-1));
 	}
 
 
