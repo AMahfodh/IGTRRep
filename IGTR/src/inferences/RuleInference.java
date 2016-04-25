@@ -620,7 +620,13 @@ public class RuleInference {
 
 		if (DBRecord.executeSqlStatement(
 				"Update TblBasicRule set isAbstract=true, groupID=" + groupID
-				+ " where Observation_IDREFF=" + this.iObservationId, true)!=1){
+				+ " where Observation_IDREFF=" + this.iObservationId
+				+ "; "
+				+ "update TblGraph inner join TblNode "
+				+ "ON TblGraph.GraphID = TblNode.Graph_IDREFF "
+				+ "set MappedAbstractID =AbstractID "
+				+ "where Observation_IDREFF=" + this.iObservationId
+				+ ";", true)!=1){
 
 			this.GTlogger.info("Error: group id can't be generated ..");
 		}
