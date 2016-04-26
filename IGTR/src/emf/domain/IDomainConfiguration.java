@@ -22,6 +22,8 @@ public interface IDomainConfiguration {
 	public Set<EReference> getUnconsideredEdgeTypes();
 
 	public Set<EAttribute> getUnconsideredAttributeTypes();
+	
+	public Set<EAttribute> getVisibleAttributeTypes();
 
 	public IMatcher createMatcher(Resource modelA, Resource modelB);
 

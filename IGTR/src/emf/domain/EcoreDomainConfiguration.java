@@ -19,6 +19,7 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 	private Set<EClass> unconsideredNodeTypes;
 	private Set<EReference> unconsideredEdgeTypes;
 	private Set<EAttribute> unconsideredAttributeTypes;
+	private Set<EAttribute> visibleAttributeTypes;
 
 	@Override
 	public Set<EClass> getUnconsideredNodeTypes() {
@@ -27,6 +28,7 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 
 			// technical
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEFactory());
+			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEAnnotation());
 
 			// generics
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getETypeParameter());
@@ -44,6 +46,7 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 			// technical
 			unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEFactory_EPackage());
 			unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEPackage_EFactoryInstance());
+			unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
 
 			// generics
 			unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEClassifier_ETypeParameters());
@@ -69,6 +72,30 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 		return unconsideredAttributeTypes;
 	}
 
+	@Override
+	public Set<EAttribute> getVisibleAttributeTypes() {
+		if (visibleAttributeTypes == null) {
+			visibleAttributeTypes = new HashSet<EAttribute>();
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getENamedElement_Name());
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEPackage_NsPrefix());
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEPackage_NsURI());
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClassifier_InstanceClassName());
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getETypedElement_LowerBound());
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getETypedElement_UpperBound());
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClass_Abstract());
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClass_Interface());
+			
+			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEReference_Containment());			
+		}
+		
+		return visibleAttributeTypes;
+	}
+	
 	@Override
 	public IMatcher createMatcher(Resource modelA, Resource modelB) {		
 		UUIDMatcher uuidMatcher = new UUIDMatcher(this);

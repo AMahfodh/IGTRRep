@@ -1,5 +1,7 @@
 package henshin.constraints;
 
+import henshin.DBRuleToHenshinRule;
+
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,23 +12,31 @@ public class DConstraintFactory {
 	public static final String PREFIX_POST = "Post";
 
 	static final String oneOf_pattern = " one of ";
-	static final String variable2literal_pattern = "(\\S+)_(\\S+)_(\\S+) == \"(\\S+)\"";
+	static final String numberPattern = "\\d+\\.?\\d*";
+	static final String variable2literal_pattern_1 = "(\\S+)_(\\S+)_(\\S+) == \"(\\S+)\"";
+	static final String variable2literal_pattern_2 = "(\\S+)_(\\S+)_(\\S+) == (" + numberPattern + ")";
 	static final String variable2variable_pattern = "(\\S+)_(\\S+)_(\\S+) == (\\S+)_(\\S+)_(\\S+)";
 
-	public static DConstraint createDConstraint(String s) {
-		DConstraint res = new DConstraint(s);
+	public static DConstraint createDConstraint(String s, DBRuleToHenshinRule dbRule2hRule) {
 
 		// DOneOf
 		if (s.contains(oneOf_pattern)) {
-			res = new DOneOf(s);
+			return new DOneOf(s);
 		}
 
 		// DVariable2Literal
-		Matcher m = Pattern.compile(variable2literal_pattern).matcher(s);
+		Matcher m = Pattern.compile(variable2literal_pattern_1).matcher(s);
 		if (m.find()) {
 			MatchResult r = m.toMatchResult();
-			DVariable2Literal c = new DVariable2Literal(s, r.group(1), r.group(2), r.group(3), r.group(4));
-			res = c;
+			DVariable2Literal c = new DVariable2Literal(s, r.group(1), r.group(2), r.group(3), r.group(4), dbRule2hRule);
+			return c;
+		}
+
+		m = Pattern.compile(variable2literal_pattern_2).matcher(s);
+		if (m.find()) {
+			MatchResult r = m.toMatchResult();
+			DVariable2Literal c = new DVariable2Literal(s, r.group(1), r.group(2), r.group(3), r.group(4), dbRule2hRule);
+			return c;
 		}
 
 		// DVariable2Variable
@@ -34,11 +44,11 @@ public class DConstraintFactory {
 		if (m.find()) {
 			MatchResult r = m.toMatchResult();
 			DVariable2Variable c = new DVariable2Variable(s, r.group(1), r.group(2), r.group(3), r.group(4),
-					r.group(5), r.group(6));
-			res = c;
+					r.group(5), r.group(6), dbRule2hRule);
+			return c;
 		}
 
-		return res;
+		return new DConstraint(s);
 	}
 
 	// Playing with regex
@@ -60,6 +70,15 @@ public class DConstraintFactory {
 
 		System.out.println("---");
 		m = Pattern.compile(variable2variable_pattern).matcher(variable2variable);
+		m.find();
+		res = m.toMatchResult();
+		for (int i = 1; i <= res.groupCount(); i++) {
+			System.out.println(i + ": " + res.group(i));
+		}
+
+		System.out.println("---");
+		String decimal_pattern = "(\\d+\\.?\\d*)";
+		m = Pattern.compile(decimal_pattern).matcher("0");
 		m.find();
 		res = m.toMatchResult();
 		for (int i = 1; i <= res.groupCount(); i++) {

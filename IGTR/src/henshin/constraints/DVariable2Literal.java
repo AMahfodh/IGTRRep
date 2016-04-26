@@ -1,28 +1,62 @@
 package henshin.constraints;
 
+import henshin.DBRuleToHenshinRule;
+import henshin.HenshinUtil;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.henshin.model.Node;
+
 public class DVariable2Literal extends DEquation {
 
-	public String nodeL;
-	public String prefixL;
-	public String attributeL;
+	public String node;
+	public String prefix;
+	public String attribute;
 	public String literal;
 
-	public DVariable2Literal(String string, String nodeL, String prefixL, String attributeL, String literal) {
-		super(string);
+	public DVariable2Literal(String string, String node, String prefix, String attribute, String literal, DBRuleToHenshinRule dbRule2hRule) {
+		super(string, dbRule2hRule);
 
-		assert (prefixL.equals(DConstraintFactory.PREFIX_PRE) || prefixL.equals(DConstraintFactory.PREFIX_POST));
+		assert (prefix.equals(DConstraintFactory.PREFIX_PRE) || prefix.equals(DConstraintFactory.PREFIX_POST));
 
-		this.nodeL = nodeL;
-		this.prefixL = prefixL;
-		this.attributeL = attributeL;
+		this.node = node;
+		this.prefix = prefix;
+		this.attribute = attribute;
 		this.literal = literal;
 	}
 
+	public DVariable2LiteralKind getKind() {
+		if (prefix.equals(DConstraintFactory.PREFIX_PRE)) {
+			return DVariable2LiteralKind.PRE;
+		}
+		if (prefix.equals(DConstraintFactory.PREFIX_POST)) {
+			return DVariable2LiteralKind.POST;
+		}
+
+		return null;
+	}
+
+	public Node getNode() {
+		switch (getKind()) {
+		case PRE:
+			return getHNodeByID(node, false, false);
+
+		case POST:
+			return getHNodeByID(node, true, false);
+
+		}
+
+		return null;
+	}
+
+	public EAttribute getAttributeDeclaration(){
+		return HenshinUtil.getAttributeDeclaration(getNode(), attribute);
+	}	
+	
 	@Override
 	public String toString() {
 		String res = super.toString() + "\n";
-		res += "\t\tnodeL: " + nodeL + "\n";
-		res += "\t\tattributeL: " + attributeL + "\n";
+		res += "\t\tnodeL: " + node + "\n";
+		res += "\t\tattributeL: " + attribute + "\n";
 		res += "\t\tliteral: " + literal;
 
 		return res;

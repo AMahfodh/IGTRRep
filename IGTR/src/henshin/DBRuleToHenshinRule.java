@@ -403,6 +403,11 @@ public class DBRuleToHenshinRule {
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		return (Node) mapPair.g2h.get(node);
 	}
+	
+	public GNode getGNode(Node hNode, boolean isRHS, boolean isMulti) {
+		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
+		return (GNode) mapPair.h2g.get(hNode);
+	}
 
 	@SuppressWarnings("unchecked")
 	private void putToMappings(Object gElement, EObject hElement, MapPair mapPair) {
@@ -459,19 +464,7 @@ public class DBRuleToHenshinRule {
 		}
 
 		return new MapPair(g2h, h2g);
-	}
-
-	@SuppressWarnings("rawtypes")
-	class MapPair {
-		Map g2h;
-		Map h2g;
-
-		MapPair(Map g2h, Map h2g) {
-			super();
-			this.g2h = g2h;
-			this.h2g = h2g;
-		}
-	}
+	}	
 
 	// private void printRuleParameters(int iObservation) {
 	//

@@ -34,7 +34,8 @@ public class ParseRuleInstance {
 	// Domain Configuration
 	private IDomainConfiguration domainConfig;
 
-	// Bidirectional Traces: eObjects in models to nodes in graphs (and vice versa)
+	// Bidirectional Traces: eObjects in models to nodes in graphs (and vice
+	// versa)
 	private Map<EObject, GNode> modelA2lhs;
 	private Map<EObject, GNode> modelB2rhs;
 	private Map<GNode, EObject> lhs2modelA;
@@ -51,10 +52,8 @@ public class ParseRuleInstance {
 	// LHS and RHS graphs
 	private GraphT gLHS;
 	private GraphT gRHS;
-	protected int iRuleInstanceID=0;
-	
-	
-	
+	protected int iRuleInstanceID = 0;
+
 	/**
 	 * Parses an example, i.e. a pair of models (original model and changed
 	 * model) into a graph representing a "rule instance".
@@ -65,12 +64,11 @@ public class ParseRuleInstance {
 	 * @param pathB
 	 */
 	public void parse(String modelType, String ruleName, String pathA, String pathB) {
-		
-		if (!new File(pathA).exists() || 
-			!new File(pathB).exists()){
+
+		if (!new File(pathA).exists() || !new File(pathB).exists()) {
 			return;
 		}
-		
+
 		modelA = EMFResourceUtil.loadModel(pathA);
 		modelB = EMFResourceUtil.loadModel(pathB);
 
@@ -102,35 +100,30 @@ public class ParseRuleInstance {
 		createEdges(modelB, gRHS, modelB2rhs);
 
 		// Empty parameter list since we retrieve params from maximal rule
-		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();		
+		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();
 
-		
 		// Finally, create rule or NAC instance ..
-		RuleInstance createNewRule=null;
-		
-		if (this.iRuleInstanceID!=0){
+		RuleInstance createNewRule = null;
+
+		if (this.iRuleInstanceID != 0) {
 			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS, true, this.iRuleInstanceID);
-		}
-		else {
+		} else {
 			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
 		}
-		
+
 		// ...and save it
 		System.out.println("is it saved? " + createNewRule.save());
-		this.iRuleInstanceID=createNewRule.ruleInsID;		
+		this.iRuleInstanceID = createNewRule.ruleInsID;
 	}
 
-	
-	/** 
+	/**
 	 * overload parse method, allowing to instantiate and store NAC examples ..
 	 * */
 	public void parse(String modelType, String ruleName, String pathA, String pathB, int INACReference) {
-		this.iRuleInstanceID=INACReference;
+		this.iRuleInstanceID = INACReference;
 		this.parse(modelType, ruleName, pathA, pathB);
 	}
-	
-	
-	
+
 	/**
 	 * Traverses the matching and maps all eObjects to graph nodes.
 	 */
@@ -252,22 +245,20 @@ public class ParseRuleInstance {
 	private GNode eObject2Node(EObject obj, String id) {
 		GNode node = new GNode(id, obj.eClass().getName());
 
+		// TODO: Handle unnecessary context properly!
+		// /* Just to for testing,
+		// assume that the node 'EPackage' has been specified by domain expert
+		// to be unnecessary context!
+		// */
+		// if (node.nodeType.equalsIgnoreCase("EPackage")){
+		// node.isUnnecessaryContext=true;
+		// }
 
-//TODO: Handle unnecessary context properly!		
-//		/* Just to for testing, 
-//			assume that the node 'EPackage' has been specified by domain expert to be unnecessary context!
-//		*/
-//		if (node.nodeType.equalsIgnoreCase("EPackage")){
-//			node.isUnnecessaryContext=true;
-//		}
-		
-		
-		
-		
 		// attributes
 		for (EAttribute eAttribute : obj.eClass().getEAllAttributes()) {
 			if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
-					|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)) {
+					|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
+					|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
 				continue;
 			}
 
