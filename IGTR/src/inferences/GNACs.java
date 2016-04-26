@@ -25,7 +25,7 @@ public class GNACs {
 						"select TBasicRule.Observation_IDREFF as NACid, GraphID "
 								+ "from TblBasicRule TBasicRule INNER join TblGraph "
 								+ "on TBasicRule.Observation_IDREFF=TblGraph.Observation_IDREFF "
-								+ "where graphType=0 and parentRuleId in "
+								+ "where graphType=0 and isAbstract=true and parentRuleId in "
 								+ "		(select Observation_IDREFF from TblBasicRule "
 								+ "			where isApplicable=true "
 								+ "			and groupID>0 "

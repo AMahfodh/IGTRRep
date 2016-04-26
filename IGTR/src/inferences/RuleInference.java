@@ -2461,10 +2461,19 @@ public class RuleInference {
 				"DROP TEMPORARY TABLE IF EXISTS NACTempTbl; "
 
 				+ "CREATE TEMPORARY TABLE NACTempTbl "
-				+ " select Observation_IDREFF from TblBasicRule "
-				+ " where (userDecision is null or userDecision=false)"
-				+ " and isApplicable=false"
-				+ " and parentRuleId>0; "
+				+ " select distinct TblBasicRule.Observation_IDREFF "
+				+ " from TblBasicRule, TblGraph, TblNode, TblEdge "
+				+ " where "
+				+ " 	TblBasicRule.Observation_IDREFF = TblGraph.Observation_IDREFF"
+				+ "		and TblGraph.GraphID = TblNode.Graph_IDREFF"
+				+ "		and TblNode.Graph_IDREFF = TblEdge.Graph_IDREFF"
+				+ "		and (userDecision is null or userDecision = false)"
+				+ "		and isApplicable = false"
+				+ "		and parentRuleId > 0"
+				+ "		and hasEffect = false"
+				+ "		and graphType=0"
+				+ "		group by MethodSignatureUniqueID, nodeType, edgeType"
+				+ "		order by objectsCount;"
 
 				+ "Update TblBasicRule set isAbstract=true "
 				+ " where Observation_IDREFF in (select Observation_IDREFF from NACTempTbl) "
@@ -2473,6 +2482,28 @@ public class RuleInference {
 				+ " DROP TEMPORARY TABLE IF EXISTS NACTempTbl;", true);
 		
 		/*
+		DBRecord.executeSqlStatement(
+				"Update TblBasicRule set isAbstract=false, groupID=0 "
+						+ " where hasEffect=false and MethodSignatureUniqueID='" + this.ruleMethodSignatureUniqueID + "'"
+						+ " and Observation_IDREFF >= 0; "
+
+
+				+ "DROP TEMPORARY TABLE IF EXISTS QueryTempTbl; "
+
+				+ "CREATE TEMPORARY TABLE QueryTempTbl "
+				+ " select Observation_IDREFF from TblBasicRule "
+				+ " where (userDecision is null or userDecision=false)"
+				+ " and hasEffect=false"
+				+ " and MethodSignatureUniqueID='" + this.ruleMethodSignatureUniqueID + "'"
+				+ " and groupID=0 group by objectsCount; "
+
+
+				+ "Update TblBasicRule set isAbstract=true "
+				+ " where Observation_IDREFF in (select Observation_IDREFF from QueryTempTbl) "
+				+ " and Observation_IDREFF >= 0;"
+				+ " DROP TEMPORARY TABLE IF EXISTS QueryTempTbl;", true);
+		
+		
 		DBRecord.executeAnySqlStatement(
 				"DROP TEMPORARY TABLE IF EXISTS QueryTempTbl; "
 
