@@ -230,7 +230,7 @@ public class InvariantConstraintHandler {
 					break;
 
 				case POST_POST:
-					System.out.println("\tPOST_POST " + c);
+					System.out.println("\t" + c);
 					iterator.remove();
 					continue;
 

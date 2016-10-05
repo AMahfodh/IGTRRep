@@ -32,7 +32,7 @@ public class ParseRuleInstances {
 				File[] examples = operation.listFiles();
 				
 
-				// to ensure exprting positive example first, then negative ..
+				// to ensure exporting positive example first, then negative ..
 				Arrays.sort(examples);
 				this.mapExampleID_to_StoredRuleID.clear();
 				
@@ -77,7 +77,7 @@ public class ParseRuleInstances {
 	
 					}
 					
-					if (example.getName().startsWith(PREFIX_POSITIVE)){
+					if (example.getName().startsWith(PREFIX_REFERENCE)){
 						//We can simply ignore the reference rules here
 					}
 				}

@@ -74,6 +74,7 @@ public class DVariable2Variable extends DEquation {
 	@Override
 	public String toString() {
 		String res = super.toString() + "\n";
+		res += "\t\tkind: " + getKind() + "\n";
 		res += "\t\tnodeL: " + nodeL + " " + getLNode() + "\n";
 		res += "\t\tattributeL: " + attributeL + "\n";
 		res += "\t\tnodeR: " + nodeR + " " + getRNode() + "\n";

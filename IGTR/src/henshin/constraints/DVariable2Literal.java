@@ -13,7 +13,8 @@ public class DVariable2Literal extends DEquation {
 	public String attribute;
 	public String literal;
 
-	public DVariable2Literal(String string, String node, String prefix, String attribute, String literal, DBRuleToHenshinRule dbRule2hRule) {
+	public DVariable2Literal(String string, String node, String prefix, String attribute, String literal,
+			DBRuleToHenshinRule dbRule2hRule) {
 		super(string, dbRule2hRule);
 
 		assert (prefix.equals(DConstraintFactory.PREFIX_PRE) || prefix.equals(DConstraintFactory.PREFIX_POST));
@@ -48,15 +49,16 @@ public class DVariable2Literal extends DEquation {
 		return null;
 	}
 
-	public EAttribute getAttributeDeclaration(){
+	public EAttribute getAttributeDeclaration() {
 		return HenshinUtil.getAttributeDeclaration(getNode(), attribute);
-	}	
-	
+	}
+
 	@Override
 	public String toString() {
 		String res = super.toString() + "\n";
-		res += "\t\tnodeL: " + node + "\n";
-		res += "\t\tattributeL: " + attribute + "\n";
+		res += "\t\tkind: " + getKind() + "\n";
+		res += "\t\tnode: " + node + " " + getNode() + " \n";
+		res += "\t\tattribute: " + attribute + "\n";
 		res += "\t\tliteral: " + literal;
 
 		return res;
