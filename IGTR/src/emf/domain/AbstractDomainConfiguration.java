@@ -74,4 +74,9 @@ public abstract class AbstractDomainConfiguration implements IDomainConfiguratio
 		
 		return res.get(0);
 	}
+	
+	@Override
+	public boolean doDeriveParameters() {
+		return false;
+	}
 }

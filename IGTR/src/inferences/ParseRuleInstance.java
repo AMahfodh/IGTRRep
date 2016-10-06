@@ -99,8 +99,13 @@ public class ParseRuleInstance {
 		createEdges(modelA, gLHS, modelA2lhs);
 		createEdges(modelB, gRHS, modelB2rhs);
 
-		// Empty parameter list since we retrieve params from maximal rule
+		// Parameters
 		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();
+		if (domainConfig.doDeriveParameters()) {
+			// Empty parameter list since we retrieve params from maximal rule
+		} else {
+
+		}
 
 		// Finally, create rule or NAC instance ..
 		RuleInstance createNewRule = null;

@@ -34,4 +34,6 @@ public interface IDomainConfiguration {
 	public EReference deriveEdgeType(EClass srcNodeType, String name);
 
 	public EAttribute deriveAttributeType(EClass nodeType, String name);
+	
+	public boolean doDeriveParameters();
 }

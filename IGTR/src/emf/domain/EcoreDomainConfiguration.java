@@ -67,6 +67,7 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 			// technical
 			unconsideredAttributeTypes.add(EcorePackage.eINSTANCE.getEClassifier_InstanceClassName());
 			unconsideredAttributeTypes.add(EcorePackage.eINSTANCE.getEClassifier_InstanceTypeName());
+			unconsideredAttributeTypes.add(EcorePackage.eINSTANCE.getEClassifier_DefaultValue());
 		}
 
 		return unconsideredAttributeTypes;
