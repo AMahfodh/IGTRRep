@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_pK8P8Yy-EeaOgvJuupjR7w" type="Henshin" name="pullUpAttribute.henshin_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_pmaD8Iy-EeaOgvJuupjR7w" type="2001" fontName="Sans" italic="true" lineColor="0">
+    <children xmi:type="notation:DecorationNode" xmi:id="_pmarAIy-EeaOgvJuupjR7w" type="5001"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_pmarAYy-EeaOgvJuupjR7w" type="7001"/>
+    <element xmi:type="henshin:Rule" href="pullUpAttribute.henshin#_pmXnsIy-EeaOgvJuupjR7w"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pmaD8Yy-EeaOgvJuupjR7w" x="79" y="43" width="544" height="360"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_pK8P8oy-EeaOgvJuupjR7w"/>
+  <element xmi:type="henshin:Module" href="pullUpAttribute.henshin#_pK8P8Iy-EeaOgvJuupjR7w"/>
+</notation:Diagram>
