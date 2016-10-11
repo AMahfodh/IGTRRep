@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -27,16 +28,15 @@ public class DBRecord {
     private static Connection getConnection() throws SQLException {
 
         String drivers = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/TraceOutput_DB?allowMultiQueries=true";
- //       String username = "";
- //       String password = "";
-        String username = "loly";
-        String password = "541541";
+        String url = "jdbc:mysql://localhost:3306/TraceOutput_DB?allowMultiQueries=true&useSSL=false";
+        String username = "";
+        String password = "";
         
         System.setProperty(drivers,"");
         return DriverManager.getConnection(url,username,password);
     }
 	
+   
 	
     
     // open 'conn' object and initialising statements
@@ -707,6 +707,93 @@ public class DBRecord {
     }
 
 
+    
+    
+    
+    
+    
+    
+    protected static boolean saveClassTypes (ClassType cType){
+		
+		boolean isSaved= true;
+		
+		try {
+			
+			String sqlStatement=""
+					+ "Insert IGNORE into TblClassTypes (ClassName, isCollectionType)"
+					+ " values (?, ?);";
+							
+			
+			pStatement = conn.prepareStatement(sqlStatement);
+			pStatement.clearParameters();
+			pStatement.setString(1, cType.getClassName());
+			pStatement.setBoolean(2, cType.isClassCollection());
+			
+						
+			if (pStatement.executeUpdate()!=1){
+				isSaved=false;				
+			}
+
+						
+		} catch (SQLException e) 
+		{			
+			e.printStackTrace();
+			isSaved=false;
+		}
+		
+		
+		return isSaved;
+	}
+    
+    
+
+    protected static boolean saveClassAssociations (ClassType cType){
+
+    	try {
+
+    		String sqlStatement=""
+    				+ "Insert into TblInherentedClassTypes (ClassNameREFF, InherentedWith, isSuperType)"
+    				+ " values (?, ?, ?);";
+
+
+    		pStatement = conn.prepareStatement(sqlStatement);
+    		pStatement.clearParameters();
+    		pStatement.setString(1, cType.getClassName());
+
+    		for (Map.Entry<ClassType, Boolean> refType : cType.getMapSuperAndSubClassTypes().entrySet()) {
+
+    			pStatement.setString(2, refType.getKey().getClassName());
+    			pStatement.setBoolean(3, refType.getValue());
+
+    			if (pStatement.executeUpdate()!=1){
+    				return false;				
+    			}
+    		}
+
+    	} catch (SQLException e) 
+    	{			
+    		e.printStackTrace();
+    		return false;
+    	}
+
+
+    	return true;
+    } 
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
     
