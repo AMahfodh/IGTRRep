@@ -29,7 +29,8 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 			// technical
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEFactory());
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEAnnotation());
-
+			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEStringToStringMapEntry());
+			
 			// generics
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getETypeParameter());
 			unconsideredNodeTypes.add(EcorePackage.eINSTANCE.getEGenericType());
