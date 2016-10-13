@@ -1,15 +1,17 @@
 package inferences;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
+
+import com.sun.rowset.CachedRowSetImpl;
 
 
 
 public class RuleInstance  {
 
-	
-	
 	protected int ruleInsID=-1;
 	private int iObjectsCount=0;
 	private boolean hasEffect=false;
@@ -139,7 +141,7 @@ public class RuleInstance  {
 		// loop over pre-graph
     	for (int iNode=0; iNode<this.gLHS.gNodes.size(); iNode++){
     		
-			GNode preNode = this.gLHS.gNodes.get(iNode);
+			GNode preNode = this.gLHS.gNodes.get(iNode);			
 			GNode postNode = this.gRHS.getNode(preNode.nodeID);
 			
 			preNode.isRequiredContext=true;
@@ -338,6 +340,7 @@ public class RuleInstance  {
 	
 
 	
+	
     
     private void saveRuleElements(){
     	
@@ -404,5 +407,13 @@ public class RuleInstance  {
 
     	return strParameters;
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

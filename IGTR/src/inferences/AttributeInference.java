@@ -473,9 +473,9 @@ public class AttributeInference {
 						}
 
 						// to numerate parameters indexes						
-						//if (!strHolder.toLowerCase().contains("return")){
-						//	strHolder +="_Par" + (i+1);
-						//}
+						if (!strHolder.toLowerCase().contains("return")){
+							strHolder +="_Par" + (i+1);
+						}
 
 					}
 

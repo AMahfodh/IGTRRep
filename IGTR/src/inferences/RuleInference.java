@@ -2,23 +2,24 @@ package inferences;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import com.sun.rowset.CachedRowSetImpl;
 
 public class RuleInference {
 
-	Logger GTlogger = Logger.getLogger("GTlog"); 
-
+	private static ArrayList<ClassType> listClassTypes = loadListClassTypes();
+	
 	private String ruleMethodSignatureUniqueID=null;
 	private int iLHS=-1, iObservationId=-1;
 
-	private long minTime=System.nanoTime(), maxTime=0, MO=0;
-
 
 	public RuleInference(){
-		GTlogger.setLevel(Level.OFF);
+	//	GTlogger.setLevel(Level.OFF);
+		
 	}
 
 
@@ -35,7 +36,7 @@ public class RuleInference {
 		// classifying all rule instances based on minimal rule
 		// preparing rule graphs for generalisation --[[ abstract ids , sub-graph ids, distance ]]--	
 		System.out.println("Preparing and classifying rule's instances for generalisation process ..");
-		this.GTlogger.info("Preparing and classifying rule's instances for generalisation process ..");
+		//this.GTlogger.info("Preparing and classifying rule's instances for generalisation process ..");
 		this.prepareAndSetRuleClassification();
 
 		
@@ -46,7 +47,7 @@ public class RuleInference {
 		//define abstract for query rule based on their smallest distinct structure size .. 
 		this.ruleMethodSignatureUniqueID="";
 		System.out.println("Generalising query rules ..");
-		this.GTlogger.info("Generalising query rules ..");
+		//this.GTlogger.info("Generalising query rules ..");
 		this.queryRuleGeneralisation();
 
 		
@@ -62,7 +63,7 @@ public class RuleInference {
 
 		// infer multi-objects
 		System.out.println("Inferring rules with multi-objects ..");
-		this.GTlogger.info("Inferring rules with multi-objects ..");
+		//this.GTlogger.info("Inferring rules with multi-objects ..");
 		this.ruleMethodSignatureUniqueID="";
 		this.inferMultiObjectRules(iRepeatedMultiObjects);
 		System.out.println("Inferring rules with multi-objects completed");
@@ -91,7 +92,7 @@ public class RuleInference {
 
 		// infer NACs
 		System.out.println("Inferring NACs ..");
-		this.GTlogger.info("Inferring NACs ..");
+		//this.GTlogger.info("Inferring NACs ..");
 		this.inferNACs();
 		System.out.println("Inferring NACs completed");
 
@@ -209,7 +210,7 @@ public class RuleInference {
 		this.generateNodesEdgesAbstractIDs((this.iLHS+1), true);
 
 		System.out.println("\tpreparing rule " + this.iObservationId + " : generate abstract ids \t ok" );
-		this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : generate abstract ids \t ok" );
+	//	this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : generate abstract ids \t ok" );
 
 
 
@@ -228,7 +229,7 @@ public class RuleInference {
 		this.subGraphIDForAllElement(this.iLHS+1);
 
 		System.out.println("\tpreparing rule " + this.iObservationId + " : define sub graph ids \t ok");
-		this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : define sub graph ids \t ok");
+		//this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : define sub graph ids \t ok");
 
 
 
@@ -240,7 +241,7 @@ public class RuleInference {
 		// set distances in each sub-graphs
 		this.computeDistances();
 		System.out.println("\tpreparing rule " + this.iObservationId + " : define distances \t\t ok");
-		this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : define distances \t\t ok");
+		//this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : define distances \t\t ok");
 
 
 	}
@@ -574,7 +575,8 @@ public class RuleInference {
 
 				groupID =crsGetGroups.getInt(1);				
 
-				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2))){
+				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2)) || 
+					this.isMinimalRuleMatchedUpToSuperType(crsGetGroups.getInt(2))){
 
 					if (DBRecord.executeSqlStatement(
 							"Update TblBasicRule set groupID=" + groupID
@@ -586,22 +588,22 @@ public class RuleInference {
 
 						// set exist group id
 						System.out.println("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
-						this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
+						//this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
 
 
 						// ***************************************************************
 						// set smallest rule to be abstract		
 						// contexts intersection (maximal rule)
 						// attributes generalisation 
-						MO= System.nanoTime();
+						//MO= System.nanoTime();
 						this.setMaximalContextRule(crsGetGroups.getInt(2));
-						maxTime += (System.nanoTime()-MO);
+						//maxTime += (System.nanoTime()-MO);
 
 						return;
 
 					}
 					else {
-						this.GTlogger.info("Error: group id can't be saved ..");
+						//this.GTlogger.info("Error: group id can't be saved ..");
 					}
 				}
 
@@ -628,13 +630,13 @@ public class RuleInference {
 				+ "where Observation_IDREFF=" + this.iObservationId
 				+ ";", true)!=1){
 
-			this.GTlogger.info("Error: group id can't be generated ..");
+		//	this.GTlogger.info("Error: group id can't be generated ..");
 		}
 
 
 		// set new group id
 		System.out.println("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
-		this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
+		//this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
 
 	}
 
@@ -764,10 +766,139 @@ public class RuleInference {
 		}
 
 
-		// 100% matched
+		
 		return true;
 	}
 
+	
+
+	private boolean isMinimalRuleMatchedUpToSuperType(int iTargetObservationID) throws SQLException{
+		
+		// get target Observation graphs
+		int sourceRHS_id, targetLHS_id, targetRHS_id;
+
+		CachedRowSetImpl checkMinimalRule= DBRecord.getByQueryStatement(
+				" (select GraphID from TblGraph where graphType=true and Observation_IDREFF=" + this.iObservationId + ") "
+						+ "UNION ALL "
+						+ "(select GraphID from TblGraph where Observation_IDREFF=" + iTargetObservationID + " order by graphType)", true);
+
+		if (checkMinimalRule.size()!=3){
+			return false;
+		}
+		else {
+
+			checkMinimalRule.next();
+			sourceRHS_id = checkMinimalRule.getInt(1);
+
+			checkMinimalRule.next();
+			targetLHS_id = checkMinimalRule.getInt(1);
+
+			checkMinimalRule.next();
+			targetRHS_id = checkMinimalRule.getInt(1);				
+		}
+				
+		
+		if (!this.isIsomorphicUpToSuperTypeMinimalRule(
+				new GraphT(this.iLHS, true, true, false, true), 
+				new GraphT(targetLHS_id, true, true, false, true)) ||
+			!this.isIsomorphicUpToSuperTypeMinimalRule(
+					new GraphT(sourceRHS_id, true, true, false, true), 
+					new GraphT(targetRHS_id, true, true, false, true))){
+			
+			return false;
+		}
+							
+		
+		return true;
+	}
+	
+	
+	
+	private boolean isIsomorphicUpToSuperTypeMinimalRule(GraphT g1, GraphT g2){
+		
+		if (g1.gNodes.size() !=g2.gNodes.size() ||
+			g1.gEdges.size() !=g2.gEdges.size()){
+			return false;
+		}
+		
+		ArrayList<NodeMorphism> mappingNodes = new ArrayList<NodeMorphism>();
+		
+		for (int i= 0; i<g1.gNodes.size(); i++){
+			
+			NodeMorphism nMorphism = new NodeMorphism(g1.gNodes.get(i));
+									
+			for (int j= 0; j<g2.gNodes.size(); j++){				
+				nMorphism.addMappingNode(g2.gNodes.get(j));				
+			}
+			
+			
+			if (nMorphism.isMatchFound()){
+				mappingNodes.add(nMorphism);
+			}
+			else {
+				return false;
+			}
+		}
+		
+		
+		Collections.sort(mappingNodes);
+		Set<GNode> finalMappedNodes = new HashSet<GNode>();  
+		
+		for (int i=0; i<mappingNodes.size(); i++){
+			
+			NodeMorphism nMorphism = mappingNodes.get(i);
+			for (GNode mNode : nMorphism.mappingNodes) {
+				
+				if (finalMappedNodes.add(mNode)){
+					nMorphism.setFinalMappedNode(mNode);
+				}
+			}
+			
+			if (nMorphism.getFinalMappedNode()==null){
+				return false;
+			}
+		}
+		
+		
+		for (NodeMorphism nMorphism : mappingNodes){
+			nMorphism.modifyDatabase();
+		}
+		
+		
+		return true;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 	private void setMaximalContextRule(int existsRuleObservation_ID){
@@ -955,7 +1086,7 @@ public class RuleInference {
 		CachedRowSetImpl crsGetAbstractNodes= DBRecord.getByQueryStatement(
 				"select graphType, nodeID, AbstractID, "
 						+ "nodeType, isThis, isReturn, isParameters, iParameterIndex, "
-						+ "isMinimal, isRequiredContext, isInitialized, isCollection, TblNode.Graph_IDREFF, iDistance "
+						+ "isMinimal, isRequiredContext, isInitialized, isCollection, TblNode.Graph_IDREFF, iDistance, nodeCommonType "
 						+ "from TblNode INNER JOIN TblGraph "
 						+ "on TblNode.Graph_IDREFF=TblGraph.GraphID "
 						+ "where TblGraph.Observation_IDREFF=" + iAbstractRule
@@ -979,7 +1110,8 @@ public class RuleInference {
 				abstractNode.isCollection=crsGetAbstractNodes.getBoolean(12);
 				abstractNode.iSubGraphID=crsGetAbstractNodes.getInt(13);	/* temporary to store graph ID */
 				abstractNode.distance=crsGetAbstractNodes.getInt(14);
-
+				abstractNode.nodeCommonType=crsGetAbstractNodes.getString(15);
+				
 				String nodeInsIsMappedWith= this.findMappedInsNode(
 						crsGetAbstractNodes.getBoolean(1),  
 						iRuleInstance, 
@@ -1022,7 +1154,7 @@ public class RuleInference {
 						+ "on TblNode.Graph_IDREFF=TblGraph.GraphID "
 						+ "where TblGraph.Observation_IDREFF=" + iRuleInstance
 
-						+ " and nodeType='" + abstractNode.nodeType + "'"
+						+ " and (nodeType='" + abstractNode.nodeType + "' or nodeCommonType='" + abstractNode.nodeCommonType + "')"
 						+ " and isThis=" + abstractNode.isThis
 						+ " and isReturn=" + abstractNode.isReturn
 						//+ " and isParameters=" + abstractNode.isParameters
@@ -1142,12 +1274,12 @@ public class RuleInference {
 		// delete node from abstract max rule as there is no possible match
 		DBRecord.executeSqlStatement(
 				"update TblNode "
-						+ "set isToBeDeleted=true where AbstractID='" + abstractNodeAbstractID + "'"
+						+ "set isToBeDeleted=true where isMinimal=false and AbstractID='" + abstractNodeAbstractID + "'"
 						, true);
 
 		// A update relevant edges to be also isToBeDeleted=true 
 		DBRecord.executeSqlStatement("update TblEdge set isToBeDeleted=true "
-				+ "where Graph_IDREFF=" + iGraphI
+				+ "where isMinimal=false and Graph_IDREFF=" + iGraphI
 				+ " and "
 				+ "(sourceID='" + abstractNodeNodeID + "'"
 				+ "or "
@@ -1277,7 +1409,7 @@ public class RuleInference {
 
 
 		System.out.println("\tgeneralising query rule " + this.iObservationId + " :\tok");
-		this.GTlogger.info("\tgeneralising query rule " + this.iObservationId + " :\tok");
+		//this.GTlogger.info("\tgeneralising query rule " + this.iObservationId + " :\tok");
 
 	}
 
@@ -1449,7 +1581,7 @@ public class RuleInference {
 		}
 
 		System.out.println("\tmulti-object in maximal rule id: " + iObservationID + " - " + isMOexist);
-		this.GTlogger.info("\tmulti-object in maximal rule id: " + iObservationID + " - " + isMOexist);
+	//	this.GTlogger.info("\tmulti-object in maximal rule id: " + iObservationID + " - " + isMOexist);
 		
 		return isMOexist;
 	}
@@ -1476,7 +1608,7 @@ public class RuleInference {
 		private ArrayList<Integer> edgesSubGraphID = new ArrayList<Integer>();
 		private ArrayList<Integer> edgesiDistance = new ArrayList<Integer>();
 
-		Logger GTlogger = Logger.getLogger("GTlog");
+//		Logger GTlogger = Logger.getLogger("GTlog");
 
 
 		public MORule (int IObservationID, int IGraphSideId, boolean IsRHS){
@@ -1743,7 +1875,7 @@ public class RuleInference {
 
 			int iNodeIndex = this.nodesIndexs.indexOf(strNodeID);
 			if (iNodeIndex<0){
-				this.GTlogger.info("Error: in bulding graph strucutre (getNodeIndex:=-1 for ID: " + strNodeID);
+				System.err.println("Error: in bulding graph strucutre (getNodeIndex:=-1 for ID: " + strNodeID);
 			}        	
 			return iNodeIndex;
 		}
@@ -2220,7 +2352,7 @@ public class RuleInference {
 
 						// matched with existed group
 						System.out.println("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
-						this.GTlogger.info("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
+//						this.GTlogger.info("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
 
 
 
@@ -2232,7 +2364,7 @@ public class RuleInference {
 
 					}
 					else {
-						this.GTlogger.info("Error: group_MO id can't be saved ..");
+					//	this.GTlogger.info("Error: group_MO id can't be saved ..");
 					}
 				}
 
@@ -2254,13 +2386,13 @@ public class RuleInference {
 				"Update TblBasicRule set isAbstractMO=true, groupID_MO=" + groupMO_ID
 				+ " where Observation_IDREFF=" + this.iObservationId, true)!=1){
 
-			this.GTlogger.info("Error: group_Mo id can't be generated ..");
+		//	this.GTlogger.info("Error: group_Mo id can't be generated ..");
 		}
 
 
 
 		System.out.println("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
-		this.GTlogger.info("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
+	//	this.GTlogger.info("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
 	}
 
 
@@ -2547,5 +2679,129 @@ public class RuleInference {
 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+    
+    
+    
+    /**
+     * 
+     * 
+     * Temporary methods for getting inheritance super types..
+     */
+    
+    private static ArrayList<ClassType> loadListClassTypes(){
+    	
+    	if (listClassTypes!=null){
+    		return listClassTypes;
+    	}
+    	
+    	listClassTypes = new ArrayList<ClassType>();
+    	
+
+    	CachedRowSetImpl crsClassTypes = DBRecord.getByQueryStatement(
+    			"select ClassName, isCollectionType from TblClassTypes order by ClassName;");
+
+
+		try {
+
+			while (crsClassTypes.next()){
+				
+				listClassTypes.add(
+						new ClassType(
+								crsClassTypes.getString(1), 
+								crsClassTypes.getBoolean(2)));				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    	
+		if (listClassTypes.isEmpty()){
+			return listClassTypes;
+		}
+    	
+    	crsClassTypes = DBRecord.getByQueryStatement(
+    			"select ClassNameREFF, InherentedWith from TblInherentedClassTypes where isSuperType=0 order by ClassNameREFF;");
+
+
+		try {
+
+			while (crsClassTypes.next()){
+				
+				ClassType ClassNameREFF = getClassTypeFromCurrentList(crsClassTypes.getString(1));
+				ClassType InherentedWith = getClassTypeFromCurrentList(crsClassTypes.getString(2));
+				ClassNameREFF.addReferenceType(InherentedWith, false);								
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Loading .. " + listClassTypes);
+    	
+		return listClassTypes;
+    }
+    
+    
+    
+    protected static ArrayList<ClassType> getSuperTypes(String strClassName){
+
+    	loadListClassTypes();    	
+    	ArrayList<ClassType> listOfSuperTypes=new ArrayList<ClassType>();
+
+    	for (ClassType cType: listClassTypes){
+
+    		if (cType.getClassName().equalsIgnoreCase(strClassName)){
+
+    			for (Map.Entry<ClassType, Boolean> superType : cType.getMapSuperAndSubClassTypes().entrySet()) {
+    				
+    				/*
+    				 * if [superType.getValue()]==true means that [superType.getKey()] is a super type of [cType]
+    				 */
+    				if (superType.getValue()){
+    					listOfSuperTypes.add(superType.getKey());
+    				}
+    			}
+    			break;
+    		}
+    	}
+
+
+    	return listOfSuperTypes;
+    }
+    
+    
+    
+    private static ClassType getClassTypeFromCurrentList(String strClassName){
+    	
+    	loadListClassTypes();
+    	    	
+    	for (ClassType cType: listClassTypes){
+
+    		if (cType.getClassName().equalsIgnoreCase(strClassName)){
+
+    			return cType;
+    		}
+    	}
+    	    	
+    	return null;
+    }
+    
+    
+    
 
 }

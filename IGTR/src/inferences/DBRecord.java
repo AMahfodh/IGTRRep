@@ -29,9 +29,7 @@ public class DBRecord {
 
         String drivers = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/TraceOutput_DB?allowMultiQueries=true&useSSL=false";
-//        String username = "";
-//        String password = "";
-        String username = "loly";
+        String username = "looly";
         String password = "541541";
         
         System.setProperty(drivers,"");
@@ -315,8 +313,9 @@ public class DBRecord {
 					+ "isParameters,"
 					+ "accessedInfo,"
 					+ "iParameterIndex,"
-					+ "isUnnecessaryContext) "
-					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+					+ "isUnnecessaryContext,"
+					+ "nodeCommonType) "
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 							
 			
 			
@@ -335,6 +334,7 @@ public class DBRecord {
 			pStatement.setString(11, saveGNode.strAccessedInfo);
 			pStatement.setInt(12, saveGNode.iParameterIndex);
 			pStatement.setBoolean(13, saveGNode.isUnnecessaryContext);
+			pStatement.setString(14, saveGNode.nodeCommonType);
 			
 			if (pStatement.executeUpdate()==1){
 				

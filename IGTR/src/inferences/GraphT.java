@@ -42,18 +42,36 @@ public class GraphT {
        
     
 
+
     
     public GraphT (int GraphID, boolean loading, boolean loadOnlyMinimalElements, boolean isMaximalRule){
+    	
+    	this(GraphID, loading, loadOnlyMinimalElements, isMaximalRule, false);
+    }
+
+    
+    public GraphT (int GraphID, boolean loading, boolean loadOnlyMinimalElements, boolean isMaximalRule, boolean isConnectionOpen){
+    	
     	
     	this.graphID = GraphID;
     	this.iniNodeList();
     	
     	if (loading){
     		this.gEdges = new ArrayList<GEdge>();
-    		this.Load(loadOnlyMinimalElements, isMaximalRule);
+    		
+    		if (isConnectionOpen){
+    			this.LoadWithOpenConnection(loadOnlyMinimalElements, isMaximalRule);	
+    		}
+    		else {
+    			this.Load(loadOnlyMinimalElements, isMaximalRule);
+    		}
+    		
     	}
     }
-
+    
+    
+    
+    
     private void iniNodeList(){
     	
     	this.gNodes = new ArrayList<GNode>();
@@ -100,7 +118,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " GraphID=" + this.graphID, true);
     	}
@@ -110,7 +128,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " Observation_IDREFF=" + this.observation_ID
     						+ " and graphType=" + this.graphType, true);
@@ -144,6 +162,7 @@ public class GraphT {
     			loadNode.isReturn=crsNodesEdges.getBoolean(12);
     			loadNode.iParameterIndex=crsNodesEdges.getInt(13);
     			loadNode.AbstractID=crsNodesEdges.getString(14);
+    			loadNode.nodeCommonType=crsNodesEdges.getString(15);
 
 
     			//** load attributes 
@@ -218,6 +237,160 @@ public class GraphT {
     }
 
     
+    
+    
+    
+    
+    public boolean LoadWithOpenConnection(boolean isOnlyMinimalElements, boolean isMaximalRule){
+
+    	if (this.gNodes.size()>0){
+    		// graph loaded already
+    		return false;
+    	}
+
+    	this.gEdges = new ArrayList<GEdge>();
+
+
+
+
+    	String strSQLOnlyMinimalElements="";
+    	if (isOnlyMinimalElements){
+    		strSQLOnlyMinimalElements=" isMinimal=true and ";
+    	}
+    	if (isMaximalRule){
+    		strSQLOnlyMinimalElements+=" (isToBeDeleted is null or isToBeDeleted=false) and ";
+    	}
+
+
+
+
+    	CachedRowSetImpl crsNodesEdges=null;
+    	if (this.graphID!=-1){
+
+    		// loading by graph id
+    		crsNodesEdges= DBRecord.getByQueryStatement(
+    				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
+    				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
+    						+ "where " + strSQLOnlyMinimalElements + " GraphID=" + this.graphID, true);
+    	}
+    	else {
+
+    		// loading by Observation id and graphType
+    		crsNodesEdges= DBRecord.getByQueryStatement(
+    				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
+    				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
+    						+ "where " + strSQLOnlyMinimalElements + " Observation_IDREFF=" + this.observation_ID
+    						+ " and graphType=" + this.graphType, true);
+    	}
+
+
+    	//**	load nodes 
+    	try {
+    		while (crsNodesEdges.next()){
+
+
+    			if (crsNodesEdges.isFirst()){
+    				this.graphID=crsNodesEdges.getInt(7);
+    				this.observation_ID=crsNodesEdges.getInt(8);
+    				if (crsNodesEdges.getBoolean(9)){
+    					this.graphType=1;
+    				}
+    				else {
+    					this.graphType=0;
+    				}
+    			}
+
+
+    			GNode loadNode= new GNode(crsNodesEdges.getString(1), crsNodesEdges.getString(2));
+    			loadNode.isMinimal=crsNodesEdges.getBoolean(3);
+    			loadNode.isRequiredContext=crsNodesEdges.getBoolean(4);
+    			loadNode.isInitialized=crsNodesEdges.getBoolean(5);
+    			loadNode.isCollection=crsNodesEdges.getBoolean(6);
+    			loadNode.isThis=crsNodesEdges.getBoolean(10);
+    			loadNode.isParameters=crsNodesEdges.getBoolean(11);
+    			loadNode.isReturn=crsNodesEdges.getBoolean(12);
+    			loadNode.iParameterIndex=crsNodesEdges.getInt(13);
+    			loadNode.AbstractID=crsNodesEdges.getString(14);
+    			loadNode.nodeCommonType=crsNodesEdges.getString(15);
+
+
+    			//** load attributes 
+
+    			CachedRowSetImpl crsNodesAttributes= DBRecord.getByQueryStatement(
+    					"select AttributeName, AttributeType, AttributeValue, generalisedValue, isAssignedToParameter "
+    							+ "from TblNodeAttributes "
+    							+ "where isObjectRelation=false and "
+    							+ "Graph_IDREFF=" + this.graphID
+    							+ " and node_IDREFF='" + crsNodesEdges.getString(1) + "';", true);
+
+    			while (crsNodesAttributes.next()){
+
+    				GAttribute loadAttribute = new GAttribute(
+    						crsNodesAttributes.getString(1),
+    						crsNodesAttributes.getString(2),
+    						crsNodesAttributes.getString(3));
+
+    				loadAttribute.attGeneralisedValue=crsNodesAttributes.getString(4);
+    				loadAttribute.attIsAssignedToParameter=crsNodesAttributes.getBoolean(5);
+
+    				loadNode.addAttribute(loadAttribute);
+    			}
+
+
+    			// add node with its belong attributes 
+    			this.addNode(loadNode);		
+
+
+    		}
+
+    	} catch (SQLException e) {		
+    		e.printStackTrace();
+    	}
+
+
+
+    	if (this.gNodes.size()<1){
+    		// no nodes in the loaded graph
+    		return false;
+    	}
+
+
+
+    	crsNodesEdges= DBRecord.getByQueryStatement(
+    			"select sourceID, targetID, edgeType, isMinimal, sourceTargetType "
+    					+ "from TblEdge where " + strSQLOnlyMinimalElements + " Graph_IDREFF=" + this.graphID, true);
+
+    	//**	load edges 
+    	try {
+    		while (crsNodesEdges.next()){
+
+    			this.gEdges.add(
+    					new GEdge(
+    							crsNodesEdges.getString(1),
+    							crsNodesEdges.getString(2),
+    							crsNodesEdges.getString(3),
+    							crsNodesEdges.getBoolean(4),
+    							crsNodesEdges.getString(5)));					
+    		}
+
+    	} catch (SQLException e) {		
+    		e.printStackTrace();
+    	}
+
+
+  
+    	return true;
+    }
+    
+    
+    
+    
+    
+    
     public boolean LoadMultiObjects (boolean isOnlyMinimalElements, boolean isMaximalRule){
 
     	
@@ -249,7 +422,8 @@ public class GraphT {
         			+ "isReturn,"
         			+ "isMulti,"
         			+ "iParameterIndex,"
-        			+ "nodeID "
+        			+ "nodeID,"
+        			+ "nodeCommonType "
         			+ "from TblNode INNER JOIN TblRuleMoNodes "
         			+ "on TblNode.AbstractID=TblRuleMoNodes.AbstractID "
         			+ "where " + strSQLOnlyMinimalElements 
@@ -274,6 +448,7 @@ public class GraphT {
 				loadNode.isMulti=crsNodesEdges.getBoolean(10);
 				loadNode.iParameterIndex=crsNodesEdges.getShort(11);
 				loadNode.AbstractID=crsNodesEdges.getString(12);
+				loadNode.nodeCommonType=crsNodesEdges.getString(13);
 				
 				//** load attributes 				
 				CachedRowSetImpl crsNodesAttributes= DBRecord.getByQueryStatement(

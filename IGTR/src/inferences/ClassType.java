@@ -55,11 +55,4 @@ public class ClassType {
 	}
 
 	
-	public ClassType load(String StrClassName){
-		
-		/*
-		 * TODO loading it from DB
-		 */
-		return this;
-	}
 }

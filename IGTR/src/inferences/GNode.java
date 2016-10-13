@@ -25,6 +25,11 @@ public class GNode {
 	
 	// to be specified by domain expert 
 	public boolean isUnnecessaryContext=false;
+	public String nodeCommonType="";
+	
+	
+	
+	
 	
 	
     // arraylist(s) attributes, to improve this, we could use hash-table
@@ -126,6 +131,25 @@ public class GNode {
     protected void clearAllAttributes(){
     	this.iniAttribues();
     }
+    
+    
+    
+//    private void setNodeCommonType(){
+//    	
+//    	ArrayList<ClassType> listOfSuperTypes = RuleInference.getSuperTypes(this.nodeType);
+//    	    	
+//    	if (listOfSuperTypes.isEmpty()){
+//    		this.nodeCommonType=this.nodeType;
+//    	}
+//    	else {
+//    		
+//    		/*
+//    		 * the default super type is the first one in the list  
+//    		 */
+//    		this.nodeCommonType=listOfSuperTypes.get(0).getClassName();
+//    	}
+//    }
+    
     
     
     

@@ -1040,16 +1040,16 @@ public class jGraphRule extends JPanel  {
 		else {
 
 			if (vNode.isThis){
-				vNode.nodeType= " this-" + vNode.AbstractID + " : " + vNode.nodeType;
+				vNode.nodeType= " this-" + vNode.AbstractID + " : " + this.getNoteSuperType(vNode);
 			}
 			else if (vNode.isReturn){
-				vNode.nodeType= " rePar-" + vNode.AbstractID + " : " + vNode.nodeType;
+				vNode.nodeType= " rePar-" + vNode.AbstractID + " : " + this.getNoteSuperType(vNode);
 			}
 			else if (vNode.iParameterIndex>0){
-				vNode.nodeType= " Par" + vNode.iParameterIndex + "-" + vNode.AbstractID + " :" + vNode.nodeType;
+				vNode.nodeType= " Par" + vNode.iParameterIndex + "-" + vNode.AbstractID + " : " + this.getNoteSuperType(vNode);
 			}
 			else {
-				vNode.nodeType= vNode.AbstractID + " :" + vNode.nodeType;
+				vNode.nodeType= vNode.AbstractID + " : " + this.getNoteSuperType(vNode);
 			}			
 			vNode.nodeType = vNode.nodeType.replace("null", "");
 			vNode.nodeType +="\n________________________";
@@ -1080,7 +1080,15 @@ public class jGraphRule extends JPanel  {
 	}
 
 
-
+	private String getNoteSuperType(GNode gNode){
+		
+		if (gNode.nodeType.equalsIgnoreCase(gNode.nodeCommonType) || gNode.nodeCommonType.length()<1){
+			return gNode.nodeType;
+		}
+		else {
+			return "(superT-" + gNode.nodeCommonType + ") ";
+		}
+	}
 
 
 
