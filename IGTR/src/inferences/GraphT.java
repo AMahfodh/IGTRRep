@@ -118,7 +118,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType, isUniversalContext "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " GraphID=" + this.graphID, true);
     	}
@@ -128,7 +128,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType, isUniversalContext "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " Observation_IDREFF=" + this.observation_ID
     						+ " and graphType=" + this.graphType, true);
@@ -163,7 +163,7 @@ public class GraphT {
     			loadNode.iParameterIndex=crsNodesEdges.getInt(13);
     			loadNode.AbstractID=crsNodesEdges.getString(14);
     			loadNode.nodeCommonType=crsNodesEdges.getString(15);
-
+    			loadNode.isUniversalContext=crsNodesEdges.getBoolean(16);
 
     			//** load attributes 
 
@@ -271,7 +271,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType, isUniversalContext "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " GraphID=" + this.graphID, true);
     	}
@@ -281,7 +281,7 @@ public class GraphT {
     		crsNodesEdges= DBRecord.getByQueryStatement(
     				"select nodeID, nodeType, isMinimal, isRequiredContext, isInitialized, "
     				+ "isCollection, GraphID, Observation_IDREFF, graphType, isThis, isParameters, "
-    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType "
+    				+ "isReturn, iParameterIndex, AbstractID, nodeCommonType, isUniversalContext "
     						+ "from TblGraph INNER JOIN TblNode on GraphID=Graph_IDREFF "
     						+ "where " + strSQLOnlyMinimalElements + " Observation_IDREFF=" + this.observation_ID
     						+ " and graphType=" + this.graphType, true);
@@ -316,7 +316,7 @@ public class GraphT {
     			loadNode.iParameterIndex=crsNodesEdges.getInt(13);
     			loadNode.AbstractID=crsNodesEdges.getString(14);
     			loadNode.nodeCommonType=crsNodesEdges.getString(15);
-
+    			loadNode.isUniversalContext=crsNodesEdges.getBoolean(16);
 
     			//** load attributes 
 

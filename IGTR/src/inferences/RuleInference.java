@@ -99,6 +99,15 @@ public class RuleInference {
 
 
 
+		
+		/*
+		 *	infer common contexts among all maximal rules 
+		 */
+		new CommonUniversalContexts();
+		
+		
+		
+		
 
 		// close connection		
 		DBRecord.closeConnection();
@@ -825,10 +834,10 @@ public class RuleInference {
 		
 		for (int i= 0; i<g1.gNodes.size(); i++){
 			
-			NodeMorphism nMorphism = new NodeMorphism(g1.gNodes.get(i));
+			NodeMorphism nMorphism = new NodeMorphism(g1.graphID, g1.gNodes.get(i));
 									
 			for (int j= 0; j<g2.gNodes.size(); j++){				
-				nMorphism.addMappingNode(g2.gNodes.get(j));				
+				nMorphism.addMappingNode(g2.graphID, g2.gNodes.get(j));				
 			}
 			
 			
@@ -1420,6 +1429,44 @@ public class RuleInference {
 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
@@ -2735,7 +2782,9 @@ public class RuleInference {
 		}
     	
     	crsClassTypes = DBRecord.getByQueryStatement(
-    			"select ClassNameREFF, InherentedWith from TblInherentedClassTypes where isSuperType=0 order by ClassNameREFF;");
+    			"select ClassNameREFF, InherentedWith from TblInherentedClassTypes "
+    			+ "where isSuperType=0 "
+    			+ "and allowGeneralisation=true order by ClassNameREFF;");
 
 
 		try {
@@ -2744,7 +2793,7 @@ public class RuleInference {
 				
 				ClassType ClassNameREFF = getClassTypeFromCurrentList(crsClassTypes.getString(1));
 				ClassType InherentedWith = getClassTypeFromCurrentList(crsClassTypes.getString(2));
-				ClassNameREFF.addReferenceType(InherentedWith, false);								
+				ClassNameREFF.addReferenceType(InherentedWith, false, true);								
 			}
 
 		} catch (SQLException e) {

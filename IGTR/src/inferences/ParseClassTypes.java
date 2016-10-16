@@ -1,10 +1,12 @@
 package inferences;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
@@ -38,9 +40,9 @@ public class ParseClassTypes {
 		// Collect relevant eClasses
 		EList<EClassifier> eClassifiers = EMFMetaUtil.getAllMetaClassesForPackage(domainConfig.getEPackage());
 		Set<EClass> unconsideredEClasses = domainConfig.getUnconsideredNodeTypes();
-		for (EClass eClass : unconsideredEClasses) {
+		//for (EClass eClass : unconsideredEClasses) {
 			// System.out.println("ignore: " + eClass.getName());
-		}
+		//}
 
 		eClassifiers.removeAll(unconsideredEClasses);
 
@@ -64,48 +66,61 @@ public class ParseClassTypes {
 			for (EClass superEClass : eClass.getESuperTypes()) {
 				System.out.println(eClass.getName() + " <- " + superEClass.getName());
 				ClassType superNodeType = eClass2NodeType.get(superEClass);
-				nodeType.addReferenceType(superNodeType, true);
+				
+				nodeType.addReferenceType(
+						superNodeType, 
+						true, 
+						this.hasIdenticalAttributes(eClass, superEClass));
 			}
 		}
 
-		/*
-		 * Example initialising set of types
-		 */
-
-		// ClassType EPackageCType = new ClassType("EPackage", false);
-		// ClassType EClassCType = new ClassType("EClass", false);
-		// ClassType EAttributeCType = new ClassType("EAttribute", false);
-		// ClassType EDataTypeCType = new ClassType("EDataType", false);
-		// ClassType EReferenceCType = new ClassType("EReference", false);
-		// ClassType EAssociationCType = new ClassType("EAssociation", true); //
-		// just
-		// // an
-		// // example
-		// // and
-		// // assume
-		// // this
-		// // an
-		// // aggregation
-		// // association
-		//
-		// /*
-		// * and here an example of adding their relations
-		// */
-		// EPackageCType.addReferenceType(EClassCType, false);
-		// EClassCType.addReferenceType(EAttributeCType, false);
-		// EAttributeCType.addReferenceType(EDataTypeCType, false);
-		// EReferenceCType.addReferenceType(EAssociationCType, false);
-		//
-		// this.listClassTypes = new ArrayList<ClassType>();
-		// this.listClassTypes.add(EPackageCType);
-		// this.listClassTypes.add(EClassCType);
-		// this.listClassTypes.add(EAttributeCType);
-		// this.listClassTypes.add(EDataTypeCType);
-		// this.listClassTypes.add(EReferenceCType);
-		// this.listClassTypes.add(EAssociationCType);
 
 	}
 
+	
+	
+	private boolean hasIdenticalAttributes(EClass eClass, EClass superEClass){
+		
+		/*
+		 * return false if eClass has attribute(s) that are not exists in superEClass, 
+		 * return true otherwise 
+		 */
+				
+		if (eClass.getEAllAttributes().size()>superEClass.getEAllAttributes().size()){
+			return false;
+		}
+		
+		Set<EAttribute> alreadyMatchedEAttributes = new HashSet<EAttribute>();
+		
+		for (EAttribute eAttribute: eClass.getEAllAttributes()){
+			
+			boolean isMatched=false;
+			
+			for (EAttribute eSuperAttribute: superEClass.getEAllAttributes()){
+				
+				if (alreadyMatchedEAttributes.contains(eSuperAttribute)){
+					continue;
+				}
+				
+				if (eAttribute.getEAttributeType().equals(eSuperAttribute.getEAttributeType()) && 
+					eAttribute.getName().equals(eSuperAttribute.getName())){
+					
+					alreadyMatchedEAttributes.add(eSuperAttribute);
+					isMatched=true;
+					break;
+				}				
+			}
+			
+			if (!isMatched){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	
+	
 	private void save() {
 		System.out.println("Saving class types .. ");
 

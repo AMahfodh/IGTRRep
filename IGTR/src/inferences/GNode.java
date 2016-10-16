@@ -25,7 +25,8 @@ public class GNode {
 	
 	// to be specified by domain expert 
 	public boolean isUnnecessaryContext=false;
-	public String nodeCommonType="";
+	protected String nodeCommonType="";
+	public boolean isUniversalContext=false;
 	
 	
 	
@@ -151,6 +152,15 @@ public class GNode {
 //    }
     
     
+	public String getCommonSuperType(){
+		
+		if (this.nodeType.equalsIgnoreCase(this.nodeCommonType) || this.nodeCommonType.length()<1){
+			return this.nodeType;
+		}
+		else {
+			return this.nodeCommonType;
+		}
+	}
     
     
     public void print(){
