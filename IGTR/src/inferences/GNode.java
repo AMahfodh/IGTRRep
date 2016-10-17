@@ -25,7 +25,7 @@ public class GNode {
 	
 	// to be specified by domain expert 
 	public boolean isUnnecessaryContext=false;
-	protected String nodeCommonType="";
+	public String nodeCommonType="";
 	public boolean isUniversalContext=false;
 	
 	
