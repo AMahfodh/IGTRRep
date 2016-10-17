@@ -1,6 +1,8 @@
 package inferences;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClassType {
 	
@@ -10,6 +12,8 @@ public class ClassType {
 	private boolean isCollection=false;	
 	
 	private HashMap<ClassType, Boolean> mapSuperAndSubClassTypes=null;
+	
+	private Set<ClassType> ListOfAllowedTypeToBeGeneralised = new HashSet<ClassType>();
 	
 	
 	public ClassType(String StrClassName, boolean IsCollection){
@@ -34,15 +38,19 @@ public class ClassType {
 	
 	
 	
-	public void addReferenceType(ClassType cType, boolean isSuper){
+	public void addReferenceType(ClassType cType, boolean isSuper, boolean allowGeneralisation){
 		
 		if (!this.mapSuperAndSubClassTypes.containsKey(cType)){			
+			
 			this.mapSuperAndSubClassTypes.put(cType, isSuper);
+			if (allowGeneralisation){
+				this.ListOfAllowedTypeToBeGeneralised.add(cType);
+			}
 		}
 		
 		// add opposite relation 
 		if (!cType.getMapSuperAndSubClassTypes().containsKey(this)){
-			cType.addReferenceType(this, !isSuper);
+			cType.addReferenceType(this, !isSuper, allowGeneralisation);
 		}		
 	}
 	
@@ -54,5 +62,9 @@ public class ClassType {
 		return this.mapSuperAndSubClassTypes.remove(cType);
 	}
 
+	
+	public boolean isAllowedTypeToBeGeneralised(ClassType cType){
+		return this.ListOfAllowedTypeToBeGeneralised.contains(cType);
+	}
 	
 }

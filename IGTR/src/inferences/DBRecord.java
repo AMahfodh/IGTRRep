@@ -754,8 +754,8 @@ public class DBRecord {
     	try {
 
     		String sqlStatement=""
-    				+ "Insert into TblInherentedClassTypes (ClassNameREFF, InherentedWith, isSuperType)"
-    				+ " values (?, ?, ?);";
+    				+ "Insert into TblInherentedClassTypes (ClassNameREFF, InherentedWith, isSuperType, allowGeneralisation)"
+    				+ " values (?, ?, ?, ?);";
 
 
     		pStatement = conn.prepareStatement(sqlStatement);
@@ -766,6 +766,7 @@ public class DBRecord {
 
     			pStatement.setString(2, refType.getKey().getClassName());
     			pStatement.setBoolean(3, refType.getValue());
+    			pStatement.setBoolean(4, cType.isAllowedTypeToBeGeneralised(refType.getKey()));
 
     			if (pStatement.executeUpdate()!=1){
     				return false;				
