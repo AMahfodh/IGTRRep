@@ -63,7 +63,7 @@ public class ParseRuleInstance {
 	 * @param pathA
 	 * @param pathB
 	 */
-	public void parse(String modelType, String ruleName, String pathA, String pathB) {
+	public void parse(String ruleName, String pathA, String pathB) {
 
 		if (!new File(pathA).exists() || !new File(pathB).exists()) {
 			return;
@@ -81,7 +81,7 @@ public class ParseRuleInstance {
 		counterA = new IDGenerator("a");
 		counterB = new IDGenerator("b");
 
-		domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
+		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 		IMatcher matcher = domainConfig.createMatcher(modelA, modelB);
 		System.out.println("Using matcher " + matcher.getClass().getName());
 		matching = matcher.createMatching(modelA, modelB);
@@ -124,9 +124,9 @@ public class ParseRuleInstance {
 	/**
 	 * overload parse method, allowing to instantiate and store NAC examples ..
 	 * */
-	public void parse(String modelType, String ruleName, String pathA, String pathB, int INACReference) {
+	public void parse(String ruleName, String pathA, String pathB, int INACReference) {
 		this.iRuleInstanceID = INACReference;
-		this.parse(modelType, ruleName, pathA, pathB);
+		this.parse(ruleName, pathA, pathB);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class ParseRuleInstance {
 			if (matching.isMatched(eObject) || domainConfig.getUnconsideredNodeTypes().contains(eClass)) {
 				continue;
 			}
-
+			
 			// Map object to node
 			String id = idGen.generate();
 			GNode node = eObject2Node(eObject, id);
@@ -250,6 +250,8 @@ public class ParseRuleInstance {
 	private GNode eObject2Node(EObject obj, String id) {
 		GNode node = new GNode(id, obj.eClass().getName());
 
+		System.out.println("nodeType: " + obj.eClass().getName());
+		
 		// TODO: Handle unnecessary context properly!
 		// /* Just to for testing,
 		// assume that the node 'EPackage' has been specified by domain expert
@@ -272,6 +274,8 @@ public class ParseRuleInstance {
 			Object attValue = obj.eGet(eAttribute);
 			if (attValue != null) {
 				node.addAttribute(new GAttribute(attName, attType, attValue.toString()));
+				
+				System.out.println("attrDeclaration: " + attName + ":" + attType);
 			}
 		}
 
@@ -280,6 +284,9 @@ public class ParseRuleInstance {
 
 	private void createEdge(GraphT graph, Map<EObject, GNode> model2Graph, EObject srcObj, EObject tgtObj,
 			EReference referenceType) {
+		
+		System.out.println("edgeType: " + referenceType.getName());
+		
 		GNode srcNode = model2Graph.get(srcObj);
 		GNode tgtNode = model2Graph.get(tgtObj);
 

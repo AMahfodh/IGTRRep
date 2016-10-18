@@ -43,10 +43,9 @@ public class UMLDomainConfiguration extends AbstractDomainConfiguration {
 			// For simplification
 			unconsideredEdgeTypes.add(UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue());
 			unconsideredEdgeTypes.add(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue());
+			
 			// redundancies
-			// unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEFactory_EPackage());
-			// unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEPackage_EFactoryInstance());
-			// unconsideredEdgeTypes.add(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
+			unconsideredEdgeTypes.add(UMLPackage.eINSTANCE.getGeneralization_Specific());
 		}
 
 		return unconsideredEdgeTypes;
@@ -56,8 +55,6 @@ public class UMLDomainConfiguration extends AbstractDomainConfiguration {
 	public Set<EAttribute> getUnconsideredAttributeTypes() {
 		if (unconsideredAttributeTypes == null) {
 			unconsideredAttributeTypes = new HashSet<EAttribute>();
-
-			// not accesible in Papyrus' concrete syntax
 		}
 
 		return unconsideredAttributeTypes;
@@ -68,20 +65,8 @@ public class UMLDomainConfiguration extends AbstractDomainConfiguration {
 		if (visibleAttributeTypes == null) {
 			visibleAttributeTypes = new HashSet<EAttribute>();
 
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getENamedElement_Name());
-
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEPackage_NsPrefix());
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEPackage_NsURI());
-
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClassifier_InstanceClassName());
-
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getETypedElement_LowerBound());
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getETypedElement_UpperBound());
-
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClass_Abstract());
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEClass_Interface());
-
-			visibleAttributeTypes.add(EcorePackage.eINSTANCE.getEReference_Containment());
+			visibleAttributeTypes.add(UMLPackage.eINSTANCE.getNamedElement_Name());
+			visibleAttributeTypes.add(UMLPackage.eINSTANCE.getClassifier_IsAbstract());
 		}
 
 		return visibleAttributeTypes;

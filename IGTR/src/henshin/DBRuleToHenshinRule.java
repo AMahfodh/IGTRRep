@@ -35,8 +35,7 @@ public class DBRuleToHenshinRule {
 	HenshinFactory hFactory = HenshinFactory.eINSTANCE;
 
 	// Domain info
-	String modelType = "ecore";
-	IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
+	IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 
 	// The rules
 	DBRule dbRule;

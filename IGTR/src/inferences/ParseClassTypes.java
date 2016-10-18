@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
@@ -20,29 +21,35 @@ public class ParseClassTypes {
 	private Map<EClass, ClassType> eClass2NodeType = null;
 
 	public ParseClassTypes() {
+		if (IDomainConfiguration.MODEL_TYPE.equals("uml")) {
+			// UML-specific simplification to just get the relevant subset of
+			// the UML meta-model
+			parseUMLMetamodel();
+		} else {
+			// Generic method
+			parseMetamodel();
+		}
 
-		this.parsingMetaModelFile();
-		this.save();
+		save();
 	}
 
 	/**
-	 * TODO parsing meta model file
+	 * Generic method for parsing an Ecore-based meta-model
 	 */
-	private void parsingMetaModelFile() {
+	private void parseMetamodel() {
 		System.out.println("Parsing meta model and import type graph");
 
 		eClass2NodeType = new HashMap<EClass, ClassType>();
 
 		// Domain info
-		String modelType = "ecore";
-		IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
+		IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 
 		// Collect relevant eClasses
 		EList<EClassifier> eClassifiers = EMFMetaUtil.getAllMetaClassesForPackage(domainConfig.getEPackage());
 		Set<EClass> unconsideredEClasses = domainConfig.getUnconsideredNodeTypes();
-		//for (EClass eClass : unconsideredEClasses) {
-			// System.out.println("ignore: " + eClass.getName());
-		//}
+		// for (EClass eClass : unconsideredEClasses) {
+		// System.out.println("ignore: " + eClass.getName());
+		// }
 
 		eClassifiers.removeAll(unconsideredEClasses);
 
@@ -66,61 +73,95 @@ public class ParseClassTypes {
 			for (EClass superEClass : eClass.getESuperTypes()) {
 				System.out.println(eClass.getName() + " <- " + superEClass.getName());
 				ClassType superNodeType = eClass2NodeType.get(superEClass);
-				
-				nodeType.addReferenceType(
-						superNodeType, 
-						true, 
-						this.hasIdenticalAttributes(eClass, superEClass));
+
+				nodeType.addReferenceType(superNodeType, true, this.hasIdenticalAttributes(eClass, superEClass));
 			}
 		}
-
-
 	}
 
-	
-	
-	private boolean hasIdenticalAttributes(EClass eClass, EClass superEClass){
-		
+	/**
+	 * UML-specific simplification to just get the relevant subset of the UML
+	 * meta-model
+	 */
+	private void parseUMLMetamodel() {
+		System.out.println("Import type graph for subset of the UML meta-model");
+
+		// Create a node type for each relevant eClass
+		eClass2NodeType = new HashMap<EClass, ClassType>();
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getModel(), new ClassType("Model", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getPackage(), new ClassType("Package", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getClass_(), new ClassType("Class", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getInterface(), new ClassType("Interface", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getGeneralization(), new ClassType("Generalization", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getProperty(), new ClassType("Property", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getDataType(), new ClassType("DataType", false));
+
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getNamedElement(), new ClassType("NamedElement", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getType(), new ClassType("Type", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getPackageableElement(), new ClassType("PackageableElement", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getClassifier(), new ClassType("Classifier", false));
+
+		// Create inheritance relationships
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getModel()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getPackage()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getPackage()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getNamedElement()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getProperty()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getNamedElement()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getType()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getNamedElement()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getDataType()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getType()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getPackageableElement()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getType()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getClass_()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getInterface()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()), true, true);
+	}
+
+	private boolean hasIdenticalAttributes(EClass eClass, EClass superEClass) {
+
 		/*
-		 * return false if eClass has attribute(s) that are not exists in superEClass, 
-		 * return true otherwise 
+		 * return false if eClass has attribute(s) that are not exists in
+		 * superEClass, return true otherwise
 		 */
-				
-		if (eClass.getEAllAttributes().size()>superEClass.getEAllAttributes().size()){
+
+		if (eClass.getEAllAttributes().size() > superEClass.getEAllAttributes().size()) {
 			return false;
 		}
-		
+
 		Set<EAttribute> alreadyMatchedEAttributes = new HashSet<EAttribute>();
-		
-		for (EAttribute eAttribute: eClass.getEAllAttributes()){
-			
-			boolean isMatched=false;
-			
-			for (EAttribute eSuperAttribute: superEClass.getEAllAttributes()){
-				
-				if (alreadyMatchedEAttributes.contains(eSuperAttribute)){
+
+		for (EAttribute eAttribute : eClass.getEAllAttributes()) {
+
+			boolean isMatched = false;
+
+			for (EAttribute eSuperAttribute : superEClass.getEAllAttributes()) {
+
+				if (alreadyMatchedEAttributes.contains(eSuperAttribute)) {
 					continue;
 				}
-				
-				if (eAttribute.getEAttributeType().equals(eSuperAttribute.getEAttributeType()) && 
-					eAttribute.getName().equals(eSuperAttribute.getName())){
-					
+
+				if (eAttribute.getEAttributeType().equals(eSuperAttribute.getEAttributeType())
+						&& eAttribute.getName().equals(eSuperAttribute.getName())) {
+
 					alreadyMatchedEAttributes.add(eSuperAttribute);
-					isMatched=true;
+					isMatched = true;
 					break;
-				}				
+				}
 			}
-			
-			if (!isMatched){
+
+			if (!isMatched) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
-	
-	
+
 	private void save() {
 		System.out.println("Saving class types .. ");
 

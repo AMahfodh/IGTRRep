@@ -26,8 +26,7 @@ public class ExportAllToHenshin {
 	private static final String ALL_RULES = "allRules";
 
 	// Domain info
-	private String modelType = "ecore";
-	private IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration(modelType);
+	private IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 
 	// Collected rules
 	private Collection<DBRule> dbRulesWithoutMO = new ArrayList<DBRule>();
