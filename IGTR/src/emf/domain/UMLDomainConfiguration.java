@@ -91,5 +91,10 @@ public class UMLDomainConfiguration extends AbstractDomainConfiguration {
 	public EPackage getEPackage() {
 		return EcorePackage.eINSTANCE;
 	}
+	
+	@Override
+	public boolean treatAttributesAsNodes() {
+		return true;
+	}
 
 }

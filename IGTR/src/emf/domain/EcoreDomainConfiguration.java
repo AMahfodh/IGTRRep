@@ -118,5 +118,9 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 		return EcorePackage.eINSTANCE;
 	}
 	
+	@Override
+	public boolean treatAttributesAsNodes() {
+		return false;
+	}
 	
 }

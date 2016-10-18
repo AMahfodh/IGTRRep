@@ -8,9 +8,9 @@ import emf.domain.IDomainConfiguration;
 
 public class ParseRuleInstances {
 
-	private static final String PREFIX_POSITIVE = "example";
-	private static final String PREFIX_NEGATIVE = "negative";
-	private static final String PREFIX_REFERENCE = "reference";
+	public static final String PREFIX_POSITIVE = "example";
+	public static final String PREFIX_NEGATIVE = "negative";
+	public static final String PREFIX_REFERENCE = "reference";
 
 	private HashMap<String, Integer> mapExampleID_to_StoredRuleID = new HashMap<String, Integer>();
 

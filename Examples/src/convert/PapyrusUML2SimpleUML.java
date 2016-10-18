@@ -1,5 +1,7 @@
 package convert;
 
+import inferences.ParseRuleInstances;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -9,12 +11,6 @@ import org.eclipse.uml2.uml.Model;
 import emf.util.EMFResourceUtil;
 
 public class PapyrusUML2SimpleUML {
-
-	private static final String PREFIX_POSITIVE = "example";
-	private static final String PREFIX_NEGATIVE = "negative";
-	private static final String PAPYRUS_ORIGINAL = "PapyrusOriginal";
-	private static final String PAPYRUS_CHANGED = "PapyrusChanged";
-	private static final String PAPYRUS_MODEL = "model.uml";
 
 	private void convertExamples() {
 		// Model types to be considered
@@ -37,24 +33,23 @@ public class PapyrusUML2SimpleUML {
 
 				for (File example : examples) {
 
-					if (example.getName().startsWith(PREFIX_POSITIVE) || example.getName().startsWith(PREFIX_NEGATIVE)) {
+					if (example.getName().startsWith(ParseRuleInstances.PREFIX_POSITIVE) || example.getName().startsWith(ParseRuleInstances.PREFIX_NEGATIVE)) {
 						System.out.println("\n= Example " + example.getName());
 
-						String pathOriginal = example.getAbsoluteFile() + File.separator + PAPYRUS_ORIGINAL
-								+ File.separator + PAPYRUS_MODEL;
-						String pathChanged = example.getAbsoluteFile() + File.separator + PAPYRUS_CHANGED
-								+ File.separator + PAPYRUS_MODEL;
+						String pathOriginal = example.getAbsoluteFile() + File.separator
+								+ CopyPapyrusToUML.PAPYRUS_ORIGINAL + File.separator + CopyPapyrusToUML.PAPYRUS_MODEL;
+						String pathChanged = example.getAbsoluteFile() + File.separator
+								+ CopyPapyrusToUML.PAPYRUS_CHANGED + File.separator + CopyPapyrusToUML.PAPYRUS_MODEL;
 
 						System.out.println("\t" + pathOriginal);
 						System.out.println("\t" + pathChanged);
-						
+
 						Resource resourceOriginal = EMFResourceUtil.loadModel(pathOriginal);
 						Resource resourceChanged = EMFResourceUtil.loadModel(pathChanged);
-						
+
 						papyrusUML2SimpleUML((Model) resourceOriginal.getContents().get(0));
 						papyrusUML2SimpleUML((Model) resourceChanged.getContents().get(0));
-						
-						
+
 						// parser.parse(modelType, operation.getName(),
 						// pathOriginal, pathChanged);
 
@@ -68,10 +63,10 @@ public class PapyrusUML2SimpleUML {
 		}
 	}
 
-	private void papyrusUML2SimpleUML(Model papyrusModel){
-		
+	private void papyrusUML2SimpleUML(Model papyrusModel) {
+
 	}
-	
+
 	public static void main(String[] args) {
 		new PapyrusUML2SimpleUML().convertExamples();
 	}

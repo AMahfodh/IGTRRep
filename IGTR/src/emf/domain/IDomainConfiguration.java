@@ -39,4 +39,6 @@ public interface IDomainConfiguration {
 	public EAttribute deriveAttributeType(EClass nodeType, String name);
 	
 	public boolean doDeriveParameters();
+	
+	public boolean treatAttributesAsNodes();
 }

@@ -1,26 +1,35 @@
 package inferences;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
 import emf.util.EMFMetaUtil;
+import emf.util.EMFResourceUtil;
 
 public class ParseClassTypes {
+
+	private IDomainConfiguration domainConfig;
 
 	// Ecore type (EClass) -> node type (ClassType)
 	private Map<EClass, ClassType> eClass2NodeType = null;
 
 	public ParseClassTypes() {
+		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
+
 		if (IDomainConfiguration.MODEL_TYPE.equals("uml")) {
 			// UML-specific simplification to just get the relevant subset of
 			// the UML meta-model
@@ -40,9 +49,6 @@ public class ParseClassTypes {
 		System.out.println("Parsing meta model and import type graph");
 
 		eClass2NodeType = new HashMap<EClass, ClassType>();
-
-		// Domain info
-		IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 
 		// Collect relevant eClasses
 		EList<EClassifier> eClassifiers = EMFMetaUtil.getAllMetaClassesForPackage(domainConfig.getEPackage());
@@ -187,12 +193,76 @@ public class ParseClassTypes {
 			DBRecord.saveClassAssociations(nodeType);
 		}
 
+		// Add special node types for signifying attribute nodes
+		if (domainConfig.treatAttributesAsNodes()) {
+			Set values = getDistinctAttributeValues();
+			for (Object v : values) {
+				ClassType specialType = new ClassType(v.toString(), false);
+				DBRecord.saveClassAssociations(specialType);
+			}
+		}
+
 		/*
 		 * close DB connection
 		 */
 		DBRecord.closeConnection();
 
 		System.out.print("done\n");
+	}
+
+	private Set getDistinctAttributeValues() {
+		Set res = new HashSet();
+
+		// We just scan the file system for examples
+		File workingDir = new File("");
+		String examplesPath = workingDir.getAbsolutePath() + File.separator + ".." + File.separator + "Examples";
+
+		String modelsPath = examplesPath + File.separator + IDomainConfiguration.MODEL_TYPE;
+		File modelsFolder = new File(modelsPath);
+
+		File[] operations = modelsFolder.listFiles();
+		for (File operation : operations) {
+			File[] examples = operation.listFiles();
+			for (File example : examples) {
+
+				if (example.getName().startsWith(ParseRuleInstances.PREFIX_POSITIVE)
+						|| example.getName().startsWith(ParseRuleInstances.PREFIX_POSITIVE)) {
+					String pathOriginal = example.getAbsoluteFile() + File.separator + "Original."
+							+ IDomainConfiguration.MODEL_TYPE;
+					String pathChanged = example.getAbsoluteFile() + File.separator + "Changed."
+							+ IDomainConfiguration.MODEL_TYPE;
+
+					Resource modelOriginal = EMFResourceUtil.loadModel(pathOriginal);
+					Resource modelChanged = EMFResourceUtil.loadModel(pathChanged);
+
+					addDisctinctAttributevalues(modelOriginal, res);
+					addDisctinctAttributevalues(modelChanged, res);
+				}
+			}
+		}
+		
+		return res;
+	}
+
+	private void addDisctinctAttributevalues(Resource model, Set values) {
+		TreeIterator<EObject> iterator = model.getAllContents();
+
+		while (iterator.hasNext()) {
+			EObject eObject = iterator.next();
+
+			for (EAttribute eAttribute : eObject.eClass().getEAllAttributes()) {
+				if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
+						|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
+						|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
+					continue;
+				}
+
+				Object attValue = eObject.eGet(eAttribute);
+				if (attValue != null && !values.contains(attValue)) {
+					values.add(attValue);
+				}
+			}
+		}
 	}
 
 	public static void main(String[] args) {
