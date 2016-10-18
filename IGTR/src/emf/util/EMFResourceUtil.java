@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Static utility functions for dealing with EMF Resources.
@@ -21,11 +22,13 @@ public class EMFResourceUtil {
 	static {
 		// Initialize the required meta-models
 		EcorePackage.eINSTANCE.eClass();
-
+		UMLPackage.eINSTANCE.eClass();
+				
 		// Register the resource factories for the required model types
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("ecore", new XMIResourceFactoryImpl());
+		m.put("uml", new XMIResourceFactoryImpl());
 	}
 
 	/**
