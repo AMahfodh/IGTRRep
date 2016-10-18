@@ -17,6 +17,9 @@ import emf.matching.IMatcher;
  */
 public interface IDomainConfiguration {
 
+	//public static final String MODEL_TYPE = "ecore";
+	public static final String MODEL_TYPE = "uml";
+	
 	public Set<EClass> getUnconsideredNodeTypes();
 
 	public Set<EReference> getUnconsideredEdgeTypes();
