@@ -7,17 +7,16 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
 import emf.util.EMFMetaUtil;
+import emf.util.EMFModelUtil;
 import emf.util.EMFResourceUtil;
 
 public class ParseClassTypes {
@@ -100,7 +99,7 @@ public class ParseClassTypes {
 		eClass2NodeType.put(UMLPackage.eINSTANCE.getInterface(), new ClassType("Interface", false));
 		eClass2NodeType.put(UMLPackage.eINSTANCE.getGeneralization(), new ClassType("Generalization", false));
 		eClass2NodeType.put(UMLPackage.eINSTANCE.getProperty(), new ClassType("Property", false));
-		eClass2NodeType.put(UMLPackage.eINSTANCE.getDataType(), new ClassType("DataType", false));
+		eClass2NodeType.put(UMLPackage.eINSTANCE.getPrimitiveType(), new ClassType("PrimitiveType", false));
 
 		eClass2NodeType.put(UMLPackage.eINSTANCE.getNamedElement(), new ClassType("NamedElement", false));
 		eClass2NodeType.put(UMLPackage.eINSTANCE.getType(), new ClassType("Type", false));
@@ -116,7 +115,7 @@ public class ParseClassTypes {
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getNamedElement()), true, true);
 		eClass2NodeType.get(UMLPackage.eINSTANCE.getType()).addReferenceType(
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getNamedElement()), true, true);
-		eClass2NodeType.get(UMLPackage.eINSTANCE.getDataType()).addReferenceType(
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getPrimitiveType()).addReferenceType(
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getType()), true, true);
 		eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()).addReferenceType(
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getPackageableElement()), true, true);
@@ -198,7 +197,7 @@ public class ParseClassTypes {
 			Set values = getDistinctAttributeValues();
 			for (Object v : values) {
 				ClassType specialType = new ClassType(v.toString(), false);
-				DBRecord.saveClassAssociations(specialType);
+				DBRecord.saveClassTypes(specialType);
 			}
 		}
 
@@ -235,34 +234,13 @@ public class ParseClassTypes {
 					Resource modelOriginal = EMFResourceUtil.loadModel(pathOriginal);
 					Resource modelChanged = EMFResourceUtil.loadModel(pathChanged);
 
-					addDisctinctAttributevalues(modelOriginal, res);
-					addDisctinctAttributevalues(modelChanged, res);
+					EMFModelUtil.addDisctinctAttributevalues(modelOriginal, res);
+					EMFModelUtil.addDisctinctAttributevalues(modelChanged, res);
 				}
 			}
 		}
 		
 		return res;
-	}
-
-	private void addDisctinctAttributevalues(Resource model, Set values) {
-		TreeIterator<EObject> iterator = model.getAllContents();
-
-		while (iterator.hasNext()) {
-			EObject eObject = iterator.next();
-
-			for (EAttribute eAttribute : eObject.eClass().getEAllAttributes()) {
-				if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
-						|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
-						|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
-					continue;
-				}
-
-				Object attValue = eObject.eGet(eAttribute);
-				if (attValue != null && !values.contains(attValue)) {
-					values.add(attValue);
-				}
-			}
-		}
 	}
 
 	public static void main(String[] args) {

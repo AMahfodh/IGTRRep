@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -19,6 +20,7 @@ import emf.matching.Correspondence;
 import emf.matching.IMatcher;
 import emf.matching.Matching;
 import emf.util.EMFMetaUtil;
+import emf.util.EMFModelUtil;
 import emf.util.EMFResourceUtil;
 import emf.util.EObjectLocation;
 
@@ -41,6 +43,10 @@ public class ParseRuleInstance {
 	private Map<GNode, EObject> lhs2modelA;
 	private Map<GNode, EObject> rhs2modelB;
 
+	// Mapping: attribute value -> special node
+	private Map<Object, GNode> attrValue2lhs;
+	private Map<Object, GNode> attrValue2rhs;
+
 	// ID Counters ...
 	// ... for corresponding nodes
 	private IDGenerator counterC;
@@ -48,6 +54,8 @@ public class ParseRuleInstance {
 	private IDGenerator counterA;
 	// ... for nodes specific to the changed model
 	private IDGenerator counterB;
+	// ... for corresponding nodes
+	private IDGenerator counterAttr;
 
 	// LHS and RHS graphs
 	private GraphT gLHS;
@@ -77,9 +85,13 @@ public class ParseRuleInstance {
 		lhs2modelA = new HashMap<GNode, EObject>();
 		rhs2modelB = new HashMap<GNode, EObject>();
 
+		attrValue2lhs = new HashMap<Object, GNode>();
+		attrValue2rhs = new HashMap<Object, GNode>();
+
 		counterC = new IDGenerator("c");
 		counterA = new IDGenerator("a");
 		counterB = new IDGenerator("b");
+		counterAttr = new IDGenerator("attr");
 
 		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 		IMatcher matcher = domainConfig.createMatcher(modelA, modelB);
@@ -89,6 +101,11 @@ public class ParseRuleInstance {
 
 		gLHS = new GraphT();
 		gRHS = new GraphT();
+
+		// Create special nodes for attribute values
+		if (domainConfig.treatAttributesAsNodes()) {
+			createSpecialAttributeNodes();
+		}
 
 		// First, we map the eObjects to graph nodes
 		traverseMatching();
@@ -141,10 +158,8 @@ public class ParseRuleInstance {
 
 			// Map objects to nodes
 			String id = counterC.generate();
-			GNode lhsNode = eObject2Node(c.getObjA(), id);
-			GNode rhsNode = eObject2Node(c.getObjB(), id);
-			gLHS.addNode(lhsNode);
-			gRHS.addNode(rhsNode);
+			GNode lhsNode = eObject2Node(gLHS, c.getObjA(), id);
+			GNode rhsNode = eObject2Node(gRHS, c.getObjB(), id);
 
 			// Store the mapping traces
 			modelA2lhs.put(c.getObjA(), lhsNode);
@@ -175,11 +190,10 @@ public class ParseRuleInstance {
 			if (matching.isMatched(eObject) || domainConfig.getUnconsideredNodeTypes().contains(eClass)) {
 				continue;
 			}
-			
+
 			// Map object to node
 			String id = idGen.generate();
-			GNode node = eObject2Node(eObject, id);
-			graph.addNode(node);
+			GNode node = eObject2Node(graph, eObject, id);
 
 			// Store the mapping traces
 			model2graph.put(eObject, node);
@@ -247,11 +261,12 @@ public class ParseRuleInstance {
 		} // end iterate
 	}
 
-	private GNode eObject2Node(EObject obj, String id) {
+	private GNode eObject2Node(GraphT graph, EObject obj, String id) {
 		GNode node = new GNode(id, obj.eClass().getName());
+		graph.addNode(node);
 
 		System.out.println("nodeType: " + obj.eClass().getName());
-		
+
 		// TODO: Handle unnecessary context properly!
 		// /* Just to for testing,
 		// assume that the node 'EPackage' has been specified by domain expert
@@ -272,10 +287,27 @@ public class ParseRuleInstance {
 			String attName = eAttribute.getName();
 			String attType = eAttribute.getEType().getName();
 			Object attValue = obj.eGet(eAttribute);
-			if (attValue != null) {
+			if (attValue == null) {
+				continue;
+			}
+
+			System.out.println("attrDeclaration: " + attName + ":" + attType);
+			if (domainConfig.treatAttributesAsNodes()) {
+				// Create special edge to special attribute node
+				GNode srcNode = node;
+				GNode tgtNode = null;
+				if (graph == gLHS) {
+					tgtNode = attrValue2lhs.get(attValue);
+				} else {
+					assert (graph == gRHS);
+					tgtNode = attrValue2rhs.get(attValue);
+				}
+
+				GEdge edge = new GEdge(srcNode.nodeID, tgtNode.nodeID, attName);
+				graph.addEdge(edge);
+
+			} else {
 				node.addAttribute(new GAttribute(attName, attType, attValue.toString()));
-				
-				System.out.println("attrDeclaration: " + attName + ":" + attType);
 			}
 		}
 
@@ -284,14 +316,31 @@ public class ParseRuleInstance {
 
 	private void createEdge(GraphT graph, Map<EObject, GNode> model2Graph, EObject srcObj, EObject tgtObj,
 			EReference referenceType) {
-		
+
 		System.out.println("edgeType: " + referenceType.getName());
-		
+
 		GNode srcNode = model2Graph.get(srcObj);
 		GNode tgtNode = model2Graph.get(tgtObj);
 
 		GEdge edge = new GEdge(srcNode.nodeID, tgtNode.nodeID, referenceType.getName());
 		graph.addEdge(edge);
+	}
+
+	private void createSpecialAttributeNodes() {
+		Set values = EMFModelUtil.getDistinctAttributeValues(modelA, modelB);
+
+		for (Object value : values) {
+			// Map attribute value to special nodes
+			String id = counterAttr.generate();
+			GNode lhsNode = new GNode(id, value.toString());
+			GNode rhsNode = new GNode(id, value.toString());
+			gLHS.addNode(lhsNode);
+			gRHS.addNode(rhsNode);
+
+			// Store the mapping traces
+			attrValue2lhs.put(value, lhsNode);
+			attrValue2rhs.put(value, rhsNode);
+		}
 	}
 
 	protected class IDGenerator {
