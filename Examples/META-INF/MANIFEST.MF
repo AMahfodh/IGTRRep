@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Examples
+Bundle-SymbolicName: Examples
+Bundle-Version: 1.0.0.qualifier
+Export-Package: convert
+Require-Bundle: org.eclipse.uml2.uml;bundle-version="5.0.2",
+ IGTR;bundle-version="1.0.0"
