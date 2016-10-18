@@ -7,10 +7,14 @@ import inferences.GNode;
 import inferences.GraphT;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Graph;
@@ -23,6 +27,7 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
+import emf.util.DataNodeWrapper;
 
 /**
  * Transforms a DBRule to a Henshin rule.
@@ -35,7 +40,8 @@ public class DBRuleToHenshinRule {
 	HenshinFactory hFactory = HenshinFactory.eINSTANCE;
 
 	// Domain info
-	IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
+	IDomainConfiguration domainConfig;
+	DataNodeWrapper dataNodeWrapper;
 
 	// The rules
 	DBRule dbRule;
@@ -128,6 +134,9 @@ public class DBRuleToHenshinRule {
 		this.dbRule = dbRule;
 		hRule = hFactory.createRule(dbRule.name);
 
+		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
+		dataNodeWrapper = DataNodeWrapper.getComprehensiveDataNodeWrapper();
+
 		// Print parameters and also generate required ones based on
 		// inferred
 		// invariants
@@ -169,14 +178,18 @@ public class DBRuleToHenshinRule {
 			// Construct rule
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
-			
-			// Retrieve object parameters
-			ObjectParameterRetriever objRetriever = new ObjectParameterRetriever(this);
-			objRetriever.retrieve();
-			
-			// TODO
-			InvariantConstraintHandler invariantHandler = new InvariantConstraintHandler(this);
-			invariantHandler.retrieve();
+
+			valueNodes2Attributes(hRule);
+
+			// // Retrieve object parameters
+			// ObjectParameterRetriever objRetriever = new
+			// ObjectParameterRetriever(this);
+			// objRetriever.retrieve();
+			//
+			// // TODO
+			// InvariantConstraintHandler invariantHandler = new
+			// InvariantConstraintHandler(this);
+			// invariantHandler.retrieve();
 
 		} else {
 			// loading lhs graph (with MO)
@@ -199,9 +212,10 @@ public class DBRuleToHenshinRule {
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
 
-			ObjectParameterRetriever objRetriever = new ObjectParameterRetriever(this);
-			objRetriever.retrieve();
-			
+			// ObjectParameterRetriever objRetriever = new
+			// ObjectParameterRetriever(this);
+			// objRetriever.retrieve();
+
 			// Construct the multi rule
 			Rule m_hRule = hFactory.createRule(dbRule.name + "_multi");
 			hRule.getMultiRules().add(m_hRule);
@@ -213,10 +227,11 @@ public class DBRuleToHenshinRule {
 
 			// Kernel-rule to multi-rule mappings
 			createKernel2MultiMappings(lhsWithMo, rhsWithMo, m_hRule);
-			
-			// TODO
-			InvariantConstraintHandler invariantHandler = new InvariantConstraintHandler(this);
-			invariantHandler.retrieve();
+
+			// // TODO
+			// InvariantConstraintHandler invariantHandler = new
+			// InvariantConstraintHandler(this);
+			// invariantHandler.retrieve();
 		}
 
 		return hRule;
@@ -231,42 +246,54 @@ public class DBRuleToHenshinRule {
 	 */
 	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {
 		System.out.println("Transform Graph: " + HenshinUtil.getGraphName(isRHS, isMulti));
-		//graph.printGraph();
+		// graph.printGraph();
 
 		Graph hGraph = hFactory.createGraph(HenshinUtil.getGraphName(isRHS, isMulti));
 
 		// Create Henshin nodes
 		for (GNode node : graph.gNodes) {
-			
+
 			// Skip multi-nodes when creating kernel rule
-			if (!isMulti && node.isMulti) {				
+			if (!isMulti && node.isMulti) {
 				continue;
 			}
 
-			Node hNode = hFactory.createNode(hGraph, domainConfig.deriveNodeType(node.nodeType), "");
+			EClass hNodeType = domainConfig.deriveNodeType(node.nodeType);
+			Node hNode = hFactory.createNode(hGraph, hNodeType, "");
+
 			String nodeID = null;
-			if (dbRule.isMulti){
+			if (dbRule.isMulti) {
 				nodeID = "AbstractID";
-			}else{
+			} else {
 				nodeID = "nodeID";
 			}
 			hNode.setName(getNodeID(node, nodeID));
+
+			if (hNodeType == null) {
+				// Just a dummy node for a data node representing an attribute
+				// value
+				String dummyName = hNode.getName();
+				dummyName += "__" + node.nodeType;
+				hNode.setName(dummyName);
+			}
 
 			// Put to mappings
 			putToMappings(node, hNode, getMapPair(ElementKind.NODE, isRHS, isMulti));
 
 			// Transform attributes
-			transformAttributes(node, isRHS, isMulti);
+			if (!domainConfig.treatAttributesAsNodes()) {
+				transformAttributes(graph, node, isRHS, isMulti);
+			}
 		}
 
 		// Create Henshin Edges
-		for (GEdge edge : graph.gEdges) {						
+		for (GEdge edge : graph.gEdges) {
 			GNode srcNode = getNodeByID(edge.sourceID, isRHS, isMulti, "nodeID");
 			GNode tgtNode = getNodeByID(edge.targetID, isRHS, isMulti, "nodeID");
-			
+
 			// Skip multi-edges when creating kernel rule
 			if (!isMulti) {
-				if ((srcNode == null) || (tgtNode == null) || srcNode.isMulti || tgtNode.isMulti) {					
+				if ((srcNode == null) || (tgtNode == null) || srcNode.isMulti || tgtNode.isMulti) {
 					continue;
 				}
 			}
@@ -274,11 +301,25 @@ public class DBRuleToHenshinRule {
 			Node hSrcNode = getHNode(srcNode, isRHS, isMulti);
 			Node hTgtNode = getHNode(tgtNode, isRHS, isMulti);
 
-			Edge hEdge = hFactory.createEdge(hSrcNode, hTgtNode,
-					domainConfig.deriveEdgeType(hSrcNode.getType(), edge.edgeType));
+			Edge hEdge = null;
+			EReference edgeType = domainConfig.deriveEdgeType(hSrcNode.getType(), edge.edgeType);
+			if (edgeType != null) {
+				hEdge = hFactory.createEdge(hSrcNode, hTgtNode, edgeType);
+			} else {
+				// Just a dummy edge representing a pointer to a value node
+				hEdge = new ValueEdge();
+				hEdge.setSource(hSrcNode);
+				hEdge.setTarget(hTgtNode);
+				hEdge.setGraph(hSrcNode.getGraph());
+				((ValueEdge) hEdge).setAttribute(edge.edgeType);
+			}
 
 			// Put to mappings
 			putToMappings(edge, hEdge, getMapPair(ElementKind.EDGE, isRHS, isMulti));
+		}
+
+		if (domainConfig.treatAttributesAsNodes()) {
+
 		}
 
 		return hGraph;
@@ -290,21 +331,67 @@ public class DBRuleToHenshinRule {
 	 * @param isRHS
 	 * @param isMulti
 	 */
-	private void transformAttributes(GNode node, boolean isRHS, boolean isMulti) {
+	private void transformAttributes(GraphT graph, GNode node, boolean isRHS, boolean isMulti) {
 		Node hNode = getHNode(node, isRHS, isMulti);
 
-		for (GAttribute attribute : node.gAttribute) {
-			// Exclude ref attributes
-			if (attribute.attIsObjectRelation) {
-				continue;
+		if (domainConfig.treatAttributesAsNodes()) {
+
+		} else {
+			for (GAttribute attribute : node.gAttribute) {
+				// Exclude ref attributes
+				if (attribute.attIsObjectRelation) {
+					continue;
+				}
+
+				// Create attribute
+				Attribute hAttribute = hFactory.createAttribute(hNode,
+						domainConfig.deriveAttributeType(hNode.getType(), attribute.attName), attribute.attName);
+
+				// Put to mappings
+				putToMappings(attribute, hAttribute, getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
 			}
+		}
+	}
 
-			// Create attribute
-			Attribute hAttribute = hFactory.createAttribute(hNode,
-					domainConfig.deriveAttributeType(hNode.getType(), attribute.attName), attribute.attName);
+	private void valueNodes2Attributes(Rule rule) {
+		for (NodePair nodePair : HenshinUtil.getPreservedNodes(rule)) {
+			if (nodePair.getLhsNode().getName().contains("__")) {
+				// it's a value node
+				String syntheticType = nodePair.getLhsNode().getName().split("__")[1];
+				if (!dataNodeWrapper.getDisctinctRepresentativeDataSortElements().contains(syntheticType)) {
+					// (1) represents a literal value, just inline it
+					for (Edge edge : nodePair.getLhsNode().getIncoming()) {
+						ValueEdge valueEdge = (ValueEdge) edge;
+						Node srcNode = valueEdge.getSource();
 
-			// Put to mappings
-			putToMappings(attribute, hAttribute, getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+						Attribute hAttribute = hFactory.createAttribute(srcNode,
+								domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()),
+								syntheticType);
+
+						// TODO: Put to mappings..??
+						// putToMappings(attribute, hAttribute,
+						// getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+					}
+					for (Edge edge : nodePair.getRhsNode().getIncoming()) {
+						ValueEdge valueEdge = (ValueEdge) edge;
+						Node srcNode = valueEdge.getSource();
+
+						Attribute hAttribute = hFactory.createAttribute(srcNode,
+								domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()),
+								syntheticType);
+
+						// TODO: Put to mappings..??
+						// putToMappings(attribute, hAttribute,
+						// getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+					}
+					
+					// cleanup henshin graphs
+					Mapping mapping = HenshinUtil.findMapping(rule.getMappings(), nodePair.getLhsNode(), nodePair.getRhsNode());
+					rule.getMappings().remove(mapping);
+					rule.getLhs().removeNode(nodePair.getLhsNode());
+					rule.getRhs().removeNode(nodePair.getRhsNode());
+				}
+			}
 		}
 	}
 
@@ -313,9 +400,9 @@ public class DBRuleToHenshinRule {
 		// node
 		for (GNode lhsNode : lhs.gNodes) {
 			String nodeID = null;
-			if (dbRule.isMulti){
+			if (dbRule.isMulti) {
 				nodeID = "AbstractID";
-			}else{
+			} else {
 				nodeID = "nodeID";
 			}
 			GNode rhsNode = getNodeByID(getNodeID(lhsNode, nodeID), true, isMulti, nodeID);
@@ -340,7 +427,7 @@ public class DBRuleToHenshinRule {
 	private void createKernel2MultiMappings(GraphT lhs, GraphT rhs, Rule hMultiRule) {
 		// LHS nodes
 		for (GNode node : lhs.gNodes) {
-			if (node.isMulti){
+			if (node.isMulti) {
 				continue;
 			}
 			Node hKernel = getHNode(node, false, false);
@@ -353,7 +440,7 @@ public class DBRuleToHenshinRule {
 
 		// RHS nodes
 		for (GNode node : rhs.gNodes) {
-			if (node.isMulti){
+			if (node.isMulti) {
 				continue;
 			}
 			Node hKernel = getHNode(node, true, false);
@@ -368,25 +455,25 @@ public class DBRuleToHenshinRule {
 	private String getNodeID(GNode node, String nodeIdField) {
 		String res = null;
 		try {
-			res = (String) GNode.class.getDeclaredField(nodeIdField).get(node);		
+			res = (String) GNode.class.getDeclaredField(nodeIdField).get(node);
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 			e.printStackTrace();
 		}
-		
+
 		return res;
 
-//		if (isIntraGraph) {
-//			return node.nodeID;
-//		} else {
-//			if (dbRule.isMulti) {
-//				return node.AbstractID;
-//			} else {
-//				return node.nodeID;
-//			}
-//		}
+		// if (isIntraGraph) {
+		// return node.nodeID;
+		// } else {
+		// if (dbRule.isMulti) {
+		// return node.AbstractID;
+		// } else {
+		// return node.nodeID;
+		// }
+		// }
 	}
 
-	public GNode getNodeByID(String id, boolean isRHS, boolean isMulti, String nodeIdField) {		
+	public GNode getNodeByID(String id, boolean isRHS, boolean isMulti, String nodeIdField) {
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		for (Object o : mapPair.g2h.keySet()) {
 			GNode node = (GNode) o;
@@ -402,7 +489,7 @@ public class DBRuleToHenshinRule {
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		return (Node) mapPair.g2h.get(node);
 	}
-	
+
 	public GNode getGNode(Node hNode, boolean isRHS, boolean isMulti) {
 		MapPair mapPair = getMapPair(ElementKind.NODE, isRHS, isMulti);
 		return (GNode) mapPair.h2g.get(hNode);
@@ -463,7 +550,7 @@ public class DBRuleToHenshinRule {
 		}
 
 		return new MapPair(g2h, h2g);
-	}	
+	}
 
 	// private void printRuleParameters(int iObservation) {
 	//

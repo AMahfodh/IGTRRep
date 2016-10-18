@@ -1,8 +1,10 @@
 package inferences;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
+import emf.util.DataNodeWrapper;
 import emf.util.EMFMetaUtil;
 import emf.util.EMFModelUtil;
 import emf.util.EMFResourceUtil;
@@ -194,53 +197,23 @@ public class ParseClassTypes {
 
 		// Add special node types for signifying attribute nodes
 		if (domainConfig.treatAttributesAsNodes()) {
-			Set values = getDistinctAttributeValues();
-			for (Object v : values) {
+			DataNodeWrapper wrapper = DataNodeWrapper.getComprehensiveDataNodeWrapper();
+			for (Object v : wrapper.getDisctinctAttributeValues()) {
 				ClassType specialType = new ClassType(v.toString(), false);
 				DBRecord.saveClassTypes(specialType);
 			}
+			for (String s : wrapper.getDisctinctRepresentativeDataSortElements()) {
+				ClassType specialType = new ClassType(s, false);
+				DBRecord.saveClassTypes(specialType);
+			}
 		}
-
+		
 		/*
 		 * close DB connection
 		 */
 		DBRecord.closeConnection();
 
 		System.out.print("done\n");
-	}
-
-	private Set getDistinctAttributeValues() {
-		Set res = new HashSet();
-
-		// We just scan the file system for examples
-		File workingDir = new File("");
-		String examplesPath = workingDir.getAbsolutePath() + File.separator + ".." + File.separator + "Examples";
-
-		String modelsPath = examplesPath + File.separator + IDomainConfiguration.MODEL_TYPE;
-		File modelsFolder = new File(modelsPath);
-
-		File[] operations = modelsFolder.listFiles();
-		for (File operation : operations) {
-			File[] examples = operation.listFiles();
-			for (File example : examples) {
-
-				if (example.getName().startsWith(ParseRuleInstances.PREFIX_POSITIVE)
-						|| example.getName().startsWith(ParseRuleInstances.PREFIX_POSITIVE)) {
-					String pathOriginal = example.getAbsoluteFile() + File.separator + "Original."
-							+ IDomainConfiguration.MODEL_TYPE;
-					String pathChanged = example.getAbsoluteFile() + File.separator + "Changed."
-							+ IDomainConfiguration.MODEL_TYPE;
-
-					Resource modelOriginal = EMFResourceUtil.loadModel(pathOriginal);
-					Resource modelChanged = EMFResourceUtil.loadModel(pathChanged);
-
-					EMFModelUtil.addDisctinctAttributevalues(modelOriginal, res);
-					EMFModelUtil.addDisctinctAttributevalues(modelChanged, res);
-				}
-			}
-		}
-		
-		return res;
 	}
 
 	public static void main(String[] args) {

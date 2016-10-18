@@ -27,35 +27,4 @@ public class EMFModelUtil {
 		return objectID;
 	}
 
-	public static Set getDistinctAttributeValues(Resource... models) {
-		Set res = new HashSet();
-
-		for (Resource model : models) {
-			addDisctinctAttributevalues(model, res);
-		}
-
-		return res;
-	}
-
-	public static void addDisctinctAttributevalues(Resource model, Set values) {
-		IDomainConfiguration domainConfig = DomainConfigurationFactory.createDomainConfiguration();
-		TreeIterator<EObject> iterator = model.getAllContents();
-
-		while (iterator.hasNext()) {
-			EObject eObject = iterator.next();
-
-			for (EAttribute eAttribute : eObject.eClass().getEAllAttributes()) {
-				if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
-						|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
-						|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
-					continue;
-				}
-
-				Object attValue = eObject.eGet(eAttribute);
-				if (attValue != null && !values.contains(attValue)) {
-					values.add(attValue);
-				}
-			}
-		}
-	}
 }

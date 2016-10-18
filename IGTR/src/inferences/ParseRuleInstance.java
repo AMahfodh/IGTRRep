@@ -19,6 +19,7 @@ import emf.domain.IDomainConfiguration;
 import emf.matching.Correspondence;
 import emf.matching.IMatcher;
 import emf.matching.Matching;
+import emf.util.DataNodeWrapper;
 import emf.util.EMFMetaUtil;
 import emf.util.EMFModelUtil;
 import emf.util.EMFResourceUtil;
@@ -327,13 +328,18 @@ public class ParseRuleInstance {
 	}
 
 	private void createSpecialAttributeNodes() {
-		Set values = EMFModelUtil.getDistinctAttributeValues(modelA, modelB);
+		DataNodeWrapper wrapper = new DataNodeWrapper(modelA, modelB);
 
-		for (Object value : values) {
+		for (Object value : wrapper.getDisctinctAttributeValues()) {
 			// Map attribute value to special nodes
 			String id = counterAttr.generate();
-			GNode lhsNode = new GNode(id, value.toString());
-			GNode rhsNode = new GNode(id, value.toString());
+			String syntheticType = wrapper.getRepresentativeDataSortElement(value);
+			if (syntheticType == null) {
+				syntheticType = value.toString();
+			}
+
+			GNode lhsNode = new GNode(id, syntheticType);
+			GNode rhsNode = new GNode(id, syntheticType);
 			gLHS.addNode(lhsNode);
 			gRHS.addNode(rhsNode);
 

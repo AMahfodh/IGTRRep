@@ -38,23 +38,23 @@ public class HenshinUtil {
 
 	static {
 		HenshinPackageImpl.init();
-		
+
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("henshin", new HenshinResourceFactory());
 	}
 
-	public static Module loadModule(File file){
-		  // Obtain a new resource set
-	    ResourceSet resSet = new ResourceSetImpl();
+	public static Module loadModule(File file) {
+		// Obtain a new resource set
+		ResourceSet resSet = new ResourceSetImpl();
 
-	    // Get the resource	   
-	    Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
-	    Module module = (Module) resource.getContents().get(0);
-	    
-	    return module;
+		// Get the resource
+		Resource resource = resSet.getResource(URI.createFileURI(file.getAbsolutePath()), true);
+		Module module = (Module) resource.getContents().get(0);
+
+		return module;
 	}
-	
+
 	/**
 	 * Serializes a temporary Henshin rule to the system's tmp path.
 	 * 
@@ -296,6 +296,27 @@ public class HenshinUtil {
 	}
 
 	/**
+	 * Returns all << preserve >> nodes of a rule.
+	 * 
+	 * @param rule
+	 *            the Henshin rule.
+	 * @return the << preserve >> nodes.
+	 */
+	public static List<NodePair> getPreservedNodes(Rule rule) {
+		List<NodePair> res = new LinkedList<NodePair>();
+
+		for (Node lhsNode : rule.getLhs().getNodes()) {
+			Node rhsNode = getRemoteNode(rule.getMappings(), lhsNode);
+
+			if (rhsNode != null) {
+				res.add(new NodePair(lhsNode, rhsNode));
+			}
+		}
+
+		return res;
+	}
+
+	/**
 	 * Checks whether the specified node is part of the mappings.
 	 * 
 	 * @param mappings
@@ -330,7 +351,7 @@ public class HenshinUtil {
 
 		return null;
 	}
-	
+
 	public static EAttribute getAttributeDeclaration(Node hNode, String attName) {
 		for (EAttribute attType : hNode.getType().getEAllAttributes()) {
 			if (attType.getName().equals(attName)) {
@@ -340,23 +361,44 @@ public class HenshinUtil {
 
 		return null;
 	}
-	
+
 	public static boolean isDefaultValue(Node hNode, String attName, String value) {
 		EAttribute attType = getAttributeDeclaration(hNode, attName);
 		if (attType.getDefaultValue() != null) {
 			String sValue = value;
 			// adjust number format if necessary
-			if (attType.getEAttributeType().equals(EcorePackage.eINSTANCE.getEInt())){				
+			if (attType.getEAttributeType().equals(EcorePackage.eINSTANCE.getEInt())) {
 				Double d = Double.parseDouble(value);
 				sValue = "" + (int) d.doubleValue();
 			}
-			
+
 			return attType.getDefaultValue().toString().equals(sValue);
-		} 
-		
+		}
+
 		// TODO: Treat null values and Strings equally
-		
+
 		return false;
 	}
 	
+	/**
+	 * Returns the mapping of the image and origin node or null if no mapping
+	 * exists.
+	 * 
+	 * @param mappings
+	 *            the mappings to search.
+	 * @param origin
+	 *            the origin node.
+	 * @param image
+	 *            the image node.
+	 * @return the node mapping or null if no mapping exists.
+	 */
+	public static Mapping findMapping(Collection<Mapping> mappings, Node origin, Node image) {
+		for (Mapping mapping : mappings) {
+			if (mapping.getImage() == image && mapping.getOrigin() == origin) {
+				return mapping;
+			}
+		}
+		return null;
+	}
+
 }

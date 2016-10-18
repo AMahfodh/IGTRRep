@@ -58,6 +58,9 @@ public class ExportAllToHenshin {
 		// Create Henshin rules (without multi-objects)
 		System.out.println("Creating Henshin rules ..");
 		for (DBRule dbRule : dbRulesWithoutMO) {
+			if (!dbRule.name.equals("renameNamedElement")){
+				continue;
+			}
 			transformRule(dbRule, hModule);
 		}
 

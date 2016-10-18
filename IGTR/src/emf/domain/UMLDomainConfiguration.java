@@ -89,7 +89,7 @@ public class UMLDomainConfiguration extends AbstractDomainConfiguration {
 
 	@Override
 	public EPackage getEPackage() {
-		return EcorePackage.eINSTANCE;
+		return UMLPackage.eINSTANCE;
 	}
 	
 	@Override

@@ -30,51 +30,65 @@ public abstract class AbstractDomainConfiguration implements IDomainConfiguratio
 
 	@Override
 	public abstract EPackage getEPackage();
-	
+
 	@Override
 	public EClass deriveNodeType(String name) {
-		List<EClass> res = new ArrayList<EClass>();		
+		List<EClass> res = new ArrayList<EClass>();
 		for (EClassifier eClassifier : EMFMetaUtil.getAllMetaClassesForPackage(getEPackage())) {
-			if ((eClassifier instanceof EClass) && eClassifier.getName().equals(name)){
-				res.add((EClass) eClassifier);				
+			if ((eClassifier instanceof EClass) && eClassifier.getName().equals(name)) {
+				res.add((EClass) eClassifier);
 			}
 		}
-		
-		assert(res.size() == 1);
-		
-		return res.get(0);
+
+		if (res.size() == 1) {
+			return res.get(0);
+		}
+		if (res.size() == 0) {
+			return null;
+		}
+
+		assert (false);
+
+		return null;
 	}
-	
+
 	@Override
 	public EReference deriveEdgeType(EClass srcNodeType, String name) {
 		List<EReference> res = new ArrayList<EReference>();
-		
+
 		for (EReference ref : srcNodeType.getEAllReferences()) {
-			if (ref.getName().equals(name)){
+			if (ref.getName().equals(name)) {
 				res.add(ref);
 			}
 		}
-		
-		assert(res.size() == 1);
-		
-		return res.get(0);
+
+		if (res.size() == 1) {
+			return res.get(0);
+		}
+		if (res.size() == 0) {
+			return null;
+		}
+
+		assert (false);
+
+		return null;
 	}
-	
+
 	@Override
 	public EAttribute deriveAttributeType(EClass nodeType, String name) {
 		List<EAttribute> res = new ArrayList<EAttribute>();
-		
+
 		for (EAttribute att : nodeType.getEAllAttributes()) {
-			if (att.getName().equals(name)){
+			if (att.getName().equals(name)) {
 				res.add(att);
 			}
 		}
-		
-		assert(res.size() == 1);
-		
+
+		assert (res.size() == 1);
+
 		return res.get(0);
 	}
-	
+
 	@Override
 	public boolean doDeriveParameters() {
 		return false;
