@@ -8,9 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -19,13 +16,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.HenshinFactory;
 import org.eclipse.emf.henshin.model.Mapping;
 import org.eclipse.emf.henshin.model.MappingList;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Rule;
-import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceFactory;
 
@@ -379,7 +376,7 @@ public class HenshinUtil {
 
 		return false;
 	}
-	
+
 	/**
 	 * Returns the mapping of the image and origin node or null if no mapping
 	 * exists.
@@ -395,6 +392,80 @@ public class HenshinUtil {
 	public static Mapping findMapping(Collection<Mapping> mappings, Node origin, Node image) {
 		for (Mapping mapping : mappings) {
 			if (mapping.getImage() == image && mapping.getOrigin() == origin) {
+				return mapping;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Checks if the given edge represents a 'creation' edge. This is the case,
+	 * if it is contained in a RHS and if there is no corresponding origin edge
+	 * in the LHS.
+	 * 
+	 * @param edge
+	 * @return true if the edge could be identified to be a 'creation' edge. In
+	 *         every other case this method returns false.
+	 */
+	public static boolean isCreationEdge(Edge edge) {
+		if (edge.getSource() != null && edge.getTarget() != null && edge.getGraph() != null
+				&& edge.getGraph().getRule() != null) {
+			Rule rule = edge.getGraph().getRule();
+			return edge.getGraph().isRhs() && (getEdgeOrigin(edge, rule.getMappings()) == null);
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Find the origin of an edge.
+	 * 
+	 * @param edge
+	 *            Image edge.
+	 * @param mappings
+	 *            Mappings.
+	 * @return Edge image.
+	 */
+	public static Edge getEdgeOrigin(Edge edge, List<Mapping> mappings) {
+		if (edge.getSource() == null || edge.getTarget() == null) {
+			return null;
+		}
+		Node source = getNodeOrigin(edge.getSource(), mappings);
+		Node target = getNodeOrigin(edge.getTarget(), mappings);
+		if (source == null || target == null) {
+			return null;
+		}
+		return source.getOutgoing(edge.getType(), target);
+	}
+
+	/**
+	 * Find the origin of a node with respect to a list of mappings.
+	 * 
+	 * @param image
+	 *            Image node.
+	 * @param target
+	 *            Target graph.
+	 * @param mappings
+	 *            Mappings.
+	 * @return The image of the node.
+	 */
+	public static Node getNodeOrigin(Node image, List<Mapping> mappings) {
+		Mapping mapping = getNodeOriginMapping(image, mappings);
+		return (mapping != null) ? mapping.getOrigin() : null;
+	}
+
+	/**
+	 * Find the corresponding mapping for a given image node.
+	 * 
+	 * @param image
+	 *            Image node.
+	 * @param mappings
+	 *            Mappings.
+	 * @return Mapping if found, <code>null</code> otherwise.
+	 */
+	public static Mapping getNodeOriginMapping(Node image, List<Mapping> mappings) {
+		for (Mapping mapping : mappings) {
+			if (mapping.getImage() == image) {
 				return mapping;
 			}
 		}

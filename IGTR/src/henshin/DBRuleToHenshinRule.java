@@ -358,40 +358,90 @@ public class DBRuleToHenshinRule {
 			if (nodePair.getLhsNode().getName().contains("__")) {
 				// it's a value node
 				String syntheticType = nodePair.getLhsNode().getName().split("__")[1];
+				String syntheticId = nodePair.getLhsNode().getName().split("__")[0];
+
 				if (!dataNodeWrapper.getDisctinctRepresentativeDataSortElements().contains(syntheticType)) {
 					// (1) represents a literal value, just inline it
 					for (Edge edge : nodePair.getLhsNode().getIncoming()) {
 						ValueEdge valueEdge = (ValueEdge) edge;
-						Node srcNode = valueEdge.getSource();
-
-						Attribute hAttribute = hFactory.createAttribute(srcNode,
-								domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()),
-								syntheticType);
-
-						// TODO: Put to mappings..??
-						// putToMappings(attribute, hAttribute,
-						// getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+						createAttributeIfNeeded(valueEdge, syntheticType);
 					}
 					for (Edge edge : nodePair.getRhsNode().getIncoming()) {
 						ValueEdge valueEdge = (ValueEdge) edge;
-						Node srcNode = valueEdge.getSource();
-
-						Attribute hAttribute = hFactory.createAttribute(srcNode,
-								domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()),
-								syntheticType);
-
-						// TODO: Put to mappings..??
-						// putToMappings(attribute, hAttribute,
-						// getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+						createAttributeIfNeeded(valueEdge, syntheticType);
 					}
-					
-					// cleanup henshin graphs
-					Mapping mapping = HenshinUtil.findMapping(rule.getMappings(), nodePair.getLhsNode(), nodePair.getRhsNode());
-					rule.getMappings().remove(mapping);
-					rule.getLhs().removeNode(nodePair.getLhsNode());
-					rule.getRhs().removeNode(nodePair.getRhsNode());
+
+				} else {
+
+					// p represents sort element
+
+					// first, we look at the LHS
+					if (nodePair.getLhsNode().getIncoming().size() > 1) {
+
+						// (2) p is part of the precondition
+						for (Edge edge : nodePair.getLhsNode().getIncoming()) {
+							ValueEdge valueEdge = (ValueEdge) edge;
+							Node srcNode = valueEdge.getSource();
+
+							createAttributeIfNeeded(valueEdge, syntheticId);
+							createParameterIfNedded(rule, syntheticId);
+						}
+					}
+
+					// then we look at the RHS
+
+					for (Edge edge : nodePair.getRhsNode().getIncoming()) {
+						ValueEdge valueEdge = (ValueEdge) edge;
+
+						if (HenshinUtil.isCreationEdge(valueEdge)) {
+							// (3) it's an assignment
+							List<Node> sourceNodesLhs = new ArrayList<Node>();
+							for (Edge lhsEdge : nodePair.getLhsNode().getIncoming()) {
+								ValueEdge valueLhsEdge = (ValueEdge) lhsEdge;
+								if (valueLhsEdge.getAttribute().equals(valueEdge.getAttribute())) {
+									sourceNodesLhs.add(valueLhsEdge.getSource());
+								}
+							}
+							if (!sourceNodesLhs.isEmpty()) {
+								// (3a) the assigned value is drawn from another
+								// node's attribute value
+								createAttributeIfNeeded(valueEdge, syntheticId);
+
+							} else {
+								// (3b) the assigned value is drawn from a
+								// parameter
+								createAttributeIfNeeded(valueEdge, syntheticId);
+								createParameterIfNedded(rule, syntheticId);
+							}
+						}
+					}
 				}
+				
+				// cleanup rule and henshin graphs
+				Mapping mapping = HenshinUtil.findMapping(rule.getMappings(), nodePair.getLhsNode(),
+						nodePair.getRhsNode());
+				rule.getMappings().remove(mapping);
+				rule.getLhs().removeNode(nodePair.getLhsNode());
+				rule.getRhs().removeNode(nodePair.getRhsNode());
 			}
+		}
+	}
+
+	private void createAttributeIfNeeded(ValueEdge valueEdge, String value) {
+		Node srcNode = valueEdge.getSource();
+		if (srcNode.getAttribute(domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute())) == null) {
+			Attribute hAttribute = hFactory.createAttribute(srcNode,
+					domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()), value);
+
+			// TODO: Put to mappings..??
+			// putToMappings(attribute, hAttribute,
+			// getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
+		}
+	}
+
+	private void createParameterIfNedded(Rule rule, String paramName) {
+		if (rule.getParameter(paramName) == null) {
+			rule.getParameters().add(hFactory.createParameter(paramName));
 		}
 	}
 

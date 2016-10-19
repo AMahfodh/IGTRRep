@@ -1,13 +1,17 @@
 package inferences;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import emf.domain.IDomainConfiguration;
 
 public class ParseRuleInstances {
 
+	private List<String> operationWhiteList = new ArrayList<String>();
+	
 	public static final String PREFIX_POSITIVE = "example";
 	public static final String PREFIX_NEGATIVE = "negative";
 	public static final String PREFIX_REFERENCE = "reference";
@@ -16,6 +20,8 @@ public class ParseRuleInstances {
 
 	public void importExamples() {
 
+		operationWhiteList.add("renameNamedElement");
+		
 		// We just scan the file system for examples
 		File workingDir = new File("");
 		String examplesPath = workingDir.getAbsolutePath() + File.separator + ".." + File.separator + "Examples";
@@ -26,6 +32,12 @@ public class ParseRuleInstances {
 		File[] operations = modelsFolder.listFiles();
 		Arrays.sort(operations);
 		for (File operation : operations) {
+			if (!operationWhiteList.isEmpty()){
+				if (!operationWhiteList.contains(operation.getName())){
+					continue;
+				}
+			}
+			
 			System.out.println("\n\n=== Importing examples for operation " + operation.getName());
 
 			File[] examples = operation.listFiles();

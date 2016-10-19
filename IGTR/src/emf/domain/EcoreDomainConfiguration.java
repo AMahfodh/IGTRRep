@@ -75,7 +75,7 @@ public class EcoreDomainConfiguration extends AbstractDomainConfiguration {
 	}
 
 	@Override
-	public Set<EAttribute> getVisibleAttributeTypes() {
+	public Set<EAttribute> getVisibleAttributeTypes(EClass eClass) {
 		if (visibleAttributeTypes == null) {
 			visibleAttributeTypes = new HashSet<EAttribute>();
 			

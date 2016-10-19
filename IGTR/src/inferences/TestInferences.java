@@ -21,12 +21,6 @@ public class TestInferences {
 		if (!DomainConfigurationFactory.createDomainConfiguration().treatAttributesAsNodes()) {
 			new AttributeInference().commit();
 		}
-
-		// export all rules to Henshin
-		// ExportAllToHenshin.main(
-		// new String[]{
-		// new File("").getAbsolutePath() + File.separator + "HenshinOutput"});
-
 	}
 
 	public static void main(String[] args) throws Exception {

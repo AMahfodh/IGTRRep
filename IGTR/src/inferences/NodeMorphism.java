@@ -33,7 +33,7 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 		/*
 		 *	check their current types and also their common super type 
 		 */
-		if (!this.gNode.nodeType.equalsIgnoreCase(mNode.nodeCommonType) && 
+		if (!this.gNode.nodeType.equalsIgnoreCase(mNode.nodeType) && 
 			!this.hasACommonSuperType(mNode)){
 			return;
 		}

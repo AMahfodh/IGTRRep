@@ -79,7 +79,7 @@ public class DataNodeWrapper {
 			for (EAttribute eAttribute : eObject.eClass().getEAllAttributes()) {
 				if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
 						|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
-						|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
+						|| !domainConfig.getVisibleAttributeTypes(eObject.eClass()).contains(eAttribute)) {
 					continue;
 				}
 

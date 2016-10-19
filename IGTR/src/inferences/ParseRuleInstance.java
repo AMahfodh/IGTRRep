@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -21,7 +20,6 @@ import emf.matching.IMatcher;
 import emf.matching.Matching;
 import emf.util.DataNodeWrapper;
 import emf.util.EMFMetaUtil;
-import emf.util.EMFModelUtil;
 import emf.util.EMFResourceUtil;
 import emf.util.EObjectLocation;
 
@@ -266,8 +264,6 @@ public class ParseRuleInstance {
 		GNode node = new GNode(id, obj.eClass().getName());
 		graph.addNode(node);
 
-		System.out.println("nodeType: " + obj.eClass().getName());
-
 		// TODO: Handle unnecessary context properly!
 		// /* Just to for testing,
 		// assume that the node 'EPackage' has been specified by domain expert
@@ -281,7 +277,7 @@ public class ParseRuleInstance {
 		for (EAttribute eAttribute : obj.eClass().getEAllAttributes()) {
 			if (domainConfig.getUnconsideredAttributeTypes().contains(eAttribute)
 					|| EMFMetaUtil.isUnconsideredStructualFeature(eAttribute)
-					|| !domainConfig.getVisibleAttributeTypes().contains(eAttribute)) {
+					|| !domainConfig.getVisibleAttributeTypes(obj.eClass()).contains(eAttribute)) {
 				continue;
 			}
 
@@ -292,7 +288,6 @@ public class ParseRuleInstance {
 				continue;
 			}
 
-			System.out.println("attrDeclaration: " + attName + ":" + attType);
 			if (domainConfig.treatAttributesAsNodes()) {
 				// Create special edge to special attribute node
 				GNode srcNode = node;
@@ -317,8 +312,6 @@ public class ParseRuleInstance {
 
 	private void createEdge(GraphT graph, Map<EObject, GNode> model2Graph, EObject srcObj, EObject tgtObj,
 			EReference referenceType) {
-
-		System.out.println("edgeType: " + referenceType.getName());
 
 		GNode srcNode = model2Graph.get(srcObj);
 		GNode tgtNode = model2Graph.get(tgtObj);
