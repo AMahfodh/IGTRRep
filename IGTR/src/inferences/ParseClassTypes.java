@@ -128,6 +128,14 @@ public class ParseClassTypes {
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()), true, true);
 		eClass2NodeType.get(UMLPackage.eINSTANCE.getInterface()).addReferenceType(
 				eClass2NodeType.get(UMLPackage.eINSTANCE.getClassifier()), true, true);
+	
+		
+		// Quick fix (transitive inheritance relationships)
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getClass_()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getType()), true, true);
+		eClass2NodeType.get(UMLPackage.eINSTANCE.getPrimitiveType()).addReferenceType(
+				eClass2NodeType.get(UMLPackage.eINSTANCE.getType()), true, true);
+		
 	}
 
 	private boolean hasIdenticalAttributes(EClass eClass, EClass superEClass) {
