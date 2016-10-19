@@ -825,8 +825,6 @@ public class RuleInference {
 	
 	private boolean isIsomorphicUpToSuperTypeMinimalRule(GraphT g1, GraphT g2){
 
-		g1.printGraph();
-		g2.printGraph();
 		
 		if (g1.gNodes.size() !=g2.gNodes.size() ||
 			g1.gEdges.size() !=g2.gEdges.size()){
@@ -838,9 +836,9 @@ public class RuleInference {
 		for (int i= 0; i<g1.gNodes.size(); i++){
 			
 			NodeMorphism nMorphism = new NodeMorphism(g1.graphID, g1.gNodes.get(i));
-			g1.gNodes.get(i).print();						
+									
 			for (int j= 0; j<g2.gNodes.size(); j++){				
-				g2.gNodes.get(j).print();
+				
 				nMorphism.addMappingNode(g2.graphID, g2.gNodes.get(j));				
 			}
 			
@@ -864,6 +862,7 @@ public class RuleInference {
 				
 				if (finalMappedNodes.add(mNode)){
 					nMorphism.setFinalMappedNode(mNode);
+					break;
 				}
 			}
 			
@@ -2804,7 +2803,7 @@ public class RuleInference {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Loading .. " + listClassTypes);
+		System.out.println("Loading .. list of class types ");
     	
 		return listClassTypes;
     }
