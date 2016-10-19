@@ -17,6 +17,7 @@ public class CopyPapyrusToUML {
 
 	private void copyExamples() throws IOException {
 
+		
 		// We just scan the file system for examples
 		File workingDir = new File("");
 		String examplesPath = workingDir.getAbsolutePath();
