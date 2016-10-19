@@ -4,18 +4,12 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_J_EcsJYoEeacXbI5rbHhcw" name="Class1">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_Q5G2oJYoEeacXbI5rbHhcw" name="Attribute1" type="_OndkIJYoEeacXbI5rbHhcw"/>
     </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_HmrXEJYqEeacXbI5rbHhcw" name="Package2">
     <packagedElement xmi:type="uml:Class" xmi:id="_Li7cIJYoEeacXbI5rbHhcw" name="Class2">
       <generalization xmi:type="uml:Generalization" xmi:id="_aqvIwJYoEeacXbI5rbHhcw" general="_J_EcsJYoEeacXbI5rbHhcw"/>
     </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_IQUxAJYqEeacXbI5rbHhcw" name="Package3">
     <packagedElement xmi:type="uml:Class" xmi:id="_L5gwIJYoEeacXbI5rbHhcw" name="Class3">
       <generalization xmi:type="uml:Generalization" xmi:id="_bNl-MJYoEeacXbI5rbHhcw" general="_J_EcsJYoEeacXbI5rbHhcw"/>
     </packagedElement>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_L0cYAJYqEeacXbI5rbHhcw" name="Package4">
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_OndkIJYoEeacXbI5rbHhcw" name="String"/>
   </packagedElement>
 </uml:Model>
