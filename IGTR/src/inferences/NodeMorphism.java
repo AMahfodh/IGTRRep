@@ -92,7 +92,7 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 							+ "TE1.edgeType,"
 							+ "TE1.isMinimal) as collectedColumns, count(TE1.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE1 "
-							+ " where TE1.Graph_IDREFF=" + this.Graph_IDREFF
+							+ " where TE1.isMinimal=true and TE1.Graph_IDREFF=" + this.Graph_IDREFF
 							+ " and (TE1.sourceID='" + this.gNode.nodeID + "' or TE1.targetID='" + this.gNode.nodeID + "')"
 							+ " group by collectedColumns) "
 							+ "UNION ALL "
@@ -100,7 +100,7 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 							+ "TE2.edgeType,"
 							+ "TE2.isMinimal) as collectedColumns, count(TE2.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE2 "								
-							+ " where TE2.Graph_IDREFF=" + mGraphID
+							+ " where TE2.isMinimal=true and TE2.Graph_IDREFF=" + mGraphID
 							+ " and (TE2.sourceID='" + mNode.nodeID + "' or TE2.targetID='" + mNode.nodeID + "')"																																				
 							+ " group by collectedColumns) "
 							+ ") as T_MatchedStructure "
@@ -111,27 +111,6 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 
 					, true).next()){
 
-				System.out.println("select * from"
-						+ "(	(select CONCAT("
-						+ "TE1.edgeType,"
-						+ "TE1.isMinimal) as collectedColumns, count(TE1.AbstractID) as abstractCount"
-						+ " from TblEdge AS TE1 "
-						+ " where TE1.Graph_IDREFF=" + this.Graph_IDREFF
-						+ " and (TE1.sourceID='" + this.gNode.nodeID + "' or TE1.targetID='" + this.gNode.nodeID + "')"
-						+ " group by collectedColumns) "
-						+ "UNION ALL "
-						+ "(select CONCAT("
-						+ "TE2.edgeType,"
-						+ "TE2.isMinimal) as collectedColumns, count(TE2.AbstractID) as abstractCount"
-						+ " from TblEdge AS TE2 "								
-						+ " where TE2.Graph_IDREFF=" + mGraphID
-						+ " and (TE2.sourceID='" + mNode.nodeID + "' or TE2.targetID='" + mNode.nodeID + "')"																																				
-						+ " group by collectedColumns) "
-						+ ") as T_MatchedStructure "
-						+ "group by "
-						+ "T_MatchedStructure.collectedColumns,"							
-						+ "T_MatchedStructure.abstractCount "
-						+ "HAVING COUNT(*)=1 limit 1;");
 				
 				return false;
 			}
