@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Kn67QJRNEeamt6jDbNFr6A" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_OEkoUJRNEeamt6jDbNFr6A" name="Class1" isAbstract="true">
+    <generalization xmi:type="uml:Generalization" xmi:id="_-XQTgJRPEeatTe7sz5rj2g" general="_68A7sJRPEeatTe7sz5rj2g"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_DAcsMJRQEeatTe7sz5rj2g" name="Attribute1" type="_TRVVIJUeEeaYTZ_dXJNNWA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OseV0JRNEeamt6jDbNFr6A" name="Class2" isAbstract="true">
+    <generalization xmi:type="uml:Generalization" xmi:id="__JjTIJRPEeatTe7sz5rj2g" general="_68A7sJRPEeatTe7sz5rj2g"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Y6UigJRQEeatTe7sz5rj2g" name="Attribute2" visibility="public" type="_TRVVIJUeEeaYTZ_dXJNNWA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Z4ZUUJRQEeatTe7sz5rj2g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Z4cXoJRQEeatTe7sz5rj2g" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_68A7sJRPEeatTe7sz5rj2g" name="Class3" isAbstract="true"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_TRVVIJUeEeaYTZ_dXJNNWA" name="String"/>
+</uml:Model>
