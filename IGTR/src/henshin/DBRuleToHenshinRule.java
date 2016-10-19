@@ -179,8 +179,13 @@ public class DBRuleToHenshinRule {
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
 
+			// Handle/inline value nodes
 			valueNodes2Attributes(hRule);
-
+			
+			// Handle NACs
+			NACHandler nacHandler = new NACHandler(this);
+			nacHandler.exportNACs();
+			
 			// // Retrieve object parameters
 			// ObjectParameterRetriever objRetriever = new
 			// ObjectParameterRetriever(this);
