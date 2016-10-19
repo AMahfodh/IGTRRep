@@ -8,9 +8,9 @@ import java.util.Set;
 public class NodeMorphism implements Comparable<NodeMorphism>{
 
 	private int Graph_IDREFF=0;
-	GNode gNode = null;
-	Set<GNode> mappingNodes = null;
-	GNode finalMappedNode = null;
+	private GNode gNode = null;
+	protected Set<GNode> mappingNodes = null;
+	private GNode finalMappedNode = null;
 	
 	
 	public NodeMorphism(int graphID, GNode gnode){
@@ -21,23 +21,19 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 	
 	public void addMappingNode(int mGraphID, GNode mNode){
 		
-			
 		if (this.gNode.isMinimal != mNode.isMinimal ||
-			this.gNode.distance != mNode.distance ||
-			this.gNode.isInitialized !=mNode.isInitialized ||
-			this.gNode.isThis !=mNode.isThis){
+			this.gNode.isInitialized !=mNode.isInitialized){
 			return;
 		}
 		
 		
 		/*
 		 *	check their current types and also their common super type 
-		 */
+		 */		
 		if (!this.gNode.nodeType.equalsIgnoreCase(mNode.nodeType) && 
 			!this.hasACommonSuperType(mNode)){
 			return;
 		}
-		
 		
 		/** 
 		 * check connected incoming and outgoing edges 
@@ -46,7 +42,6 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 		if (!this.isIncomingAndOutgoingEdgesMatched(mGraphID, mNode)){
 			return;
 		}
-		
 		
 		
 		
@@ -70,11 +65,10 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 								
 				this.gNode.nodeCommonType=cType1.getClassName();
 				mNode.nodeCommonType=cType1.getClassName();
-								
+				
 				return true;
 			}			
 		}
-				
 		
 		return false;
 	}
@@ -84,15 +78,18 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 	
 	private boolean isIncomingAndOutgoingEdgesMatched(int mGraphID, GNode mNode){
 
-
 		// ============================================================ 
 		// check matching all edges (incoming/outgoing)  
 		// ------------------------------------------------------------
+		
+
+		
+		
 		try {
 			if (DBRecord.getByQueryStatement(					
 					"select * from"
 							+ "(	(select CONCAT("
-							+ "TE1.sourceTargetType,"
+							+ "TE1.edgeType,"
 							+ "TE1.isMinimal) as collectedColumns, count(TE1.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE1 "
 							+ " where TE1.Graph_IDREFF=" + this.Graph_IDREFF
@@ -100,7 +97,7 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 							+ " group by collectedColumns) "
 							+ "UNION ALL "
 							+ "(select CONCAT("
-							+ "TE2.sourceTargetType,"
+							+ "TE2.edgeType,"
 							+ "TE2.isMinimal) as collectedColumns, count(TE2.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE2 "								
 							+ " where TE2.Graph_IDREFF=" + mGraphID
@@ -114,6 +111,28 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 
 					, true).next()){
 
+				System.out.println("select * from"
+						+ "(	(select CONCAT("
+						+ "TE1.edgeType,"
+						+ "TE1.isMinimal) as collectedColumns, count(TE1.AbstractID) as abstractCount"
+						+ " from TblEdge AS TE1 "
+						+ " where TE1.Graph_IDREFF=" + this.Graph_IDREFF
+						+ " and (TE1.sourceID='" + this.gNode.nodeID + "' or TE1.targetID='" + this.gNode.nodeID + "')"
+						+ " group by collectedColumns) "
+						+ "UNION ALL "
+						+ "(select CONCAT("
+						+ "TE2.edgeType,"
+						+ "TE2.isMinimal) as collectedColumns, count(TE2.AbstractID) as abstractCount"
+						+ " from TblEdge AS TE2 "								
+						+ " where TE2.Graph_IDREFF=" + mGraphID
+						+ " and (TE2.sourceID='" + mNode.nodeID + "' or TE2.targetID='" + mNode.nodeID + "')"																																				
+						+ " group by collectedColumns) "
+						+ ") as T_MatchedStructure "
+						+ "group by "
+						+ "T_MatchedStructure.collectedColumns,"							
+						+ "T_MatchedStructure.abstractCount "
+						+ "HAVING COUNT(*)=1 limit 1;");
+				
 				return false;
 			}
 		}
@@ -135,8 +154,8 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 	
 	
 	public void setFinalMappedNode(GNode mNode){
-		this.finalMappedNode = mNode;
-		this.mappingNodes=null;
+		this.mappingNodes.clear();
+		this.finalMappedNode = mNode;		
 	}
 	
 	public GNode getFinalMappedNode(){
@@ -151,7 +170,7 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 	
 	
 	public void modifyDatabase(){
-				
+		
 		DBRecord.executeSqlStatement(
 				"update TblNode "
 						+ "set nodeCommonType='" + this.gNode.nodeCommonType + "' "

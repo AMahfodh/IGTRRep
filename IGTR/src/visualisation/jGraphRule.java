@@ -515,7 +515,17 @@ public class jGraphRule extends JPanel  {
 		requiredStyleIsPar.put(mxConstants.STYLE_FILLCOLOR, "#FFFFFF");
 		stylesheet.putCellStyle("RequiredStyleIsPar", requiredStyleIsPar);
 
-
+		
+		
+		/**	style for the required universal context node */
+		Hashtable<String, Object> requiredStyleUniversal = new Hashtable<String, Object>();
+		requiredStyleUniversal.put(mxConstants.STYLE_STROKECOLOR, "#1E1E1E");
+		requiredStyleUniversal.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+		requiredStyleUniversal.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_LEFT);
+		requiredStyleUniversal.put(mxConstants.STYLE_FONTCOLOR, "#216123");
+		requiredStyleUniversal.put(mxConstants.STYLE_FILLCOLOR, "#D6D6D6");
+		stylesheet.putCellStyle("RequiredStyleUniversal", requiredStyleUniversal);
+		
 	}
 
 
@@ -638,6 +648,19 @@ public class jGraphRule extends JPanel  {
 		requiredStyleIsParMO.put(mxConstants.STYLE_FILLCOLOR, "#FFFFFF");
 		stylesheet.putCellStyle("RequiredStyleIsParMO", requiredStyleIsParMO);
 
+		
+		/**	style for the required universal context node */
+		Hashtable<String, Object> requiredStyleUniversal = new Hashtable<String, Object>();
+		requiredStyleUniversal.put(mxConstants.STYLE_STROKECOLOR, "#1E1E1E");
+		requiredStyleUniversal.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_RECTANGLE);
+		requiredStyleUniversal.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_LEFT);
+		requiredStyleUniversal.put(mxConstants.STYLE_SHADOW, "true");
+		requiredStyleUniversal.put(mxConstants.STYLE_FONTCOLOR, "#216123");
+		requiredStyleUniversal.put(mxConstants.STYLE_FILLCOLOR, "#D6D6D6");
+		stylesheet.putCellStyle("RequiredStyleUniversal", requiredStyleUniversal);
+		
+		
+		
 	}
 
 
@@ -656,6 +679,9 @@ public class jGraphRule extends JPanel  {
 				// updated node
 				strNodeStyle= "LRMinimalStyleIsThis";  
 			}
+			else if (!this.isInstance && vNode.isUniversalContext){
+				strNodeStyle= "RequiredStyleUniversal";
+			}
 			else {
 				// required node
 				strNodeStyle= "RequiredStyleIsThis";
@@ -673,6 +699,9 @@ public class jGraphRule extends JPanel  {
 				// updated node
 				strNodeStyle= "LRMinimalStyleIsPar";  
 			}
+			else if (!this.isInstance && vNode.isUniversalContext){
+				strNodeStyle= "RequiredStyleUniversal";
+			}
 			else {
 				// required node
 				strNodeStyle= "RequiredStyleIsPar";
@@ -688,6 +717,9 @@ public class jGraphRule extends JPanel  {
 			else if (vNode.isMinimal){
 				// updated node
 				strNodeStyle= "LRMinimalStyle";  
+			}
+			else if (!this.isInstance && vNode.isUniversalContext){
+				strNodeStyle= "RequiredStyleUniversal";
 			}
 			else {
 				// required node
@@ -1082,11 +1114,12 @@ public class jGraphRule extends JPanel  {
 
 	private String getNoteSuperType(GNode gNode){
 		
-		if (gNode.nodeType.equalsIgnoreCase(gNode.nodeCommonType) || gNode.nodeCommonType.length()<1){
+		String strNodeSuperType = gNode.getCommonSuperType();
+		if (gNode.nodeType.equalsIgnoreCase(strNodeSuperType) || strNodeSuperType.length()<1){
 			return gNode.nodeType;
 		}
 		else {
-			return "(superT-" + gNode.nodeCommonType + ") ";
+			return "(superT) " + strNodeSuperType;
 		}
 	}
 
