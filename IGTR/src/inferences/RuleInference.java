@@ -409,7 +409,7 @@ public class RuleInference {
 	private void computeDistances(){
 
 		// extract all possible entry nodes, 
-		// start from thisObject, then passed parameter in order..
+		// updating start from thisObject to be from element of the minimal rule first, then passed parameter in order..
 
 
 		// distance in LHS graph
@@ -430,7 +430,7 @@ public class RuleInference {
 						+ " where iDistance is null "
 						+ " and (isThis=true or iParameterIndex>=1 or isMinimal=true) "
 						+ " and Graph_IDREFF=" + iLRHS
-						+ " order by isThis DESC, iParameterIndex, isMinimal DESC, isReturn DESC, isCollection, isInitialized, nodeType ;", true);
+						+ " order by isMinimal DESC, isThis DESC, iParameterIndex, isReturn DESC, isCollection, isInitialized, nodeType ;", true);
 
 		try {
 
@@ -584,7 +584,7 @@ public class RuleInference {
 
 				groupID =crsGetGroups.getInt(1);				
 
-				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2)) || 
+				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2)) && 
 					this.isMinimalRuleMatchedUpToSuperType(crsGetGroups.getInt(2))){
 
 					if (DBRecord.executeSqlStatement(
@@ -597,16 +597,9 @@ public class RuleInference {
 
 						// set exist group id
 						System.out.println("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
-						//this.GTlogger.info("\tpreparing rule " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
-
-
-						// ***************************************************************
-						// set smallest rule to be abstract		
-						// contexts intersection (maximal rule)
-						// attributes generalisation 
-						//MO= System.nanoTime();
+					
 						this.setMaximalContextRule(crsGetGroups.getInt(2));
-						//maxTime += (System.nanoTime()-MO);
+						
 
 						return;
 
@@ -1092,7 +1085,8 @@ public class RuleInference {
 				"update TblNode INNER JOIN TblGraph "
 						+ "on TblNode.Graph_IDREFF=TblGraph.GraphID "
 						+ " set TblNode.MappedAbstractID=''"
-						+ " where TblGraph.Observation_IDREFF=" + iRuleInstance, true);
+						+ " where TblNode.isMinimal=false and"
+						+ " TblGraph.Observation_IDREFF=" + iRuleInstance, true);
 
 
 		CachedRowSetImpl crsGetAbstractNodes= DBRecord.getByQueryStatement(
@@ -1103,7 +1097,8 @@ public class RuleInference {
 						+ "on TblNode.Graph_IDREFF=TblGraph.GraphID "
 						+ "where TblGraph.Observation_IDREFF=" + iAbstractRule
 						+ " and isToBeDeleted is null "
-						+ " order by graphType; ", true);
+						+ " and isMinimal=false "
+						+ " order by graphType, iDistance; ", true);
 
 		try {
 
@@ -1134,6 +1129,9 @@ public class RuleInference {
 								+ "set MappedAbstractID='" + abstractNode.AbstractID + "'"
 								+ " where AbstractID in ('" + abstractNode.AbstractID + "','" + nodeInsIsMappedWith + "');"
 								, true);
+				
+				this.setSuperType(abstractNode, nodeInsIsMappedWith);
+				
 			}
 
 		} catch (SQLException e) {		
@@ -1142,7 +1140,65 @@ public class RuleInference {
 
 	}
 
+	
+	
+	private void setSuperType(GNode abstractNode, String mappedNodeInstance){
 
+		if (abstractNode.nodeCommonType.trim().length()!=0 && 
+			!abstractNode.nodeType.equals(abstractNode.nodeCommonType)){
+
+			return;	
+		}
+		
+		
+		CachedRowSetImpl crsNodeSuperType= DBRecord.getByQueryStatement(
+				"select nodeType from TblNode where nodeType<>'" + abstractNode.nodeType 
+				+ "' and AbstractID='" + mappedNodeInstance + "';", true);
+
+		try {
+
+			if (crsNodeSuperType.next()){
+				
+				this.setCommonSuperType(
+						RuleInference.getSuperTypes(abstractNode.nodeType), 
+						RuleInference.getSuperTypes(crsNodeSuperType.getString(1)),
+						abstractNode.AbstractID,
+						mappedNodeInstance);
+			}
+
+		} catch (SQLException e) {		
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	private void setCommonSuperType(
+			ArrayList<ClassType> SuperClassTypeForMaxNode,
+			ArrayList<ClassType> SuperClassTypeForInsNode,
+			String nodeFromMax, String nodeFromIns){
+
+
+		for (int i=0; i<SuperClassTypeForMaxNode.size(); i++){
+
+			ClassType cMaxNodeType = SuperClassTypeForMaxNode.get(i);
+
+			if (SuperClassTypeForInsNode.contains(cMaxNodeType)){
+
+				DBRecord.executeSqlStatement(
+						"update TblNode "
+								+ "set nodeCommonType='" + cMaxNodeType.getClassName() + "' "
+								+ "where AbstractID in ('" + 
+								nodeFromMax + "', '" + 
+								nodeFromIns + "');"
+								, true);
+				return;
+			}			
+		}
+
+	}
+	
+	
 
 	private String findMappedInsNode(boolean isLHSGraphType, int iRuleInstance, GNode abstractNode){
 
@@ -1165,19 +1221,14 @@ public class RuleInference {
 						+ "from TblNode INNER JOIN TblGraph "
 						+ "on TblNode.Graph_IDREFF=TblGraph.GraphID "
 						+ "where TblGraph.Observation_IDREFF=" + iRuleInstance
-
 						+ " and (nodeType='" + abstractNode.nodeType + "' or nodeCommonType='" + abstractNode.nodeCommonType + "')"
 						+ " and isThis=" + abstractNode.isThis
 						+ " and isReturn=" + abstractNode.isReturn
-						//+ " and isParameters=" + abstractNode.isParameters
-						//+ " and iParameterIndex=" + abstractNode.iParameterIndex
 						+ " and isMinimal=" + abstractNode.isMinimal
 						+ " and isRequiredContext=" + abstractNode.isRequiredContext
 						+ " and isInitialized=" + abstractNode.isInitialized
 						+ " and isCollection=" + abstractNode.isCollection
-
 						+ " and iDistance=" + abstractNode.distance
-
 						+ " and graphType=" + isLHSGraphType
 						+ " and MappedAbstractID='' and isToBeDeleted is null; ", true);
 
@@ -1209,7 +1260,7 @@ public class RuleInference {
 			// more than one possible matches
 			while (crsGetPossibleMatchedAbstractNodes.next()){
 
-				// check incoming and outgoing edges and take the first possible matches
+				// check incoming and outgoing edges (including previous abstract node matching) and then take the first possible matches
 				if (this.isIncomingAndOutgoingEdgesMatched(
 						abstractNode, 
 						crsGetPossibleMatchedAbstractNodes.getString(2), 
@@ -1232,11 +1283,20 @@ public class RuleInference {
 
 		return randomChoise;
 	}
+	
+	
+
 
 
 	private boolean isIncomingAndOutgoingEdgesMatched(GNode abstractNode, String instanceGraph_id, String instanceNode_id){
 
 
+		// strong matching based on previous assignment of map IDs for neighbor node at [distance -2]
+		if (!this.hasAcommonAbstractIDmatching(abstractNode, instanceGraph_id, instanceNode_id)){
+			return false;
+		}
+		
+		
 		// ============================================================ 
 		// check matching all edges (incoming/outgoing) in both sides 
 		// ------------------------------------------------------------
@@ -1245,7 +1305,8 @@ public class RuleInference {
 			if (DBRecord.getByQueryStatement(					
 					"select * from"
 							+ "(	(select CONCAT("
-							+ "TE1.sourceTargetType,"
+							+ "TE1.edgeType,"
+							+ "TE1.iDistance,"
 							+ "TE1.isMinimal) as collectedColumns, count(TE1.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE1 "
 							+ " where TE1.Graph_IDREFF=" + abstractNode.iSubGraphID
@@ -1253,7 +1314,8 @@ public class RuleInference {
 							+ " group by collectedColumns) "
 							+ "UNION ALL "
 							+ "(select CONCAT("
-							+ "TE2.sourceTargetType,"
+							+ "TE2.edgeType,"
+							+ "TE2.iDistance,"
 							+ "TE2.isMinimal) as collectedColumns, count(TE2.AbstractID) as abstractCount"
 							+ " from TblEdge AS TE2 "								
 							+ " where TE2.Graph_IDREFF=" + instanceGraph_id
@@ -1281,6 +1343,114 @@ public class RuleInference {
 
 
 
+	private boolean hasAcommonAbstractIDmatching(GNode abstractNode, String instanceGraph_id, String instanceNode_id){
+
+
+		CachedRowSetImpl crsPreviousMapping = DBRecord.getByQueryStatement("select Graph_IDREFF from TblNode where AbstractID='" + 
+				abstractNode.AbstractID + "';", true);
+		
+		String maxGraphID="";
+		try {
+
+			if (crsPreviousMapping.next()){
+				maxGraphID = crsPreviousMapping.getString(1);
+			}
+			else {
+				return false;
+			}
+			
+
+		} catch (SQLException e) {		
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	
+		crsPreviousMapping = DBRecord.getByQueryStatement(					
+				"select MappedAbstractID from TblNode "
+						+ " where Graph_IDREFF=" + maxGraphID
+						+ "	and iDistance=" + (abstractNode.distance -2)
+						+ " and (MappedAbstractID<>'' or MappedAbstractID is not null)"
+						+ " and nodeID in ("
+						+ "		select sourceID as nodeID from TblEdge "
+						+ "		where Graph_IDREFF=" + maxGraphID
+						+ "		and iDistance=" + (abstractNode.distance-1)
+						+ "		and targetID='" + abstractNode.nodeID + "'"
+						+ "  	union "
+						+ "		select targetID as nodeID from TblEdge "
+						+ "		where Graph_IDREFF=" + maxGraphID
+						+ "		and iDistance=" + (abstractNode.distance-1)
+						+ "		and sourceID='" + abstractNode.nodeID + "'"
+						+ " );", true);
+
+		Set<String> finalMappedNodes = new HashSet<String>();  
+
+
+		try {
+
+			while (crsPreviousMapping.next()){
+				finalMappedNodes.add(crsPreviousMapping.getString(1));
+			}
+
+		} catch (SQLException e) {		
+			e.printStackTrace();
+			return false;
+		}
+
+
+
+		/*
+		 * Loading now instance nodes .. 
+		 */	
+		crsPreviousMapping = DBRecord.getByQueryStatement(					
+				"select MappedAbstractID from TblNode "
+						+ " where Graph_IDREFF=" + instanceGraph_id
+						+ "	and iDistance=" + (abstractNode.distance -2)
+						+ " and (MappedAbstractID<>'' or MappedAbstractID is not null)"
+						+ " and nodeID in ("
+						+ "		select sourceID as nodeID from TblEdge "
+						+ "		where Graph_IDREFF=" + instanceGraph_id
+						+ "		and iDistance=" + (abstractNode.distance-1)
+						+ "		and targetID='" + instanceNode_id + "'"
+						+ "  	union "
+						+ "		select targetID as nodeID from TblEdge "
+						+ "		where Graph_IDREFF=" + instanceGraph_id
+						+ "		and iDistance=" + (abstractNode.distance-1)
+						+ "		and sourceID='" + instanceNode_id + "'"
+						+ " );", true);
+
+
+		try {
+
+			while (crsPreviousMapping.next()){
+				if (crsPreviousMapping.getString(1).length()>0 && finalMappedNodes.contains(crsPreviousMapping.getString(1))){
+					return true;
+				}
+			}
+
+		} catch (SQLException e) {		
+			e.printStackTrace();
+		}
+
+
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private void deleteUnMappedNodeInAbstractMaxRule(int iGraphI, String abstractNodeAbstractID, String abstractNodeNodeID){
 
 		// delete node from abstract max rule as there is no possible match
@@ -1289,7 +1459,7 @@ public class RuleInference {
 						+ "set isToBeDeleted=true where isMinimal=false and AbstractID='" + abstractNodeAbstractID + "'"
 						, true);
 
-		// A update relevant edges to be also isToBeDeleted=true 
+		// update relevant edges to be also isToBeDeleted=true 
 		DBRecord.executeSqlStatement("update TblEdge set isToBeDeleted=true "
 				+ "where isMinimal=false and Graph_IDREFF=" + iGraphI
 				+ " and "
@@ -2663,68 +2833,7 @@ public class RuleInference {
 
 				+ " DROP TEMPORARY TABLE IF EXISTS NACTempTbl;", true);
 		
-		/*
-		DBRecord.executeSqlStatement(
-				"Update TblBasicRule set isAbstract=false, groupID=0 "
-						+ " where hasEffect=false and MethodSignatureUniqueID='" + this.ruleMethodSignatureUniqueID + "'"
-						+ " and Observation_IDREFF >= 0; "
-
-
-				+ "DROP TEMPORARY TABLE IF EXISTS QueryTempTbl; "
-
-				+ "CREATE TEMPORARY TABLE QueryTempTbl "
-				+ " select Observation_IDREFF from TblBasicRule "
-				+ " where (userDecision is null or userDecision=false)"
-				+ " and hasEffect=false"
-				+ " and MethodSignatureUniqueID='" + this.ruleMethodSignatureUniqueID + "'"
-				+ " and groupID=0 group by objectsCount; "
-
-
-				+ "Update TblBasicRule set isAbstract=true "
-				+ " where Observation_IDREFF in (select Observation_IDREFF from QueryTempTbl) "
-				+ " and Observation_IDREFF >= 0;"
-				+ " DROP TEMPORARY TABLE IF EXISTS QueryTempTbl;", true);
-		
-		
-		DBRecord.executeAnySqlStatement(
-				"DROP TEMPORARY TABLE IF EXISTS QueryTempTbl; "
-
-		+ "CREATE TEMPORARY TABLE QueryTempTbl "
-
-
-		// this compute all operations that have multiobjects
-		+ "select distinct MethodSignatureUniqueID from TblBasicRule"
-		+ " where hasMultiObject=true"
-		+ " union "
-
-
-		// and here to compute all operations that have only one kind of effects
-		+ "select distinct MethodSignatureUniqueID from TblBasicRule"
-		+ " where isAbstract=true"
-		+ " group by MethodSignatureUniqueID"
-		+ " having count(distinct hasEffect)<2; "
-
-
-		// setting all empty rule to be not applicable i.e. NAC to the others
-		+ "update TblBasicRule "
-		+ " set isApplicable=false"
-		+ " where (userDecision is null or userDecision=false)"
-		+ " and isAbstract=true"
-		+ " and hasEffect=false"
-		+ " and MethodSignatureUniqueID NOT in "
-		+ " (select MethodSignatureUniqueID from QueryTempTbl); "
-
-
-
-		// setting all other empty rules to be applicable again
-		+ "update TblBasicRule "
-		+ " set isApplicable=true"
-		+ " where (userDecision is null or userDecision=false)"
-		+ " and isAbstract=true"
-		+ " and hasEffect=false"
-		+ " and MethodSignatureUniqueID in "
-		+ " (select MethodSignatureUniqueID from QueryTempTbl);", true);
-		 */
+	
 	}
 
 

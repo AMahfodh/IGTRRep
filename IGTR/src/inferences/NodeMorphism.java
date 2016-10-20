@@ -152,7 +152,8 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 		
 		DBRecord.executeSqlStatement(
 				"update TblNode "
-						+ "set nodeCommonType='" + this.gNode.nodeCommonType + "' "
+						+ "set nodeCommonType='" + this.gNode.nodeCommonType + "',"
+						+ "MappedAbstractID='" + this.gNode.AbstractID + "' "
 						+ "where AbstractID in ('" + 
 								this.gNode.AbstractID + "', '" + 
 								this.finalMappedNode.AbstractID + "');"
