@@ -1021,7 +1021,7 @@ public class RuleInference {
 				+ "and Tabstract.isThis=Tcontexts.isThis "
 				+ "and Tabstract.isReturn=Tcontexts.isReturn "
 				+ "and Tabstract.isCollection=Tcontexts.isCollection "
-				//+ "and Tabstract.iDistance=Tcontexts.iDistance " // Temporary
+				+ "and Tabstract.iDistance=Tcontexts.iDistance " // Temporary
 				+ "where "
 				+ "Tabstract.Graph_IDREFF=@gid1  "
 				+ "and Tcontexts.Graph_IDREFF=@gid2  "
@@ -1228,7 +1228,7 @@ public class RuleInference {
 						+ " and isRequiredContext=" + abstractNode.isRequiredContext
 						+ " and isInitialized=" + abstractNode.isInitialized
 						+ " and isCollection=" + abstractNode.isCollection
-						//+ " and iDistance=" + abstractNode.distance
+						+ " and iDistance=" + abstractNode.distance
 						+ " and graphType=" + isLHSGraphType
 						+ " and MappedAbstractID='' and isToBeDeleted is null; ", true);
 
