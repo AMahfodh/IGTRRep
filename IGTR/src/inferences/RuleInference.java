@@ -1021,7 +1021,7 @@ public class RuleInference {
 				+ "and Tabstract.isThis=Tcontexts.isThis "
 				+ "and Tabstract.isReturn=Tcontexts.isReturn "
 				+ "and Tabstract.isCollection=Tcontexts.isCollection "
-				+ "and Tabstract.iDistance=Tcontexts.iDistance " // Temporary
+				//+ "and Tabstract.iDistance=Tcontexts.iDistance " // Temporary
 				+ "where "
 				+ "Tabstract.Graph_IDREFF=@gid1  "
 				+ "and Tcontexts.Graph_IDREFF=@gid2  "
@@ -1228,7 +1228,7 @@ public class RuleInference {
 						+ " and isRequiredContext=" + abstractNode.isRequiredContext
 						+ " and isInitialized=" + abstractNode.isInitialized
 						+ " and isCollection=" + abstractNode.isCollection
-						+ " and iDistance=" + abstractNode.distance
+						//+ " and iDistance=" + abstractNode.distance
 						+ " and graphType=" + isLHSGraphType
 						+ " and MappedAbstractID='' and isToBeDeleted is null; ", true);
 
@@ -1279,7 +1279,7 @@ public class RuleInference {
 		}
 
 
-		System.out.println("Maximal rule- Warning no mapping :" + abstractNode.AbstractID + " with: " + randomChoise);		
+		System.out.println("Maximal rule- Warning mapping :" + abstractNode.AbstractID + " with: " + randomChoise + " has some differences in connected edge(s)");		
 
 		return randomChoise;
 	}
@@ -1290,11 +1290,11 @@ public class RuleInference {
 
 	private boolean isIncomingAndOutgoingEdgesMatched(GNode abstractNode, String instanceGraph_id, String instanceNode_id){
 
-
+		// uncomment for strong structure matching
 		// strong matching based on previous assignment of map IDs for neighbor node at [distance -2]
-		if (!this.hasAcommonAbstractIDmatching(abstractNode, instanceGraph_id, instanceNode_id)){
-			return false;
-		}
+		//if (!this.hasAcommonAbstractIDmatching(abstractNode, instanceGraph_id, instanceNode_id)){
+		//	return false;
+		//}
 		
 		
 		// ============================================================ 
