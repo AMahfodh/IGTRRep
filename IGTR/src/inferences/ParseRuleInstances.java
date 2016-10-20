@@ -20,7 +20,7 @@ public class ParseRuleInstances {
 
 	public void importExamples() {
 
-		operationWhiteList.add("renameNamedElement");
+		//operationWhiteList.add("pullUpAttribute22");
 		
 		// We just scan the file system for examples
 		File workingDir = new File("");
