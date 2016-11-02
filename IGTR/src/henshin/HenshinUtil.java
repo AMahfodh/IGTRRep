@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.BinaryFormula;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Formula;
@@ -523,6 +524,17 @@ public class HenshinUtil {
 
 			lhs.setFormula(new_formula);
 
+		}
+	}
+
+	public static void prettyPrinting(Rule rule) {
+		// <<delete>> attributes of <<preserved>> nodes appear on LHS and RHS
+		for (NodePair pair : getPreservedNodes(rule)) {
+			for (Attribute attr : pair.getLhsNode().getAttributes()) {
+				if (pair.getRhsNode().getAttribute(attr.getType()) == null) {
+					HenshinFactory.eINSTANCE.createAttribute(pair.getRhsNode(), attr.getType(), attr.getValue());
+				}
+			}
 		}
 	}
 }

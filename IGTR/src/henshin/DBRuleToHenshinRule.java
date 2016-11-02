@@ -186,6 +186,9 @@ public class DBRuleToHenshinRule {
 			NACHandler nacHandler = new NACHandler(this);
 			nacHandler.exportNACs();
 			
+			// "Pretty Printing"
+			HenshinUtil.prettyPrinting(hRule);
+			
 			// // Retrieve object parameters
 			// ObjectParameterRetriever objRetriever = new
 			// ObjectParameterRetriever(this);
