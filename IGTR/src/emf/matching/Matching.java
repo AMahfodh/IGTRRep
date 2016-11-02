@@ -12,24 +12,24 @@ import org.eclipse.emf.ecore.resource.Resource;
 import emf.util.EMFResourceUtil;
 
 public class Matching {
-	
+
 	/**
 	 * The original and the modified model.
 	 */
-	private Resource modelA; 
+	private Resource modelA;
 	private Resource modelB;
-	
+
 	/**
 	 * Indexed access to correspondences.
 	 */
 	private Map<EObject, EObject> correspondencesA2B;
 	private Map<EObject, EObject> correspondencesB2A;
-	
+
 	/**
 	 * Set of correspondences
 	 */
 	private List<Correspondence> correspondences;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -40,10 +40,10 @@ public class Matching {
 		super();
 		this.modelA = modelA;
 		this.modelB = modelB;
-		
+
 		this.correspondencesA2B = new HashMap<EObject, EObject>();
 		this.correspondencesB2A = new HashMap<EObject, EObject>();
-		
+
 		this.correspondences = new ArrayList<Correspondence>();
 	}
 
@@ -54,25 +54,36 @@ public class Matching {
 	 * @param elementB
 	 */
 	public void addCorrespondence(EObject elementA, EObject elementB) {
-		assert(EMFResourceUtil.contains(modelA, elementA));
-		assert(EMFResourceUtil.contains(modelB, elementB));
-		assert(!correspondencesA2B.containsKey(elementA));
-		assert(!correspondencesB2A.containsKey(elementB));
-		
+		assert (EMFResourceUtil.contains(modelA, elementA));
+		assert (EMFResourceUtil.contains(modelB, elementB));
+		assert (!correspondencesA2B.containsKey(elementA));
+		assert (!correspondencesB2A.containsKey(elementB));
+
 		correspondencesA2B.put(elementA, elementB);
 		correspondencesB2A.put(elementB, elementA);
-		
+
 		correspondences.add(new Correspondence(elementA, elementB));
 	}
-	
+
 	public List<Correspondence> getCorrespondences() {
 		return correspondences;
 	}
 
-	public boolean isMatched(EObject obj){
+	public boolean isMatched(EObject obj) {
 		return correspondencesA2B.containsKey(obj) || correspondencesB2A.containsKey(obj);
 	}
-	
+
+	public EObject getCorresponding(EObject obj) {
+		if (correspondencesA2B.containsKey(obj)) {
+			return correspondencesA2B.get(obj);
+		}
+		if (correspondencesB2A.containsKey(obj)) {
+			return correspondencesB2A.get(obj);
+		}
+
+		return null;
+	}
+
 	@Override
 	public String toString() {
 		String res = super.toString() + "\n";
@@ -80,13 +91,13 @@ public class Matching {
 			EObject objA = iterator.next();
 			EObject objB = correspondencesA2B.get(objA);
 			res += " " + objA + " <-> " + objB;
-			
-			if (iterator.hasNext()){
+
+			if (iterator.hasNext()) {
 				res += "\n";
 			}
 		}
-		
+
 		return res;
 	}
-	
+
 }

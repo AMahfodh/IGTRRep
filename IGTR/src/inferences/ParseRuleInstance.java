@@ -23,14 +23,18 @@ import emf.util.EMFMetaUtil;
 import emf.util.EMFResourceUtil;
 import emf.util.EObjectLocation;
 
+//TODO: For reasons of maintainability, this class should be spilt into Positive and Negative handling
 public class ParseRuleInstance {
+
+	// Name of the rule
+	private String ruleName;
 
 	// Original and changed model of an example
 	private Resource modelA;
 	private Resource modelB;
 
 	// Corresponding objects in A and B
-	private Matching matching;
+	private Matching matching_A_B;
 
 	// Domain Configuration
 	private IDomainConfiguration domainConfig;
@@ -59,25 +63,62 @@ public class ParseRuleInstance {
 	// LHS and RHS graphs
 	private GraphT gLHS;
 	private GraphT gRHS;
-	protected int iRuleInstanceID = 0;
+
+	// Parameters of the rule instance
+	ArrayList<GParameter> ruleParameters;
+
+	private RuleInstance instance;
+
+	// In case of NACs, this is the parser that created the positive rule
+	// instance we refer to
+	private ParseRuleInstance positive;
+
+	// In case of NACs, this is the matching to the LHS of the positive example
+	private Matching matching_NAC_LHS;
 
 	/**
-	 * Parses an example, i.e. a pair of models (original model and changed
-	 * model) into a graph representing a "rule instance".
+	 * Parses a positive example, i.e. a pair of models (original model and
+	 * changed model) into LHS and RHS graphs representing a "rule instance".
 	 * 
 	 * @param modelType
 	 * @param ruleName
 	 * @param pathA
 	 * @param pathB
 	 */
-	public void parse(String ruleName, String pathA, String pathB) {
-
+	public void parseRuleInstance(String ruleName, String pathA, String pathB) {
+		// Init
 		if (!new File(pathA).exists() || !new File(pathB).exists()) {
+			assert (false);
 			return;
 		}
 
-		modelA = EMFResourceUtil.loadModel(pathA);
-		modelB = EMFResourceUtil.loadModel(pathB);
+		this.ruleName = ruleName;
+		this.modelA = EMFResourceUtil.loadModel(pathA);
+		this.modelB = EMFResourceUtil.loadModel(pathB);
+
+		// parse and save
+		parse(false);
+		save();
+	}
+
+	public void parseNacExample(String ruleName, String pathA, String pathB, ParseRuleInstance positive) {
+		// Init
+		if (!new File(pathA).exists() || !new File(pathB).exists()) {
+			assert (false);
+			return;
+		}
+
+		this.ruleName = ruleName;
+		this.modelA = EMFResourceUtil.loadModel(pathA);
+		this.modelB = EMFResourceUtil.loadModel(pathB);
+		this.positive = positive;
+
+		// parse and save
+		parse(true);
+		save();
+	}
+
+	private void parse(boolean isNAC) {
 
 		modelA2lhs = new HashMap<EObject, GNode>();
 		modelB2rhs = new HashMap<EObject, GNode>();
@@ -87,16 +128,22 @@ public class ParseRuleInstance {
 		attrValue2lhs = new HashMap<Object, GNode>();
 		attrValue2rhs = new HashMap<Object, GNode>();
 
-		counterC = new IDGenerator("c");
-		counterA = new IDGenerator("a");
-		counterB = new IDGenerator("b");
-		counterAttr = new IDGenerator("attr");
+		counterC = new IDGenerator("c", isNAC);
+		counterA = new IDGenerator("a", isNAC);
+		counterB = new IDGenerator("b", isNAC);
+		counterAttr = new IDGenerator("attr", isNAC);
 
 		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 		IMatcher matcher = domainConfig.createMatcher(modelA, modelB);
 		System.out.println("Using matcher " + matcher.getClass().getName());
-		matching = matcher.createMatching(modelA, modelB);
-		System.out.println(matching);
+		matching_A_B = matcher.createMatching(modelA, modelB);
+		System.out.println("Matching A <-> B: " + matching_A_B);
+
+		if (isNAC) {
+			matcher = domainConfig.createMatcher(modelA, positive.modelA);
+			matching_NAC_LHS = matcher.createMatching(modelA, positive.modelA);
+			System.out.println("Matching NAC <-> LHS: " + matching_A_B);
+		}
 
 		gLHS = new GraphT();
 		gRHS = new GraphT();
@@ -116,47 +163,51 @@ public class ParseRuleInstance {
 		createEdges(modelB, gRHS, modelB2rhs);
 
 		// Parameters
-		ArrayList<GParameter> ruleParameters = new ArrayList<GParameter>();
+		this.ruleParameters = new ArrayList<GParameter>();
 		if (domainConfig.doDeriveParameters()) {
 			// Empty parameter list since we retrieve params from maximal rule
 		} else {
 
 		}
-
-		// Finally, create rule or NAC instance ..
-		RuleInstance createNewRule = null;
-
-		if (this.iRuleInstanceID != 0) {
-			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS, true, this.iRuleInstanceID);
-		} else {
-			createNewRule = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
-		}
-
-		// ...and save it
-		System.out.println("is it saved? " + createNewRule.save());
-		this.iRuleInstanceID = createNewRule.ruleInsID;
 	}
 
 	/**
-	 * overload parse method, allowing to instantiate and store NAC examples ..
-	 * */
-	public void parse(String ruleName, String pathA, String pathB, int INACReference) {
-		this.iRuleInstanceID = INACReference;
-		this.parse(ruleName, pathA, pathB);
+	 * Create rule or NAC instance and save it to the DB.
+	 * 
+	 * @return
+	 */
+	private void save() {
+		// Create instance....
+		instance = null;
+
+		if (this.positive != null) {
+			instance = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS, true, positive.instance.ruleInsID);
+		} else {
+			instance = new RuleInstance(ruleName, ruleParameters, gLHS, gRHS);
+		}
+
+		// ...and save it
+		boolean saved = instance.save();
+		assert (saved);
 	}
 
 	/**
 	 * Traverses the matching and maps all eObjects to graph nodes.
 	 */
 	private void traverseMatching() {
-		for (Correspondence c : matching.getCorrespondences()) {
+		for (Correspondence c : matching_A_B.getCorrespondences()) {
 			assert (c.getObjA().eClass() == c.getObjB().eClass());
 			if (domainConfig.getUnconsideredNodeTypes().contains(c.getObjA().eClass())) {
 				continue;
 			}
 
 			// Map objects to nodes
-			String id = counterC.generate();
+			String id = null;
+			if (positive == null) {
+				id = counterC.generateRuleInstance();
+			} else {
+				id = counterC.generateNAC(c.getObjA(), true);
+			}
 			GNode lhsNode = eObject2Node(gLHS, c.getObjA(), id);
 			GNode rhsNode = eObject2Node(gRHS, c.getObjB(), id);
 
@@ -186,12 +237,17 @@ public class ParseRuleInstance {
 			EObject eObject = iterator.next();
 			EClass eClass = eObject.eClass();
 
-			if (matching.isMatched(eObject) || domainConfig.getUnconsideredNodeTypes().contains(eClass)) {
+			if (matching_A_B.isMatched(eObject) || domainConfig.getUnconsideredNodeTypes().contains(eClass)) {
 				continue;
 			}
 
 			// Map object to node
-			String id = idGen.generate();
+			String id = null;
+			if (positive == null) {
+				id = idGen.generateRuleInstance();
+			} else {
+				id = idGen.generateNAC(eObject, model == modelA);
+			}
 			GNode node = eObject2Node(graph, eObject, id);
 
 			// Store the mapping traces
@@ -325,7 +381,13 @@ public class ParseRuleInstance {
 
 		for (Object value : wrapper.getDisctinctAttributeValues()) {
 			// Map attribute value to special nodes
-			String id = counterAttr.generate();
+			String id = null;
+			if (positive == null) {
+				id = counterAttr.generateRuleInstance();
+			} else {
+				id = counterAttr.generateNAC(value, true);
+			}
+
 			String syntheticType = wrapper.getRepresentativeDataSortElement(value);
 			if (syntheticType == null) {
 				syntheticType = value.toString();
@@ -346,15 +408,68 @@ public class ParseRuleInstance {
 
 		private int count;
 		private String prefix;
+		private boolean isNac;
 
-		protected IDGenerator(String prefix) {
+		protected IDGenerator(String prefix, boolean isNAC) {
 			this.prefix = prefix;
 			this.count = 0;
 		}
 
-		protected String generate() {
+		protected String generateNAC(Object oNAC, boolean isLHS) {
+			assert (isNac);
+
+			// try to get id from corresponding LHS
+			if (prefix.equals("attr")) {
+				String id = "n_" + prefix + count;
+				count++;
+
+				// if (isLHS && attrValue2lhs.containsKey(o)) {
+				// id = attrValue2lhs.get(o).nodeID;
+				// }
+				// if (attrValue2rhs.containsKey(o)) {
+				// id = attrValue2rhs.get(o).nodeID;
+				// }
+				// if (id == null) {
+				// // specific to nac, just count
+				// id = "n_" + prefix + count;
+				// count++;
+				// }
+
+				return id;
+			}
+
+			
+			String id = null;
+
+			// Try to get corresponding node from positive rule instance
+			EObject oPositive = matching_NAC_LHS.getCorresponding((EObject) oNAC);
+			
+			if (oPositive != null) {
+				if (isLHS && positive.modelA2lhs.containsKey(oPositive)) {
+					id = positive.modelA2lhs.get(oPositive).nodeID;
+				}
+				if (positive.modelB2rhs.containsKey(oPositive)) {
+					id = positive.modelB2rhs.get(oPositive).nodeID;
+				}
+			}
+
+			if (id == null) {
+				// specific to nac, just count
+				id = "n_" + prefix + count;
+				count++;
+			}
+
+			return id;
+
+		}
+
+		protected String generateRuleInstance() {
+			assert (!isNac);
+
+			// just count and increment counter
 			String id = prefix + count;
 			count++;
+
 			return id;
 		}
 	}

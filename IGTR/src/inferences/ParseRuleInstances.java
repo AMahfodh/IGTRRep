@@ -5,23 +5,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import emf.domain.IDomainConfiguration;
 
 public class ParseRuleInstances {
 
 	private List<String> operationWhiteList = new ArrayList<String>();
-	
+
 	public static final String PREFIX_POSITIVE = "example";
 	public static final String PREFIX_NEGATIVE = "negative";
 	public static final String PREFIX_REFERENCE = "reference";
 
-	private HashMap<String, Integer> mapExampleID_to_StoredRuleID = new HashMap<String, Integer>();
+	private Map<String, ParseRuleInstance> example2RuleInstance = new HashMap<String, ParseRuleInstance>();
 
 	public void importExamples() {
 
-		//operationWhiteList.add("pullUpAttribute22");
-		
+		operationWhiteList.add("pullUpAttribute_5");
+
 		// We just scan the file system for examples
 		File workingDir = new File("");
 		String examplesPath = workingDir.getAbsolutePath() + File.separator + ".." + File.separator + "Examples";
@@ -32,19 +33,18 @@ public class ParseRuleInstances {
 		File[] operations = modelsFolder.listFiles();
 		Arrays.sort(operations);
 		for (File operation : operations) {
-			if (!operationWhiteList.isEmpty()){
-				if (!operationWhiteList.contains(operation.getName())){
+			if (!operationWhiteList.isEmpty()) {
+				if (!operationWhiteList.contains(operation.getName())) {
 					continue;
 				}
 			}
-			
+
 			System.out.println("\n\n=== Importing examples for operation " + operation.getName());
 
 			File[] examples = operation.listFiles();
 
 			// to ensure exporting positive example first, then negative ..
 			Arrays.sort(examples);
-			this.mapExampleID_to_StoredRuleID.clear();
 
 			for (File example : examples) {
 
@@ -57,11 +57,8 @@ public class ParseRuleInstances {
 							+ IDomainConfiguration.MODEL_TYPE;
 
 					ParseRuleInstance parser = new ParseRuleInstance();
-					parser.parse(operation.getName(), pathOriginal, pathChanged);
-
-					this.mapExampleID_to_StoredRuleID.put(example.getName().replace(PREFIX_POSITIVE, ""),
-							parser.iRuleInstanceID);
-
+					parser.parseRuleInstance(operation.getName(), pathOriginal, pathChanged);
+					this.example2RuleInstance.put(example.getName().replace(PREFIX_POSITIVE, ""), parser);
 				}
 
 				if (example.getName().startsWith(PREFIX_NEGATIVE)) {
@@ -73,25 +70,24 @@ public class ParseRuleInstances {
 					String pathChanged = example.getAbsoluteFile() + File.separator + "Changed."
 							+ IDomainConfiguration.MODEL_TYPE;
 
-					Integer iRuleID = this.mapExampleID_to_StoredRuleID.get(example.getName().replace(PREFIX_NEGATIVE,
-							""));
-
-					if (iRuleID == null) {
-						iRuleID = -1;
-					} else {
-						this.mapExampleID_to_StoredRuleID.remove(example.getName().replace(PREFIX_NEGATIVE, ""));
-					}
+					ParseRuleInstance positive = example2RuleInstance.get(example.getName().replace(PREFIX_NEGATIVE, ""));
+					assert (positive != null);
 
 					ParseRuleInstance parser = new ParseRuleInstance();
-					parser.parse(operation.getName(), pathOriginal, pathChanged, iRuleID);
-
+					parser.parseNacExample(operation.getName(), pathOriginal, pathChanged, positive);
 				}
 
 				if (example.getName().startsWith(PREFIX_REFERENCE)) {
 					// We can simply ignore the reference rules here
 				}
 			}
+
+			// Cleanup
+			example2RuleInstance.clear();
 		}
+
+		// Cleanup
+		operationWhiteList.clear();
 	}
 
 	public static void main(String[] args) {
