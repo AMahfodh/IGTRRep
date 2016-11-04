@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.henshin.model.HenshinFactory;
@@ -101,7 +102,26 @@ public class ExportAllToHenshin {
 			return false;
 		}
 
+		// If there is a rule with multi-objects, we do not want the maximal
+		// rules that correspond to that rule with MO
+		for (Iterator<DBRule> iterator = dbRulesWithoutMO.iterator(); iterator.hasNext();) {
+			DBRule dbRule = iterator.next();
+			if (hasRuleWithMO(dbRule)) {
+				iterator.remove();
+			}
+		}
+
 		return true;
+	}
+
+	private boolean hasRuleWithMO(DBRule ruleWithoutMO) {
+		for (DBRule dbRuleMO : dbRulesWithMO) {
+			if (dbRuleMO.name.equals(ruleWithoutMO.name + "_MO")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private Module createModule(String name) {

@@ -220,6 +220,16 @@ public class DBRuleToHenshinRule {
 			hRule.setLhs(hLhs);
 			hRule.setRhs(hRhs);
 
+			// Handle/inline value nodes
+			valueNodes2Attributes(hRule);
+
+			// Handle NACs
+			NACHandler nacHandler = new NACHandler(this);
+			nacHandler.exportNACs();
+
+			// "Pretty Printing"
+			HenshinUtil.prettyPrinting(hRule);
+
 			// ObjectParameterRetriever objRetriever = new
 			// ObjectParameterRetriever(this);
 			// objRetriever.retrieve();
@@ -232,6 +242,16 @@ public class DBRuleToHenshinRule {
 			createLhs2RhsMappings(lhsWithMo, rhsWithMo, true, m_hRule);
 			m_hRule.setLhs(m_hLhs);
 			m_hRule.setRhs(m_hRhs);
+
+			// Handle/inline value nodes
+			valueNodes2Attributes(m_hRule);
+
+			// // Handle NACs
+			// NACHandler nacHandler = new NACHandler(this);
+			// nacHandler.exportNACs();
+
+			// "Pretty Printing"
+			HenshinUtil.prettyPrinting(m_hRule);
 
 			// Kernel-rule to multi-rule mappings
 			createKernel2MultiMappings(lhsWithMo, rhsWithMo, m_hRule);
@@ -501,8 +521,10 @@ public class DBRuleToHenshinRule {
 			Node hMulti = getHNode(node, false, true);
 
 			// Create Mapping
-			Mapping mapping = hFactory.createMapping(hKernel, hMulti);
-			hMultiRule.getMultiMappings().add(mapping);
+			if ((hKernel.getGraph() != null) && (hKernel.getGraph() != null)) {
+				Mapping mapping = hFactory.createMapping(hKernel, hMulti);
+				hMultiRule.getMultiMappings().add(mapping);
+			}
 		}
 
 		// RHS nodes
@@ -514,8 +536,10 @@ public class DBRuleToHenshinRule {
 			Node hMulti = getHNode(node, true, true);
 
 			// Create Mapping
-			Mapping mapping = hFactory.createMapping(hKernel, hMulti);
-			hMultiRule.getMultiMappings().add(mapping);
+			if ((hKernel.getGraph() != null) && (hKernel.getGraph() != null)) {
+				Mapping mapping = hFactory.createMapping(hKernel, hMulti);
+				hMultiRule.getMultiMappings().add(mapping);
+			}
 		}
 	}
 
