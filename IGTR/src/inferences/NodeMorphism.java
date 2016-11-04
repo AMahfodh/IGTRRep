@@ -26,16 +26,23 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 			return;
 		}
 		
-		
 		/*
 		 *	check their current types and also their common super type 
-		 */		
-		if (!this.gNode.nodeType.equalsIgnoreCase(mNode.nodeType) && 
-			!this.hasACommonSuperType(mNode)){
+		 */				
+		String commonSuperType = null;
+		if (this.gNode.nodeType.equalsIgnoreCase(mNode.nodeType)){
+			// ok, same type
+		} else if (getCommonSuperType(mNode) != null){
+			// ok, same supertype
+			commonSuperType = getCommonSuperType(mNode);
+			mNode.print();
+			this.gNode.print();
+		} else {
+			// incompatible types
 			return;
 		}
 		
-		/** 
+		/*
 		 * check connected incoming and outgoing edges 
 		 * 
 		 */
@@ -43,34 +50,32 @@ public class NodeMorphism implements Comparable<NodeMorphism>{
 			return;
 		}
 		
-		
-		
+		// In case the match is based on a common super type, remember it
+		if (commonSuperType != null){
+			this.gNode.nodeCommonType = commonSuperType;
+			mNode.nodeCommonType = commonSuperType;
+		}
+
 		this.mappingNodes.add(mNode);
-		
 	}
 		
 	
 	
-	private boolean hasACommonSuperType(GNode mNode){
-		
-		
+	private String getCommonSuperType(GNode mNode){
 		ArrayList<ClassType> superClassTypeForNode1 = RuleInference.getSuperTypes(this.gNode.nodeType);
 		ArrayList<ClassType> superClassTypeForNode2 = RuleInference.getSuperTypes(mNode.nodeType);
 		
 		for (int i=0; i<superClassTypeForNode1.size(); i++){
-			
-			ClassType cType1 = superClassTypeForNode1.get(i);
-			
-			if (superClassTypeForNode2.contains(cType1)){
-								
-				this.gNode.nodeCommonType=cType1.getClassName();
-				mNode.nodeCommonType=cType1.getClassName();
-				
-				return true;
+			ClassType superClassType = superClassTypeForNode1.get(i);
+
+			if (superClassTypeForNode2.contains(superClassType)){			
+				// We found a candidate
+				//TODO: check whether it is a valid one. Therefore we need the full type graph on the DB				
+				return superClassType.getClassName();
 			}			
 		}
 		
-		return false;
+		return null;
 	}
 	
 	

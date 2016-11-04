@@ -584,7 +584,7 @@ public class RuleInference {
 
 				groupID =crsGetGroups.getInt(1);				
 
-				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2)) && 
+				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2)) || 
 					this.isMinimalRuleMatchedUpToSuperType(crsGetGroups.getInt(2))){
 
 					if (DBRecord.executeSqlStatement(
@@ -817,7 +817,8 @@ public class RuleInference {
 	
 	
 	private boolean isIsomorphicUpToSuperTypeMinimalRule(GraphT g1, GraphT g2){
-
+		g1.printGraph();
+		g2.printGraph();
 		
 		if (g1.gNodes.size() !=g2.gNodes.size() ||
 			g1.gEdges.size() !=g2.gEdges.size()){

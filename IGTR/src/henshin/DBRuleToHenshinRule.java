@@ -181,14 +181,14 @@ public class DBRuleToHenshinRule {
 
 			// Handle/inline value nodes
 			valueNodes2Attributes(hRule);
-			
+
 			// Handle NACs
 			NACHandler nacHandler = new NACHandler(this);
 			nacHandler.exportNACs();
-			
+
 			// "Pretty Printing"
 			HenshinUtil.prettyPrinting(hRule);
-			
+
 			// // Retrieve object parameters
 			// ObjectParameterRetriever objRetriever = new
 			// ObjectParameterRetriever(this);
@@ -424,7 +424,7 @@ public class DBRuleToHenshinRule {
 						}
 					}
 				}
-				
+
 				// cleanup rule and henshin graphs
 				Mapping mapping = HenshinUtil.findMapping(rule.getMappings(), nodePair.getLhsNode(),
 						nodePair.getRhsNode());
@@ -470,6 +470,15 @@ public class DBRuleToHenshinRule {
 				Node hRhsNode = getHNode(rhsNode, true, isMulti);
 				Mapping mapping = hFactory.createMapping(hLhsNode, hRhsNode);
 				hRule.getMappings().add(mapping);
+
+				// Common super type handling
+				if (lhsNode.nodeCommonType != null && rhsNode.nodeCommonType != null
+						&& !lhsNode.nodeCommonType.equals("") && !rhsNode.nodeCommonType.equals("")
+						&& lhsNode.nodeCommonType.equals(rhsNode.nodeCommonType)) {
+
+					hLhsNode.setType(domainConfig.deriveNodeType(lhsNode.nodeCommonType));
+					hRhsNode.setType(domainConfig.deriveNodeType(rhsNode.nodeCommonType));
+				}
 			}
 		}
 	}

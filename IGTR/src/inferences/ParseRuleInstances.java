@@ -21,7 +21,7 @@ public class ParseRuleInstances {
 
 	public void importExamples() {
 
-		operationWhiteList.add("pullUpAttribute_5");
+		operationWhiteList.add("pullUpAttribute_4");
 
 		// We just scan the file system for examples
 		File workingDir = new File("");
