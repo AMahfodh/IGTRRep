@@ -413,6 +413,7 @@ public class ParseRuleInstance {
 		protected IDGenerator(String prefix, boolean isNAC) {
 			this.prefix = prefix;
 			this.count = 0;
+			this.isNac = isNAC;
 		}
 
 		protected String generateNAC(Object oNAC, boolean isLHS) {

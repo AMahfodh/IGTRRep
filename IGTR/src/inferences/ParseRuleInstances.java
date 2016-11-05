@@ -21,7 +21,7 @@ public class ParseRuleInstances {
 
 	public void importExamples() {
 
-		operationWhiteList.add("pullUpAttribute_4");
+		//operationWhiteList.add("pullUpAttribute_5");
 
 		// We just scan the file system for examples
 		File workingDir = new File("");
@@ -71,10 +71,11 @@ public class ParseRuleInstances {
 							+ IDomainConfiguration.MODEL_TYPE;
 
 					ParseRuleInstance positive = example2RuleInstance.get(example.getName().replace(PREFIX_NEGATIVE, ""));
-					assert (positive != null);
-
-					ParseRuleInstance parser = new ParseRuleInstance();
-					parser.parseNacExample(operation.getName(), pathOriginal, pathChanged, positive);
+					// TODO: we should support multiple nac instances and generalise to their intersection
+					if (positive != null){
+						ParseRuleInstance parser = new ParseRuleInstance();
+						parser.parseNacExample(operation.getName(), pathOriginal, pathChanged, positive);
+					}
 				}
 
 				if (example.getName().startsWith(PREFIX_REFERENCE)) {
