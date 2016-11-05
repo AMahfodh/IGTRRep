@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_pK8P8Iy-EeaOgvJuupjR7w">
-  <imports href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
-  <units xsi:type="henshin:Rule" xmi:id="_pmXnsIy-EeaOgvJuupjR7w" name="pullUpAttribute">
-    <lhs xmi:id="_pmcgMIy-EeaOgvJuupjR7w" name="Lhs"/>
-    <rhs xmi:id="_pmcgMYy-EeaOgvJuupjR7w" name="Rhs"/>
-  </units>
-</henshin:Module>
