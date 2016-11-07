@@ -19,8 +19,7 @@ import emf.util.EMFModelUtil;
 public class UUIDMatcher extends AbstractMatcher {
 
 	public UUIDMatcher(IDomainConfiguration domainConfiguration) {
-		super(domainConfiguration);
-		// TODO Auto-generated constructor stub
+		super(domainConfiguration);	
 	}
 
 	/**

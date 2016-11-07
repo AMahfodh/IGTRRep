@@ -137,10 +137,8 @@ public class DBRuleToHenshinRule {
 		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
 		dataNodeWrapper = DataNodeWrapper.getComprehensiveDataNodeWrapper();
 
-		// Print parameters and also generate required ones based on
-		// inferred
-		// invariants
-		// TODO
+		// TODO: Print parameters and also generate required ones based on
+		// inferred invariants
 		// this.printRuleParameters(dbRule.observationId);
 
 		int iLHSGraphID = -1;

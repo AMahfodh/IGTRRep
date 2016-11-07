@@ -2595,10 +2595,6 @@ public class RuleInference {
 			e.printStackTrace();
 		}
 
-
-
-
-
 		//-------------------------------------------------------
 		// No group has been found, so we need to define new group
 		groupMO_ID++;
@@ -2610,17 +2606,11 @@ public class RuleInference {
 		//	this.GTlogger.info("Error: group_Mo id can't be generated ..");
 		}
 
-
-
 		System.out.println("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
 	//	this.GTlogger.info("\tmulti-object in maximal rule id: " + this.iObservationId + " - defined group_mo id : " + groupMO_ID + "\t ok");
 	}
 
-
-
 	private boolean isRuleMoStructureMatched(int iTargetObservationID){
-
-
 
 		try {
 
@@ -2648,9 +2638,6 @@ public class RuleInference {
 				checkMinimalRule.next();
 				targetRHS_id = checkMinimalRule.getInt(1);				
 			}
-
-
-
 
 			// [1] ============================================================ 
 			// check matching all nodes without (isMulti) in both rules ..
@@ -2696,12 +2683,6 @@ public class RuleInference {
 				return false;
 			}
 
-
-
-
-
-
-
 			// [2] ============================================================ 
 			// check matching all edges in both rules ..
 			// ----------------------------------------------------------------		
@@ -2735,11 +2716,6 @@ public class RuleInference {
 
 				return false;
 			}
-
-
-
-
-
 		}
 		catch (SQLException e) {		
 			e.printStackTrace();
@@ -2750,8 +2726,6 @@ public class RuleInference {
 		// 100% matched
 		return true;
 	}
-
-
 
 	private void setisAbstractMOForMaximalMultiObjectInRule(int existsRuleObservation_ID){
 
@@ -2780,24 +2754,6 @@ public class RuleInference {
 				+ " where Observation_IDREFF=@Oid;", true);
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * remove redundant NACs, specified already with the examples

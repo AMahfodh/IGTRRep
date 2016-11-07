@@ -20,8 +20,7 @@ public class NamedElementMatcher extends AbstractMatcher {
 	private boolean useQualifiedNames = true;
 
 	public NamedElementMatcher(IDomainConfiguration domainConfiguration) {
-		super(domainConfiguration);
-		// TODO Auto-generated constructor stub
+		super(domainConfiguration);		
 	}
 
 	@Override

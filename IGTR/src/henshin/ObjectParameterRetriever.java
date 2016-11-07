@@ -73,7 +73,7 @@ public class ObjectParameterRetriever {
 		for (Edge hEdge : dbRule2hRule.hRule.getLhs().getEdges()) {
 			if (hEdge.getType().isContainment()) {
 				// We assume that containers are unique
-				// TODO: true for case studies, but in general. So check
+				// TODO: true for case studies, but not in general. So check
 				// meta-model!
 				DominatedBy dominatedBy = new DominatedBy(hEdge.getType(), hEdge.getTarget(), hEdge.getSource());
 				if (!dominatedRelations.contains(dominatedBy)) {
