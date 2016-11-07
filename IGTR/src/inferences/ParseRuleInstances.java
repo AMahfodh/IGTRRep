@@ -70,14 +70,13 @@ public class ParseRuleInstances {
 					String pathChanged = example.getAbsoluteFile() + File.separator + "Changed."
 							+ IDomainConfiguration.MODEL_TYPE;
 
-					ParseRuleInstance positive = example2RuleInstance.get(example.getName()
-							.replace(PREFIX_NEGATIVE, ""));
 					String[] idx = example.getName().replace(PREFIX_NEGATIVE, "").split("_");
 					String idx_positive = idx[0];
 					String idx_negative = idx[1];
 					if (idx_negative.equals("1")) {
 						// TODO: we should support multiple nac instances and
 						// generalise to their intersection
+						ParseRuleInstance positive = example2RuleInstance.get(idx_positive);
 						ParseRuleInstance parser = new ParseRuleInstance();
 						parser.parseNacExample(operation.getName(), pathOriginal, pathChanged, positive);
 					}
