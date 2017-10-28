@@ -58,12 +58,12 @@ public class GNode {
     }
     
     
-    protected int getAttributeIndex(String AttributeName){
+    public int getAttributeIndex(String AttributeName){
     	return this.attributeName.indexOf(AttributeName);
     }
     
         
-    protected GAttribute getAttribute(String AttributeName){
+    public GAttribute getAttribute(String AttributeName){
     	    	
     	int iAtt= this.attributeName.indexOf(AttributeName);    
     	
@@ -76,7 +76,7 @@ public class GNode {
     }
     
     
-    protected GAttribute getAttributeByValue(String AttributeValue){
+    public GAttribute getAttributeByValue(String AttributeValue){
     	
     	GAttribute checkAtt=null;
     	
@@ -93,14 +93,14 @@ public class GNode {
     }
         
     
-    protected void addAttribute(    		
+    public void addAttribute(    		
     		GAttribute GAtt){
     	
     	this.attributeName.add(GAtt.attName);
     	this.gAttribute.add(GAtt);
     }
     
-    protected void removeAttribute(    		
+    public void removeAttribute(    		
     		int iAttributeIndex){
     	
     	this.attributeName.remove(iAttributeIndex);
@@ -108,7 +108,7 @@ public class GNode {
     }
     
     
-    protected void addAttribute(    		
+    public void addAttribute(    		
     		String AttributeName,
     		String AttributeType,
     		String AttributeValue,

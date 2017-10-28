@@ -15,12 +15,12 @@ public class GraphT {
 	
     // nodes
 	public ArrayList<GNode> gNodes = null;
-	protected ArrayList<String> nodesIndexs = null;
+	public ArrayList<String> nodesIndexs = null;
 	
 	
 	// edges
 	public ArrayList<GEdge> gEdges = null;    
-	private ArrayList<String> edgesIndexs = null;
+	public ArrayList<String> edgesIndexs = null;
     
     
     
@@ -535,7 +535,7 @@ public class GraphT {
     
     
     
-    protected boolean saveNodes (){
+    public boolean saveNodes (){
     	
     	this.graphID = DBRecord.saveGraphT(this.observation_ID, this.graphType);
     	
@@ -565,7 +565,7 @@ public class GraphT {
     }
     
     
-   protected boolean saveEdges (){
+    public boolean saveEdges (){
     	
     	// save Edges
 	   for (int iEdge=0; iEdge<this.gEdges.size(); iEdge++){
@@ -586,7 +586,7 @@ public class GraphT {
     	return this.nodesIndexs.indexOf(nodeID);    	
     }
     
-    protected GNode getNode(String nodeID){
+    public GNode getNode(String nodeID){
     	
     	int iNode= this.getNodeIndex(nodeID);    
     	
@@ -629,7 +629,7 @@ public class GraphT {
     
     
     
-    protected void generateEdges(){
+    public void generateEdges(){
     	
     	// initialise edge ArrayLists
     	this.gEdges = new ArrayList<GEdge>();
@@ -767,7 +767,7 @@ public class GraphT {
     }
     
     
-    protected void addEdge(GEdge ge){
+    public void addEdge(GEdge ge){
 
     	if (this.gEdges== null || this.edgesIndexs ==null){
     		this.gEdges = new ArrayList<GEdge>();
