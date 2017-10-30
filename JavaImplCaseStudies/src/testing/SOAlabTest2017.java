@@ -42,10 +42,10 @@ public class SOAlabTest2017 {
 		
 		
 		exeTestCase1();
-		//exeTestCase2();
-		//exeTestCase3();
-		//exeTestCase4();
-		//exeTestCase5();
+		exeTestCase2();
+		exeTestCase3();
+		exeTestCase4();
+		exeTestCase5();
 		
 	}
 	
