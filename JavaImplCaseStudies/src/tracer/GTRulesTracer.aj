@@ -37,7 +37,10 @@ public aspect GTRulesTracer {
 	//*************************************************************************************
 	//point-cut to define internal states with no conditions to observe the whole execution 		
 	pointcut stateTriggers(): 	
-		!within(tracer.*) && 
+		!within(tracer.*) &&
+		!within(ourOriginalTesting.*) && 
+		!within(randoopTesting.*) &&
+		!within(crossValidation.*) && 
 		!execution(* *.main(String[]));
 
 

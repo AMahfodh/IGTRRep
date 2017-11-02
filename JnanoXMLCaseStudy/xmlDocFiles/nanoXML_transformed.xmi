@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ayo:NanoXML xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ayo="allah" xsi:schemaLocation="allah nanoXML.ecore">
+  <xmlElements name="" fullName="2" content="1" namespace="11" systemID="1212"/>
+  <xmlElements name="" fullName="a" content="a" namespace="a" systemID="a" parent="//@xmlElements.0" attributes="//@vectors.0" children="//@vectors.1"/>
+  <vectors/>
+  <vectors>
+    <children name="" fullName="ccc" content="cc" namespace="ccccccc" systemID="ccc" parent="//@xmlElements.1"/>
+  </vectors>
+  <xmlAttributes/>
+  <xmlAttributes/>
+</ayo:NanoXML>
