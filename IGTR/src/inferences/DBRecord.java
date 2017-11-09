@@ -29,8 +29,8 @@ public class DBRecord {
 
         String drivers = "com.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/TraceOutput_DB?allowMultiQueries=true&useSSL=false";
-        String username = "loly";
-        String password = "541541";
+        String username = "";
+        String password = "";
         
         System.setProperty(drivers,"");
         return DriverManager.getConnection(url,username,password);
@@ -40,7 +40,7 @@ public class DBRecord {
 	
     
     // open 'conn' object and initialising statements
-    protected static void openConnection(){
+    public static void openConnection(){
 		
 		try
 		{
@@ -58,7 +58,7 @@ public class DBRecord {
     
     
     // close connection for both conn and statements
-    protected static void closeConnection(){
+    public static void closeConnection(){
 		
 		try {
 			DBRecord.DBStatement.close();
@@ -76,7 +76,7 @@ public class DBRecord {
     
     
 	// recording a new observation
-    protected static int setNewObservation(String methodName){
+    public static int setNewObservation(String methodName){
 		
 		/* rule name is the main method name which is passed as par with 
 		 	endStartSeparation (..)
@@ -116,7 +116,7 @@ public class DBRecord {
     
    
 	// end recording current observation 
-    protected static boolean endCurrentObservation (
+    public static boolean endCurrentObservation (
     		int Observation_ID, 
     		String MethodSignature,
     		String RuleParameters,
@@ -195,7 +195,7 @@ public class DBRecord {
 	
 		
     // initial Saving Basic Rule
-	protected static boolean initialSavingBasicRule (
+    public static boolean initialSavingBasicRule (
 			int Observation_ID, 
 			String ruleName,
 			boolean isApplicable,
@@ -253,7 +253,7 @@ public class DBRecord {
 	
 	
 	// methods to save graphs
-	protected static int saveGraphT (int Observation_ID, int graphType){
+    public static int saveGraphT (int Observation_ID, int graphType){
 		
 		/**
 		 *	Graph types :
@@ -293,7 +293,7 @@ public class DBRecord {
 	}
 		
 	
-	protected static boolean saveGraphNodes (int graphType, int iGraphID, GNode saveGNode){
+    public static boolean saveGraphNodes (int graphType, int iGraphID, GNode saveGNode){
 		
 		boolean isRecoreded= true;
 		
@@ -396,7 +396,7 @@ public class DBRecord {
 	}
 	
 	
-	private static void saveGraphNodeAttributes (int iGraphID, String nodeID, GAttribute saveGAttribute, int graphType) throws SQLException{
+    public static void saveGraphNodeAttributes (int iGraphID, String nodeID, GAttribute saveGAttribute, int graphType) throws SQLException{
 				
 		String sqlStatement="Insert into TblNodeAttributes "
 				+ "(Graph_IDREFF, "
@@ -433,7 +433,7 @@ public class DBRecord {
 	}
 	
 	
-	protected static boolean saveGraphEdges (int iGraphID, GEdge saveGEdges){
+    public static boolean saveGraphEdges (int iGraphID, GEdge saveGEdges){
 		
 		boolean isRecored= true;
 		
@@ -628,7 +628,7 @@ public class DBRecord {
     
     
     
-    protected static boolean updateLearnedRuleAttributes (
+    public static boolean updateLearnedRuleAttributes (
     		int Observation_ID, 
     		String strLearnedAttributes){
 
@@ -668,7 +668,7 @@ public class DBRecord {
     
 
 
-    protected static boolean updateLearnedRuleAttributes (
+    public static boolean updateLearnedRuleAttributes (
     		int Observation_ID, 
     		String strLearnedAttributes, 
     		boolean isConnected){
@@ -804,7 +804,7 @@ public class DBRecord {
     
     
     // general methods
-    protected final static HashMap<String, Boolean> objectTypes= setObjectTypes();
+    public final static HashMap<String, Boolean> objectTypes= setObjectTypes();
     
 
     
@@ -833,7 +833,7 @@ public class DBRecord {
     }
     
     
-    protected static Set<Class<?>> getWrapperTypes() {  
+    public static Set<Class<?>> getWrapperTypes() {  
     	
         Set<Class<?>> ret = new HashSet<Class<?>>();
         ret.add(Boolean.class);
@@ -854,7 +854,7 @@ public class DBRecord {
     }
 
     
-    protected static Set<String> getCollectionAffectedMethds() {  
+    public static Set<String> getCollectionAffectedMethds() {  
     	
     	// all values must be added at lower cases
     	

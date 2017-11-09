@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thanks to Dipak Devalia for most of the data in this file -->
+<Schedule>
+  <Match id="match1">
+    <Team>
+      <Name>Leicester</Name>
+      <Captain>Matt Oakley</Captain>
+      <Coach>Mike Stowell</Coach>
+    </Team>
+    <Team>
+      <Name>Scunthorpe</Name>
+      <Captain>Cliff Byrne</Captain>
+      <Coach>Ian Baraclough</Coach>
+    </Team>   
+    <Stadium>Leicester Walkers Stadium
+    </Stadium>    
+    <Date>2010-10-02</Date>
+    <time>19:00:00</time>
+    <TicketPrice>31.00</TicketPrice>
+  </Match>
+  <Match id="match2">
+    <Team>
+      <Name>Leicester</Name>
+      <Captain>Matt Oakley</Captain>
+      <Coach>Mike Stowell</Coach>
+    </Team>
+    <Team>
+      <Name>Scunthorpe</Name>
+      <Captain>Cliff Byrne</Captain>
+      <Coach>Ian Baraclough</Coach>
+    </Team>
+    <Team>
+      <Name>Scunthorpe2</Name>
+      <Captain>Cliff Byrne2</Captain>
+      <Coach>Ian Baraclough2</Coach>
+    </Team>    
+    <Stadium>Leicester Walkers Stadium
+    </Stadium>
+    <Stadium>Leicester Walkers Stadium
+    </Stadium>    
+    <Date>2010-10-02</Date>
+    <time>19:00:00</time>
+    <TicketPrice>31.00</TicketPrice>
+  </Match>
+</Schedule>

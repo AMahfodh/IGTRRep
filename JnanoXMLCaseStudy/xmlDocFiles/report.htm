@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Simulate Executing Visual Contracts</title>
+     <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<h1 style="text-align:left;">Appendix B</h1>
+<h1 style=" text-align: center">Simulate Executing Visual Contracts</h1>
+<h3 style="text-align:center;">Validation Report</h3>
+<hr />
+<br />
+<br />
+<h2>Summary</h2>
+    <table style="width:auto; margin-left: auto; margin-right: auto;">
+        <tr style="background-color: #f8f8f8;">
+            <td>*</td>
+            <td colspan="2">Number of rules that are</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>correct</td>
+            <td>37</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>not applicable (unmatched structure) [alert case2]</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>C</td>
+            <td>not applicable (invalid constraints) [alert case1]</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>not found [alert case1]</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>E</td>
+            <td>not executed</td>
+            <td>1</td>
+        </tr>
+        <tr style="background-color: #f8f8f8;">
+            <td colspan="2">Total rules in the model</td>
+            <td>41</td>
+        </tr>
+    </table>
+
+<br />
+<br />
+<h2>Details..</h2>
+
+    <table border="1" style="width:100%; margin-left: auto; margin-right: auto;">
+        <tr style="background-color: #f8f8f8;">
+            <td colspan="2">Implementation</td>
+            <td colspan="2">Model</td>
+            <td>Daikon</td>
+            <td>Evaluation</td>
+        </tr>        
+        <tr style="background-color: #CCCCCC;">
+            <td>Test case Id</td>
+            <td>Rule signature</td>
+            <td>Rule id</td>
+            <td>isApplicable</td>
+            <td>isValid</td>
+            <td>a.correct<br />b.case 1<br />c.case 2</td>
+        </tr>
+<tr><td>tc01</td><td>void net.n3.nanoxml.XMLElement.addChild(IXMLElement)</td><td>0_28036_addChild</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc02</td><td>void net.n3.nanoxml.XMLElement.insertChild(IXMLElement, int)</td><td>1_28038_insertChild</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc03</td><td>void net.n3.nanoxml.XMLElement.addChildren(IXMLElement[])</td><td>4_28044_addChildren</td><td><font color="OrangeRed">false</font></td><td> ~ ~ </td><td><font color="Crimson">case 2</font></td></tr>
+<tr><td>tc03</td><td>void net.n3.nanoxml.XMLElement.addChildren(IXMLElement[])</td><td>33_28094_addChildren</td><td><font color="OrangeRed">false</font></td><td> ~ ~ </td><td><font color="Crimson">case 2</font></td></tr>
+<tr><td>tc03</td><td>void net.n3.nanoxml.XMLElement.addChildren(IXMLElement[])</td><td>39_28363_addChildren</td><td><font color="OrangeRed">false</font></td><td> ~ ~ </td><td><font color="Crimson">case 2</font></td></tr>
+<tr><td>tc03</td><td>void net.n3.nanoxml.XMLElement.addChildren(IXMLElement[])</td><td>40_28364_addChildren</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc04</td><td>void net.n3.nanoxml.XMLElement.removeChild(IXMLElement)</td><td>2_28039_removeChild</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc05</td><td>void net.n3.nanoxml.XMLElement.removeChildAtIndex(int)</td><td>3_28042_removeChildAtIndex</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc06</td><td>Enumeration net.n3.nanoxml.XMLElement.enumerateChildren()</td><td>10_28055_enumerateChildren</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc07</td><td>boolean net.n3.nanoxml.XMLElement.hasChildren()</td><td>25_28081_hasChildren</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc08</td><td>boolean net.n3.nanoxml.XMLElement.isLeaf()</td><td>26_28082_isLeaf</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc09</td><td>IXMLElement net.n3.nanoxml.XMLElement.getChildAtIndex(int)</td><td>23_28079_getChildAtIndex</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc10</td><td>int net.n3.nanoxml.XMLElement.getChildrenCount()</td><td>27_28083_getChildrenCount</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc11</td><td>IXMLElement net.n3.nanoxml.XMLElement.getParent()</td><td>29_28085_getParent</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc12</td><td>String net.n3.nanoxml.XMLElement.getName()</td><td>30_28086_getName</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc13</td><td>String net.n3.nanoxml.XMLElement.getFullName()</td><td>31_28087_getFullName</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc14</td><td>Vector net.n3.nanoxml.XMLElement.getChildren()</td><td>32_28088_getChildren</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc15</td><td>void net.n3.nanoxml.XMLElement.setName(String)</td><td>20_28069_setName</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc16</td><td>void net.n3.nanoxml.XMLElement.setName(String, String)</td><td>21_28072_setName</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc17</td><td>IXMLElement net.n3.nanoxml.XMLElement.createElement(String)</td><td>6_28050_createElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc18</td><td>IXMLElement net.n3.nanoxml.XMLElement.createElement(String, String)</td><td>7_28051_createElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc19</td><td>IXMLElement net.n3.nanoxml.XMLElement.createElement(String, String, int)</td><td>8_28052_createElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc20</td><td>IXMLElement net.n3.nanoxml.XMLElement.createElement(String, String, String, int)</td><td>9_28053_createElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc21</td><td>IXMLElement net.n3.nanoxml.XMLElement.createPCDataElement()</td><td>34_28163_createPCDataElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc22</td><td>void net.n3.nanoxml.XMLElement.setAttribute(String, String)</td><td>35_28215_setAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc23</td><td>void net.n3.nanoxml.XMLElement.setAttribute(String, String, String)</td><td>36_28325_setAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc24</td><td>String net.n3.nanoxml.XMLElement.getAttributeType(String)</td><td>12_28060_getAttributeType</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc25</td><td>String net.n3.nanoxml.XMLElement.getAttributeType(String, String)</td><td>13_28061_getAttributeType</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc26</td><td>Properties net.n3.nanoxml.XMLElement.getAttributes()</td><td>11_28058_getAttributes</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc27</td><td>int net.n3.nanoxml.XMLElement.getAttribute(String, String, int)</td><td>15_28063_getAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc28</td><td>String net.n3.nanoxml.XMLElement.getAttribute(String, String))</td><td>14_28062_getAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc29</td><td>String net.n3.nanoxml.XMLElement.getAttribute(String, String, String)</td><td>15_28063_getAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc30</td><td>Enumeration net.n3.nanoxml.XMLElement.enumerateAttributeNames()</td><td>37_28327_enumerateAttributeNames</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc31</td><td>boolean net.n3.nanoxml.XMLElement.hasAttribute(String)</td><td>24_28080_hasAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc32</td><td>int net.n3.nanoxml.XMLElement.getAttributeCount()</td><td>28_28084_getAttributeCount</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc33</td><td>String net.n3.nanoxml.XMLElement.getAttributeNamespace(String)</td><td>17_28065_getAttributeNamespace</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc34</td><td>Properties net.n3.nanoxml.XMLElement.getAttributesInNamespace(String)</td><td>18_28066_getAttributesInNamespace</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc35</td><td>void net.n3.nanoxml.XMLElement.removeAttribute(String)</td><td>38_28335_removeAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc36</td><td>void net.n3.nanoxml.XMLElement.removeAttribute(String, String)</td><td>19_28068_removeAttribute</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc37</td><td>Test a non-existent rule</td><td> ~ ~ </td><td> ~ ~ </td><td> ~ ~ </td><td><font color="blue">case 1</font></td></tr>
+<tr><td>tc38</td><td>void net.n3.nanoxml.XMLElement.setContent(String)</td><td>22_28073_setContent</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+<tr><td>tc39</td><td>void net.n3.nanoxml.XMLElement()</td><td>5_28045_XMLElement</td><td>true</td><td> ? </td><td><font color="green">correct</font></td></tr>
+
+    </table>
+
+<br />
+<br />
+<h2>Not executed rules</h2>
+<ul>
+<li>28064_getAttribute</li>
+
+</ul>
+<br />
+<br />
+<h2>Not found rules</h2>
+<ul>
+<li>TestAnonExistentRule</li>
+
+</ul>
+
+</body>
+</html>
