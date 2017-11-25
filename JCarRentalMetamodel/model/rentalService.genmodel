@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/JCarRentalMetamodel/src" modelPluginID="JCarRentalMetamodel"
+    modelName="RentalService" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>rentalService.ecore</foreignModel>
+  <genPackages prefix="RentalService" disposableProviderFactory="true" ecorePackage="rentalService.ecore#/">
+    <genClasses ecoreClass="rentalService.ecore#//Branch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Branch/city"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Branch/cMax"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Branch/rMax"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rentalService.ecore#//Branch/at"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rentalService.ecore#//Branch/of"/>
+    </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//Car">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Car/registration"/>
+    </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//Client">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Client/cName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Client/cID"/>
+    </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//Reservation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//Reservation/reference"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Reservation/made"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Reservation/pickup"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Reservation/dropoff"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Reservation/For"/>
+    </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//Rental">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Rental/branches"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Rental/reservations"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
