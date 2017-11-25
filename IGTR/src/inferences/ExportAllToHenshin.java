@@ -59,13 +59,15 @@ public class ExportAllToHenshin {
 		// Create Henshin rules (without multi-objects)
 		System.out.println("Creating Henshin rules ..");
 		for (DBRule dbRule : dbRulesWithoutMO) {
+			System.out.println(dbRule.name);
 			transformRule(dbRule, hModule);
 		}
 
 		// Create Henshin rules (with multi-objects)
 		System.out.println("Creating Henshin rules with multi-objects ..");
 		for (DBRule dbRule : dbRulesWithMO) {
-			transformRule(dbRule, hModule);
+			System.out.println(dbRule.name);
+			//transformRule(dbRule, hModule);
 		}
 
 		// Save Henshin file
@@ -91,6 +93,8 @@ public class ExportAllToHenshin {
 				DBRule dbRule = new DBRule(crsAllAbstractRule.getString(1), crsAllAbstractRule.getInt(2),
 						crsAllAbstractRule.getBoolean(3));
 
+				System.out.println(dbRule);
+				
 				if (dbRule.isMulti) {
 					dbRulesWithMO.add(dbRule);
 				} else {

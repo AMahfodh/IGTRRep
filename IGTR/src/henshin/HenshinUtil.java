@@ -94,7 +94,7 @@ public class HenshinUtil {
 	 * @param module
 	 * @param path
 	 * 
-	 * */
+	 */
 	public static void serializeModule(Module module, String path) {
 
 		String name = module.getName() + ".henshin";
@@ -524,6 +524,30 @@ public class HenshinUtil {
 
 			lhs.setFormula(new_formula);
 
+		}
+	}
+
+	public static String getCleanedAttributeValue(EAttribute type, String attributeValue) {
+		String res = attributeValue;
+		if (type.getEAttributeType().equals(EcorePackage.eINSTANCE.getEString())) {
+			res = "\"" + res + "\"";
+		}
+
+		return res;
+	}
+
+	public static String getCleanedEdgeType(String edgeType) {
+		System.out.println(" ===== " + edgeType);
+
+		if (edgeType.contains(":") && edgeType.contains("-")) {
+			System.out.println(" >>>>>>>>>>>>>> index");
+			return "index";
+		} else if (edgeType.contains(":")) {
+			System.out.println(" >>>>>>>>>>>>>> " + edgeType.substring(0, edgeType.indexOf(":")));
+			return edgeType.substring(0, edgeType.indexOf(":"));
+		} else {
+			System.out.println(" >>>>>>>>>>>>>> " + edgeType);
+			return edgeType;
 		}
 	}
 

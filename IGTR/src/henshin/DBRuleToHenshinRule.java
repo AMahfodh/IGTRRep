@@ -1,17 +1,12 @@
 package henshin;
 
-import inferences.DBRecord;
-import inferences.GAttribute;
-import inferences.GEdge;
-import inferences.GNode;
-import inferences.GraphT;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -28,6 +23,11 @@ import com.sun.rowset.CachedRowSetImpl;
 import emf.domain.DomainConfigurationFactory;
 import emf.domain.IDomainConfiguration;
 import emf.util.DataNodeWrapper;
+import inferences.DBRecord;
+import inferences.GAttribute;
+import inferences.GEdge;
+import inferences.GNode;
+import inferences.GraphT;
 
 /**
  * Transforms a DBRule to a Henshin rule.
@@ -135,7 +135,9 @@ public class DBRuleToHenshinRule {
 		hRule = hFactory.createRule(dbRule.name);
 
 		domainConfig = DomainConfigurationFactory.createDomainConfiguration();
-		dataNodeWrapper = DataNodeWrapper.getComprehensiveDataNodeWrapper();
+		if (domainConfig.treatAttributesAsNodes()) {
+			dataNodeWrapper = DataNodeWrapper.getComprehensiveDataNodeWrapper();
+		}
 
 		// TODO: Print parameters and also generate required ones based on
 		// inferred invariants
@@ -178,7 +180,9 @@ public class DBRuleToHenshinRule {
 			hRule.setRhs(hRhs);
 
 			// Handle/inline value nodes
-			valueNodes2Attributes(hRule);
+			if (domainConfig.treatAttributesAsNodes()) {
+				valueNodes2Attributes(hRule);
+			}
 
 			// Handle NACs
 			NACHandler nacHandler = new NACHandler(this);
@@ -219,7 +223,9 @@ public class DBRuleToHenshinRule {
 			hRule.setRhs(hRhs);
 
 			// Handle/inline value nodes
-			valueNodes2Attributes(hRule);
+			if (domainConfig.treatAttributesAsNodes()) {
+				valueNodes2Attributes(hRule);
+			}
 
 			// Handle NACs
 			NACHandler nacHandler = new NACHandler(this);
@@ -242,7 +248,9 @@ public class DBRuleToHenshinRule {
 			m_hRule.setRhs(m_hRhs);
 
 			// Handle/inline value nodes
-			valueNodes2Attributes(m_hRule);
+			if (domainConfig.treatAttributesAsNodes()) {
+				valueNodes2Attributes(m_hRule);
+			}
 
 			// // Handle NACs
 			// NACHandler nacHandler = new NACHandler(this);
@@ -285,6 +293,7 @@ public class DBRuleToHenshinRule {
 			}
 
 			EClass hNodeType = domainConfig.deriveNodeType(node.nodeType);
+			assert (hNodeType != null);
 			Node hNode = hFactory.createNode(hGraph, hNodeType, "");
 
 			String nodeID = null;
@@ -308,7 +317,7 @@ public class DBRuleToHenshinRule {
 
 			// Transform attributes
 			if (!domainConfig.treatAttributesAsNodes()) {
-				transformAttributes(graph, node, isRHS, isMulti);
+				// transformAttributes(graph, node, isRHS, isMulti);
 			}
 		}
 
@@ -328,10 +337,13 @@ public class DBRuleToHenshinRule {
 			Node hTgtNode = getHNode(tgtNode, isRHS, isMulti);
 
 			Edge hEdge = null;
-			EReference edgeType = domainConfig.deriveEdgeType(hSrcNode.getType(), edge.edgeType);
+			String strEdgeType = HenshinUtil.getCleanedEdgeType(edge.edgeType);
+			EReference edgeType = domainConfig.deriveEdgeType(hSrcNode.getType(), strEdgeType);
 			if (edgeType != null) {
 				hEdge = hFactory.createEdge(hSrcNode, hTgtNode, edgeType);
 			} else {
+				assert (domainConfig.treatAttributesAsNodes());
+				
 				// Just a dummy edge representing a pointer to a value node
 				hEdge = new ValueEdge();
 				hEdge.setSource(hSrcNode);
@@ -370,8 +382,9 @@ public class DBRuleToHenshinRule {
 				}
 
 				// Create attribute
-				Attribute hAttribute = hFactory.createAttribute(hNode,
-						domainConfig.deriveAttributeType(hNode.getType(), attribute.attName), attribute.attName);
+				EAttribute type = domainConfig.deriveAttributeType(hNode.getType(), attribute.attName);
+				String value = HenshinUtil.getCleanedAttributeValue(type, attribute.attValue);				
+				Attribute hAttribute = hFactory.createAttribute(hNode, type, value);
 
 				// Put to mappings
 				putToMappings(attribute, hAttribute, getMapPair(ElementKind.ATTRIBUTE, isRHS, isMulti));
@@ -455,7 +468,8 @@ public class DBRuleToHenshinRule {
 
 	private void createAttributeIfNeeded(ValueEdge valueEdge, String value) {
 		Node srcNode = valueEdge.getSource();
-		if (srcNode.getAttribute(domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute())) == null) {
+		if (srcNode
+				.getAttribute(domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute())) == null) {
 			Attribute hAttribute = hFactory.createAttribute(srcNode,
 					domainConfig.deriveAttributeType(srcNode.getType(), valueEdge.getAttribute()), value);
 
@@ -655,7 +669,7 @@ public class DBRuleToHenshinRule {
 	//
 	// String[] listOfParameters = null;
 	// CachedRowSetImpl crsRuleParameters = DBRecord
-	// .getByQueryStatement("select RuleParameters from TblObservationOutput  "
+	// .getByQueryStatement("select RuleParameters from TblObservationOutput "
 	// + "where Observation_ID="
 	// + iObservation + " and RuleParameters <>'';");
 	//
@@ -691,7 +705,7 @@ public class DBRuleToHenshinRule {
 	// }
 	//
 	// // par[0] type, par[1] name and par[2] is value
-	// this.henshinWriter.write("	<parameters xmi:id=\"_XF7_P" + i + "" +
+	// this.henshinWriter.write(" <parameters xmi:id=\"_XF7_P" + i + "" +
 	// iObservation + "" + this.encryptedXmiId
 	// + "\" name=\"" + par[1] + "\"/>" + System.lineSeparator());
 	// }
@@ -699,7 +713,7 @@ public class DBRuleToHenshinRule {
 	// // add extra parameters as variables
 	// for (String extraParameters : this.setInvConstraintsAsParameters) {
 	//
-	// this.henshinWriter.write("	<parameters xmi:id=\"_XF7_P" + (++i) + "" +
+	// this.henshinWriter.write(" <parameters xmi:id=\"_XF7_P" + (++i) + "" +
 	// iObservation + ""
 	// + this.encryptedXmiId + "\" name=\"" + extraParameters + "\"/>" +
 	// System.lineSeparator());
@@ -707,10 +721,11 @@ public class DBRuleToHenshinRule {
 	// // String strEDataType="EString";
 	// // if ("EString EInt".contains(strEDataType)){
 	// //
-	// this.henshinWriter.write("		<type xsi:type=\"ecore:EDataType\" href=\"http://www.eclipse.org/emf/2002/Ecore#//"
+	// this.henshinWriter.write(" <type xsi:type=\"ecore:EDataType\"
+	// href=\"http://www.eclipse.org/emf/2002/Ecore#//"
 	// // + strEDataType + "\"/>" + System.lineSeparator());
 	// // }
-	// // this.henshinWriter.write("	</parameters>" +
+	// // this.henshinWriter.write(" </parameters>" +
 	// // System.lineSeparator());
 	// }
 	// }
@@ -724,9 +739,11 @@ public class DBRuleToHenshinRule {
 	// // load invariants from DB
 	// System.out.println("\t load constraints for [" + iObservationID + "]..");
 	// CachedRowSetImpl crsConstants = DBRecord
-	// .getByQueryStatement("select RuleAttributeConditions from TblObservationOutput "
+	// .getByQueryStatement("select RuleAttributeConditions from
+	// TblObservationOutput "
 	// +
-	// "where (RuleAttributeConditions is not null or RuleAttributeConditions='') and Observation_ID="
+	// "where (RuleAttributeConditions is not null or
+	// RuleAttributeConditions='') and Observation_ID="
 	// + iObservationID + ";");
 	//
 	// try {
