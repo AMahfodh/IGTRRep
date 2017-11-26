@@ -84,7 +84,7 @@ public class ExportAllToHenshin {
 
 		CachedRowSetImpl crsAllAbstractRule = DBRecord
 				.getByQueryStatement("select RuleName, Observation_IDREFF, 0 from TblBasicRule "
-						+ " where isAbstract=true and isApplicable=true" + " union all "
+						+ " where isAbstract=true and isApplicable=true group by CONCAT(RuleName, groupID) " + " union all "
 						+ " select CONCAT(RuleName, '_MO') as RuleName, Observation_IDREFF, 1 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true " + " and isAbstractMO=true;");
 
