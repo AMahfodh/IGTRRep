@@ -1,0 +1,62 @@
+Validating the extracted visual contract using Henshin engine based on 80% cross-validation split ..
+
+
+r1-tcE1	registerClient	true	true	TP(correct)
+r1-tcE2	makeReservation	true	false	FN(incorrect)
+r1-tcE3	pickupCar	true	true	TP(correct)
+r1-tcE4	pickupCar	false	false	TN(complete)
+r1-tcE5	dropoffCar	true	true	TP(correct)
+r1-tcE6	dropoffCar	false	false	TN(complete)
+r1-tcE7	pickupCar	false	true	FP(incomplete)
+r1-tcE8	dropoffCar	false	false	TN(complete)
+#Round 1	Precision	 0.75	Recall	0.75
+
+r2-tcD9	registerClient	true	true	TP(correct)
+r2-tcD10	makeReservation	true	false	FN(incorrect)
+r2-tcD11	dropoffCar	false	true	FP(incomplete)
+r2-tcD12	pickupCar	true	false	FN(incorrect)
+r2-tcD13	pickupCar	false	true	FP(incomplete)
+r2-tcD14	dropoffCar	true	false	FN(incorrect)
+r2-tcD15	dropoffCar	false	true	FP(incomplete)
+r2-tcD16	pickupCar	false	false	TN(complete)
+r2-tcD17	dropoffCar	false	true	FP(incomplete)
+#Round 2	Precision	 0.2	Recall	0.25
+
+r3-tcC18	RegisterClient	true	true	TP(correct)
+r3-tcC19	RegisterClient	true	false	FN(incorrect)
+r3-tcC20	makeReservation	true	true	TP(correct)
+r3-tcC21	makeReservation	true	false	FN(incorrect)
+r3-tcC22	pickupCar	true	true	TP(correct)
+r3-tcC23	cancelReservation	true	false	FN(incorrect)
+r3-tcC24	dropoffCar	false	true	FP(incomplete)
+r3-tcC25	pickupCar	false	false	TN(complete)
+r3-tcC26	dropoffCar	false	true	FP(incomplete)
+r3-tcC27	cancelClientReservation	false	false	TN(complete)
+r3-tcC28	cancelClientReservation	false	true	FP(incomplete)
+#Round 3	Precision	 0.5	Recall	0.5
+
+r4-tcB29	RegisterClient	true	true	TP(correct)
+r4-tcB30	makeReservation	true	false	FN(incorrect)
+r4-tcB31	RegisterClient	true	true	TP(correct)
+r4-tcB32	dropoffCar	false	false	TN(complete)
+r4-tcB33	RegisterClient	false	true	FP(incomplete)
+r4-tcB34	makeReservation	false	false	TN(complete)
+r4-tcB35	makeReservation	true	true	TP(correct)
+r4-tcB36	cancelReservation	false	false	TN(complete)
+r4-tcB37	dropoffCar	false	true	FP(incomplete)
+r4-tcB38	cancelReservation	false	false	TN(complete)
+r4-tcB39	dropoffCar	false	true	FP(incomplete)
+#Round 4	Precision	 0.5	Recall	0.75
+
+r5-tcA40	registerClient	true	true	TP(correct)
+r5-tcA41	registerClient	true	false	FN(incorrect)
+r5-tcA42	makeReservation	false	true	FP(incomplete)
+r5-tcA43	makeReservation	false	false	TN(complete)
+r5-tcA44	cancelReservation	false	true	FP(incomplete)
+r5-tcA45	cancelReservation	false	false	TN(complete)
+r5-tcA46	makeReservation	false	true	FP(incomplete)
+r5-tcA47	cancelReservation	false	false	TN(complete)
+r5-tcA48	cancelClientReservation	false	true	FP(incomplete)
+r5-tcA49	cancelClientReservation	false	false	TN(complete)
+#Round 5	Precision	 0.2	Recall	0.5
+

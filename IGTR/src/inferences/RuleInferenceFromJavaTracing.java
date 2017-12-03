@@ -15,20 +15,38 @@ public class RuleInferenceFromJavaTracing {
 	private int iLHS=-1, iObservationId=-1;
 
 	private long minTime=System.nanoTime(), maxTime=0, MO=0;
-
+	private Boolean isInferenceForTesting =null;
+	
+	
 
 	public RuleInferenceFromJavaTracing(){
-		//GTlogger.setLevel(Level.OFF);
+		//GTlogger.setLevel(Level.OFF);  isMinRuleMatched
+		
 	}
 
-
+	
+	public boolean isMinRuleMatched(){
+		
+		this.isInferenceForTesting = new Boolean (false);
+		
+		this.generaliseRuleInstance(1);
+				
+		
+		DBRecord.executeSqlStatement("Delete from TblObservationOutput where Observation_ID=(select max(Observation_IDREFF) from TblBasicRule where groupID is null and Observation_IDREFF>=0);", true);
+		
+		
+		// close connection	
+		DBRecord.closeConnection();	
+		
+		return this.isInferenceForTesting;
+	}
 
 	public void generaliseRuleInstance(int iRepeatedMultiObjects){
 
 
 		// open connection
 		DBRecord.openConnection();
-
+		
 
 
 
@@ -39,10 +57,11 @@ public class RuleInferenceFromJavaTracing {
 		this.prepareAndSetRuleClassification();
 
 		
+		if (this.isInferenceForTesting != null){			
+			return;
+		}
 		
 		
-
-
 		//define abstract for query rule based on their smallest distinct structure size .. 
 		this.ruleMethodSignatureUniqueID="";
 		System.out.println("Generalising query rules ..");
@@ -184,7 +203,11 @@ public class RuleInferenceFromJavaTracing {
 				// 2 find and set groupId based on minimal rule matching
 				// group id for all empty minimal rule is 0 by default, already defined during tracing
 				this.findAndSetGroup();
-
+				
+				
+				if (this.isInferenceForTesting != null){
+					return;
+				}
 
 
 				// inner loop until classifying all instances
@@ -576,6 +599,19 @@ public class RuleInferenceFromJavaTracing {
 
 				if (this.isMinimalRuleMatched(crsGetGroups.getInt(2))){
 
+					
+					/*
+					 * min-rule is matched, so the test should end here 
+					 */
+					if (this.isInferenceForTesting!=null){
+						
+						// delete inserted instance after finding the match ..
+						this.isInferenceForTesting=true;						
+						System.out.println("\ttesting rule instance " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
+						return;
+					}
+					
+					
 					if (DBRecord.executeSqlStatement(
 							"Update TblBasicRule set groupID=" + groupID
 							+ " where Observation_IDREFF=" 
@@ -613,6 +649,18 @@ public class RuleInferenceFromJavaTracing {
 
 
 
+
+		if (this.isInferenceForTesting!=null){
+			/*
+			 * - min-rule is not matched, so the test should end here 
+			 * - delete inserted instance after finding the match ..
+			 */
+			this.isInferenceForTesting=false;			
+			System.out.println("\ttesting rule instance " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
+			return;
+		}
+		
+		
 		// No group has been found, so we need to define new group
 		groupID++;
 

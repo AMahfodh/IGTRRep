@@ -1,6 +1,0 @@
-<aspectj>
-<aspects>
-<aspect name="tracer.GTRulesTracer"/>
-</aspects>
-</aspectj>
-

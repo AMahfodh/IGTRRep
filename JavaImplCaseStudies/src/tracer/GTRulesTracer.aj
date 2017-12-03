@@ -35,7 +35,7 @@ public aspect GTRulesTracer {
 	private RuleInstanceExtraction ruleInstance= null;
 	//Logger GTlogger = Logger.getLogger("GTlog"); 	
 	
-	private long constructionTime= 0;
+	//private long constructionTime= 0;
 
 
 
@@ -69,8 +69,8 @@ public aspect GTRulesTracer {
 	pointcut stateTriggers(): 	
 		!within(tracer.*) &&
 		//!within(ourOriginalTestingForGeneratingRules.*) && 
-		!within(randoopTesting.*) &&
-		!within(crossValidation.*) && 
+		//!within(randoopTesting.*) &&
+		!within(henshinRentalModel.*) && 
 		!execution(* *.main(String[]));
 
 
@@ -91,9 +91,9 @@ public aspect GTRulesTracer {
 			if (strCalledMethodName.equals("endStartSeparation")){
 				this.endStartSwitchSeparation(thisJoinPoint.getArgs()[0].toString());	
 			}
-			else if(methodsToBeObserved.contains(strCalledMethodName)){				
+			//else if(methodsToBeObserved.contains(strCalledMethodName)){				
 			//	this.endStartSwitchSeparation(strCalledMethodName);
-			}
+			//}
 						
 		}
 
@@ -186,7 +186,7 @@ public aspect GTRulesTracer {
 		}
 
 
-		System.out.println(getJoinPoint.hashCode() + " Advice=" + isAdviceAfter+ " " + getJoinPoint.toString() );
+		//System.out.println(getJoinPoint.hashCode() + " Advice=" + isAdviceAfter+ " " + getJoinPoint.toString() );
 
 
 
@@ -478,6 +478,7 @@ public aspect GTRulesTracer {
 
 		default:
 
+			System.out.println("\t\t invoking [" + actionMethodName + "] \t");
 			this.doProceed(actionMethodName);	        	
 			break;
 		}
@@ -599,7 +600,7 @@ public aspect GTRulesTracer {
 		this.isRecording=false;
 
 		System.out.println("\n The extraction of rule instance completed\n\n #Tracing stopped");
-		System.out.println("total construction Time=" + constructionTime);
+		//System.out.println("total construction Time=" + constructionTime);
 
 
 //		try {
@@ -626,7 +627,7 @@ public aspect GTRulesTracer {
 		// generate pre and post graph and save them
 		this.ruleInstance.generateRuleInstance();
 
-		constructionTime += (System.nanoTime()-beforeTime) ;
+		//constructionTime += (System.nanoTime()-beforeTime) ;
 
 
 		//this.GTlogger.info(System.lineSeparator() + "\trule-ins extracted : " + this.ruleInstance.strMethodName + " - size : " + this.ruleInstance.iObjectsCount + " - " + System.lineSeparator() + System.lineSeparator());

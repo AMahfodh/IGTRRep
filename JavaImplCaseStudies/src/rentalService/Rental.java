@@ -3,7 +3,7 @@ package rentalService;
 import java.util.ArrayList;
 import java.util.Random;
 
-import crossValidation.RentalModel;
+import henshinRentalModel.RentalModel;
 
 
 
@@ -13,56 +13,6 @@ public class Rental implements IRental{
 
 	protected ArrayList<Reservation> reservations=new ArrayList<Reservation>();		
 
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 * Uncomment the following code (40 LoC) to make tests executions depend on rental model instead
-	 *
-	private RentalModel rentalModel= new RentalModel();
-	
-	public void initialise(Branch Branches[]){
-		this.rentalModel.initialise(Branches);
-	}
-	public String registerClient(String city, String clientName){
-		return this.rentalModel.registerClient(city, clientName);
-	}	
-	public String makeReservation(String ClientID, String pickup, String dropoff){
-		return this.rentalModel.makeReservation(ClientID, pickup, dropoff);	
-	}
-	public void cancelReservation(String Reference){
-		this.rentalModel.cancelReservation(Reference);
-	}
-	public void cancelClientReservation(String clientID){
-		this.rentalModel.cancelClientReservation(clientID);
-	}
-	public void pickupCar(String Reference){
-		this.rentalModel.pickupCar(Reference);
-	}
-	public void dropoffCar(String Reference){
-		this.rentalModel.dropoffCar(Reference);
-	}
-	public ArrayList<Reservation> showClientReservations(String clientID){
-		return this.rentalModel.showClientReservations(clientID);
-	}
-	public ArrayList<Client> showClients (String city){
-		return this.rentalModel.showClients(city);
-	}
-	public ArrayList<Car> showCars (String city){
-		return this.rentalModel.showCars(city);
-	}
-	/** comments should end here ..*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -325,6 +275,5 @@ public class Rental implements IRental{
 		return -1;
 	}
 
-	/**/
 	
 }
