@@ -7,7 +7,7 @@ import henshinRentalModel.RentalModel;
 
 
 
-public class Rental implements IRental{
+public class Rental {
 
 	protected Branch[] branches=null;			
 
@@ -85,33 +85,38 @@ public class Rental implements IRental{
 	}
 
 
-	public void cancelReservation(String Reference){		
+	public Boolean cancelReservation(String Reference){		
 
 		int iIndex = this.getReservationIndex(Reference);
 
 		if (iIndex!=-1){
 			this.reservations.remove(iIndex);
+			return true;
 		}
+		return null;
 	}
 
 
-	public void cancelClientReservation(String clientID){		
+	public Boolean cancelClientReservation(String clientID){		
 
 		for (int iIndex=this.reservations.size()-1; iIndex>=0; iIndex--){
 
 			if (this.reservations.get(iIndex).made.cID.equalsIgnoreCase(clientID)){
 				this.reservations.remove(iIndex);
+				return true;
 			}
 		}
+		
+		return null;
 	}
 
 
-	public void pickupCar(String Reference){
+	public Boolean pickupCar(String Reference){
 
 		int iIndex = this.getReservationIndex(Reference);
 
 		if (iIndex==-1){
-			return;			
+			return null;			
 		}
 		
 		
@@ -121,7 +126,7 @@ public class Rental implements IRental{
 
 		// check if this reservation hasn't been picked up already
 		if (reservation.pickup==null){
-			return;
+			return false;
 		}
 
 
@@ -137,7 +142,7 @@ public class Rental implements IRental{
 		}
 
 		if (!isCarExist){
-			return;
+		//	return false;
 		}
 
 
@@ -146,23 +151,25 @@ public class Rental implements IRental{
 
 		// remove pickup branch link from reservation object
 		reservation.pickup=null;
+		
+		return true;
 	}
 
 	
 
-	public void dropoffCar(String Reference){
+	public Boolean dropoffCar(String Reference){
 
 		int iIndex = this.getReservationIndex(Reference);
 
 		if (iIndex==-1){
-			return;			
+			return null;			
 		}
 
 		Reservation reservation = this.reservations.get(iIndex);
 
 		// check if the reserved car has been picked up already
 		if (reservation.pickup!=null){
-			return;
+			return false;
 		}
 
 		// return reserved car to the drop of branch
@@ -172,12 +179,14 @@ public class Rental implements IRental{
 
 		// remove reservation object
 		this.reservations.remove(iIndex);
+		
+		return true;
 	}
 
 
 
 
-
+/*
 
 	public ArrayList<Reservation> showClientReservations(String clientID){
 
@@ -213,12 +222,12 @@ public class Rental implements IRental{
 
 		return null;
 	}
-
+*/
 
 	private Client getClient(Branch branch, String ClientID){
 
 		if (branch==null) {
-			return null;
+		//	return null;
 		}
 
 		for (Client client: branch.of){
@@ -257,9 +266,9 @@ public class Rental implements IRental{
 		Random randomCar = new Random();
 		int iCar = randomCar.nextInt(branch.at.size());
 		if (iCar>= branch.at.size() || iCar<0){
-			iCar=0;
+		//	iCar=0;
 		}
-		return branch.at.get(iCar);
+		return branch.at.get(0);
 	}
 
 

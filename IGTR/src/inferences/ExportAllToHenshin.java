@@ -83,7 +83,7 @@ public class ExportAllToHenshin {
 		System.out.println("Preparing all maximal rules ..");
 
 		CachedRowSetImpl crsAllAbstractRule = DBRecord
-				.getByQueryStatement("select RuleName, Observation_IDREFF, 0 from TblBasicRule "
+				.getByQueryStatement("select CONCAT(Observation_IDREFF,'_', RuleName), Observation_IDREFF, 0 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true group by CONCAT(RuleName, groupID) " + " union all "
 						+ " select CONCAT(RuleName, '_MO') as RuleName, Observation_IDREFF, 1 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true " + " and isAbstractMO=true;");

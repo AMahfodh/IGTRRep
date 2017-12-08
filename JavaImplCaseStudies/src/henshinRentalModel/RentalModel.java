@@ -66,6 +66,9 @@ public class RentalModel {
 		this.engine = new EngineImpl();
 		this.carRentalApplication = new UnitApplicationImpl(this.engine);
 		// uncomment this.carRentalApplication.setEGraph(this.graph);
+		for (Unit u: this.module.getUnits()){
+			System.out.println(u.getName());
+		}
 	}
 	
 	
@@ -147,6 +150,19 @@ public class RentalModel {
 		}
 		
 		return false;
+	}
+	
+	
+	
+	public Boolean isRuleApplicableWithoutUpdatingModelState(
+			String strRuleName,
+			String strPar1,
+			String strPar2,
+			String strPar3){
+		
+		// *** dummy code .. just for testing the return of the method .. **** 
+		this.isRandom = (!isRandom);		
+		return this.isRandom;
 	}
 	
 	

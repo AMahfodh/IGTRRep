@@ -2,9 +2,12 @@ package testing;
 
 import org.junit.Before;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Test;
@@ -30,6 +33,7 @@ public class VContractValidation {
 	private PrintWriter testWriter=null;
 	private boolean HasRuleBeenExportedToHenshin=false;
 	private ArrayList<String> setOfDecisions= new ArrayList<String>();
+	private ArrayList<String> setOfDecisionsForFinalPrinting= new ArrayList<String>();
 	DecimalFormat dF = new DecimalFormat("##.##");
 	
 	private Rental rentalService = null;
@@ -50,9 +54,7 @@ public class VContractValidation {
 		String strStartStatement = "Validating the extracted visual contract using Henshin engine based on " + this.splitPercent.name().substring(1) + "% cross-validation split ..";
 
 		System.out.println(strStartStatement);
-		this.testWriter.println(strStartStatement);
 		this.testWriter.println();
-		this.testWriter.println();		
 	}
 	
 	
@@ -67,11 +69,11 @@ public class VContractValidation {
 		 * Training to learn visual contracts with splitting tests based on 5 cross-validation rounds 
 		 */
 		
-		this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
-		this.round2(); this.printRoundPlusPrecisionAndRecallValues("#Round 2");
-		this.round3(); this.printRoundPlusPrecisionAndRecallValues("#Round 3");
-		this.round4(); this.printRoundPlusPrecisionAndRecallValues("#Round 4");
-		this.round5(); this.printRoundPlusPrecisionAndRecallValues("#Round 5");
+		this.round1(); this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
+		this.round2(); this.round2(); this.printRoundPlusPrecisionAndRecallValues("#Round 2");
+		this.round3(); this.round3(); this.printRoundPlusPrecisionAndRecallValues("#Round 3");
+		this.round4(); this.round4(); this.printRoundPlusPrecisionAndRecallValues("#Round 4");
+		this.round5(); this.round5(); this.printRoundPlusPrecisionAndRecallValues("#Round 5");
 	}
 	
 	
@@ -330,7 +332,82 @@ public class VContractValidation {
 	}
 		
 	
+	private void ValidationDecisionTree (
+			int iRound, String strTestCaseA_E,
+			Object IsThrownException,
+			String strRuleName, String par1){
+		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownException, strRuleName, par1, null, null);
+	}
 	
+	private void ValidationDecisionTree (
+			int iRound, String strTestCaseA_E,
+			Object IsThrownException,
+			String strRuleName, String par1, String par2){
+		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownException, strRuleName, par1, par2, null);
+	}
+	
+	private void ValidationDecisionTree (
+			int iRound, String strTestCaseA_E,
+			Object IsThrownException,
+			String strRuleName, String par1, String par2, String par3){
+		
+		String strDec="";		
+		Boolean isThrownException = null;
+		
+		
+		if (IsThrownException!=null){
+			if (IsThrownException instanceof Boolean){
+				isThrownException=(Boolean)IsThrownException;
+			}
+			else if (IsThrownException instanceof String){
+				isThrownException=((String)IsThrownException).length()>0;
+			}
+		}
+		
+		
+		if (isThrownException==null || isThrownException==false){
+			
+			/* check if rule-applicable without changing model state: FN if (Yes), TN  otherwise */
+			if (this.henshinRentalModel.isRuleApplicableWithoutUpdatingModelState(strRuleName, par1, par2, par3)){
+				strDec="FN\tincorrect: rule shouldn't be applicable";
+			}
+			else {
+				strDec="TN\tcomplete";
+			}			
+		}
+		else if (this.isLastContractInstanceAddedMatched()){
+			
+			/*	check if the minimal rule exists in inferred contracts
+				then, check the applicability of maximal rule TP (Yes), FP (No)*/
+				
+			if (this.henshinRentalModel.isRuleApplicable(strRuleName, par1, par2, par3)){
+				strDec="TP\tcorrect";
+			} 
+			else {
+				strDec="FP\tincomplete: maxRule isn't applicable";
+			}
+		} 
+		else {
+			
+			/*FP (No)*/
+			strDec="FP\tincomplete: minRule doesn't exists";
+		}
+		
+		
+		
+		
+		this.setOfDecisions.add(strDec);
+				
+		this.testWriter.println(
+				"r" + iRound + "-tc" + strTestCaseA_E + (++this.iInvocationCount) + "\t" + 
+				strRuleName + "\t" +
+				strDec);
+		
+		this.testWriter.flush();		
+	}
+	
+	
+	/*
 	private void printTestInvocation(
 			int iRound, 
 			String strTestCaseA_E,			
@@ -366,7 +443,7 @@ public class VContractValidation {
 		
 		this.testWriter.flush();
 	}
-	
+	*/
 	
 	private void printRoundPlusPrecisionAndRecallValues(String strRound){
 
@@ -390,6 +467,7 @@ public class VContractValidation {
 
 		
 		this.testWriter.println(strRound + "\tPrecision\t " + this.dF.format(dPrecision) + "\tRecall\t" + this.dF.format(dRecall));
+		this.setOfDecisionsForFinalPrinting.add(strRound + "\tPrecision\t " + this.dF.format(dPrecision) + "\tRecall\t" + this.dF.format(dRecall));
 		this.testWriter.println();
 		this.setOfDecisions.clear();
 	}
@@ -426,9 +504,9 @@ public class VContractValidation {
 	
 	private void initialiseTestSetUp(){
 		
-		Branch b1 = new Branch("Leicester", 0, 0);  
-		Branch b2 = new Branch("Nottingham", 1, 1); 
-		Branch b3 = new Branch("Birmingham", 2, 2); 
+		Branch b1 = new Branch("Leicester", 0, 0);
+		Branch b2 = new Branch("Nottingham", 1, 1);
+		Branch b3 = new Branch("Birmingham", 2, 2);
 		
 		b1.at.add(new Car("A1"));
 		b2.at.add(new Car("B2"));
@@ -436,8 +514,8 @@ public class VContractValidation {
 		
 		
 		Branch[] ServiceBranches = new Branch[3];
-		ServiceBranches[0]=b1; 
-		ServiceBranches[1]=b2; 
+		ServiceBranches[0]=b1;
+		ServiceBranches[1]=b2;
 		ServiceBranches[2]=b3;
 
 		// Initialize Rental Service
@@ -458,7 +536,7 @@ public class VContractValidation {
 	 * 
 	 * Test cases [A-E]
 	 */
-	
+	private Boolean oReturn=null;
 	
 	private void testCaseA(int iRound, boolean isForValidation){
 		
@@ -479,14 +557,17 @@ public class VContractValidation {
 			this.clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
 						
 			RunToTest.endStartSeparation("RegisterClient");
-			this.clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
+			this.clientReg1_Abdullah = this.rentalService.registerClient("Birmingham", "Abdullah");
 			
 			RunToTest.endStartSeparation("makeReservation");
 			this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Nottingham");
 						
 			RunToTest.endStartSeparation("makeReservation");
 			this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
-						
+			
+			RunToTest.endStartSeparation("pickupCar");
+			this.rentalService.pickupCar(this.makeRes2);
+			
 			RunToTest.endStartSeparation("cancelReservation");
 			this.rentalService.cancelReservation(makeRes1);
 						
@@ -505,6 +586,9 @@ public class VContractValidation {
 			RunToTest.endStartSeparation("cancelClientReservation");
 			this.rentalService.cancelClientReservation(clientReg1_Abdullah);
 						
+			RunToTest.endStartSeparation("makeReservation");
+			this.rentalService.makeReservation(this.clientReg1_Abdullah, "London", "London");
+			
 			RunToTest.endStartSeparation("#doStop");
 			
 			return;
@@ -529,32 +613,23 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("RegisterClient");
 		this.clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "A", "registerClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("registerClient", "Leicester", "Reiko"));
-		
+		this.ValidationDecisionTree(iRound, "A", this.clientReg2_Reiko, "registerClient", "Leicester", "Reiko");
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		this.clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
+		this.clientReg1_Abdullah = this.rentalService.registerClient("Birmingham", "Abdullah");
 		RunToTest.endStartSeparation("#doStop");
-		this.printTestInvocation(iRound, "A", "registerClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("registerClient", "Leicester", "Abdullah"));
-		
+		this.ValidationDecisionTree(iRound, "A", clientReg1_Abdullah, "registerClient", "Leicester", "Abdullah");
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Nottingham");
-		RunToTest.endStartSeparation("#doStop");			
-		this.printTestInvocation(iRound, "A", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg1_Abdullah, "Leicester", "Nottingham"));
-		
+		RunToTest.endStartSeparation("#doStop");					
+		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, "Leicester", "Nottingham");
 		
 		
 		
@@ -562,75 +637,72 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("makeReservation");
 		this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
 		RunToTest.endStartSeparation("#doStop");
-		this.printTestInvocation(iRound, "A", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg1_Abdullah, "Birmingham", "Leicester"));
+		this.ValidationDecisionTree(iRound, "A", makeRes2, "makeReservation", clientReg1_Abdullah, "Birmingham", "Leicester");
 		
+		
+		
+		RunToTest.endStartSeparation("#doStart");
+		RunToTest.endStartSeparation("pickupCar");
+		this.oReturn=this.rentalService.pickupCar(this.makeRes2);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", oReturn, "pickupCar", this.makeRes2);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes1);
-		RunToTest.endStartSeparation("#doStop");			
-		this.printTestInvocation(iRound, "A", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes1));
-		
+		this.oReturn=this.rentalService.cancelReservation(makeRes1);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", this.oReturn, "cancelReservation", makeRes1);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes2);
-		RunToTest.endStartSeparation("#doStop");			
-		this.printTestInvocation(iRound, "A", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes2));
-		
+		this.oReturn=this.rentalService.cancelReservation(makeRes2);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", this.oReturn, "cancelReservation", makeRes2);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Birmingham");			
-		RunToTest.endStartSeparation("#doStop");			
-		this.printTestInvocation(iRound, "A", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg1_Abdullah, "Leicester", "Birmingham"));
-		
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, "Leicester", "Birmingham");
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes1);
-		RunToTest.endStartSeparation("#doStop");			
-		this.printTestInvocation(iRound, "A", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes1));
-		
+		this.oReturn=this.rentalService.cancelReservation(makeRes1);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", this.oReturn, "cancelReservation", makeRes1);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelClientReservation");
-		this.rentalService.cancelClientReservation(clientReg2_Reiko);
+		this.oReturn=this.rentalService.cancelClientReservation(clientReg2_Reiko);
 		RunToTest.endStartSeparation("#doStop");
-		this.printTestInvocation(iRound, "A", "cancelClientReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelClientReservation", clientReg2_Reiko));
-		
+		this.ValidationDecisionTree(iRound, "A", this.oReturn, "cancelClientReservation", clientReg2_Reiko);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelClientReservation");
-		this.rentalService.cancelClientReservation(clientReg1_Abdullah);					
+		this.oReturn=this.rentalService.cancelClientReservation(clientReg1_Abdullah);					
 		RunToTest.endStartSeparation("#doStop");
-		this.printTestInvocation(iRound, "A", "cancelClientReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelClientReservation", clientReg1_Abdullah));		
+		this.ValidationDecisionTree(iRound, "A", this.oReturn, "cancelClientReservation", clientReg1_Abdullah);
+		
+		
+		
+		RunToTest.endStartSeparation("#doStart");
+		RunToTest.endStartSeparation("makeReservation");
+		this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "London", "London");
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "A", makeRes2, "makeReservation", clientReg1_Abdullah, "London", "London");
+		
 	}
 	
 	private void testCaseB(int iRound, boolean isForValidation){
@@ -711,101 +783,78 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "RegisterClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("RegisterClient", "Nottingham", "Reiko"));
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", "Nottingham", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham"));
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "RegisterClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("RegisterClient", "Nottingham", "Reiko"));
+		RunToTest.endStartSeparation("#doStop");		
+		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", "Nottingham", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.ValidationDecisionTree(iRound, "B", this.oReturn, "dropoffCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		rentalService.registerClient("Nottingham2", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "RegisterClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("RegisterClient", "Nottingham2", "Reiko"));
+		this.clientReg1_Abdullah=rentalService.registerClient("Nottingham2", "Reiko");
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "B", clientReg1_Abdullah, "RegisterClient", "Nottingham2", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Nottingham");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Leicester", "Nottingham"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, "Leicester", "Nottingham");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes2=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", makeRes2, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
 		
 
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes1));
+		this.oReturn=this.rentalService.cancelReservation(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", this.oReturn, "cancelReservation", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", this.oReturn, "dropoffCar", makeRes1);
 		
 				
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes1));
+		this.oReturn=this.rentalService.cancelReservation(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", this.oReturn, "cancelReservation", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "B", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
-		
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "B", this.oReturn, "dropoffCar", makeRes1);
 		
 	}
 
@@ -887,101 +936,78 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "RegisterClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("RegisterClient", "Leicester", "Reiko"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", clientReg2_Reiko, "RegisterClient", "Leicester", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "RegisterClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("RegisterClient", "Leicester", "Abdullah"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", clientReg1_Abdullah, "RegisterClient", "Leicester", "Abdullah");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Birmingham");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Leicester", "Birmingham"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", makeRes1, "makeReservation", clientReg2_Reiko, "Leicester", "Birmingham");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes2=this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Leicester");
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg1_Abdullah, "Leicester", "Leicester"));
+		this.ValidationDecisionTree(iRound, "C", makeRes2, "makeReservation", clientReg1_Abdullah, "Leicester", "Leicester");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));
+		this.oReturn=this.rentalService.pickupCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelReservation");
-		this.rentalService.cancelReservation(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "cancelReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelReservation", makeRes1));
+		this.oReturn=this.rentalService.cancelReservation(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "cancelReservation", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes2);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes2));
+		this.oReturn=this.rentalService.dropoffCar(makeRes2);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "dropoffCar", makeRes2);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));
+		this.oReturn=this.rentalService.pickupCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);		
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);		
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "dropoffCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelClientReservation");
-		this.rentalService.cancelClientReservation(clientReg2_Reiko);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "cancelClientReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelClientReservation", clientReg2_Reiko));
+		this.oReturn=this.rentalService.cancelClientReservation(clientReg2_Reiko);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "cancelClientReservation", clientReg2_Reiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("cancelClientReservation");
-		this.rentalService.cancelClientReservation(clientReg1_Abdullah);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "C", "cancelClientReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("cancelClientReservation", clientReg1_Abdullah));			
-			
+		this.oReturn=this.rentalService.cancelClientReservation(clientReg1_Abdullah);
+		RunToTest.endStartSeparation("#doStop");		
+		this.ValidationDecisionTree(iRound, "C", this.oReturn, "cancelClientReservation", clientReg1_Abdullah);	
 	}
 
 	private void testCaseD(int iRound, boolean isForValidation){
@@ -1047,83 +1073,64 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "registerClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("registerClient", "Nottingham", "Reiko"));
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "D", clientReg2_Reiko, "registerClient", "Nottingham", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham"));
+		this.ValidationDecisionTree(iRound, "D", this.makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "dropoffCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));
+		this.oReturn=this.rentalService.pickupCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");							
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));
+		this.oReturn=this.rentalService.pickupCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");							
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "dropoffCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");							
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "dropoffCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));				
+		this.oReturn=this.rentalService.pickupCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");						
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "D", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));
-		
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "D", this.oReturn, "dropoffCar", makeRes1);
 	}
 
 	private void testCaseE(int iRound, boolean isForValidation){
@@ -1185,73 +1192,57 @@ public class VContractValidation {
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "registerClient", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("registerClient", "Nottingham", "Reiko"));	
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "E", clientReg2_Reiko, "registerClient", "Nottingham", "Reiko");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Birmingham");
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "makeReservation", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("makeReservation", clientReg2_Reiko, "Nottingham", "Birmingham"));	
-						
-		
-		RunToTest.endStartSeparation("#doStart");
-		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);		
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "pickupCar",
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));	
+		RunToTest.endStartSeparation("#doStop");	
+		this.ValidationDecisionTree(iRound, "E", makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Birmingham");
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);		
+		this.oReturn=this.rentalService.pickupCar(makeRes1);		
 		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));	
-		
-		
-		RunToTest.endStartSeparation("#doStart");
-		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);		
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));	
-		
-		
-		RunToTest.endStartSeparation("#doStart");
-		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);		
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));	
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("pickupCar");
-		this.rentalService.pickupCar(makeRes1);		
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "pickupCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("pickupCar", makeRes1));	
+		this.oReturn=this.rentalService.pickupCar(makeRes1);		
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "pickupCar", makeRes1);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("dropoffCar");
-		this.rentalService.dropoffCar(makeRes1);
-		RunToTest.endStartSeparation("#doStop");					
-		this.printTestInvocation(iRound, "E", "dropoffCar", 
-				this.isLastContractInstanceAddedMatched(),
-				this.henshinRentalModel.isRuleApplicable("dropoffCar", makeRes1));	
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);		
+		RunToTest.endStartSeparation("#doStop");							
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "dropoffCar", makeRes1);
+		
+		
+		RunToTest.endStartSeparation("#doStart");
+		RunToTest.endStartSeparation("dropoffCar");
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);		
+		RunToTest.endStartSeparation("#doStop");			
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "dropoffCar", makeRes1);
+		
+		
+		RunToTest.endStartSeparation("#doStart");
+		RunToTest.endStartSeparation("pickupCar");
+		this.oReturn=this.rentalService.pickupCar(makeRes1);		
+		RunToTest.endStartSeparation("#doStop");	
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "pickupCar", makeRes1);
+		
+		
+		RunToTest.endStartSeparation("#doStart");
+		RunToTest.endStartSeparation("dropoffCar");
+		this.oReturn=this.rentalService.dropoffCar(makeRes1);
+		RunToTest.endStartSeparation("#doStop");
+		this.ValidationDecisionTree(iRound, "E", this.oReturn, "dropoffCar", makeRes1);
 		
 	}
 
@@ -1264,7 +1255,23 @@ public class VContractValidation {
 	
 	@After
 	public void tearDown() throws Exception {
+		
 		this.testWriter.close();
+		
+		String strAllTestingResults = "";		
+		Scanner fReader = new Scanner(new File("ValidationOutput_" + this.splitPercent.name())).useDelimiter("\\Z");
+		strAllTestingResults = fReader.next();
+		fReader.close();
+
+		this.testWriter = new PrintWriter("ValidationOutput_" + this.splitPercent.name(), "UTF-8");
+		for (String strDec: this.setOfDecisionsForFinalPrinting){
+			this.testWriter.println(strDec);
+		}
+		this.testWriter.println(strAllTestingResults);
+		this.testWriter.close();
+		
+		
+		this.setOfDecisionsForFinalPrinting.clear();
 		System.out.println("\n\n##### Done -----------------");		
 	}
 

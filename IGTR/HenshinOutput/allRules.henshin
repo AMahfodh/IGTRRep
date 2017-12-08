@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="ASCII"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_bbucwNvNEee4VJqjZ9dz-w" name="allRules">
+  <imports href="http://www.eclipse.org/emf/rentalService#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4NwNvNEee4VJqjZ9dz-w" name="10769_cancelReservation">
+    <lhs xmi:id="_bb4NwdvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4NwtvNEee4VJqjZ9dz-w" name="1690254271" incoming="_bb4NxtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4Nw9vNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4NxdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4NxNvNEee4VJqjZ9dz-w" name="2109957412" incoming="_bb4NxdvNEee4VJqjZ9dz-w" outgoing="_bb4NxtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <edges xmi:id="_bb4NxdvNEee4VJqjZ9dz-w" source="_bb4Nw9vNEee4VJqjZ9dz-w" target="_bb4NxNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4NxtvNEee4VJqjZ9dz-w" source="_bb4NxNvNEee4VJqjZ9dz-w" target="_bb4NwtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4Nx9vNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4NyNvNEee4VJqjZ9dz-w" name="1690254271">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4NydvNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4Ny9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4NytvNEee4VJqjZ9dz-w" name="2109957412" incoming="_bb4Ny9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <edges xmi:id="_bb4Ny9vNEee4VJqjZ9dz-w" source="_bb4NydvNEee4VJqjZ9dz-w" target="_bb4NytvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4NzNvNEee4VJqjZ9dz-w" origin="_bb4NwtvNEee4VJqjZ9dz-w" image="_bb4NyNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4NzdvNEee4VJqjZ9dz-w" origin="_bb4Nw9vNEee4VJqjZ9dz-w" image="_bb4NydvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4NztvNEee4VJqjZ9dz-w" origin="_bb4NxNvNEee4VJqjZ9dz-w" image="_bb4NytvNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4Nz9vNEee4VJqjZ9dz-w" name="10782_dropoffCar">
+    <lhs xmi:id="_bb4N0NvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4N0dvNEee4VJqjZ9dz-w" name="1042307502" incoming="_bb4N2tvNEee4VJqjZ9dz-w" outgoing="_bb4N19vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N0tvNEee4VJqjZ9dz-w" name="1260467793" incoming="_bb4N19vNEee4VJqjZ9dz-w" outgoing="_bb4N2NvNEee4VJqjZ9dz-w _bb4N2dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4N09vNEee4VJqjZ9dz-w" name="1306246648" incoming="_bb4N29vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N1NvNEee4VJqjZ9dz-w" name="1470966439" outgoing="_bb4N2tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4N1dvNEee4VJqjZ9dz-w" name="1870209957" incoming="_bb4N2NvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4N1tvNEee4VJqjZ9dz-w" name="541698497" incoming="_bb4N2dvNEee4VJqjZ9dz-w" outgoing="_bb4N29vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4N19vNEee4VJqjZ9dz-w" source="_bb4N0dvNEee4VJqjZ9dz-w" target="_bb4N0tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4N2NvNEee4VJqjZ9dz-w" source="_bb4N0tvNEee4VJqjZ9dz-w" target="_bb4N1dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4N2dvNEee4VJqjZ9dz-w" source="_bb4N0tvNEee4VJqjZ9dz-w" target="_bb4N1tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/dropoff"/>
+      </edges>
+      <edges xmi:id="_bb4N2tvNEee4VJqjZ9dz-w" source="_bb4N1NvNEee4VJqjZ9dz-w" target="_bb4N0dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4N29vNEee4VJqjZ9dz-w" source="_bb4N1tvNEee4VJqjZ9dz-w" target="_bb4N09vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4N3NvNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4N3dvNEee4VJqjZ9dz-w" name="1042307502" incoming="_bb4N5tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N3tvNEee4VJqjZ9dz-w" name="1260467793" outgoing="_bb4N49vNEee4VJqjZ9dz-w _bb4N5NvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4N39vNEee4VJqjZ9dz-w" name="1306246648" incoming="_bb4N59vNEee4VJqjZ9dz-w" outgoing="_bb4N5dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N4NvNEee4VJqjZ9dz-w" name="1470966439" outgoing="_bb4N5tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4N4dvNEee4VJqjZ9dz-w" name="1870209957" incoming="_bb4N49vNEee4VJqjZ9dz-w _bb4N5dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4N4tvNEee4VJqjZ9dz-w" name="541698497" incoming="_bb4N5NvNEee4VJqjZ9dz-w" outgoing="_bb4N59vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4N49vNEee4VJqjZ9dz-w" source="_bb4N3tvNEee4VJqjZ9dz-w" target="_bb4N4dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4N5NvNEee4VJqjZ9dz-w" source="_bb4N3tvNEee4VJqjZ9dz-w" target="_bb4N4tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/dropoff"/>
+      </edges>
+      <edges xmi:id="_bb4N5dvNEee4VJqjZ9dz-w" source="_bb4N39vNEee4VJqjZ9dz-w" target="_bb4N4dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4N5tvNEee4VJqjZ9dz-w" source="_bb4N4NvNEee4VJqjZ9dz-w" target="_bb4N3dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4N59vNEee4VJqjZ9dz-w" source="_bb4N4tvNEee4VJqjZ9dz-w" target="_bb4N39vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4N6NvNEee4VJqjZ9dz-w" origin="_bb4N0dvNEee4VJqjZ9dz-w" image="_bb4N3dvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4N6dvNEee4VJqjZ9dz-w" origin="_bb4N0tvNEee4VJqjZ9dz-w" image="_bb4N3tvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4N6tvNEee4VJqjZ9dz-w" origin="_bb4N09vNEee4VJqjZ9dz-w" image="_bb4N39vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4N69vNEee4VJqjZ9dz-w" origin="_bb4N1NvNEee4VJqjZ9dz-w" image="_bb4N4NvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4N7NvNEee4VJqjZ9dz-w" origin="_bb4N1dvNEee4VJqjZ9dz-w" image="_bb4N4dvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4N7dvNEee4VJqjZ9dz-w" origin="_bb4N1tvNEee4VJqjZ9dz-w" image="_bb4N4tvNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4N7tvNEee4VJqjZ9dz-w" name="10768_makeReservation">
+    <lhs xmi:id="_bb4N79vNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4N8NvNEee4VJqjZ9dz-w" name="1360767589" incoming="_bb4N-NvNEee4VJqjZ9dz-w" outgoing="_bb4N9tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4N8dvNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4N99vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4N8tvNEee4VJqjZ9dz-w" name="1990451863" incoming="_bb4N9tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N89vNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4N99vNEee4VJqjZ9dz-w" outgoing="_bb4N-NvNEee4VJqjZ9dz-w _bb4N-dvNEee4VJqjZ9dz-w _bb4N-tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4N9NvNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4N-dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4N9dvNEee4VJqjZ9dz-w" name="968514068" incoming="_bb4N-tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4N9tvNEee4VJqjZ9dz-w" source="_bb4N8NvNEee4VJqjZ9dz-w" target="_bb4N8tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4N99vNEee4VJqjZ9dz-w" source="_bb4N8dvNEee4VJqjZ9dz-w" target="_bb4N89vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4N-NvNEee4VJqjZ9dz-w" source="_bb4N89vNEee4VJqjZ9dz-w" target="_bb4N8NvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4N-dvNEee4VJqjZ9dz-w" source="_bb4N89vNEee4VJqjZ9dz-w" target="_bb4N9NvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4N-tvNEee4VJqjZ9dz-w" source="_bb4N89vNEee4VJqjZ9dz-w" target="_bb4N9dvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4N-9vNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4N_NvNEee4VJqjZ9dz-w" name="1360767589" incoming="_bb4OBNvNEee4VJqjZ9dz-w" outgoing="_bb4OAtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4N_dvNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4OA9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4N_tvNEee4VJqjZ9dz-w" name="1990451863" incoming="_bb4OAtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4N_9vNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4OA9vNEee4VJqjZ9dz-w" outgoing="_bb4OBNvNEee4VJqjZ9dz-w _bb4OBdvNEee4VJqjZ9dz-w _bb4OBtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OANvNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4OBdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4OAdvNEee4VJqjZ9dz-w" name="968514068" incoming="_bb4OBtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OAtvNEee4VJqjZ9dz-w" source="_bb4N_NvNEee4VJqjZ9dz-w" target="_bb4N_tvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4OA9vNEee4VJqjZ9dz-w" source="_bb4N_dvNEee4VJqjZ9dz-w" target="_bb4N_9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OBNvNEee4VJqjZ9dz-w" source="_bb4N_9vNEee4VJqjZ9dz-w" target="_bb4N_NvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OBdvNEee4VJqjZ9dz-w" source="_bb4N_9vNEee4VJqjZ9dz-w" target="_bb4OANvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OBtvNEee4VJqjZ9dz-w" source="_bb4N_9vNEee4VJqjZ9dz-w" target="_bb4OAdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4OB9vNEee4VJqjZ9dz-w" origin="_bb4N8NvNEee4VJqjZ9dz-w" image="_bb4N_NvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OCNvNEee4VJqjZ9dz-w" origin="_bb4N8dvNEee4VJqjZ9dz-w" image="_bb4N_dvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OCdvNEee4VJqjZ9dz-w" origin="_bb4N8tvNEee4VJqjZ9dz-w" image="_bb4N_tvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OCtvNEee4VJqjZ9dz-w" origin="_bb4N89vNEee4VJqjZ9dz-w" image="_bb4N_9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OC9vNEee4VJqjZ9dz-w" origin="_bb4N9NvNEee4VJqjZ9dz-w" image="_bb4OANvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4ODNvNEee4VJqjZ9dz-w" origin="_bb4N9dvNEee4VJqjZ9dz-w" image="_bb4OAdvNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4ODdvNEee4VJqjZ9dz-w" name="10767_makeReservation">
+    <lhs xmi:id="_bb4ODtvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4OD9vNEee4VJqjZ9dz-w" name="1268066861" incoming="_bb4OHtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4OENvNEee4VJqjZ9dz-w" name="1531333864" incoming="_bb4OH9vNEee4VJqjZ9dz-w" outgoing="_bb4OGdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OEdvNEee4VJqjZ9dz-w" name="1576861390" incoming="_bb4OGdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4OEtvNEee4VJqjZ9dz-w" name="1690254271">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OE9vNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4OGtvNEee4VJqjZ9dz-w _bb4OG9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OFNvNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4OGtvNEee4VJqjZ9dz-w" outgoing="_bb4OHNvNEee4VJqjZ9dz-w _bb4OHdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OFdvNEee4VJqjZ9dz-w" name="2109957412" incoming="_bb4OG9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OFtvNEee4VJqjZ9dz-w" name="818403870" incoming="_bb4OINvNEee4VJqjZ9dz-w" outgoing="_bb4OHtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OF9vNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4OHNvNEee4VJqjZ9dz-w" outgoing="_bb4OH9vNEee4VJqjZ9dz-w _bb4OINvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4OGNvNEee4VJqjZ9dz-w" name="968514068" incoming="_bb4OHdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OGdvNEee4VJqjZ9dz-w" source="_bb4OENvNEee4VJqjZ9dz-w" target="_bb4OEdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OGtvNEee4VJqjZ9dz-w" source="_bb4OE9vNEee4VJqjZ9dz-w" target="_bb4OFNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OG9vNEee4VJqjZ9dz-w" source="_bb4OE9vNEee4VJqjZ9dz-w" target="_bb4OFdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OHNvNEee4VJqjZ9dz-w" source="_bb4OFNvNEee4VJqjZ9dz-w" target="_bb4OF9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OHdvNEee4VJqjZ9dz-w" source="_bb4OFNvNEee4VJqjZ9dz-w" target="_bb4OGNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OHtvNEee4VJqjZ9dz-w" source="_bb4OFtvNEee4VJqjZ9dz-w" target="_bb4OD9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OH9vNEee4VJqjZ9dz-w" source="_bb4OF9vNEee4VJqjZ9dz-w" target="_bb4OENvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4OINvNEee4VJqjZ9dz-w" source="_bb4OF9vNEee4VJqjZ9dz-w" target="_bb4OFtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4OIdvNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4OItvNEee4VJqjZ9dz-w" name="1268066861" incoming="_bb4OLdvNEee4VJqjZ9dz-w _bb4ONtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4OI9vNEee4VJqjZ9dz-w" name="1531333864" incoming="_bb4ON9vNEee4VJqjZ9dz-w" outgoing="_bb4OLNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OJNvNEee4VJqjZ9dz-w" name="1576861390" incoming="_bb4OLNvNEee4VJqjZ9dz-w _bb4OLtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4OJdvNEee4VJqjZ9dz-w" name="1690254271" incoming="_bb4ONdvNEee4VJqjZ9dz-w" outgoing="_bb4OLdvNEee4VJqjZ9dz-w _bb4OLtvNEee4VJqjZ9dz-w _bb4OL9vNEee4VJqjZ9dz-w _bb4OMNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OJtvNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4OMdvNEee4VJqjZ9dz-w _bb4OMtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OJ9vNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4OMdvNEee4VJqjZ9dz-w" outgoing="_bb4OM9vNEee4VJqjZ9dz-w _bb4ONNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OKNvNEee4VJqjZ9dz-w" name="2109957412" incoming="_bb4OMtvNEee4VJqjZ9dz-w" outgoing="_bb4ONdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OKdvNEee4VJqjZ9dz-w" name="818403870" incoming="_bb4OONvNEee4VJqjZ9dz-w" outgoing="_bb4ONtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OKtvNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4OL9vNEee4VJqjZ9dz-w _bb4OM9vNEee4VJqjZ9dz-w" outgoing="_bb4ON9vNEee4VJqjZ9dz-w _bb4OONvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4OK9vNEee4VJqjZ9dz-w" name="968514068" incoming="_bb4OMNvNEee4VJqjZ9dz-w _bb4ONNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OLNvNEee4VJqjZ9dz-w" source="_bb4OI9vNEee4VJqjZ9dz-w" target="_bb4OJNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OLdvNEee4VJqjZ9dz-w" source="_bb4OJdvNEee4VJqjZ9dz-w" target="_bb4OItvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4OLtvNEee4VJqjZ9dz-w" source="_bb4OJdvNEee4VJqjZ9dz-w" target="_bb4OJNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/made"/>
+      </edges>
+      <edges xmi:id="_bb4OL9vNEee4VJqjZ9dz-w" source="_bb4OJdvNEee4VJqjZ9dz-w" target="_bb4OKtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/pickup"/>
+      </edges>
+      <edges xmi:id="_bb4OMNvNEee4VJqjZ9dz-w" source="_bb4OJdvNEee4VJqjZ9dz-w" target="_bb4OK9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/dropoff"/>
+      </edges>
+      <edges xmi:id="_bb4OMdvNEee4VJqjZ9dz-w" source="_bb4OJtvNEee4VJqjZ9dz-w" target="_bb4OJ9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OMtvNEee4VJqjZ9dz-w" source="_bb4OJtvNEee4VJqjZ9dz-w" target="_bb4OKNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OM9vNEee4VJqjZ9dz-w" source="_bb4OJ9vNEee4VJqjZ9dz-w" target="_bb4OKtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4ONNvNEee4VJqjZ9dz-w" source="_bb4OJ9vNEee4VJqjZ9dz-w" target="_bb4OK9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4ONdvNEee4VJqjZ9dz-w" source="_bb4OKNvNEee4VJqjZ9dz-w" target="_bb4OJdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4ONtvNEee4VJqjZ9dz-w" source="_bb4OKdvNEee4VJqjZ9dz-w" target="_bb4OItvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4ON9vNEee4VJqjZ9dz-w" source="_bb4OKtvNEee4VJqjZ9dz-w" target="_bb4OI9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4OONvNEee4VJqjZ9dz-w" source="_bb4OKtvNEee4VJqjZ9dz-w" target="_bb4OKdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4OOdvNEee4VJqjZ9dz-w" origin="_bb4OD9vNEee4VJqjZ9dz-w" image="_bb4OItvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OOtvNEee4VJqjZ9dz-w" origin="_bb4OENvNEee4VJqjZ9dz-w" image="_bb4OI9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OO9vNEee4VJqjZ9dz-w" origin="_bb4OEdvNEee4VJqjZ9dz-w" image="_bb4OJNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OPNvNEee4VJqjZ9dz-w" origin="_bb4OEtvNEee4VJqjZ9dz-w" image="_bb4OJdvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OPdvNEee4VJqjZ9dz-w" origin="_bb4OE9vNEee4VJqjZ9dz-w" image="_bb4OJtvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OPtvNEee4VJqjZ9dz-w" origin="_bb4OFNvNEee4VJqjZ9dz-w" image="_bb4OJ9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OP9vNEee4VJqjZ9dz-w" origin="_bb4OFdvNEee4VJqjZ9dz-w" image="_bb4OKNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OQNvNEee4VJqjZ9dz-w" origin="_bb4OFtvNEee4VJqjZ9dz-w" image="_bb4OKdvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OQdvNEee4VJqjZ9dz-w" origin="_bb4OF9vNEee4VJqjZ9dz-w" image="_bb4OKtvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OQtvNEee4VJqjZ9dz-w" origin="_bb4OGNvNEee4VJqjZ9dz-w" image="_bb4OK9vNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4OQ9vNEee4VJqjZ9dz-w" name="10771_makeReservation">
+    <lhs xmi:id="_bb4ORNvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4ORdvNEee4VJqjZ9dz-w" name="1054932644" incoming="_bb4OT9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4ORtvNEee4VJqjZ9dz-w" name="107241811" incoming="_bb4OU9vNEee4VJqjZ9dz-w" outgoing="_bb4OTtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OR9vNEee4VJqjZ9dz-w" name="1125381564" incoming="_bb4OUdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4OSNvNEee4VJqjZ9dz-w" name="1405747618" outgoing="_bb4OT9vNEee4VJqjZ9dz-w _bb4OUNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OSdvNEee4VJqjZ9dz-w" name="1702660825" incoming="_bb4OTtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4OStvNEee4VJqjZ9dz-w" name="2024918163" incoming="_bb4OVNvNEee4VJqjZ9dz-w" outgoing="_bb4OUdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OS9vNEee4VJqjZ9dz-w" name="524241174">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OTNvNEee4VJqjZ9dz-w" name="898406901" incoming="_bb4OUNvNEee4VJqjZ9dz-w" outgoing="_bb4OUtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OTdvNEee4VJqjZ9dz-w" name="992846223" incoming="_bb4OUtvNEee4VJqjZ9dz-w" outgoing="_bb4OU9vNEee4VJqjZ9dz-w _bb4OVNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OTtvNEee4VJqjZ9dz-w" source="_bb4ORtvNEee4VJqjZ9dz-w" target="_bb4OSdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OT9vNEee4VJqjZ9dz-w" source="_bb4OSNvNEee4VJqjZ9dz-w" target="_bb4ORdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OUNvNEee4VJqjZ9dz-w" source="_bb4OSNvNEee4VJqjZ9dz-w" target="_bb4OTNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OUdvNEee4VJqjZ9dz-w" source="_bb4OStvNEee4VJqjZ9dz-w" target="_bb4OR9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OUtvNEee4VJqjZ9dz-w" source="_bb4OTNvNEee4VJqjZ9dz-w" target="_bb4OTdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OU9vNEee4VJqjZ9dz-w" source="_bb4OTdvNEee4VJqjZ9dz-w" target="_bb4ORtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4OVNvNEee4VJqjZ9dz-w" source="_bb4OTdvNEee4VJqjZ9dz-w" target="_bb4OStvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4OVdvNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4OVtvNEee4VJqjZ9dz-w" name="1054932644" incoming="_bb4OYdvNEee4VJqjZ9dz-w" outgoing="_bb4OX9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OV9vNEee4VJqjZ9dz-w" name="107241811" incoming="_bb4OadvNEee4VJqjZ9dz-w" outgoing="_bb4OYNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OWNvNEee4VJqjZ9dz-w" name="1125381564" incoming="_bb4OY9vNEee4VJqjZ9dz-w _bb4OZNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4OWdvNEee4VJqjZ9dz-w" name="1405747618" outgoing="_bb4OYdvNEee4VJqjZ9dz-w _bb4OYtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OWtvNEee4VJqjZ9dz-w" name="1702660825" incoming="_bb4OYNvNEee4VJqjZ9dz-w _bb4OZdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4OW9vNEee4VJqjZ9dz-w" name="2024918163" incoming="_bb4OatvNEee4VJqjZ9dz-w" outgoing="_bb4OY9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OXNvNEee4VJqjZ9dz-w" name="524241174" incoming="_bb4OX9vNEee4VJqjZ9dz-w" outgoing="_bb4OZNvNEee4VJqjZ9dz-w _bb4OZdvNEee4VJqjZ9dz-w _bb4OZtvNEee4VJqjZ9dz-w _bb4OZ9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OXdvNEee4VJqjZ9dz-w" name="898406901" incoming="_bb4OYtvNEee4VJqjZ9dz-w" outgoing="_bb4OaNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OXtvNEee4VJqjZ9dz-w" name="992846223" incoming="_bb4OZtvNEee4VJqjZ9dz-w _bb4OZ9vNEee4VJqjZ9dz-w _bb4OaNvNEee4VJqjZ9dz-w" outgoing="_bb4OadvNEee4VJqjZ9dz-w _bb4OatvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OX9vNEee4VJqjZ9dz-w" source="_bb4OVtvNEee4VJqjZ9dz-w" target="_bb4OXNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OYNvNEee4VJqjZ9dz-w" source="_bb4OV9vNEee4VJqjZ9dz-w" target="_bb4OWtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OYdvNEee4VJqjZ9dz-w" source="_bb4OWdvNEee4VJqjZ9dz-w" target="_bb4OVtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OYtvNEee4VJqjZ9dz-w" source="_bb4OWdvNEee4VJqjZ9dz-w" target="_bb4OXdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OY9vNEee4VJqjZ9dz-w" source="_bb4OW9vNEee4VJqjZ9dz-w" target="_bb4OWNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OZNvNEee4VJqjZ9dz-w" source="_bb4OXNvNEee4VJqjZ9dz-w" target="_bb4OWNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4OZdvNEee4VJqjZ9dz-w" source="_bb4OXNvNEee4VJqjZ9dz-w" target="_bb4OWtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/made"/>
+      </edges>
+      <edges xmi:id="_bb4OZtvNEee4VJqjZ9dz-w" source="_bb4OXNvNEee4VJqjZ9dz-w" target="_bb4OXtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/dropoff"/>
+      </edges>
+      <edges xmi:id="_bb4OZ9vNEee4VJqjZ9dz-w" source="_bb4OXNvNEee4VJqjZ9dz-w" target="_bb4OXtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/pickup"/>
+      </edges>
+      <edges xmi:id="_bb4OaNvNEee4VJqjZ9dz-w" source="_bb4OXdvNEee4VJqjZ9dz-w" target="_bb4OXtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OadvNEee4VJqjZ9dz-w" source="_bb4OXtvNEee4VJqjZ9dz-w" target="_bb4OV9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+      <edges xmi:id="_bb4OatvNEee4VJqjZ9dz-w" source="_bb4OXtvNEee4VJqjZ9dz-w" target="_bb4OW9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4Oa9vNEee4VJqjZ9dz-w" origin="_bb4ORdvNEee4VJqjZ9dz-w" image="_bb4OVtvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4ObNvNEee4VJqjZ9dz-w" origin="_bb4ORtvNEee4VJqjZ9dz-w" image="_bb4OV9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4ObdvNEee4VJqjZ9dz-w" origin="_bb4OR9vNEee4VJqjZ9dz-w" image="_bb4OWNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4ObtvNEee4VJqjZ9dz-w" origin="_bb4OSNvNEee4VJqjZ9dz-w" image="_bb4OWdvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4Ob9vNEee4VJqjZ9dz-w" origin="_bb4OSdvNEee4VJqjZ9dz-w" image="_bb4OWtvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OcNvNEee4VJqjZ9dz-w" origin="_bb4OStvNEee4VJqjZ9dz-w" image="_bb4OW9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OcdvNEee4VJqjZ9dz-w" origin="_bb4OS9vNEee4VJqjZ9dz-w" image="_bb4OXNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OctvNEee4VJqjZ9dz-w" origin="_bb4OTNvNEee4VJqjZ9dz-w" image="_bb4OXdvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4Oc9vNEee4VJqjZ9dz-w" origin="_bb4OTdvNEee4VJqjZ9dz-w" image="_bb4OXtvNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4OdNvNEee4VJqjZ9dz-w" name="10781_pickupCar">
+    <lhs xmi:id="_bb4OddvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4OdtvNEee4VJqjZ9dz-w" name="1042307502" incoming="_bb4Of9vNEee4VJqjZ9dz-w" outgoing="_bb4OfNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4Od9vNEee4VJqjZ9dz-w" name="1260467793" incoming="_bb4OfNvNEee4VJqjZ9dz-w" outgoing="_bb4OfdvNEee4VJqjZ9dz-w _bb4OftvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OeNvNEee4VJqjZ9dz-w" name="1470966439" outgoing="_bb4Of9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OedvNEee4VJqjZ9dz-w" name="1783083399" incoming="_bb4OfdvNEee4VJqjZ9dz-w" outgoing="_bb4OgNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4OetvNEee4VJqjZ9dz-w" name="1870209957" incoming="_bb4OftvNEee4VJqjZ9dz-w _bb4OgdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4Oe9vNEee4VJqjZ9dz-w" name="706895319" incoming="_bb4OgNvNEee4VJqjZ9dz-w" outgoing="_bb4OgdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <edges xmi:id="_bb4OfNvNEee4VJqjZ9dz-w" source="_bb4OdtvNEee4VJqjZ9dz-w" target="_bb4Od9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OfdvNEee4VJqjZ9dz-w" source="_bb4Od9vNEee4VJqjZ9dz-w" target="_bb4OedvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/pickup"/>
+      </edges>
+      <edges xmi:id="_bb4OftvNEee4VJqjZ9dz-w" source="_bb4Od9vNEee4VJqjZ9dz-w" target="_bb4OetvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4Of9vNEee4VJqjZ9dz-w" source="_bb4OeNvNEee4VJqjZ9dz-w" target="_bb4OdtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OgNvNEee4VJqjZ9dz-w" source="_bb4OedvNEee4VJqjZ9dz-w" target="_bb4Oe9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+      <edges xmi:id="_bb4OgdvNEee4VJqjZ9dz-w" source="_bb4Oe9vNEee4VJqjZ9dz-w" target="_bb4OetvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4OgtvNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4Og9vNEee4VJqjZ9dz-w" name="1042307502" incoming="_bb4Oi9vNEee4VJqjZ9dz-w" outgoing="_bb4OidvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OhNvNEee4VJqjZ9dz-w" name="1260467793" incoming="_bb4OidvNEee4VJqjZ9dz-w" outgoing="_bb4OitvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation"/>
+      </nodes>
+      <nodes xmi:id="_bb4OhdvNEee4VJqjZ9dz-w" name="1470966439" outgoing="_bb4Oi9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OhtvNEee4VJqjZ9dz-w" name="1783083399" outgoing="_bb4OjNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <nodes xmi:id="_bb4Oh9vNEee4VJqjZ9dz-w" name="1870209957" incoming="_bb4OitvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Car"/>
+      </nodes>
+      <nodes xmi:id="_bb4OiNvNEee4VJqjZ9dz-w" name="706895319" incoming="_bb4OjNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <edges xmi:id="_bb4OidvNEee4VJqjZ9dz-w" source="_bb4Og9vNEee4VJqjZ9dz-w" target="_bb4OhNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OitvNEee4VJqjZ9dz-w" source="_bb4OhNvNEee4VJqjZ9dz-w" target="_bb4Oh9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Reservation/For"/>
+      </edges>
+      <edges xmi:id="_bb4Oi9vNEee4VJqjZ9dz-w" source="_bb4OhdvNEee4VJqjZ9dz-w" target="_bb4Og9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/reservations"/>
+      </edges>
+      <edges xmi:id="_bb4OjNvNEee4VJqjZ9dz-w" source="_bb4OhtvNEee4VJqjZ9dz-w" target="_bb4OiNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/at"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4OjdvNEee4VJqjZ9dz-w" origin="_bb4OdtvNEee4VJqjZ9dz-w" image="_bb4Og9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OjtvNEee4VJqjZ9dz-w" origin="_bb4Od9vNEee4VJqjZ9dz-w" image="_bb4OhNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4Oj9vNEee4VJqjZ9dz-w" origin="_bb4OeNvNEee4VJqjZ9dz-w" image="_bb4OhdvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OkNvNEee4VJqjZ9dz-w" origin="_bb4OedvNEee4VJqjZ9dz-w" image="_bb4OhtvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OkdvNEee4VJqjZ9dz-w" origin="_bb4OetvNEee4VJqjZ9dz-w" image="_bb4Oh9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OktvNEee4VJqjZ9dz-w" origin="_bb4Oe9vNEee4VJqjZ9dz-w" image="_bb4OiNvNEee4VJqjZ9dz-w"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_bb4Ok9vNEee4VJqjZ9dz-w" name="10765_RegisterClient">
+    <lhs xmi:id="_bb4OlNvNEee4VJqjZ9dz-w" name="Lhs">
+      <nodes xmi:id="_bb4OldvNEee4VJqjZ9dz-w" name="1504109395">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4OltvNEee4VJqjZ9dz-w" name="1531333864" incoming="_bb4OnNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4Ol9vNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4OmtvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OmNvNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4OmtvNEee4VJqjZ9dz-w" outgoing="_bb4Om9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OmdvNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4Om9vNEee4VJqjZ9dz-w" outgoing="_bb4OnNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4OmtvNEee4VJqjZ9dz-w" source="_bb4Ol9vNEee4VJqjZ9dz-w" target="_bb4OmNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4Om9vNEee4VJqjZ9dz-w" source="_bb4OmNvNEee4VJqjZ9dz-w" target="_bb4OmdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OnNvNEee4VJqjZ9dz-w" source="_bb4OmdvNEee4VJqjZ9dz-w" target="_bb4OltvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_bb4OndvNEee4VJqjZ9dz-w" name="Rhs">
+      <nodes xmi:id="_bb4OntvNEee4VJqjZ9dz-w" name="1504109395" incoming="_bb4Oo9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Client"/>
+      </nodes>
+      <nodes xmi:id="_bb4On9vNEee4VJqjZ9dz-w" name="1531333864" incoming="_bb4OptvNEee4VJqjZ9dz-w" outgoing="_bb4Oo9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList"/>
+      </nodes>
+      <nodes xmi:id="_bb4OoNvNEee4VJqjZ9dz-w" name="1975358023" outgoing="_bb4OpNvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental"/>
+      </nodes>
+      <nodes xmi:id="_bb4OodvNEee4VJqjZ9dz-w" name="2101440631" incoming="_bb4OpNvNEee4VJqjZ9dz-w" outgoing="_bb4OpdvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray"/>
+      </nodes>
+      <nodes xmi:id="_bb4OotvNEee4VJqjZ9dz-w" name="920011586" incoming="_bb4OpdvNEee4VJqjZ9dz-w" outgoing="_bb4OptvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch"/>
+      </nodes>
+      <edges xmi:id="_bb4Oo9vNEee4VJqjZ9dz-w" source="_bb4On9vNEee4VJqjZ9dz-w" target="_bb4OntvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//ArrayList/index"/>
+      </edges>
+      <edges xmi:id="_bb4OpNvNEee4VJqjZ9dz-w" source="_bb4OoNvNEee4VJqjZ9dz-w" target="_bb4OodvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Rental/branches"/>
+      </edges>
+      <edges xmi:id="_bb4OpdvNEee4VJqjZ9dz-w" source="_bb4OodvNEee4VJqjZ9dz-w" target="_bb4OotvNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//BranchArray/index"/>
+      </edges>
+      <edges xmi:id="_bb4OptvNEee4VJqjZ9dz-w" source="_bb4OotvNEee4VJqjZ9dz-w" target="_bb4On9vNEee4VJqjZ9dz-w">
+        <type href="http://www.eclipse.org/emf/rentalService#//Branch/of"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_bb4Op9vNEee4VJqjZ9dz-w" origin="_bb4OldvNEee4VJqjZ9dz-w" image="_bb4OntvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OqNvNEee4VJqjZ9dz-w" origin="_bb4OltvNEee4VJqjZ9dz-w" image="_bb4On9vNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OqdvNEee4VJqjZ9dz-w" origin="_bb4Ol9vNEee4VJqjZ9dz-w" image="_bb4OoNvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4OqtvNEee4VJqjZ9dz-w" origin="_bb4OmNvNEee4VJqjZ9dz-w" image="_bb4OodvNEee4VJqjZ9dz-w"/>
+    <mappings xmi:id="_bb4Oq9vNEee4VJqjZ9dz-w" origin="_bb4OmdvNEee4VJqjZ9dz-w" image="_bb4OotvNEee4VJqjZ9dz-w"/>
+  </units>
+</henshin:Module>

@@ -1,160 +1,322 @@
-Validating the extracted visual contract using Henshin engine based on 40% cross-validation split ..
+#Round 1	Precision	 0.27	Recall	0.4
+#Round 2	Precision	 0.4	Recall	0.29
+#Round 3	Precision	 0.5	Recall	0.31
+#Round 4	Precision	 0.38	Recall	0.38
+#Round 5	Precision	 0.2	Recall	0.23
 
+r1-tcC1	RegisterClient	TP	correct
+r1-tcC2	RegisterClient	FP	incomplete: maxRule isn't applicable
+r1-tcC3	makeReservation	FP	incomplete: minRule doesn't exists
+r1-tcC4	makeReservation	TP	correct
+r1-tcC5	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcC6	cancelReservation	FP	incomplete: minRule doesn't exists
+r1-tcC7	dropoffCar	TN	complete
+r1-tcC8	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcC9	dropoffCar	TN	complete
+r1-tcC10	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcC11	cancelClientReservation	FP	incomplete: minRule doesn't exists
+r1-tcD12	registerClient	FP	incomplete: maxRule isn't applicable
+r1-tcD13	makeReservation	TP	correct
+r1-tcD14	dropoffCar	TN	complete
+r1-tcD15	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcD16	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD17	dropoffCar	FP	incomplete: minRule doesn't exists
+r1-tcD18	dropoffCar	TN	complete
+r1-tcD19	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD20	dropoffCar	TN	complete
+r1-tcE21	registerClient	TP	correct
+r1-tcE22	makeReservation	FP	incomplete: minRule doesn't exists
+r1-tcE23	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcE24	pickupCar	TN	complete
+r1-tcE25	dropoffCar	FP	incomplete: minRule doesn't exists
+r1-tcE26	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r1-tcE27	pickupCar	TN	complete
+r1-tcE28	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r1-tcC29	RegisterClient	TP	correct
+r1-tcC30	RegisterClient	FP	incomplete: maxRule isn't applicable
+r1-tcC31	makeReservation	FP	incomplete: minRule doesn't exists
+r1-tcC32	makeReservation	TP	correct
+r1-tcC33	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcC34	cancelReservation	FP	incomplete: minRule doesn't exists
+r1-tcC35	dropoffCar	TN	complete
+r1-tcC36	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcC37	dropoffCar	TN	complete
+r1-tcC38	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcC39	cancelClientReservation	FP	incomplete: minRule doesn't exists
+r1-tcD40	registerClient	FP	incomplete: maxRule isn't applicable
+r1-tcD41	makeReservation	TP	correct
+r1-tcD42	dropoffCar	TN	complete
+r1-tcD43	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcD44	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD45	dropoffCar	FP	incomplete: minRule doesn't exists
+r1-tcD46	dropoffCar	TN	complete
+r1-tcD47	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD48	dropoffCar	TN	complete
+r1-tcE49	registerClient	TP	correct
+r1-tcE50	makeReservation	FP	incomplete: minRule doesn't exists
+r1-tcE51	pickupCar	FP	incomplete: minRule doesn't exists
+r1-tcE52	pickupCar	TN	complete
+r1-tcE53	dropoffCar	FP	incomplete: minRule doesn't exists
+r1-tcE54	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r1-tcE55	pickupCar	TN	complete
+r1-tcE56	dropoffCar	FN	incorrect: rule shouldn't be applicable
+#Round 1	Precision	 0.27	Recall	0.4
 
-r1-tcC1	RegisterClient	true	true	TP(correct)
-r1-tcC2	RegisterClient	true	false	FN(incorrect)
-r1-tcC3	makeReservation	true	true	TP(correct)
-r1-tcC4	makeReservation	true	false	FN(incorrect)
-r1-tcC5	pickupCar	false	true	FP(incomplete)
-r1-tcC6	cancelReservation	true	false	FN(incorrect)
-r1-tcC7	dropoffCar	false	true	FP(incomplete)
-r1-tcC8	pickupCar	false	false	TN(complete)
-r1-tcC9	dropoffCar	false	true	FP(incomplete)
-r1-tcC10	cancelClientReservation	false	false	TN(complete)
-r1-tcC11	cancelClientReservation	false	true	FP(incomplete)
-r1-tcD12	registerClient	true	false	FN(incorrect)
-r1-tcD13	makeReservation	true	true	TP(correct)
-r1-tcD14	dropoffCar	false	false	TN(complete)
-r1-tcD15	pickupCar	false	true	FP(incomplete)
-r1-tcD16	pickupCar	false	false	TN(complete)
-r1-tcD17	dropoffCar	false	true	FP(incomplete)
-r1-tcD18	dropoffCar	false	false	TN(complete)
-r1-tcD19	pickupCar	false	true	FP(incomplete)
-r1-tcD20	dropoffCar	false	false	TN(complete)
-r1-tcE21	registerClient	true	true	TP(correct)
-r1-tcE22	makeReservation	true	false	FN(incorrect)
-r1-tcE23	pickupCar	false	true	FP(incomplete)
-r1-tcE24	pickupCar	false	false	TN(complete)
-r1-tcE25	dropoffCar	false	true	FP(incomplete)
-r1-tcE26	dropoffCar	false	false	TN(complete)
-r1-tcE27	pickupCar	false	true	FP(incomplete)
-r1-tcE28	dropoffCar	false	false	TN(complete)
-#Round 1	Precision	 0.29	Recall	0.44
+r2-tcA57	registerClient	TP	correct
+r2-tcA58	registerClient	FP	incomplete: maxRule isn't applicable
+r2-tcA59	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA60	makeReservation	TN	complete
+r2-tcA61	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcA62	cancelReservation	TN	complete
+r2-tcA63	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA64	makeReservation	TN	complete
+r2-tcA65	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA66	cancelClientReservation	TN	complete
+r2-tcA67	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA68	makeReservation	TN	complete
+r2-tcD69	registerClient	TP	correct
+r2-tcD70	makeReservation	FP	incomplete: maxRule isn't applicable
+r2-tcD71	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD72	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcD73	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD74	dropoffCar	FP	incomplete: minRule doesn't exists
+r2-tcD75	dropoffCar	TN	complete
+r2-tcD76	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD77	dropoffCar	TN	complete
+r2-tcE78	registerClient	TP	correct
+r2-tcE79	makeReservation	FP	incomplete: maxRule isn't applicable
+r2-tcE80	pickupCar	TP	correct
+r2-tcE81	pickupCar	TN	complete
+r2-tcE82	dropoffCar	FP	incomplete: minRule doesn't exists
+r2-tcE83	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcE84	pickupCar	TN	complete
+r2-tcE85	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcA86	registerClient	TP	correct
+r2-tcA87	registerClient	FP	incomplete: maxRule isn't applicable
+r2-tcA88	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA89	makeReservation	TN	complete
+r2-tcA90	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcA91	cancelReservation	TN	complete
+r2-tcA92	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA93	makeReservation	TN	complete
+r2-tcA94	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA95	cancelClientReservation	TN	complete
+r2-tcA96	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA97	makeReservation	TN	complete
+r2-tcD98	registerClient	TP	correct
+r2-tcD99	makeReservation	FP	incomplete: maxRule isn't applicable
+r2-tcD100	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD101	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcD102	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD103	dropoffCar	FP	incomplete: minRule doesn't exists
+r2-tcD104	dropoffCar	TN	complete
+r2-tcD105	pickupCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD106	dropoffCar	TN	complete
+r2-tcE107	registerClient	TP	correct
+r2-tcE108	makeReservation	FP	incomplete: maxRule isn't applicable
+r2-tcE109	pickupCar	TP	correct
+r2-tcE110	pickupCar	TN	complete
+r2-tcE111	dropoffCar	FP	incomplete: minRule doesn't exists
+r2-tcE112	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcE113	pickupCar	TN	complete
+r2-tcE114	dropoffCar	FN	incorrect: rule shouldn't be applicable
+#Round 2	Precision	 0.4	Recall	0.29
 
-r2-tcA29	registerClient	true	true	TP(correct)
-r2-tcA30	registerClient	true	false	FN(incorrect)
-r2-tcA31	makeReservation	false	true	FP(incomplete)
-r2-tcA32	makeReservation	false	false	TN(complete)
-r2-tcA33	cancelReservation	false	true	FP(incomplete)
-r2-tcA34	cancelReservation	false	false	TN(complete)
-r2-tcA35	makeReservation	false	true	FP(incomplete)
-r2-tcA36	cancelReservation	false	false	TN(complete)
-r2-tcA37	cancelClientReservation	false	true	FP(incomplete)
-r2-tcA38	cancelClientReservation	false	false	TN(complete)
-r2-tcD39	registerClient	true	true	TP(correct)
-r2-tcD40	makeReservation	true	false	FN(incorrect)
-r2-tcD41	dropoffCar	false	true	FP(incomplete)
-r2-tcD42	pickupCar	true	false	FN(incorrect)
-r2-tcD43	pickupCar	false	true	FP(incomplete)
-r2-tcD44	dropoffCar	false	false	TN(complete)
-r2-tcD45	dropoffCar	false	true	FP(incomplete)
-r2-tcD46	pickupCar	false	false	TN(complete)
-r2-tcD47	dropoffCar	false	true	FP(incomplete)
-r2-tcE48	registerClient	true	false	FN(incorrect)
-r2-tcE49	makeReservation	true	true	TP(correct)
-r2-tcE50	pickupCar	true	false	FN(incorrect)
-r2-tcE51	pickupCar	false	true	FP(incomplete)
-r2-tcE52	dropoffCar	false	false	TN(complete)
-r2-tcE53	dropoffCar	false	true	FP(incomplete)
-r2-tcE54	pickupCar	false	false	TN(complete)
-r2-tcE55	dropoffCar	false	true	FP(incomplete)
-#Round 2	Precision	 0.21	Recall	0.38
+r3-tcA115	registerClient	TP	correct
+r3-tcA116	registerClient	FP	incomplete: maxRule isn't applicable
+r3-tcA117	makeReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA118	makeReservation	TN	complete
+r3-tcA119	pickupCar	FN	incorrect: rule shouldn't be applicable
+r3-tcA120	cancelReservation	TN	complete
+r3-tcA121	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA122	makeReservation	TN	complete
+r3-tcA123	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA124	cancelClientReservation	TN	complete
+r3-tcA125	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA126	makeReservation	TN	complete
+r3-tcB127	RegisterClient	TP	correct
+r3-tcB128	makeReservation	FP	incomplete: maxRule isn't applicable
+r3-tcB129	RegisterClient	TP	correct
+r3-tcB130	dropoffCar	TN	complete
+r3-tcB131	RegisterClient	FN	incorrect: rule shouldn't be applicable
+r3-tcB132	makeReservation	TN	complete
+r3-tcB133	makeReservation	TP	correct
+r3-tcB134	cancelReservation	TN	complete
+r3-tcB135	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcB136	cancelReservation	TN	complete
+r3-tcB137	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE138	registerClient	FP	incomplete: maxRule isn't applicable
+r3-tcE139	makeReservation	TP	correct
+r3-tcE140	pickupCar	FP	incomplete: maxRule isn't applicable
+r3-tcE141	pickupCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE142	dropoffCar	FP	incomplete: maxRule isn't applicable
+r3-tcE143	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE144	pickupCar	TN	complete
+r3-tcE145	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcA146	registerClient	TP	correct
+r3-tcA147	registerClient	FP	incomplete: maxRule isn't applicable
+r3-tcA148	makeReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA149	makeReservation	TN	complete
+r3-tcA150	pickupCar	FN	incorrect: rule shouldn't be applicable
+r3-tcA151	cancelReservation	TN	complete
+r3-tcA152	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA153	makeReservation	TN	complete
+r3-tcA154	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA155	cancelClientReservation	TN	complete
+r3-tcA156	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r3-tcA157	makeReservation	TN	complete
+r3-tcB158	RegisterClient	TP	correct
+r3-tcB159	makeReservation	FP	incomplete: maxRule isn't applicable
+r3-tcB160	RegisterClient	TP	correct
+r3-tcB161	dropoffCar	TN	complete
+r3-tcB162	RegisterClient	FN	incorrect: rule shouldn't be applicable
+r3-tcB163	makeReservation	TN	complete
+r3-tcB164	makeReservation	TP	correct
+r3-tcB165	cancelReservation	TN	complete
+r3-tcB166	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcB167	cancelReservation	TN	complete
+r3-tcB168	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE169	registerClient	FP	incomplete: maxRule isn't applicable
+r3-tcE170	makeReservation	TP	correct
+r3-tcE171	pickupCar	FP	incomplete: maxRule isn't applicable
+r3-tcE172	pickupCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE173	dropoffCar	FP	incomplete: maxRule isn't applicable
+r3-tcE174	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r3-tcE175	pickupCar	TN	complete
+r3-tcE176	dropoffCar	FN	incorrect: rule shouldn't be applicable
+#Round 3	Precision	 0.5	Recall	0.31
 
-r3-tcA56	registerClient	true	true	TP(correct)
-r3-tcA57	registerClient	true	false	FN(incorrect)
-r3-tcA58	makeReservation	false	true	FP(incomplete)
-r3-tcA59	makeReservation	false	false	TN(complete)
-r3-tcA60	cancelReservation	false	true	FP(incomplete)
-r3-tcA61	cancelReservation	false	false	TN(complete)
-r3-tcA62	makeReservation	false	true	FP(incomplete)
-r3-tcA63	cancelReservation	false	false	TN(complete)
-r3-tcA64	cancelClientReservation	false	true	FP(incomplete)
-r3-tcA65	cancelClientReservation	false	false	TN(complete)
-r3-tcB66	RegisterClient	true	true	TP(correct)
-r3-tcB67	makeReservation	true	false	FN(incorrect)
-r3-tcB68	RegisterClient	true	true	TP(correct)
-r3-tcB69	dropoffCar	false	false	TN(complete)
-r3-tcB70	RegisterClient	false	true	FP(incomplete)
-r3-tcB71	makeReservation	false	false	TN(complete)
-r3-tcB72	makeReservation	true	true	TP(correct)
-r3-tcB73	cancelReservation	false	false	TN(complete)
-r3-tcB74	dropoffCar	false	true	FP(incomplete)
-r3-tcB75	cancelReservation	false	false	TN(complete)
-r3-tcB76	dropoffCar	false	true	FP(incomplete)
-r3-tcE77	registerClient	true	false	FN(incorrect)
-r3-tcE78	makeReservation	true	true	TP(correct)
-r3-tcE79	pickupCar	true	false	FN(incorrect)
-r3-tcE80	pickupCar	false	true	FP(incomplete)
-r3-tcE81	dropoffCar	true	false	FN(incorrect)
-r3-tcE82	dropoffCar	false	true	FP(incomplete)
-r3-tcE83	pickupCar	false	false	TN(complete)
-r3-tcE84	dropoffCar	false	true	FP(incomplete)
-#Round 3	Precision	 0.33	Recall	0.5
+r4-tcA177	registerClient	TP	correct
+r4-tcA178	registerClient	FP	incomplete: maxRule isn't applicable
+r4-tcA179	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA180	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcA181	pickupCar	TP	correct
+r4-tcA182	cancelReservation	TN	complete
+r4-tcA183	cancelReservation	FP	incomplete: minRule doesn't exists
+r4-tcA184	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA185	cancelReservation	TN	complete
+r4-tcA186	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA187	cancelClientReservation	TN	complete
+r4-tcA188	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB189	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcB190	makeReservation	TP	correct
+r4-tcB191	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcB192	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB193	RegisterClient	TN	complete
+r4-tcB194	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB195	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcB196	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB197	dropoffCar	TN	complete
+r4-tcB198	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB199	dropoffCar	TN	complete
+r4-tcC200	RegisterClient	TP	correct
+r4-tcC201	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcC202	makeReservation	TP	correct
+r4-tcC203	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcC204	pickupCar	TP	correct
+r4-tcC205	cancelReservation	FP	incomplete: minRule doesn't exists
+r4-tcC206	dropoffCar	TN	complete
+r4-tcC207	pickupCar	FN	incorrect: rule shouldn't be applicable
+r4-tcC208	dropoffCar	TN	complete
+r4-tcC209	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcC210	cancelClientReservation	FP	incomplete: minRule doesn't exists
+r4-tcA211	registerClient	TP	correct
+r4-tcA212	registerClient	FP	incomplete: maxRule isn't applicable
+r4-tcA213	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA214	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcA215	pickupCar	TP	correct
+r4-tcA216	cancelReservation	TN	complete
+r4-tcA217	cancelReservation	FP	incomplete: minRule doesn't exists
+r4-tcA218	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA219	cancelReservation	TN	complete
+r4-tcA220	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcA221	cancelClientReservation	TN	complete
+r4-tcA222	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB223	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcB224	makeReservation	TP	correct
+r4-tcB225	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcB226	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB227	RegisterClient	TN	complete
+r4-tcB228	makeReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB229	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcB230	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB231	dropoffCar	TN	complete
+r4-tcB232	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcB233	dropoffCar	TN	complete
+r4-tcC234	RegisterClient	TP	correct
+r4-tcC235	RegisterClient	FP	incomplete: maxRule isn't applicable
+r4-tcC236	makeReservation	TP	correct
+r4-tcC237	makeReservation	FP	incomplete: maxRule isn't applicable
+r4-tcC238	pickupCar	TP	correct
+r4-tcC239	cancelReservation	FP	incomplete: minRule doesn't exists
+r4-tcC240	dropoffCar	TN	complete
+r4-tcC241	pickupCar	FN	incorrect: rule shouldn't be applicable
+r4-tcC242	dropoffCar	TN	complete
+r4-tcC243	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r4-tcC244	cancelClientReservation	FP	incomplete: minRule doesn't exists
+#Round 4	Precision	 0.38	Recall	0.38
 
-r4-tcA85	registerClient	true	true	TP(correct)
-r4-tcA86	registerClient	true	false	FN(incorrect)
-r4-tcA87	makeReservation	true	true	TP(correct)
-r4-tcA88	makeReservation	false	false	TN(complete)
-r4-tcA89	cancelReservation	false	true	FP(incomplete)
-r4-tcA90	cancelReservation	false	false	TN(complete)
-r4-tcA91	makeReservation	true	true	TP(correct)
-r4-tcA92	cancelReservation	false	false	TN(complete)
-r4-tcA93	cancelClientReservation	false	true	FP(incomplete)
-r4-tcA94	cancelClientReservation	false	false	TN(complete)
-r4-tcB95	RegisterClient	true	true	TP(correct)
-r4-tcB96	makeReservation	true	false	FN(incorrect)
-r4-tcB97	RegisterClient	true	true	TP(correct)
-r4-tcB98	dropoffCar	false	false	TN(complete)
-r4-tcB99	RegisterClient	false	true	FP(incomplete)
-r4-tcB100	makeReservation	false	false	TN(complete)
-r4-tcB101	makeReservation	true	true	TP(correct)
-r4-tcB102	cancelReservation	false	false	TN(complete)
-r4-tcB103	dropoffCar	false	true	FP(incomplete)
-r4-tcB104	cancelReservation	false	false	TN(complete)
-r4-tcB105	dropoffCar	false	true	FP(incomplete)
-r4-tcC106	RegisterClient	true	false	FN(incorrect)
-r4-tcC107	RegisterClient	true	true	TP(correct)
-r4-tcC108	makeReservation	true	false	FN(incorrect)
-r4-tcC109	makeReservation	true	true	TP(correct)
-r4-tcC110	pickupCar	true	false	FN(incorrect)
-r4-tcC111	cancelReservation	false	true	FP(incomplete)
-r4-tcC112	dropoffCar	false	false	TN(complete)
-r4-tcC113	pickupCar	false	true	FP(incomplete)
-r4-tcC114	dropoffCar	false	false	TN(complete)
-r4-tcC115	cancelClientReservation	false	true	FP(incomplete)
-r4-tcC116	cancelClientReservation	false	false	TN(complete)
-#Round 4	Precision	 0.5	Recall	0.62
-
-r5-tcB117	RegisterClient	true	true	TP(correct)
-r5-tcB118	makeReservation	false	false	TN(complete)
-r5-tcB119	RegisterClient	true	true	TP(correct)
-r5-tcB120	dropoffCar	false	false	TN(complete)
-r5-tcB121	RegisterClient	false	true	FP(incomplete)
-r5-tcB122	makeReservation	false	false	TN(complete)
-r5-tcB123	makeReservation	false	true	FP(incomplete)
-r5-tcB124	cancelReservation	false	false	TN(complete)
-r5-tcB125	dropoffCar	false	true	FP(incomplete)
-r5-tcB126	cancelReservation	false	false	TN(complete)
-r5-tcB127	dropoffCar	false	true	FP(incomplete)
-r5-tcC128	RegisterClient	true	false	FN(incorrect)
-r5-tcC129	RegisterClient	true	true	TP(correct)
-r5-tcC130	makeReservation	true	false	FN(incorrect)
-r5-tcC131	makeReservation	false	true	FP(incomplete)
-r5-tcC132	pickupCar	true	false	FN(incorrect)
-r5-tcC133	cancelReservation	true	true	TP(correct)
-r5-tcC134	dropoffCar	false	false	TN(complete)
-r5-tcC135	pickupCar	false	true	FP(incomplete)
-r5-tcC136	dropoffCar	false	false	TN(complete)
-r5-tcC137	cancelClientReservation	false	true	FP(incomplete)
-r5-tcC138	cancelClientReservation	false	false	TN(complete)
-r5-tcD139	registerClient	true	true	TP(correct)
-r5-tcD140	makeReservation	false	false	TN(complete)
-r5-tcD141	dropoffCar	false	true	FP(incomplete)
-r5-tcD142	pickupCar	true	false	FN(incorrect)
-r5-tcD143	pickupCar	false	true	FP(incomplete)
-r5-tcD144	dropoffCar	true	false	FN(incorrect)
-r5-tcD145	dropoffCar	false	true	FP(incomplete)
-r5-tcD146	pickupCar	false	false	TN(complete)
-r5-tcD147	dropoffCar	false	true	FP(incomplete)
-#Round 5	Precision	 0.31	Recall	0.5
+r5-tcB245	RegisterClient	TP	correct
+r5-tcB246	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcB247	RegisterClient	FP	incomplete: maxRule isn't applicable
+r5-tcB248	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB249	RegisterClient	TN	complete
+r5-tcB250	makeReservation	FN	incorrect: rule shouldn't be applicable
+r5-tcB251	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcB252	cancelReservation	TN	complete
+r5-tcB253	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB254	cancelReservation	TN	complete
+r5-tcB255	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC256	RegisterClient	FP	incomplete: maxRule isn't applicable
+r5-tcC257	RegisterClient	TP	correct
+r5-tcC258	makeReservation	FP	incomplete: maxRule isn't applicable
+r5-tcC259	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcC260	pickupCar	TP	correct
+r5-tcC261	cancelReservation	FP	incomplete: minRule doesn't exists
+r5-tcC262	dropoffCar	TN	complete
+r5-tcC263	pickupCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC264	dropoffCar	TN	complete
+r5-tcC265	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r5-tcC266	cancelClientReservation	FP	incomplete: minRule doesn't exists
+r5-tcD267	registerClient	FP	incomplete: maxRule isn't applicable
+r5-tcD268	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcD269	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD270	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcD271	pickupCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD272	dropoffCar	FP	incomplete: maxRule isn't applicable
+r5-tcD273	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD274	pickupCar	TN	complete
+r5-tcD275	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB276	RegisterClient	TP	correct
+r5-tcB277	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcB278	RegisterClient	FP	incomplete: maxRule isn't applicable
+r5-tcB279	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB280	RegisterClient	TN	complete
+r5-tcB281	makeReservation	FN	incorrect: rule shouldn't be applicable
+r5-tcB282	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcB283	cancelReservation	TN	complete
+r5-tcB284	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB285	cancelReservation	TN	complete
+r5-tcB286	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC287	RegisterClient	FP	incomplete: maxRule isn't applicable
+r5-tcC288	RegisterClient	TP	correct
+r5-tcC289	makeReservation	FP	incomplete: maxRule isn't applicable
+r5-tcC290	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcC291	pickupCar	TP	correct
+r5-tcC292	cancelReservation	FP	incomplete: minRule doesn't exists
+r5-tcC293	dropoffCar	TN	complete
+r5-tcC294	pickupCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC295	dropoffCar	TN	complete
+r5-tcC296	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
+r5-tcC297	cancelClientReservation	FP	incomplete: minRule doesn't exists
+r5-tcD298	registerClient	FP	incomplete: maxRule isn't applicable
+r5-tcD299	makeReservation	FP	incomplete: minRule doesn't exists
+r5-tcD300	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD301	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcD302	pickupCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD303	dropoffCar	FP	incomplete: maxRule isn't applicable
+r5-tcD304	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcD305	pickupCar	TN	complete
+r5-tcD306	dropoffCar	FN	incorrect: rule shouldn't be applicable
+#Round 5	Precision	 0.2	Recall	0.23
 

@@ -12,7 +12,7 @@ import rentalService.Rental;
 
 
 
-public class TrainingtestCoverage {
+public class TrainingTestCoverage {
 
 	private strSplit splitPercent = null;
 	private static final boolean TRAINING= false;
@@ -63,11 +63,11 @@ public class TrainingtestCoverage {
 		 * Training to learn visual contracts with splitting tests based on 5 cross-validation rounds 
 		 */
 		
-		//this.round1();
-		//this.round2();
-		//this.round3();
-		//this.round4();
-		//this.round5(); 
+		this.round1();
+		this.round2();
+		this.round3();
+		this.round4();
+		this.round5(); 
 	}
 
 
@@ -329,12 +329,14 @@ public class TrainingtestCoverage {
 
 		this.clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
 
-		this.clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
+		this.clientReg1_Abdullah = this.rentalService.registerClient("Birmingham", "Abdullah");
 
 		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Nottingham");
 
 		this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
 
+		this.rentalService.pickupCar(this.makeRes2);
+		
 		this.rentalService.cancelReservation(makeRes1);
 
 		this.rentalService.cancelReservation(makeRes2);
@@ -347,6 +349,7 @@ public class TrainingtestCoverage {
 
 		this.rentalService.cancelClientReservation(clientReg1_Abdullah);
 
+		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "London", "London");	
 
 	}
 
@@ -380,6 +383,11 @@ public class TrainingtestCoverage {
 
 		this.rentalService.dropoffCar(makeRes1);
 
+		this.rentalService.registerClient("London", "Timo");
+		
+		this.rentalService.registerClient("", null);
+		
+		this.rentalService.makeReservation(null, "", "");
 	}
 
 	private void testCaseC(int iRound, boolean isForValidation){
