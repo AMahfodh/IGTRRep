@@ -13,6 +13,7 @@ import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import rentalService.*;
 
@@ -22,15 +23,15 @@ public class RentalModel {
 	
 	
 	//FIXME 
-	private String henshinDirectory =
-			new File("").getAbsolutePath() + File.separator + 
-			".." + File.separator +
-			"IGTR" + File.separator + 
-			"HenshinOutput" + File.separator;
+	private String henshinDirectory = "modelFiles" + File.separator;
+			//new File("").getAbsolutePath() + File.separator + 
+			//".." + File.separator +
+			//"IGTR" + File.separator + 
+			//"HenshinOutput" + File.separator;
 	
 	private String strExportedHenshinFileName= "allRules.henshin";
 	
-	private String strStartGraphFileName="CarRental.xmi";
+	private String strStartGraphFileName="rentalService.xmi";
 	
 	
 	
@@ -48,8 +49,7 @@ public class RentalModel {
 	
 	
 	private void loadExportedHModel(){
-		
-		
+
 		// Create a resource set with a base directory:		
 		this.resourceSet = new HenshinResourceSet();
 
@@ -58,14 +58,16 @@ public class RentalModel {
 
 
 		// Load the started initialized object graph into an EGraph:
-		//this.graph = new EGraphImpl(this.resourceSet.getResource(this.henshinDirectory + this.strStartGraphFileName));
+		this.resourceSet.getPackageRegistry().put("http://www.eclipse.org/emf/rentalService", UMLPackage.eINSTANCE);
+		
+		this.graph = new EGraphImpl(this.resourceSet.getResource(this.henshinDirectory + this.strStartGraphFileName));
 		
 
 
 		// Create an engine and rule-applications:
 		this.engine = new EngineImpl();
 		this.carRentalApplication = new UnitApplicationImpl(this.engine);
-		// uncomment this.carRentalApplication.setEGraph(this.graph);
+		this.carRentalApplication.setEGraph(this.graph);
 		for (Unit u: this.module.getUnits()){
 			System.out.println(u.getName());
 		}

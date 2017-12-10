@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rentalService" nsURI="http://www.eclipse.org/emf/rentalService"
+    nsPrefix="rentalService">
+  <eClassifiers xsi:type="ecore:EClass" name="Car" eSuperTypes="#//ArrayListElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="registration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Client" eSuperTypes="#//ArrayListElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reservation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="made" eType="#//Client"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pickup" eType="#//Branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dropoff" eType="#//Branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="For" eType="#//Car"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" upperBound="-1"
+        eType="#//ArrayListElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayListElement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Branch">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cMax" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rMax" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="at" eType="#//ArrayList"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="of" eType="#//ArrayList"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BranchArray">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" upperBound="-1"
+        eType="#//Branch" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rental">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branches" upperBound="-1"
+        eType="#//BranchArray" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations" upperBound="-1"
+        eType="#//Reservation" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

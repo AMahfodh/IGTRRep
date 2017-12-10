@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<rentalService:Rental
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:rentalService="http://www.eclipse.org/emf/rentalService"
+    xsi:schemaLocation="http://www.eclipse.org/emf/rentalService rentalService.ecore">
+  <branches>
+    <index city="Leicester">
+      <at>
+        <index
+            xsi:type="rentalService:Car"
+            registration="A1"/>
+      </at>
+    </index>
+    <index city="Nottingham"
+        cMax="1"
+        rMax="1">
+      <at>
+        <index
+            xsi:type="rentalService:Car"
+            registration="B2"/>
+        <index
+            xsi:type="rentalService:Car"
+            registration="C3"/>
+      </at>
+    </index>
+    <index city="Birmingham"
+        cMax="2"
+        rMax="2"/>
+  </branches>
+</rentalService:Rental>
