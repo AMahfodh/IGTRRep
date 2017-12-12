@@ -46,11 +46,22 @@ public class ExportAllToHenshin {
 	 * @throws Exception
 	 */
 	public boolean exportHenshinModel(String strLocation) {
+		Module hModule = createHenshinModuleFromDB();
+		if (hModule == null) {
+			System.out.println("Generating henshin module failed, no file saved!");
+			return false;
+		} else {
+			saveHenshinFile(hModule, strLocation);
+			System.out.println("Generating henshin file completed!");
+			return true;
+		}
+	}
 
+	public Module createHenshinModuleFromDB() {
 		// Collect and prepare all maximal rules for exporting them
 		boolean res = collectAndPrepareRules();
 		if (!res) {
-			return false;
+			return null;
 		}
 
 		// Create module
@@ -67,24 +78,19 @@ public class ExportAllToHenshin {
 		System.out.println("Creating Henshin rules with multi-objects ..");
 		for (DBRule dbRule : dbRulesWithMO) {
 			System.out.println(dbRule.name);
-			//transformRule(dbRule, hModule);
+			// transformRule(dbRule, hModule);
 		}
 
-		// Save Henshin file
-		System.out.println("Save Henshin file ..");
-		HenshinUtil.serializeModule(hModule, strLocation);
-
-		System.out.println("Generating henshin file completed!");
-
-		return true;
+		return hModule;
 	}
 
 	private boolean collectAndPrepareRules() {
 		System.out.println("Preparing all maximal rules ..");
 
-		CachedRowSetImpl crsAllAbstractRule = DBRecord
-				.getByQueryStatement("select CONCAT(Observation_IDREFF,'_', RuleName), Observation_IDREFF, 0 from TblBasicRule "
-						+ " where isAbstract=true and isApplicable=true group by CONCAT(RuleName, groupID) " + " union all "
+		CachedRowSetImpl crsAllAbstractRule = DBRecord.getByQueryStatement(
+				"select CONCAT(Observation_IDREFF,'_', RuleName), Observation_IDREFF, 0 from TblBasicRule "
+						+ " where isAbstract=true and isApplicable=true group by CONCAT(RuleName, groupID) "
+						+ " union all "
 						+ " select CONCAT(RuleName, '_MO') as RuleName, Observation_IDREFF, 1 from TblBasicRule "
 						+ " where isAbstract=true and isApplicable=true " + " and isAbstractMO=true;");
 
@@ -94,7 +100,7 @@ public class ExportAllToHenshin {
 						crsAllAbstractRule.getBoolean(3));
 
 				System.out.println(dbRule);
-				
+
 				if (dbRule.isMulti) {
 					dbRulesWithMO.add(dbRule);
 				} else {
@@ -146,6 +152,11 @@ public class ExportAllToHenshin {
 
 		dbRule2hRule.put(dbRule, hRule);
 		hRule2dbRule.put(hRule, dbRule);
+	}
+
+	private void saveHenshinFile(Module hModule, String strLocation) {
+		System.out.println("Save Henshin file ..");
+		HenshinUtil.serializeModule(hModule, strLocation);
 	}
 
 	public static void main(String[] args) throws Exception {

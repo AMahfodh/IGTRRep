@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import emf.matching.IMatcher;
-import rentalService.RentalServicePackage;
+import rentalServiceModel.RentalServicePackage;
 
 public class JCarRentalDomainConfiguration extends AbstractDomainConfiguration {
 
