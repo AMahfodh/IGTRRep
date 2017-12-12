@@ -1,13 +1,13 @@
 /**
  */
-package rentalService.util;
+package rentalServiceModel.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import rentalService.*;
+import rentalServiceModel.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,7 @@ import rentalService.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see rentalService.RentalServicePackage
+ * @see rentalServiceModel.RentalServicePackage
  * @generated
  */
 public class RentalServiceSwitch<T> extends Switch<T> {
@@ -69,6 +69,7 @@ public class RentalServiceSwitch<T> extends Switch<T> {
 			case RentalServicePackage.BRANCH: {
 				Branch branch = (Branch)theEObject;
 				T result = caseBranch(branch);
+				if (result == null) result = caseRentalElement(branch);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -76,6 +77,7 @@ public class RentalServiceSwitch<T> extends Switch<T> {
 				Car car = (Car)theEObject;
 				T result = caseCar(car);
 				if (result == null) result = caseArrayListElement(car);
+				if (result == null) result = caseRentalElement(car);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -83,12 +85,15 @@ public class RentalServiceSwitch<T> extends Switch<T> {
 				Client client = (Client)theEObject;
 				T result = caseClient(client);
 				if (result == null) result = caseArrayListElement(client);
+				if (result == null) result = caseRentalElement(client);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RentalServicePackage.RESERVATION: {
 				Reservation reservation = (Reservation)theEObject;
 				T result = caseReservation(reservation);
+				if (result == null) result = caseRentalElement(reservation);
+				if (result == null) result = caseArrayListElement(reservation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,18 +106,26 @@ public class RentalServiceSwitch<T> extends Switch<T> {
 			case RentalServicePackage.BRANCH_ARRAY: {
 				BranchArray branchArray = (BranchArray)theEObject;
 				T result = caseBranchArray(branchArray);
+				if (result == null) result = caseRentalElement(branchArray);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RentalServicePackage.ARRAY_LIST: {
 				ArrayList arrayList = (ArrayList)theEObject;
 				T result = caseArrayList(arrayList);
+				if (result == null) result = caseRentalElement(arrayList);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case RentalServicePackage.ARRAY_LIST_ELEMENT: {
 				ArrayListElement arrayListElement = (ArrayListElement)theEObject;
 				T result = caseArrayListElement(arrayListElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RentalServicePackage.RENTAL_ELEMENT: {
+				RentalElement rentalElement = (RentalElement)theEObject;
+				T result = caseRentalElement(rentalElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -237,6 +250,21 @@ public class RentalServiceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArrayListElement(ArrayListElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rental Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rental Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRentalElement(RentalElement object) {
 		return null;
 	}
 

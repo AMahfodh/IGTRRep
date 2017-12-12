@@ -1,6 +1,6 @@
 /**
  */
-package rentalService;
+package rentalServiceModel;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see rentalService.RentalServicePackage
+ * @see rentalServiceModel.RentalServicePackage
  * @generated
  */
 public interface RentalServiceFactory extends EFactory {
@@ -19,7 +19,7 @@ public interface RentalServiceFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RentalServiceFactory eINSTANCE = rentalService.impl.RentalServiceFactoryImpl.init();
+	RentalServiceFactory eINSTANCE = rentalServiceModel.impl.RentalServiceFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Branch</em>'.

@@ -1,6 +1,7 @@
 /**
  */
-package rentalService;
+package rentalServiceModel;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,15 +12,15 @@ package rentalService;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link rentalService.Client#getCName <em>CName</em>}</li>
- *   <li>{@link rentalService.Client#getCID <em>CID</em>}</li>
+ *   <li>{@link rentalServiceModel.Client#getCName <em>CName</em>}</li>
+ *   <li>{@link rentalServiceModel.Client#getCID <em>CID</em>}</li>
  * </ul>
  *
- * @see rentalService.RentalServicePackage#getClient()
+ * @see rentalServiceModel.RentalServicePackage#getClient()
  * @model
  * @generated
  */
-public interface Client extends ArrayListElement {
+public interface Client extends ArrayListElement, RentalElement {
 	/**
 	 * Returns the value of the '<em><b>CName</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -30,14 +31,14 @@ public interface Client extends ArrayListElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>CName</em>' attribute.
 	 * @see #setCName(String)
-	 * @see rentalService.RentalServicePackage#getClient_CName()
+	 * @see rentalServiceModel.RentalServicePackage#getClient_CName()
 	 * @model
 	 * @generated
 	 */
 	String getCName();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Client#getCName <em>CName</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Client#getCName <em>CName</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>CName</em>' attribute.
@@ -56,14 +57,14 @@ public interface Client extends ArrayListElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>CID</em>' attribute.
 	 * @see #setCID(String)
-	 * @see rentalService.RentalServicePackage#getClient_CID()
+	 * @see rentalServiceModel.RentalServicePackage#getClient_CID()
 	 * @model
 	 * @generated
 	 */
 	String getCID();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Client#getCID <em>CID</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Client#getCID <em>CID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>CID</em>' attribute.

@@ -1,6 +1,6 @@
 /**
  */
-package rentalService;
+package rentalServiceModel;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see rentalService.RentalServicePackage#getArrayListElement()
+ * @see rentalServiceModel.RentalServicePackage#getArrayListElement()
  * @model abstract="true"
  * @generated
  */

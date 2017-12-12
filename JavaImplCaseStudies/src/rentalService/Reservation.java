@@ -2,11 +2,11 @@ package rentalService;
 
 public class Reservation {
 
-	protected String reference;
-	protected Client made=null;	
-	protected Branch pickup=null;
-	protected Branch dropoff=null;
-	protected Car For=null;
+	public String reference;
+	public Client made=null;	
+	public Branch pickup=null;
+	public Branch dropoff=null;
+	public Car For=null;
 
 	public Reservation(
 			String Reference, 

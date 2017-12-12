@@ -1,6 +1,6 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -9,16 +9,17 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import rentalService.ArrayList;
-import rentalService.ArrayListElement;
-import rentalService.Branch;
-import rentalService.BranchArray;
-import rentalService.Car;
-import rentalService.Client;
-import rentalService.Rental;
-import rentalService.RentalServiceFactory;
-import rentalService.RentalServicePackage;
-import rentalService.Reservation;
+import rentalServiceModel.ArrayList;
+import rentalServiceModel.ArrayListElement;
+import rentalServiceModel.Branch;
+import rentalServiceModel.BranchArray;
+import rentalServiceModel.Car;
+import rentalServiceModel.Client;
+import rentalServiceModel.Rental;
+import rentalServiceModel.RentalElement;
+import rentalServiceModel.RentalServiceFactory;
+import rentalServiceModel.RentalServicePackage;
+import rentalServiceModel.Reservation;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,6 +85,13 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 	private EClass arrayListElementEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rentalElementEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -94,7 +102,7 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see rentalService.RentalServicePackage#eNS_URI
+	 * @see rentalServiceModel.RentalServicePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -329,6 +337,15 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRental_Rentalelements() {
+		return (EReference)rentalEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getBranchArray() {
 		return branchArrayEClass;
 	}
@@ -392,6 +409,15 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRentalElement() {
+		return rentalElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RentalServiceFactory getRentalServiceFactory() {
 		return (RentalServiceFactory)getEFactoryInstance();
 	}
@@ -439,6 +465,7 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 		rentalEClass = createEClass(RENTAL);
 		createEReference(rentalEClass, RENTAL__BRANCHES);
 		createEReference(rentalEClass, RENTAL__RESERVATIONS);
+		createEReference(rentalEClass, RENTAL__RENTALELEMENTS);
 
 		branchArrayEClass = createEClass(BRANCH_ARRAY);
 		createEReference(branchArrayEClass, BRANCH_ARRAY__INDEX);
@@ -449,6 +476,8 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 		createEAttribute(arrayListEClass, ARRAY_LIST__SIZE);
 
 		arrayListElementEClass = createEClass(ARRAY_LIST_ELEMENT);
+
+		rentalElementEClass = createEClass(RENTAL_ELEMENT);
 	}
 
 	/**
@@ -479,8 +508,15 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		branchEClass.getESuperTypes().add(this.getRentalElement());
 		carEClass.getESuperTypes().add(this.getArrayListElement());
+		carEClass.getESuperTypes().add(this.getRentalElement());
 		clientEClass.getESuperTypes().add(this.getArrayListElement());
+		clientEClass.getESuperTypes().add(this.getRentalElement());
+		reservationEClass.getESuperTypes().add(this.getRentalElement());
+		reservationEClass.getESuperTypes().add(this.getArrayListElement());
+		branchArrayEClass.getESuperTypes().add(this.getRentalElement());
+		arrayListEClass.getESuperTypes().add(this.getRentalElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -505,8 +541,9 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 		initEReference(getReservation_For(), this.getCar(), null, "For", null, 0, 1, Reservation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rentalEClass, Rental.class, "Rental", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRental_Branches(), this.getBranchArray(), null, "branches", null, 0, -1, Rental.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRental_Reservations(), this.getReservation(), null, "reservations", null, 0, -1, Rental.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRental_Branches(), this.getBranchArray(), null, "branches", null, 0, 1, Rental.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRental_Reservations(), this.getArrayList(), null, "reservations", null, 0, 1, Rental.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRental_Rentalelements(), this.getRentalElement(), null, "rentalelements", null, 0, -1, Rental.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(branchArrayEClass, BranchArray.class, "BranchArray", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBranchArray_Index(), this.getBranch(), null, "index", null, 0, -1, BranchArray.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -517,6 +554,8 @@ public class RentalServicePackageImpl extends EPackageImpl implements RentalServ
 		initEAttribute(getArrayList_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arrayListElementEClass, ArrayListElement.class, "ArrayListElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rentalElementEClass, RentalElement.class, "RentalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

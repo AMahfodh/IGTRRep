@@ -1,8 +1,6 @@
 /**
  */
-package rentalService;
-
-import org.eclipse.emf.ecore.EObject;
+package rentalServiceModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,18 +11,18 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link rentalService.Branch#getCity <em>City</em>}</li>
- *   <li>{@link rentalService.Branch#getCMax <em>CMax</em>}</li>
- *   <li>{@link rentalService.Branch#getRMax <em>RMax</em>}</li>
- *   <li>{@link rentalService.Branch#getAt <em>At</em>}</li>
- *   <li>{@link rentalService.Branch#getOf <em>Of</em>}</li>
+ *   <li>{@link rentalServiceModel.Branch#getCity <em>City</em>}</li>
+ *   <li>{@link rentalServiceModel.Branch#getCMax <em>CMax</em>}</li>
+ *   <li>{@link rentalServiceModel.Branch#getRMax <em>RMax</em>}</li>
+ *   <li>{@link rentalServiceModel.Branch#getAt <em>At</em>}</li>
+ *   <li>{@link rentalServiceModel.Branch#getOf <em>Of</em>}</li>
  * </ul>
  *
- * @see rentalService.RentalServicePackage#getBranch()
+ * @see rentalServiceModel.RentalServicePackage#getBranch()
  * @model
  * @generated
  */
-public interface Branch extends EObject {
+public interface Branch extends RentalElement {
 	/**
 	 * Returns the value of the '<em><b>City</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,14 +33,14 @@ public interface Branch extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>City</em>' attribute.
 	 * @see #setCity(String)
-	 * @see rentalService.RentalServicePackage#getBranch_City()
+	 * @see rentalServiceModel.RentalServicePackage#getBranch_City()
 	 * @model
 	 * @generated
 	 */
 	String getCity();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Branch#getCity <em>City</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Branch#getCity <em>City</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>City</em>' attribute.
@@ -61,14 +59,14 @@ public interface Branch extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>CMax</em>' attribute.
 	 * @see #setCMax(int)
-	 * @see rentalService.RentalServicePackage#getBranch_CMax()
+	 * @see rentalServiceModel.RentalServicePackage#getBranch_CMax()
 	 * @model
 	 * @generated
 	 */
 	int getCMax();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Branch#getCMax <em>CMax</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Branch#getCMax <em>CMax</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>CMax</em>' attribute.
@@ -87,14 +85,14 @@ public interface Branch extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>RMax</em>' attribute.
 	 * @see #setRMax(int)
-	 * @see rentalService.RentalServicePackage#getBranch_RMax()
+	 * @see rentalServiceModel.RentalServicePackage#getBranch_RMax()
 	 * @model
 	 * @generated
 	 */
 	int getRMax();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Branch#getRMax <em>RMax</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Branch#getRMax <em>RMax</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>RMax</em>' attribute.
@@ -107,20 +105,20 @@ public interface Branch extends EObject {
 	 * Returns the value of the '<em><b>At</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>At</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>At</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>At</em>' reference.
 	 * @see #setAt(ArrayList)
-	 * @see rentalService.RentalServicePackage#getBranch_At()
+	 * @see rentalServiceModel.RentalServicePackage#getBranch_At()
 	 * @model
 	 * @generated
 	 */
 	ArrayList getAt();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Branch#getAt <em>At</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Branch#getAt <em>At</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>At</em>' reference.
@@ -133,20 +131,20 @@ public interface Branch extends EObject {
 	 * Returns the value of the '<em><b>Of</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Of</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Of</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Of</em>' reference.
 	 * @see #setOf(ArrayList)
-	 * @see rentalService.RentalServicePackage#getBranch_Of()
+	 * @see rentalServiceModel.RentalServicePackage#getBranch_Of()
 	 * @model
 	 * @generated
 	 */
 	ArrayList getOf();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Branch#getOf <em>Of</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Branch#getOf <em>Of</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Of</em>' reference.

@@ -1,6 +1,6 @@
 /**
  */
-package rentalService.util;
+package rentalServiceModel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -9,14 +9,14 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import rentalService.*;
+import rentalServiceModel.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see rentalService.RentalServicePackage
+ * @see rentalServiceModel.RentalServicePackage
  * @generated
  */
 public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
@@ -100,6 +100,10 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 				return createArrayListElementAdapter();
 			}
 			@Override
+			public Adapter caseRentalElement(RentalElement object) {
+				return createRentalElementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -120,13 +124,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.Branch <em>Branch</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.Branch <em>Branch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.Branch
+	 * @see rentalServiceModel.Branch
 	 * @generated
 	 */
 	public Adapter createBranchAdapter() {
@@ -134,13 +138,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.Car <em>Car</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.Car <em>Car</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.Car
+	 * @see rentalServiceModel.Car
 	 * @generated
 	 */
 	public Adapter createCarAdapter() {
@@ -148,13 +152,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.Client <em>Client</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.Client <em>Client</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.Client
+	 * @see rentalServiceModel.Client
 	 * @generated
 	 */
 	public Adapter createClientAdapter() {
@@ -162,13 +166,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.Reservation <em>Reservation</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.Reservation <em>Reservation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.Reservation
+	 * @see rentalServiceModel.Reservation
 	 * @generated
 	 */
 	public Adapter createReservationAdapter() {
@@ -176,13 +180,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.Rental <em>Rental</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.Rental <em>Rental</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.Rental
+	 * @see rentalServiceModel.Rental
 	 * @generated
 	 */
 	public Adapter createRentalAdapter() {
@@ -190,13 +194,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.BranchArray <em>Branch Array</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.BranchArray <em>Branch Array</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.BranchArray
+	 * @see rentalServiceModel.BranchArray
 	 * @generated
 	 */
 	public Adapter createBranchArrayAdapter() {
@@ -204,13 +208,13 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.ArrayList <em>Array List</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.ArrayList <em>Array List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.ArrayList
+	 * @see rentalServiceModel.ArrayList
 	 * @generated
 	 */
 	public Adapter createArrayListAdapter() {
@@ -218,16 +222,30 @@ public class RentalServiceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link rentalService.ArrayListElement <em>Array List Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.ArrayListElement <em>Array List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see rentalService.ArrayListElement
+	 * @see rentalServiceModel.ArrayListElement
 	 * @generated
 	 */
 	public Adapter createArrayListElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link rentalServiceModel.RentalElement <em>Rental Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see rentalServiceModel.RentalElement
+	 * @generated
+	 */
+	public Adapter createRentalElementAdapter() {
 		return null;
 	}
 

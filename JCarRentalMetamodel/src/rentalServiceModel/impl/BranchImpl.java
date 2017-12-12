@@ -1,16 +1,16 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import rentalService.ArrayList;
-import rentalService.Branch;
-import rentalService.RentalServicePackage;
+import rentalServiceModel.ArrayList;
+import rentalServiceModel.Branch;
+import rentalServiceModel.RentalServicePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,16 +20,16 @@ import rentalService.RentalServicePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link rentalService.impl.BranchImpl#getCity <em>City</em>}</li>
- *   <li>{@link rentalService.impl.BranchImpl#getCMax <em>CMax</em>}</li>
- *   <li>{@link rentalService.impl.BranchImpl#getRMax <em>RMax</em>}</li>
- *   <li>{@link rentalService.impl.BranchImpl#getAt <em>At</em>}</li>
- *   <li>{@link rentalService.impl.BranchImpl#getOf <em>Of</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.BranchImpl#getCity <em>City</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.BranchImpl#getCMax <em>CMax</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.BranchImpl#getRMax <em>RMax</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.BranchImpl#getAt <em>At</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.BranchImpl#getOf <em>Of</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
+public class BranchImpl extends RentalElementImpl implements Branch {
 	/**
 	 * The default value of the '{@link #getCity() <em>City</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -297,7 +297,6 @@ public class BranchImpl extends MinimalEObjectImpl.Container implements Branch {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

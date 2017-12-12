@@ -1,6 +1,6 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -8,13 +8,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import rentalService.Branch;
-import rentalService.Car;
-import rentalService.Client;
-import rentalService.RentalServicePackage;
-import rentalService.Reservation;
+import rentalServiceModel.Branch;
+import rentalServiceModel.Car;
+import rentalServiceModel.Client;
+import rentalServiceModel.RentalServicePackage;
+import rentalServiceModel.Reservation;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,16 +22,16 @@ import rentalService.Reservation;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link rentalService.impl.ReservationImpl#getReference <em>Reference</em>}</li>
- *   <li>{@link rentalService.impl.ReservationImpl#getMade <em>Made</em>}</li>
- *   <li>{@link rentalService.impl.ReservationImpl#getPickup <em>Pickup</em>}</li>
- *   <li>{@link rentalService.impl.ReservationImpl#getDropoff <em>Dropoff</em>}</li>
- *   <li>{@link rentalService.impl.ReservationImpl#getFor <em>For</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ReservationImpl#getReference <em>Reference</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ReservationImpl#getMade <em>Made</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ReservationImpl#getPickup <em>Pickup</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ReservationImpl#getDropoff <em>Dropoff</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ReservationImpl#getFor <em>For</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ReservationImpl extends MinimalEObjectImpl.Container implements Reservation {
+public class ReservationImpl extends RentalElementImpl implements Reservation {
 	/**
 	 * The default value of the '{@link #getReference() <em>Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->

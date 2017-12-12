@@ -3,7 +3,7 @@ package inferences;
 public class TestInferencesFromJavaTracing {
 
 	
-	private void commitLearning() throws Exception {
+	public void commitLearning() throws Exception {
 
 
 		// commit generalisation

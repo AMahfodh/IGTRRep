@@ -1,6 +1,6 @@
 /**
  */
-package rentalService;
+package rentalServiceModel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see rentalService.RentalServiceFactory
+ * @see rentalServiceModel.RentalServiceFactory
  * @model kind="package"
  * @generated
  */
@@ -30,7 +30,7 @@ public interface RentalServicePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "rentalService";
+	String eNAME = "rentalServiceModel";
 
 	/**
 	 * The package namespace URI.
@@ -38,7 +38,7 @@ public interface RentalServicePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/rentalService";
+	String eNS_URI = "http://www.eclipse.org/emf/rentalServiceModel";
 
 	/**
 	 * The package namespace name.
@@ -46,7 +46,7 @@ public interface RentalServicePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "rentalService";
+	String eNS_PREFIX = "rentalServiceModel";
 
 	/**
 	 * The singleton instance of the package.
@@ -54,14 +54,42 @@ public interface RentalServicePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RentalServicePackage eINSTANCE = rentalService.impl.RentalServicePackageImpl.init();
+	RentalServicePackage eINSTANCE = rentalServiceModel.impl.RentalServicePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.BranchImpl <em>Branch</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.RentalElementImpl <em>Rental Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.BranchImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getBranch()
+	 * @see rentalServiceModel.impl.RentalElementImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getRentalElement()
+	 * @generated
+	 */
+	int RENTAL_ELEMENT = 8;
+
+	/**
+	 * The number of structural features of the '<em>Rental Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENTAL_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Rental Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENTAL_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link rentalServiceModel.impl.BranchImpl <em>Branch</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see rentalServiceModel.impl.BranchImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getBranch()
 	 * @generated
 	 */
 	int BRANCH = 0;
@@ -73,7 +101,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__CITY = 0;
+	int BRANCH__CITY = RENTAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>CMax</b></em>' attribute.
@@ -82,7 +110,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__CMAX = 1;
+	int BRANCH__CMAX = RENTAL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>RMax</b></em>' attribute.
@@ -91,7 +119,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__RMAX = 2;
+	int BRANCH__RMAX = RENTAL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>At</b></em>' reference.
@@ -100,7 +128,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__AT = 3;
+	int BRANCH__AT = RENTAL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Of</b></em>' reference.
@@ -109,7 +137,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH__OF = 4;
+	int BRANCH__OF = RENTAL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Branch</em>' class.
@@ -118,7 +146,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_FEATURE_COUNT = 5;
+	int BRANCH_FEATURE_COUNT = RENTAL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Branch</em>' class.
@@ -127,14 +155,14 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_OPERATION_COUNT = 0;
+	int BRANCH_OPERATION_COUNT = RENTAL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.ArrayListElementImpl <em>Array List Element</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.ArrayListElementImpl <em>Array List Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.ArrayListElementImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getArrayListElement()
+	 * @see rentalServiceModel.impl.ArrayListElementImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getArrayListElement()
 	 * @generated
 	 */
 	int ARRAY_LIST_ELEMENT = 7;
@@ -158,11 +186,11 @@ public interface RentalServicePackage extends EPackage {
 	int ARRAY_LIST_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.CarImpl <em>Car</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.CarImpl <em>Car</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.CarImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getCar()
+	 * @see rentalServiceModel.impl.CarImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getCar()
 	 * @generated
 	 */
 	int CAR = 1;
@@ -195,11 +223,11 @@ public interface RentalServicePackage extends EPackage {
 	int CAR_OPERATION_COUNT = ARRAY_LIST_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.ClientImpl <em>Client</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.ClientImpl <em>Client</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.ClientImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getClient()
+	 * @see rentalServiceModel.impl.ClientImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getClient()
 	 * @generated
 	 */
 	int CLIENT = 2;
@@ -241,11 +269,11 @@ public interface RentalServicePackage extends EPackage {
 	int CLIENT_OPERATION_COUNT = ARRAY_LIST_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.ReservationImpl <em>Reservation</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.ReservationImpl <em>Reservation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.ReservationImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getReservation()
+	 * @see rentalServiceModel.impl.ReservationImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getReservation()
 	 * @generated
 	 */
 	int RESERVATION = 3;
@@ -257,7 +285,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION__REFERENCE = 0;
+	int RESERVATION__REFERENCE = RENTAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Made</b></em>' reference.
@@ -266,7 +294,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION__MADE = 1;
+	int RESERVATION__MADE = RENTAL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Pickup</b></em>' reference.
@@ -275,7 +303,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION__PICKUP = 2;
+	int RESERVATION__PICKUP = RENTAL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Dropoff</b></em>' reference.
@@ -284,7 +312,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION__DROPOFF = 3;
+	int RESERVATION__DROPOFF = RENTAL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>For</b></em>' reference.
@@ -293,7 +321,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION__FOR = 4;
+	int RESERVATION__FOR = RENTAL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Reservation</em>' class.
@@ -302,7 +330,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_FEATURE_COUNT = 5;
+	int RESERVATION_FEATURE_COUNT = RENTAL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Reservation</em>' class.
@@ -311,20 +339,20 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESERVATION_OPERATION_COUNT = 0;
+	int RESERVATION_OPERATION_COUNT = RENTAL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.RentalImpl <em>Rental</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.RentalImpl <em>Rental</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.RentalImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getRental()
+	 * @see rentalServiceModel.impl.RentalImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getRental()
 	 * @generated
 	 */
 	int RENTAL = 4;
 
 	/**
-	 * The feature id for the '<em><b>Branches</b></em>' reference list.
+	 * The feature id for the '<em><b>Branches</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -333,7 +361,7 @@ public interface RentalServicePackage extends EPackage {
 	int RENTAL__BRANCHES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Reservations</b></em>' reference list.
+	 * The feature id for the '<em><b>Reservations</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -342,13 +370,22 @@ public interface RentalServicePackage extends EPackage {
 	int RENTAL__RESERVATIONS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Rentalelements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RENTAL__RENTALELEMENTS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Rental</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENTAL_FEATURE_COUNT = 2;
+	int RENTAL_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Rental</em>' class.
@@ -359,13 +396,12 @@ public interface RentalServicePackage extends EPackage {
 	 */
 	int RENTAL_OPERATION_COUNT = 0;
 
-
 	/**
-	 * The meta object id for the '{@link rentalService.impl.BranchArrayImpl <em>Branch Array</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.BranchArrayImpl <em>Branch Array</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.BranchArrayImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getBranchArray()
+	 * @see rentalServiceModel.impl.BranchArrayImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getBranchArray()
 	 * @generated
 	 */
 	int BRANCH_ARRAY = 5;
@@ -377,7 +413,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_ARRAY__INDEX = 0;
+	int BRANCH_ARRAY__INDEX = RENTAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -386,7 +422,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_ARRAY__SIZE = 1;
+	int BRANCH_ARRAY__SIZE = RENTAL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Branch Array</em>' class.
@@ -395,7 +431,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_ARRAY_FEATURE_COUNT = 2;
+	int BRANCH_ARRAY_FEATURE_COUNT = RENTAL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Branch Array</em>' class.
@@ -404,14 +440,14 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BRANCH_ARRAY_OPERATION_COUNT = 0;
+	int BRANCH_ARRAY_OPERATION_COUNT = RENTAL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link rentalService.impl.ArrayListImpl <em>Array List</em>}' class.
+	 * The meta object id for the '{@link rentalServiceModel.impl.ArrayListImpl <em>Array List</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see rentalService.impl.ArrayListImpl
-	 * @see rentalService.impl.RentalServicePackageImpl#getArrayList()
+	 * @see rentalServiceModel.impl.ArrayListImpl
+	 * @see rentalServiceModel.impl.RentalServicePackageImpl#getArrayList()
 	 * @generated
 	 */
 	int ARRAY_LIST = 6;
@@ -423,7 +459,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_LIST__INDEX = 0;
+	int ARRAY_LIST__INDEX = RENTAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Size</b></em>' attribute.
@@ -432,7 +468,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_LIST__SIZE = 1;
+	int ARRAY_LIST__SIZE = RENTAL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Array List</em>' class.
@@ -441,7 +477,7 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_LIST_FEATURE_COUNT = 2;
+	int ARRAY_LIST_FEATURE_COUNT = RENTAL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Array List</em>' class.
@@ -450,297 +486,318 @@ public interface RentalServicePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ARRAY_LIST_OPERATION_COUNT = 0;
+	int ARRAY_LIST_OPERATION_COUNT = RENTAL_ELEMENT_OPERATION_COUNT + 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.Branch <em>Branch</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.Branch <em>Branch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Branch</em>'.
-	 * @see rentalService.Branch
+	 * @see rentalServiceModel.Branch
 	 * @generated
 	 */
 	EClass getBranch();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Branch#getCity <em>City</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Branch#getCity <em>City</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>City</em>'.
-	 * @see rentalService.Branch#getCity()
+	 * @see rentalServiceModel.Branch#getCity()
 	 * @see #getBranch()
 	 * @generated
 	 */
 	EAttribute getBranch_City();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Branch#getCMax <em>CMax</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Branch#getCMax <em>CMax</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>CMax</em>'.
-	 * @see rentalService.Branch#getCMax()
+	 * @see rentalServiceModel.Branch#getCMax()
 	 * @see #getBranch()
 	 * @generated
 	 */
 	EAttribute getBranch_CMax();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Branch#getRMax <em>RMax</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Branch#getRMax <em>RMax</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>RMax</em>'.
-	 * @see rentalService.Branch#getRMax()
+	 * @see rentalServiceModel.Branch#getRMax()
 	 * @see #getBranch()
 	 * @generated
 	 */
 	EAttribute getBranch_RMax();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Branch#getAt <em>At</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Branch#getAt <em>At</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>At</em>'.
-	 * @see rentalService.Branch#getAt()
+	 * @see rentalServiceModel.Branch#getAt()
 	 * @see #getBranch()
 	 * @generated
 	 */
 	EReference getBranch_At();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Branch#getOf <em>Of</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Branch#getOf <em>Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Of</em>'.
-	 * @see rentalService.Branch#getOf()
+	 * @see rentalServiceModel.Branch#getOf()
 	 * @see #getBranch()
 	 * @generated
 	 */
 	EReference getBranch_Of();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.Car <em>Car</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.Car <em>Car</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Car</em>'.
-	 * @see rentalService.Car
+	 * @see rentalServiceModel.Car
 	 * @generated
 	 */
 	EClass getCar();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Car#getRegistration <em>Registration</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Car#getRegistration <em>Registration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Registration</em>'.
-	 * @see rentalService.Car#getRegistration()
+	 * @see rentalServiceModel.Car#getRegistration()
 	 * @see #getCar()
 	 * @generated
 	 */
 	EAttribute getCar_Registration();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.Client <em>Client</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.Client <em>Client</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Client</em>'.
-	 * @see rentalService.Client
+	 * @see rentalServiceModel.Client
 	 * @generated
 	 */
 	EClass getClient();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Client#getCName <em>CName</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Client#getCName <em>CName</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>CName</em>'.
-	 * @see rentalService.Client#getCName()
+	 * @see rentalServiceModel.Client#getCName()
 	 * @see #getClient()
 	 * @generated
 	 */
 	EAttribute getClient_CName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Client#getCID <em>CID</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Client#getCID <em>CID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>CID</em>'.
-	 * @see rentalService.Client#getCID()
+	 * @see rentalServiceModel.Client#getCID()
 	 * @see #getClient()
 	 * @generated
 	 */
 	EAttribute getClient_CID();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.Reservation <em>Reservation</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.Reservation <em>Reservation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reservation</em>'.
-	 * @see rentalService.Reservation
+	 * @see rentalServiceModel.Reservation
 	 * @generated
 	 */
 	EClass getReservation();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.Reservation#getReference <em>Reference</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.Reservation#getReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Reference</em>'.
-	 * @see rentalService.Reservation#getReference()
+	 * @see rentalServiceModel.Reservation#getReference()
 	 * @see #getReservation()
 	 * @generated
 	 */
 	EAttribute getReservation_Reference();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Reservation#getMade <em>Made</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Reservation#getMade <em>Made</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Made</em>'.
-	 * @see rentalService.Reservation#getMade()
+	 * @see rentalServiceModel.Reservation#getMade()
 	 * @see #getReservation()
 	 * @generated
 	 */
 	EReference getReservation_Made();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Reservation#getPickup <em>Pickup</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Reservation#getPickup <em>Pickup</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Pickup</em>'.
-	 * @see rentalService.Reservation#getPickup()
+	 * @see rentalServiceModel.Reservation#getPickup()
 	 * @see #getReservation()
 	 * @generated
 	 */
 	EReference getReservation_Pickup();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Reservation#getDropoff <em>Dropoff</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Reservation#getDropoff <em>Dropoff</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Dropoff</em>'.
-	 * @see rentalService.Reservation#getDropoff()
+	 * @see rentalServiceModel.Reservation#getDropoff()
 	 * @see #getReservation()
 	 * @generated
 	 */
 	EReference getReservation_Dropoff();
 
 	/**
-	 * Returns the meta object for the reference '{@link rentalService.Reservation#getFor <em>For</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Reservation#getFor <em>For</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>For</em>'.
-	 * @see rentalService.Reservation#getFor()
+	 * @see rentalServiceModel.Reservation#getFor()
 	 * @see #getReservation()
 	 * @generated
 	 */
 	EReference getReservation_For();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.Rental <em>Rental</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.Rental <em>Rental</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Rental</em>'.
-	 * @see rentalService.Rental
+	 * @see rentalServiceModel.Rental
 	 * @generated
 	 */
 	EClass getRental();
 
 	/**
-	 * Returns the meta object for the reference list '{@link rentalService.Rental#getBranches <em>Branches</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Rental#getBranches <em>Branches</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Branches</em>'.
-	 * @see rentalService.Rental#getBranches()
+	 * @return the meta object for the reference '<em>Branches</em>'.
+	 * @see rentalServiceModel.Rental#getBranches()
 	 * @see #getRental()
 	 * @generated
 	 */
 	EReference getRental_Branches();
 
 	/**
-	 * Returns the meta object for the reference list '{@link rentalService.Rental#getReservations <em>Reservations</em>}'.
+	 * Returns the meta object for the reference '{@link rentalServiceModel.Rental#getReservations <em>Reservations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Reservations</em>'.
-	 * @see rentalService.Rental#getReservations()
+	 * @return the meta object for the reference '<em>Reservations</em>'.
+	 * @see rentalServiceModel.Rental#getReservations()
 	 * @see #getRental()
 	 * @generated
 	 */
 	EReference getRental_Reservations();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.BranchArray <em>Branch Array</em>}'.
+	 * Returns the meta object for the containment reference list '{@link rentalServiceModel.Rental#getRentalelements <em>Rentalelements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rentalelements</em>'.
+	 * @see rentalServiceModel.Rental#getRentalelements()
+	 * @see #getRental()
+	 * @generated
+	 */
+	EReference getRental_Rentalelements();
+
+	/**
+	 * Returns the meta object for class '{@link rentalServiceModel.BranchArray <em>Branch Array</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Branch Array</em>'.
-	 * @see rentalService.BranchArray
+	 * @see rentalServiceModel.BranchArray
 	 * @generated
 	 */
 	EClass getBranchArray();
 
 	/**
-	 * Returns the meta object for the reference list '{@link rentalService.BranchArray#getIndex <em>Index</em>}'.
+	 * Returns the meta object for the reference list '{@link rentalServiceModel.BranchArray#getIndex <em>Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Index</em>'.
-	 * @see rentalService.BranchArray#getIndex()
+	 * @see rentalServiceModel.BranchArray#getIndex()
 	 * @see #getBranchArray()
 	 * @generated
 	 */
 	EReference getBranchArray_Index();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.BranchArray#getSize <em>Size</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.BranchArray#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see rentalService.BranchArray#getSize()
+	 * @see rentalServiceModel.BranchArray#getSize()
 	 * @see #getBranchArray()
 	 * @generated
 	 */
 	EAttribute getBranchArray_Size();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.ArrayList <em>Array List</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.ArrayList <em>Array List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Array List</em>'.
-	 * @see rentalService.ArrayList
+	 * @see rentalServiceModel.ArrayList
 	 * @generated
 	 */
 	EClass getArrayList();
 
 	/**
-	 * Returns the meta object for the reference list '{@link rentalService.ArrayList#getIndex <em>Index</em>}'.
+	 * Returns the meta object for the reference list '{@link rentalServiceModel.ArrayList#getIndex <em>Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Index</em>'.
-	 * @see rentalService.ArrayList#getIndex()
+	 * @see rentalServiceModel.ArrayList#getIndex()
 	 * @see #getArrayList()
 	 * @generated
 	 */
 	EReference getArrayList_Index();
 
 	/**
-	 * Returns the meta object for the attribute '{@link rentalService.ArrayList#getSize <em>Size</em>}'.
+	 * Returns the meta object for the attribute '{@link rentalServiceModel.ArrayList#getSize <em>Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see rentalService.ArrayList#getSize()
+	 * @see rentalServiceModel.ArrayList#getSize()
 	 * @see #getArrayList()
 	 * @generated
 	 */
 	EAttribute getArrayList_Size();
 
 	/**
-	 * Returns the meta object for class '{@link rentalService.ArrayListElement <em>Array List Element</em>}'.
+	 * Returns the meta object for class '{@link rentalServiceModel.ArrayListElement <em>Array List Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Array List Element</em>'.
-	 * @see rentalService.ArrayListElement
+	 * @see rentalServiceModel.ArrayListElement
 	 * @generated
 	 */
 	EClass getArrayListElement();
+
+	/**
+	 * Returns the meta object for class '{@link rentalServiceModel.RentalElement <em>Rental Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rental Element</em>'.
+	 * @see rentalServiceModel.RentalElement
+	 * @generated
+	 */
+	EClass getRentalElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -766,11 +823,11 @@ public interface RentalServicePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.BranchImpl <em>Branch</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.BranchImpl <em>Branch</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.BranchImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getBranch()
+		 * @see rentalServiceModel.impl.BranchImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getBranch()
 		 * @generated
 		 */
 		EClass BRANCH = eINSTANCE.getBranch();
@@ -816,11 +873,11 @@ public interface RentalServicePackage extends EPackage {
 		EReference BRANCH__OF = eINSTANCE.getBranch_Of();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.CarImpl <em>Car</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.CarImpl <em>Car</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.CarImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getCar()
+		 * @see rentalServiceModel.impl.CarImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getCar()
 		 * @generated
 		 */
 		EClass CAR = eINSTANCE.getCar();
@@ -834,11 +891,11 @@ public interface RentalServicePackage extends EPackage {
 		EAttribute CAR__REGISTRATION = eINSTANCE.getCar_Registration();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.ClientImpl <em>Client</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.ClientImpl <em>Client</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.ClientImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getClient()
+		 * @see rentalServiceModel.impl.ClientImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getClient()
 		 * @generated
 		 */
 		EClass CLIENT = eINSTANCE.getClient();
@@ -860,11 +917,11 @@ public interface RentalServicePackage extends EPackage {
 		EAttribute CLIENT__CID = eINSTANCE.getClient_CID();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.ReservationImpl <em>Reservation</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.ReservationImpl <em>Reservation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.ReservationImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getReservation()
+		 * @see rentalServiceModel.impl.ReservationImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getReservation()
 		 * @generated
 		 */
 		EClass RESERVATION = eINSTANCE.getReservation();
@@ -910,17 +967,17 @@ public interface RentalServicePackage extends EPackage {
 		EReference RESERVATION__FOR = eINSTANCE.getReservation_For();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.RentalImpl <em>Rental</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.RentalImpl <em>Rental</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.RentalImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getRental()
+		 * @see rentalServiceModel.impl.RentalImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getRental()
 		 * @generated
 		 */
 		EClass RENTAL = eINSTANCE.getRental();
 
 		/**
-		 * The meta object literal for the '<em><b>Branches</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Branches</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -928,7 +985,7 @@ public interface RentalServicePackage extends EPackage {
 		EReference RENTAL__BRANCHES = eINSTANCE.getRental_Branches();
 
 		/**
-		 * The meta object literal for the '<em><b>Reservations</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Reservations</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -936,11 +993,19 @@ public interface RentalServicePackage extends EPackage {
 		EReference RENTAL__RESERVATIONS = eINSTANCE.getRental_Reservations();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.BranchArrayImpl <em>Branch Array</em>}' class.
+		 * The meta object literal for the '<em><b>Rentalelements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.BranchArrayImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getBranchArray()
+		 * @generated
+		 */
+		EReference RENTAL__RENTALELEMENTS = eINSTANCE.getRental_Rentalelements();
+
+		/**
+		 * The meta object literal for the '{@link rentalServiceModel.impl.BranchArrayImpl <em>Branch Array</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see rentalServiceModel.impl.BranchArrayImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getBranchArray()
 		 * @generated
 		 */
 		EClass BRANCH_ARRAY = eINSTANCE.getBranchArray();
@@ -962,11 +1027,11 @@ public interface RentalServicePackage extends EPackage {
 		EAttribute BRANCH_ARRAY__SIZE = eINSTANCE.getBranchArray_Size();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.ArrayListImpl <em>Array List</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.ArrayListImpl <em>Array List</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.ArrayListImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getArrayList()
+		 * @see rentalServiceModel.impl.ArrayListImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getArrayList()
 		 * @generated
 		 */
 		EClass ARRAY_LIST = eINSTANCE.getArrayList();
@@ -988,14 +1053,24 @@ public interface RentalServicePackage extends EPackage {
 		EAttribute ARRAY_LIST__SIZE = eINSTANCE.getArrayList_Size();
 
 		/**
-		 * The meta object literal for the '{@link rentalService.impl.ArrayListElementImpl <em>Array List Element</em>}' class.
+		 * The meta object literal for the '{@link rentalServiceModel.impl.ArrayListElementImpl <em>Array List Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see rentalService.impl.ArrayListElementImpl
-		 * @see rentalService.impl.RentalServicePackageImpl#getArrayListElement()
+		 * @see rentalServiceModel.impl.ArrayListElementImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getArrayListElement()
 		 * @generated
 		 */
 		EClass ARRAY_LIST_ELEMENT = eINSTANCE.getArrayListElement();
+
+		/**
+		 * The meta object literal for the '{@link rentalServiceModel.impl.RentalElementImpl <em>Rental Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see rentalServiceModel.impl.RentalElementImpl
+		 * @see rentalServiceModel.impl.RentalServicePackageImpl#getRentalElement()
+		 * @generated
+		 */
+		EClass RENTAL_ELEMENT = eINSTANCE.getRentalElement();
 
 	}
 

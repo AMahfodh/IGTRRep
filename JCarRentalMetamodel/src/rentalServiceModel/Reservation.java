@@ -1,8 +1,6 @@
 /**
  */
-package rentalService;
-
-import org.eclipse.emf.ecore.EObject;
+package rentalServiceModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,18 +11,18 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link rentalService.Reservation#getReference <em>Reference</em>}</li>
- *   <li>{@link rentalService.Reservation#getMade <em>Made</em>}</li>
- *   <li>{@link rentalService.Reservation#getPickup <em>Pickup</em>}</li>
- *   <li>{@link rentalService.Reservation#getDropoff <em>Dropoff</em>}</li>
- *   <li>{@link rentalService.Reservation#getFor <em>For</em>}</li>
+ *   <li>{@link rentalServiceModel.Reservation#getReference <em>Reference</em>}</li>
+ *   <li>{@link rentalServiceModel.Reservation#getMade <em>Made</em>}</li>
+ *   <li>{@link rentalServiceModel.Reservation#getPickup <em>Pickup</em>}</li>
+ *   <li>{@link rentalServiceModel.Reservation#getDropoff <em>Dropoff</em>}</li>
+ *   <li>{@link rentalServiceModel.Reservation#getFor <em>For</em>}</li>
  * </ul>
  *
- * @see rentalService.RentalServicePackage#getReservation()
+ * @see rentalServiceModel.RentalServicePackage#getReservation()
  * @model
  * @generated
  */
-public interface Reservation extends EObject {
+public interface Reservation extends RentalElement, ArrayListElement {
 	/**
 	 * Returns the value of the '<em><b>Reference</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,14 +33,14 @@ public interface Reservation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' attribute.
 	 * @see #setReference(String)
-	 * @see rentalService.RentalServicePackage#getReservation_Reference()
+	 * @see rentalServiceModel.RentalServicePackage#getReservation_Reference()
 	 * @model
 	 * @generated
 	 */
 	String getReference();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Reservation#getReference <em>Reference</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.Reservation#getReference <em>Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reference</em>' attribute.
@@ -61,14 +59,14 @@ public interface Reservation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Made</em>' reference.
 	 * @see #setMade(Client)
-	 * @see rentalService.RentalServicePackage#getReservation_Made()
+	 * @see rentalServiceModel.RentalServicePackage#getReservation_Made()
 	 * @model
 	 * @generated
 	 */
 	Client getMade();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Reservation#getMade <em>Made</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Reservation#getMade <em>Made</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Made</em>' reference.
@@ -87,14 +85,14 @@ public interface Reservation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pickup</em>' reference.
 	 * @see #setPickup(Branch)
-	 * @see rentalService.RentalServicePackage#getReservation_Pickup()
+	 * @see rentalServiceModel.RentalServicePackage#getReservation_Pickup()
 	 * @model
 	 * @generated
 	 */
 	Branch getPickup();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Reservation#getPickup <em>Pickup</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Reservation#getPickup <em>Pickup</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pickup</em>' reference.
@@ -113,14 +111,14 @@ public interface Reservation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dropoff</em>' reference.
 	 * @see #setDropoff(Branch)
-	 * @see rentalService.RentalServicePackage#getReservation_Dropoff()
+	 * @see rentalServiceModel.RentalServicePackage#getReservation_Dropoff()
 	 * @model
 	 * @generated
 	 */
 	Branch getDropoff();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Reservation#getDropoff <em>Dropoff</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Reservation#getDropoff <em>Dropoff</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Dropoff</em>' reference.
@@ -139,14 +137,14 @@ public interface Reservation extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>For</em>' reference.
 	 * @see #setFor(Car)
-	 * @see rentalService.RentalServicePackage#getReservation_For()
+	 * @see rentalServiceModel.RentalServicePackage#getReservation_For()
 	 * @model
 	 * @generated
 	 */
 	Car getFor();
 
 	/**
-	 * Sets the value of the '{@link rentalService.Reservation#getFor <em>For</em>}' reference.
+	 * Sets the value of the '{@link rentalServiceModel.Reservation#getFor <em>For</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>For</em>' reference.

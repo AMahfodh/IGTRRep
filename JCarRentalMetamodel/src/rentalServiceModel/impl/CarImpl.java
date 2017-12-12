@@ -1,14 +1,15 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import rentalService.Car;
-import rentalService.RentalServicePackage;
+
+import rentalServiceModel.Car;
+import rentalServiceModel.RentalServicePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,7 +19,7 @@ import rentalService.RentalServicePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link rentalService.impl.CarImpl#getRegistration <em>Registration</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.CarImpl#getRegistration <em>Registration</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,14 +1,15 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import rentalService.Client;
-import rentalService.RentalServicePackage;
+
+import rentalServiceModel.Client;
+import rentalServiceModel.RentalServicePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,8 +19,8 @@ import rentalService.RentalServicePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link rentalService.impl.ClientImpl#getCName <em>CName</em>}</li>
- *   <li>{@link rentalService.impl.ClientImpl#getCID <em>CID</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ClientImpl#getCName <em>CName</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ClientImpl#getCID <em>CID</em>}</li>
  * </ul>
  *
  * @generated

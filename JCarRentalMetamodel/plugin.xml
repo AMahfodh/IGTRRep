@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated rentalService -->
       <package
-            uri="http://www.eclipse.org/emf/rentalService"
-            class="rentalService.RentalServicePackage"
+            uri="http://www.eclipse.org/emf/rentalServiceModel"
+            class="rentalServiceModel.RentalServicePackage"
             genModel="model/rentalService.genmodel"/>
    </extension>
 

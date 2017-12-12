@@ -9,9 +9,9 @@ import henshinRentalModel.RentalModel;
 
 public class Rental {
 
-	protected Branch[] branches=null;			
+	public Branch[] branches=null;			
 
-	protected ArrayList<Reservation> reservations=new ArrayList<Reservation>();		
+	public ArrayList<Reservation> reservations=new ArrayList<Reservation>();		
 
 	
 	

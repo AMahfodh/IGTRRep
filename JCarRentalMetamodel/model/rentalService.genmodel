@@ -30,6 +30,17 @@
     <genClasses ecoreClass="rentalService.ecore#//Rental">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Rental/branches"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//Rental/reservations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference rentalService.ecore#//Rental/rentalelements"/>
     </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//BranchArray">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//BranchArray/index"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//BranchArray/size"/>
+    </genClasses>
+    <genClasses ecoreClass="rentalService.ecore#//ArrayList">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference rentalService.ecore#//ArrayList/index"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute rentalService.ecore#//ArrayList/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="rentalService.ecore#//ArrayListElement"/>
+    <genClasses image="false" ecoreClass="rentalService.ecore#//RentalElement"/>
   </genPackages>
 </genmodel:GenModel>

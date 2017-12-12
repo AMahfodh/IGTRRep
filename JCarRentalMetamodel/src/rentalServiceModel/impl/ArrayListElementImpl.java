@@ -1,13 +1,13 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import rentalService.ArrayListElement;
-import rentalService.RentalServicePackage;
+import rentalServiceModel.ArrayListElement;
+import rentalServiceModel.RentalServicePackage;
 
 /**
  * <!-- begin-user-doc -->

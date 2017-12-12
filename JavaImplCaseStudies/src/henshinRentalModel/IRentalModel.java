@@ -43,4 +43,19 @@ public interface IRentalModel {
 	 *            List of actual parameters to be passed to the rule.
 	 */
 	public void applyRule(String ruleName, List<RuleArgument> args);
+	
+	
+	/**
+	 * This is only useful for debugging, it serializes the current Henshin rules derived from VCs.
+	 * 
+	 * @param moduleName
+	 */
+	public void dumpHenshinRules(String moduleName);
+	
+	/**
+	 * This is only useful for debugging, it serializes the current state of the EMF object model.
+	 * 
+	 * @param modelName
+	 */
+	public void dumpObjectModel(String modelName);
 }

@@ -1,38 +1,37 @@
 /**
  */
-package rentalService.impl;
+package rentalServiceModel.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import rentalService.Branch;
-import rentalService.BranchArray;
-import rentalService.RentalServicePackage;
+import rentalServiceModel.ArrayList;
+import rentalServiceModel.ArrayListElement;
+import rentalServiceModel.RentalServicePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Branch Array</b></em>'.
+ * An implementation of the model object '<em><b>Array List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link rentalService.impl.BranchArrayImpl#getIndex <em>Index</em>}</li>
- *   <li>{@link rentalService.impl.BranchArrayImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ArrayListImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link rentalServiceModel.impl.ArrayListImpl#getSize <em>Size</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BranchArrayImpl extends MinimalEObjectImpl.Container implements BranchArray {
+public class ArrayListImpl extends RentalElementImpl implements ArrayList {
 	/**
 	 * The cached value of the '{@link #getIndex() <em>Index</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -41,7 +40,7 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Branch> index;
+	protected EList<ArrayListElement> index;
 
 	/**
 	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
@@ -52,6 +51,7 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	 * @ordered
 	 */
 	protected static final int SIZE_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BranchArrayImpl() {
+	protected ArrayListImpl() {
 		super();
 	}
 
@@ -78,7 +78,7 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RentalServicePackage.Literals.BRANCH_ARRAY;
+		return RentalServicePackage.Literals.ARRAY_LIST;
 	}
 
 	/**
@@ -86,9 +86,9 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Branch> getIndex() {
+	public EList<ArrayListElement> getIndex() {
 		if (index == null) {
-			index = new EObjectResolvingEList<Branch>(Branch.class, this, RentalServicePackage.BRANCH_ARRAY__INDEX);
+			index = new EObjectResolvingEList<ArrayListElement>(ArrayListElement.class, this, RentalServicePackage.ARRAY_LIST__INDEX);
 		}
 		return index;
 	}
@@ -111,7 +111,7 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 		int oldSize = size;
 		size = newSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RentalServicePackage.BRANCH_ARRAY__SIZE, oldSize, size));
+			eNotify(new ENotificationImpl(this, Notification.SET, RentalServicePackage.ARRAY_LIST__SIZE, oldSize, size));
 	}
 
 	/**
@@ -122,9 +122,9 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RentalServicePackage.BRANCH_ARRAY__INDEX:
+			case RentalServicePackage.ARRAY_LIST__INDEX:
 				return getIndex();
-			case RentalServicePackage.BRANCH_ARRAY__SIZE:
+			case RentalServicePackage.ARRAY_LIST__SIZE:
 				return getSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -139,11 +139,11 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RentalServicePackage.BRANCH_ARRAY__INDEX:
+			case RentalServicePackage.ARRAY_LIST__INDEX:
 				getIndex().clear();
-				getIndex().addAll((Collection<? extends Branch>)newValue);
+				getIndex().addAll((Collection<? extends ArrayListElement>)newValue);
 				return;
-			case RentalServicePackage.BRANCH_ARRAY__SIZE:
+			case RentalServicePackage.ARRAY_LIST__SIZE:
 				setSize((Integer)newValue);
 				return;
 		}
@@ -158,10 +158,10 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RentalServicePackage.BRANCH_ARRAY__INDEX:
+			case RentalServicePackage.ARRAY_LIST__INDEX:
 				getIndex().clear();
 				return;
-			case RentalServicePackage.BRANCH_ARRAY__SIZE:
+			case RentalServicePackage.ARRAY_LIST__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
 		}
@@ -176,9 +176,9 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RentalServicePackage.BRANCH_ARRAY__INDEX:
+			case RentalServicePackage.ARRAY_LIST__INDEX:
 				return index != null && !index.isEmpty();
-			case RentalServicePackage.BRANCH_ARRAY__SIZE:
+			case RentalServicePackage.ARRAY_LIST__SIZE:
 				return size != SIZE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -200,4 +200,4 @@ public class BranchArrayImpl extends MinimalEObjectImpl.Container implements Bra
 		return result.toString();
 	}
 
-} //BranchArrayImpl
+} //ArrayListImpl

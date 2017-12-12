@@ -1,10 +1,8 @@
 /**
  */
-package rentalService;
+package rentalServiceModel;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,18 +13,18 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link rentalService.ArrayList#getIndex <em>Index</em>}</li>
- *   <li>{@link rentalService.ArrayList#getSize <em>Size</em>}</li>
+ *   <li>{@link rentalServiceModel.ArrayList#getIndex <em>Index</em>}</li>
+ *   <li>{@link rentalServiceModel.ArrayList#getSize <em>Size</em>}</li>
  * </ul>
  *
- * @see rentalService.RentalServicePackage#getArrayList()
+ * @see rentalServiceModel.RentalServicePackage#getArrayList()
  * @model
  * @generated
  */
-public interface ArrayList extends EObject {
+public interface ArrayList extends RentalElement {
 	/**
 	 * Returns the value of the '<em><b>Index</b></em>' reference list.
-	 * The list contents are of type {@link rentalService.ArrayListElement}.
+	 * The list contents are of type {@link rentalServiceModel.ArrayListElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Index</em>' reference list isn't clear,
@@ -34,7 +32,7 @@ public interface ArrayList extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Index</em>' reference list.
-	 * @see rentalService.RentalServicePackage#getArrayList_Index()
+	 * @see rentalServiceModel.RentalServicePackage#getArrayList_Index()
 	 * @model
 	 * @generated
 	 */
@@ -50,14 +48,14 @@ public interface ArrayList extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Size</em>' attribute.
 	 * @see #setSize(int)
-	 * @see rentalService.RentalServicePackage#getArrayList_Size()
+	 * @see rentalServiceModel.RentalServicePackage#getArrayList_Size()
 	 * @model
 	 * @generated
 	 */
 	int getSize();
 
 	/**
-	 * Sets the value of the '{@link rentalService.ArrayList#getSize <em>Size</em>}' attribute.
+	 * Sets the value of the '{@link rentalServiceModel.ArrayList#getSize <em>Size</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Size</em>' attribute.
