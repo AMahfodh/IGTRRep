@@ -537,16 +537,11 @@ public class HenshinUtil {
 	}
 
 	public static String getCleanedEdgeType(String edgeType) {
-		System.out.println(" ===== " + edgeType);
-
 		if (edgeType.contains(":") && edgeType.contains("-")) {
-			System.out.println(" >>>>>>>>>>>>>> index");
 			return "index";
 		} else if (edgeType.contains(":")) {
-			System.out.println(" >>>>>>>>>>>>>> " + edgeType.substring(0, edgeType.indexOf(":")));
 			return edgeType.substring(0, edgeType.indexOf(":"));
-		} else {
-			System.out.println(" >>>>>>>>>>>>>> " + edgeType);
+		} else {			
 			return edgeType;
 		}
 	}

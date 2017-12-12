@@ -2,8 +2,8 @@ package rentalService;
 
 public class Client {
 
-	protected String cName;
-	protected String cID;
+	public String cName;
+	public String cID;
 
 	public Client (){}	
 	

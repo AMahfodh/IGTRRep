@@ -129,8 +129,6 @@ public class DBRuleToHenshinRule {
 	// private String charSeparator = String.valueOf(((char) 007));
 
 	public Rule transform(DBRule dbRule) {
-		System.out.println("Transforming: " + dbRule);
-
 		this.dbRule = dbRule;
 		hRule = hFactory.createRule(dbRule.name);
 
@@ -278,8 +276,7 @@ public class DBRuleToHenshinRule {
 	 * @param isMulti
 	 * @return
 	 */
-	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {
-		System.out.println("Transform Graph: " + HenshinUtil.getGraphName(isRHS, isMulti));
+	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {		
 		// graph.printGraph();
 
 		Graph hGraph = hFactory.createGraph(HenshinUtil.getGraphName(isRHS, isMulti));

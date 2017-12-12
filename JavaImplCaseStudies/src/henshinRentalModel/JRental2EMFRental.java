@@ -21,6 +21,7 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 
 		convertObjects();
 		convertLinks();
+		addAllToContainer();
 	}
 
 	private void convertObjects() {
@@ -34,28 +35,52 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 
 		for (Branch jBranch : jRental.branches) {
 			rentalServiceModel.Branch eBranch = RentalServiceFactory.eINSTANCE.createBranch();
+			eBranch.setCity(jBranch.city);
+			eBranch.setCMax(jBranch.cMax);
+			eBranch.setRMax(jBranch.rMax);
 			this.jObject2EObject.put(jBranch, eBranch);
 			this.eObject2JObject.put(eBranch, jBranch);
 			this.allEObjects.add(eBranch);
+			
+			for (Client jOf  : jBranch.of) {
+				rentalServiceModel.Client eOf = RentalServiceFactory.eINSTANCE.createClient();
+				eOf.setCName(jOf.cName);
+				eOf.setCID(jOf.cID);
+				this.jObject2EObject.put(jOf, eOf);
+				this.eObject2JObject.put(eOf, jOf);
+				this.allEObjects.add(eOf);
+			}
+			
+			for (Car jAt  : jBranch.at) {
+				rentalServiceModel.Car eAt = RentalServiceFactory.eINSTANCE.createCar();
+				eAt.setRegistration(jAt.registration);
+				this.jObject2EObject.put(jAt, eAt);
+				this.eObject2JObject.put(eAt, jAt);
+				this.allEObjects.add(eAt);
+			}
 		}
 
 		for (Reservation jReservation : jRental.reservations) {
 			rentalServiceModel.Reservation eReservation = RentalServiceFactory.eINSTANCE.createReservation();
+			eReservation.setReference(jReservation.reference);
 			this.jObject2EObject.put(jReservation, eReservation);
 			this.eObject2JObject.put(eReservation, jReservation);
 			this.allEObjects.add(eReservation);
 
-			Client jClient = jReservation.made;
-			rentalServiceModel.Client eClient = RentalServiceFactory.eINSTANCE.createClient();
-			this.jObject2EObject.put(jClient, eClient);
-			this.eObject2JObject.put(eClient, jClient);
-			this.allEObjects.add(eClient);
+			Client jMade = jReservation.made;
+			rentalServiceModel.Client eMade = RentalServiceFactory.eINSTANCE.createClient();
+			eMade.setCName(jMade.cName);
+			eMade.setCID(jMade.cID);
+			this.jObject2EObject.put(jMade, eMade);
+			this.eObject2JObject.put(eMade, jMade);
+			this.allEObjects.add(eMade);
 
-			Car jCar = jReservation.For;
-			rentalServiceModel.Car eCar = RentalServiceFactory.eINSTANCE.createCar();
-			this.jObject2EObject.put(jCar, eCar);
-			this.eObject2JObject.put(eCar, jCar);
-			this.allEObjects.add(eCar);
+			Car jFor = jReservation.For;
+			rentalServiceModel.Car eFor = RentalServiceFactory.eINSTANCE.createCar();
+			eFor.setRegistration(jFor.registration);
+			this.jObject2EObject.put(jFor, eFor);
+			this.eObject2JObject.put(eFor, jFor);
+			this.allEObjects.add(eFor);
 		}
 	}
 
@@ -80,13 +105,13 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 				throw new RuntimeException("Should never happen!");
 			}
 		}
-
 	}
 
 	private void connectRental(Rental jRental) {
 		rentalServiceModel.Rental eRental = (rentalServiceModel.Rental) this.jObject2EObject.get(jRental);
 
 		BranchArray branches = RentalServiceFactory.eINSTANCE.createBranchArray();
+		branches.setSize(jRental.branches.length);
 		allEObjects.add(branches);
 		eRental.setBranches(branches);
 		for (Branch jBranch : jRental.branches) {
@@ -95,6 +120,7 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 		}
 
 		rentalServiceModel.ArrayList reservations = RentalServiceFactory.eINSTANCE.createArrayList();
+		reservations.setSize(jRental.reservations.size());
 		allEObjects.add(reservations);
 		eRental.setReservations(reservations);
 		for (Reservation jReservation : jRental.reservations) {
@@ -102,20 +128,13 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 					.get(jReservation);
 			reservations.getIndex().add(eReservation);
 		}
-
-		for (EObject eObject : allEObjects) {
-			if (eObject == eRental) {
-				continue;
-			}
-
-			eRental.getRentalelements().add((RentalElement) eObject);
-		}
 	}
 
 	private void connectBranch(Branch jBranch) {
 		rentalServiceModel.Branch eBranch = (rentalServiceModel.Branch) this.jObject2EObject.get(jBranch);
 
 		rentalServiceModel.ArrayList at = RentalServiceFactory.eINSTANCE.createArrayList();
+		at.setSize(jBranch.at.size());
 		allEObjects.add(at);
 		eBranch.setAt(at);
 		for (Car jCar : jBranch.at) {
@@ -124,6 +143,7 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 		}
 		
 		rentalServiceModel.ArrayList of = RentalServiceFactory.eINSTANCE.createArrayList();
+		of.setSize(jBranch.of.size());
 		allEObjects.add(of);
 		eBranch.setOf(of);
 		for (Client jClient : jBranch.of) {
@@ -147,5 +167,16 @@ public class JRental2EMFRental extends JObjectGraph2EMFObjectGraph {
 
 	private void connectClient(Client jClient) {
 		// nothing to do
+	}
+	
+	private void addAllToContainer(){
+		rentalServiceModel.Rental eRental = (rentalServiceModel.Rental) eRoot;
+		for (EObject eObject : allEObjects) {
+			if (eObject == eRental) {
+				continue;
+			}
+
+			eRental.getRentalelements().add((RentalElement) eObject);
+		}
 	}
 }

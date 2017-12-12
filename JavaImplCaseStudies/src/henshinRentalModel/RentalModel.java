@@ -47,9 +47,9 @@ public class RentalModel {
 			String strPar2,
 			String strPar3){
 				
-		List<RuleArgument> strArgs = this.getArgs(strRuleName, strPar1, strPar2, strPar3);
+	//	List<RuleArgument> strArgs = this.getArgs(strRuleName, strPar1, strPar2, strPar3);
 		
-		return this.rmi.isRuleApplicable(strRuleName, strArgs);
+		return false;
 	}
 		
 	
@@ -59,47 +59,47 @@ public class RentalModel {
 			String strPar2,
 			String strPar3){
 		
-		List<RuleArgument> strArgs = this.getArgs(strRuleName, strPar1, strPar2, strPar3);
-		
-		if (this.rmi.isRuleApplicable(strRuleName, strArgs)){
-			this.rmi.applyRule(strRuleName, strArgs);
-			return true;
-		}
+//		List<RuleArgument> strArgs = this.getArgs(strRuleName, strPar1, strPar2, strPar3);
+//		
+//		if (this.rmi.isRuleApplicable(strRuleName, strArgs)){
+//			this.rmi.applyRule(strRuleName, strArgs);
+//			return true;
+//		}
 
 		return false;
 	}
 	
 
 	
-	private List<RuleArgument> getArgs(String strRuleName, String strPar1, String strPar2, String strPar3){
-
-
-		//FIXME to get the unit (rule) from Module object
-		Unit u= this.rmi.getModule().getUnit(strRuleName);
-		
-		if (u==null){
-			return null;
-		}
-		
-		List<RuleArgument> args = new ArrayList<RuleArgument>();		
-		EList<Parameter> parameterNames = u.getParameters();
-
-		if (parameterNames.size()>0 && strPar1!=null){
-
-			args.add(new RuleArgument(parameterNames.get(0).getName(), strPar1));
-
-			if (parameterNames.size()>1 && strPar2!=null){
-
-				args.add(new RuleArgument(parameterNames.get(1).getName(), strPar2));
-
-				if (parameterNames.size()>2 && strPar3!=null){
-					args.add(new RuleArgument(parameterNames.get(2).getName(), strPar3));
-				}
-			}
-		}
-
-		return args;
-	}
+//	private List<RuleArgument> getArgs(String strRuleName, String strPar1, String strPar2, String strPar3){
+//
+//
+//		//FIXME to get the unit (rule) from Module object
+//		Unit u= this.rmi.getModule().getUnit(strRuleName);
+//		
+//		if (u==null){
+//			return null;
+//		}
+//		
+//		List<RuleArgument> args = new ArrayList<RuleArgument>();		
+//		EList<Parameter> parameterNames = u.getParameters();
+//
+//		if (parameterNames.size()>0 && strPar1!=null){
+//
+//			args.add(new RuleArgument(parameterNames.get(0).getName(), strPar1));
+//
+//			if (parameterNames.size()>1 && strPar2!=null){
+//
+//				args.add(new RuleArgument(parameterNames.get(1).getName(), strPar2));
+//
+//				if (parameterNames.size()>2 && strPar3!=null){
+//					args.add(new RuleArgument(parameterNames.get(2).getName(), strPar3));
+//				}
+//			}
+//		}
+//
+//		return args;
+//	}
 	
 	
 }
