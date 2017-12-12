@@ -365,10 +365,11 @@ public class VContractValidation {
 		}
 		
 		
+		
 		if (isThrownException==null || isThrownException==false){
 			
 			/* check if rule-applicable without changing model state: FN if (Yes), TN  otherwise */
-			if (this.henshinRentalModel.isRuleApplicableWithoutUpdatingModelState(strRuleName, par1, par2, par3)){
+			if (this.henshinRentalModel.onlyCheckRuleApplicability(strRuleName, par1, par2, par3)){
 				strDec="FN\tincorrect: rule shouldn't be applicable";
 			}
 			else {
@@ -380,7 +381,7 @@ public class VContractValidation {
 			/*	check if the minimal rule exists in inferred contracts
 				then, check the applicability of maximal rule TP (Yes), FP (No)*/
 				
-			if (this.henshinRentalModel.isRuleApplicable(strRuleName, par1, par2, par3)){
+			if (this.henshinRentalModel.checkAndApplyRule(strRuleName, par1, par2, par3)){
 				strDec="TP\tcorrect";
 			} 
 			else {
@@ -406,44 +407,7 @@ public class VContractValidation {
 		this.testWriter.flush();		
 	}
 	
-	
-	/*
-	private void printTestInvocation(
-			int iRound, 
-			String strTestCaseA_E,			
-			String strMethodName , 
-			boolean isPassed,
-			Boolean isRuleApplicable){
-				
 		
-		String strDecision="";
-		
-		if (isPassed && isRuleApplicable){
-			strDecision="TP(correct)";
-		}
-		else if (isPassed && !isRuleApplicable){
-			strDecision="FN(incorrect)";
-		} 
-		else if (!isPassed && isRuleApplicable){
-			strDecision="FP(incomplete)";
-		}
-		else{
-			strDecision="TN(complete)";
-		}
-		
-		this.setOfDecisions.add(strDecision);
-		
-		
-		this.testWriter.println(
-				"r" + iRound + "-tc" + strTestCaseA_E + (++this.iInvocationCount) + "\t" + 
-				strMethodName + "\t" +
-				isPassed + "\t" + 
-				isRuleApplicable + "\t" + 
-				strDecision);
-		
-		this.testWriter.flush();
-	}
-	*/
 	
 	private void printRoundPlusPrecisionAndRecallValues(String strRound){
 
@@ -496,9 +460,10 @@ public class VContractValidation {
 			this.HasRuleBeenExportedToHenshin=true;			
 			
 			new RuleInferenceFromJavaTracing().generaliseRuleInstance(1);			
-			//new AttributeInferenceFromJavaTracing().commit();
+			new AttributeInferenceFromJavaTracing().commit();
 			
-			// TODO  Henshin export ..
+			// for importing rules from DB
+			this.henshinRentalModel.deriveHenshinRulesFromDB();
 		}
 	}
 	
