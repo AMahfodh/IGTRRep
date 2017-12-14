@@ -2,8 +2,10 @@ package henshinRentalModel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,16 +18,18 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.henshin.interpreter.EGraph;
-import org.eclipse.emf.henshin.interpreter.UnitApplication;
+import org.eclipse.emf.henshin.interpreter.Engine;
+import org.eclipse.emf.henshin.interpreter.Match;
+import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
-import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
+import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.model.Module;
+import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Unit;
 import org.eclipse.emf.henshin.model.impl.HenshinPackageImpl;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceFactory;
-
-import org.eclipse.emf.henshin.interpreter.Engine;
+import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 import inferences.ExportAllToHenshin;
 import rentalServiceModel.impl.RentalServicePackageImpl;
@@ -66,24 +70,32 @@ public class RentalModelImpl implements IRentalModel {
 
 	@Override
 	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args) {
+		// We first copy the complete object model
 		Copier copier = new Copier();
 		Collection<EObject> clone = copier.copyAll(jObjectGraph2EMFObjectGraph.allEObjects);
 		copier.copyReferences();
 
-		System.out.println("---");
-		for (EObject eObject : clone) {
-			System.out.println(eObject);
-		}
-		System.out.println("---");
-
-		UnitApplication unitApplication = createUnitApplication(ruleName, args, clone);
-		return unitApplication.execute(null);
+		// And then try to apply the rule on the copy (to not change the
+		// original as a side effect)
+		return executeRule(ruleName, args, clone);
 	}
 
 	@Override
 	public void applyRule(String ruleName, List<RuleArgument> args) {
-		UnitApplication unitApplication = createUnitApplication(ruleName, args, jObjectGraph2EMFObjectGraph.allEObjects);
-		unitApplication.execute(null);
+		executeRule(ruleName, args, jObjectGraph2EMFObjectGraph.allEObjects);
+	}
+
+	@Override
+	public List<RuleArgument> createArgumentList(Object... values) {
+		ArrayList<RuleArgument> args = new ArrayList<RuleArgument>();
+		int argCount = 0;
+		for (Object value : values) {
+			argCount++;
+			RuleArgument arg = new RuleArgument("Par" + argCount, value);
+			args.add(arg);
+		}
+		
+		return args;
 	}
 
 	@Override
@@ -94,12 +106,6 @@ public class RentalModelImpl implements IRentalModel {
 
 	@Override
 	public void dumpObjectModel(String modelName) {
-		System.out.println("---");
-		for (EObject eObject : jObjectGraph2EMFObjectGraph.allEObjects) {
-			System.out.println(eObject);
-		}
-		System.out.println("---");
-
 		serialize(jObjectGraph2EMFObjectGraph.eRoot,
 				new File("").getAbsolutePath() + File.separator + "ObjectModelOutput", modelName, "xmi");
 	}
@@ -120,8 +126,7 @@ public class RentalModelImpl implements IRentalModel {
 		}
 	}
 
-	private UnitApplication createUnitApplication(String ruleName, List<RuleArgument> args,
-			Collection<EObject> eObjects) {
+	private boolean executeRule(String ruleName, List<RuleArgument> args, Collection<EObject> eObjects) {
 		// Engine
 		Engine engine = new EngineImpl();
 
@@ -131,20 +136,59 @@ public class RentalModelImpl implements IRentalModel {
 			graph.add(eObject);
 		}
 
-		// Unit
-		Unit unit = henshinModule.getUnit("");
-
-		// UnitApplication
-		UnitApplication unitApplication = new UnitApplicationImpl(engine);
-		unitApplication.setEGraph(graph);
-		unitApplication.setUnit(unit);
-
-		// Params
-		for (RuleArgument arg : args) {
-			unitApplication.setParameterValue(arg.getParamName(), arg.getParamValue());
+		// Get Rule
+		Rule rule = null;
+		for (Unit unit : henshinModule.getUnits()) {
+			if (unit.getName().substring(unit.getName().indexOf("_") + 1, unit.getName().length()).equalsIgnoreCase(ruleName)){
+				rule = (Rule) unit;
+			}
 		}
 
-		return unitApplication;
+		// Find all matches
+		Iterator<Match> matchFinder = engine.findMatches(rule, graph, null).iterator();
+
+		// Find all matches
+		while (matchFinder.hasNext()) {
+			Match match = matchFinder.next();
+
+			// Create Rule Application with prematch, which is actually a
+			// complete match)
+			RuleApplication ruleApp = new RuleApplicationImpl(engine);
+			ruleApp.setEGraph(graph);
+			ruleApp.setRule(rule);
+			ruleApp.setCompleteMatch(match);
+
+			// Params
+			for (RuleArgument arg : args) {
+				if (rule.getParameter(arg.getParamName()) != null){
+					System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + arg.getParamName());
+					ruleApp.setParameterValue(arg.getParamName(), arg.getParamValue());
+				}
+			}
+
+			// And now try to execute
+			boolean success = ruleApp.execute(null);
+			if (success) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private void loadModuleFromFile(String path, String filename) {
+		HenshinResourceSet resourceSet = new HenshinResourceSet(path);
+		this.henshinModule = resourceSet.getModule(filename, false);
+
+		for (Unit u : henshinModule.getUnits()) {
+			System.out.println(u.getName());
+		}
+	}
+
+	public static void main(String[] args) {
+
+		RentalModelImpl rentalModel = new RentalModelImpl();
+		rentalModel.loadModuleFromFile("../IGTR/HenshinOutput", "allRules.henshin");
 	}
 
 }

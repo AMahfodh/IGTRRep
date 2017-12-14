@@ -30,15 +30,15 @@ public class DVariable2Variable extends DEquation {
 		this.attributeR = attributeR;
 	}
 
-	public DVariable2VariableKind getKind() {
+	public DConstraintKind getKind() {
 		if (prefixL.equals(DConstraintFactory.PREFIX_PRE) && prefixR.equals(DConstraintFactory.PREFIX_PRE)) {
-			return DVariable2VariableKind.PRE_PRE;
+			return DConstraintKind.PRE_PRE;
 		}
 		if (prefixL.equals(DConstraintFactory.PREFIX_POST) && prefixR.equals(DConstraintFactory.PREFIX_POST)) {
-			return DVariable2VariableKind.POST_POST;
+			return DConstraintKind.POST_POST;
 		}
 		if (prefixL.equals(DConstraintFactory.PREFIX_PRE) && prefixR.equals(DConstraintFactory.PREFIX_POST)) {
-			return DVariable2VariableKind.PRE_POST;
+			return DConstraintKind.PRE_POST;
 		}
 		if (prefixL.equals(DConstraintFactory.PREFIX_POST) && prefixR.equals(DConstraintFactory.PREFIX_PRE)) {
 			assert (false);

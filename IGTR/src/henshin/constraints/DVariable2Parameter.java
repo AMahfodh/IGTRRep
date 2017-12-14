@@ -25,12 +25,12 @@ public class DVariable2Parameter extends DEquation {
 		this.parameter = parameter;
 	}
 
-	public DVariable2LiteralKind getKind() {
+	public DConstraintKind getKind() {
 		if (prefix.equals(DConstraintFactory.PREFIX_PRE)) {
-			return DVariable2LiteralKind.PRE;
+			return DConstraintKind.PRE;
 		}
 		if (prefix.equals(DConstraintFactory.PREFIX_POST)) {
-			return DVariable2LiteralKind.POST;
+			return DConstraintKind.POST;
 		}
 
 		return null;

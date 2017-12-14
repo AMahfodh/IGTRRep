@@ -1,15 +1,5 @@
 package henshin;
 
-import henshin.constraints.DConstraint;
-import henshin.constraints.DConstraintFactory;
-import henshin.constraints.DOneOf;
-import henshin.constraints.DVariable2Literal;
-import henshin.constraints.DVariable2Variable;
-import henshin.constraints.DVariable2VariableKind;
-import inferences.DBRecord;
-import inferences.GAttribute;
-import inferences.GNode;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +13,15 @@ import org.eclipse.emf.henshin.model.Node;
 import com.sun.rowset.CachedRowSetImpl;
 
 import emf.util.EMFMetaUtil;
+import henshin.constraints.DConstraint;
+import henshin.constraints.DConstraintFactory;
+import henshin.constraints.DConstraintKind;
+import henshin.constraints.DOneOf;
+import henshin.constraints.DVariable2Literal;
+import henshin.constraints.DVariable2Variable;
+import inferences.DBRecord;
+import inferences.GAttribute;
+import inferences.GNode;
 
 public class InvariantConstraintHandler {
 
@@ -287,7 +286,7 @@ public class InvariantConstraintHandler {
 			DConstraint dConstraint = iterator.next();
 			if (dConstraint instanceof DVariable2Variable) {
 				DVariable2Variable c = (DVariable2Variable) dConstraint;
-				if (c.getKind().equals(DVariable2VariableKind.PRE_POST)) {
+				if (c.getKind().equals(DConstraintKind.PRE_POST)) {
 					if (c.attributeL.equals(c.attributeR)
 							&& HenshinUtil.isMapped(c.getLNode(), c.getRNode(), dbRule2hRule.hRule.getMappings())) {
 

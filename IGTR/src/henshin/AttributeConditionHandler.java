@@ -18,17 +18,18 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import henshin.constraints.DConstraint;
 import henshin.constraints.DConstraintFactory;
+import henshin.constraints.DConstraintKind;
 import henshin.constraints.DOneOf;
 import henshin.constraints.DParameter2Parameter;
 import henshin.constraints.DReturn;
 import henshin.constraints.DVariable2Literal;
-import henshin.constraints.DVariable2LiteralKind;
 import henshin.constraints.DVariable2Parameter;
 import henshin.constraints.DVariable2Variable;
-import henshin.constraints.DVariable2VariableKind;
 import inferences.DBRecord;
 
 public class AttributeConditionHandler {
+
+	private static boolean DEBUG = false;
 
 	// DBRule to Henshin Rule
 	private DBRuleToHenshinRule dbRule2hRule;
@@ -50,19 +51,23 @@ public class AttributeConditionHandler {
 		// Load the constraints from DB
 		loadConstraints();
 
-		System.out.println("== all constraints");
-		for (DConstraint c : invariantConstraints) {
-			System.out.println("\t" + c);
+		if (DEBUG) {
+			System.out.println("== all constraints");
+			for (DConstraint c : invariantConstraints) {
+				System.out.println("\t" + c);
+			}
 		}
 
 		// Filter irrelevant constraints
 		filterConstraints();
 
-		System.out.println("== filtered constraints");
-		for (DConstraint c : invariantConstraints) {
-			System.out.println("\t" + c);
+		if (DEBUG) {
+			System.out.println("== filtered constraints");
+			for (DConstraint c : invariantConstraints) {
+				System.out.println("\t" + c);
+			}
 		}
-		
+
 		// Handle the remaining constraints
 		for (DConstraint c : invariantConstraints) {
 			if (c instanceof DVariable2Variable) {
@@ -84,9 +89,12 @@ public class AttributeConditionHandler {
 
 	private void handleDVariable2Variable(DVariable2Variable c) {
 		System.out.println("handle: " + c);
-		String expr = getStringFromNumeric(c.getLNode().getName()) + "_" + c.attributeL + " = "
+		String expr = getStringFromNumeric(c.getLNode().getName()) + "_" + c.attributeL + " == "
 				+ getStringFromNumeric(c.getRNode().getName()) + "_" + c.attributeR;
-		System.out.println(expr);
+
+		if (DEBUG) {
+			System.out.println(expr);
+		}
 
 		lazyCreateAttribute(c.getLNode(), c.getAttributeDeclarationL(),
 				getStringFromNumeric(c.getLNode().getName()) + "_" + c.attributeL);
@@ -102,8 +110,11 @@ public class AttributeConditionHandler {
 		if (c.getAttributeDeclaration().getEType().equals(EcorePackage.eINSTANCE.getEString())) {
 			literalStr = "'" + literalStr + "'";
 		}
-		String expr = getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute + " = " + literalStr;
-		System.out.println(expr);
+		String expr = getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute + " == " + literalStr;
+
+		if (DEBUG) {
+			System.out.println(expr);
+		}
 
 		lazyCreateAttribute(c.getNode(), c.getAttributeDeclaration(),
 				getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute);
@@ -113,8 +124,11 @@ public class AttributeConditionHandler {
 
 	private void handleDVariable2Parameter(DVariable2Parameter c) {
 		System.out.println("handle: " + c);
-		String expr = getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute + " = " + c.parameter;
-		System.out.println(expr);
+		String expr = getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute + " == " + c.parameter;
+
+		if (DEBUG) {
+			System.out.println(expr);
+		}
 
 		lazyCreateAttribute(c.getNode(), c.getAttributeDeclaration(),
 				getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute);
@@ -125,8 +139,11 @@ public class AttributeConditionHandler {
 
 	private void handleDParameter2Parameter(DParameter2Parameter c) {
 		System.out.println("handle: " + c);
-		String expr = c.parameter1 + " = " + c.parameter2;
-		System.out.println(expr);
+		String expr = c.parameter1 + " == " + c.parameter2;
+
+		if (DEBUG) {
+			System.out.println(expr);
+		}
 
 		lazyCreateParameter(c.parameter1);
 		lazyCreateParameter(c.parameter2);
@@ -179,20 +196,20 @@ public class AttributeConditionHandler {
 	}
 
 	private void filterConstraints() {
-		System.out.println("Filtering..");
+		// System.out.println("Filtering..");
 		for (Iterator<DConstraint> iterator = invariantConstraints.iterator(); iterator.hasNext();) {
 			DConstraint dConstraint = iterator.next();
 
 			// DReturn
 			if (dConstraint instanceof DReturn) {
-				System.out.println("\t" + dConstraint);
+				// System.out.println("\t" + dConstraint);
 				iterator.remove();
 				continue;
 			}
 
 			// DOneOf
 			if (dConstraint instanceof DOneOf) {
-				System.out.println("\t" + dConstraint);
+				// System.out.println("\t" + dConstraint);
 				iterator.remove();
 				continue;
 			}
@@ -200,8 +217,8 @@ public class AttributeConditionHandler {
 			// Variable2Literal
 			if (dConstraint instanceof DVariable2Literal) {
 				DVariable2Literal c = (DVariable2Literal) dConstraint;
-				if (c.getKind() != DVariable2LiteralKind.PRE) {
-					System.out.println("\t" + dConstraint);
+				if (c.getKind() != DConstraintKind.PRE) {
+					// System.out.println("\t" + dConstraint);
 					iterator.remove();
 					continue;
 				}
@@ -210,8 +227,8 @@ public class AttributeConditionHandler {
 			// Variable2Variable
 			if (dConstraint instanceof DVariable2Variable) {
 				DVariable2Variable c = (DVariable2Variable) dConstraint;
-				if (c.getKind() != DVariable2VariableKind.PRE_PRE) {
-					System.out.println("\t" + c);
+				if (c.getKind() != DConstraintKind.PRE_PRE) {
+					// System.out.println("\t" + c);
 					iterator.remove();
 					continue;
 				}
@@ -220,8 +237,8 @@ public class AttributeConditionHandler {
 			// DVariable2Parameter
 			if (dConstraint instanceof DVariable2Parameter) {
 				DVariable2Parameter c = (DVariable2Parameter) dConstraint;
-				if (c.getKind() != DVariable2LiteralKind.PRE) {
-					System.out.println("\t" + c);
+				if (c.getKind() != DConstraintKind.PRE) {
+					// System.out.println("\t" + c);
 					iterator.remove();
 					continue;
 				}
