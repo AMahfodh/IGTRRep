@@ -28,8 +28,17 @@ public class AttributeInferenceFromJavaTracing {
 
 	public AttributeInferenceFromJavaTracing(){
 
-		this.strPathDirectory= new File("").getAbsolutePath() + 
-				File.separator + "Perl" + File.separator + "DaikonOutput" + File.separator;		
+		try {
+			this.strPathDirectory= new File(".." + 
+					File.separator + "IGTR" + 
+					File.separator + "Perl" + 
+					File.separator + "DaikonOutput").getCanonicalPath() +
+					File.separator;
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+		System.out.println(this.strPathDirectory);
 	}
 
 
@@ -544,8 +553,8 @@ public class AttributeInferenceFromJavaTracing {
 
 	private boolean convertCVStoDaikonInput(String csvPath) throws ExecuteException, IOException {
 
-		CommandLine cmdLine = new CommandLine("perl");
-		cmdLine.addArgument(new File("").getAbsolutePath() +  File.separator + "Perl" + File.separator + "convertcsv.pl ");
+		CommandLine cmdLine = new CommandLine("perl");		
+		cmdLine.addArgument(this.strPathDirectory.replace("DaikonOutput" + File.separator, "convertcsv.pl "));
 		cmdLine.addArgument(csvPath);
 
 		DefaultExecutor executor = new DefaultExecutor();
@@ -659,13 +668,12 @@ public class AttributeInferenceFromJavaTracing {
 				}
 
 
-
 				// run Daikon JAR
 				try {
 
 					ProcessBuilder builder = new ProcessBuilder(
 							"java", "-cp",
-							new File("daikon.jar").getAbsolutePath(),
+							new File(".." + File.separator + "IGTR" + File.separator + "daikon.jar").getCanonicalPath(),
 							"daikon.Daikon", 
 							"--nohierarchy", 
 							//"--suppress_redundant",
