@@ -527,6 +527,35 @@ public class HenshinUtil {
 		}
 	}
 
+	/**
+	 * Returns the opposite node or null if there is none.
+	 * 
+	 */
+	public static Node getOppositeNode(Node node) {
+
+		// Load node container
+		Object container = node.getGraph().eContainer();
+
+		// Container must be a Rule
+		if (!(container instanceof Rule)) {
+			return null;
+		}
+
+		// Rule that contains the node
+		Rule rule = (Rule) container;
+
+		for (Mapping mapping : rule.getMappings()) {
+			if (mapping.getOrigin() == node){
+				return mapping.getImage();
+			}
+			if (mapping.getImage() == node){
+				return mapping.getOrigin();
+			}
+		}
+
+		return null;
+	}
+	
 	public static String getCleanedAttributeValue(EAttribute type, String attributeValue) {
 		String res = attributeValue;
 		if (type.getEAttributeType().equals(EcorePackage.eINSTANCE.getEString())) {

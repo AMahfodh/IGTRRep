@@ -199,6 +199,9 @@ public class DBRuleToHenshinRule {
 			// InvariantConstraintHandler(this);
 			// invariantHandler.retrieve();
 
+			AttributeConditionHandler attrConditionHandler = new AttributeConditionHandler(this);
+			attrConditionHandler.createAttributeConditions();
+
 		} else {
 			// loading lhs graph (with MO)
 			GraphT lhsWithMo = new GraphT();
@@ -264,6 +267,9 @@ public class DBRuleToHenshinRule {
 			// InvariantConstraintHandler invariantHandler = new
 			// InvariantConstraintHandler(this);
 			// invariantHandler.retrieve();
+
+			AttributeConditionHandler attrConditionHandler = new AttributeConditionHandler(this);
+			attrConditionHandler.createAttributeConditions();
 		}
 
 		return hRule;
@@ -276,7 +282,7 @@ public class DBRuleToHenshinRule {
 	 * @param isMulti
 	 * @return
 	 */
-	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {		
+	private Graph transformGraph(GraphT graph, boolean isRHS, boolean isMulti) {
 		// graph.printGraph();
 
 		Graph hGraph = hFactory.createGraph(HenshinUtil.getGraphName(isRHS, isMulti));
@@ -340,7 +346,7 @@ public class DBRuleToHenshinRule {
 				hEdge = hFactory.createEdge(hSrcNode, hTgtNode, edgeType);
 			} else {
 				assert (domainConfig.treatAttributesAsNodes());
-				
+
 				// Just a dummy edge representing a pointer to a value node
 				hEdge = new ValueEdge();
 				hEdge.setSource(hSrcNode);
@@ -380,7 +386,7 @@ public class DBRuleToHenshinRule {
 
 				// Create attribute
 				EAttribute type = domainConfig.deriveAttributeType(hNode.getType(), attribute.attName);
-				String value = HenshinUtil.getCleanedAttributeValue(type, attribute.attValue);				
+				String value = HenshinUtil.getCleanedAttributeValue(type, attribute.attValue);
 				Attribute hAttribute = hFactory.createAttribute(hNode, type, value);
 
 				// Put to mappings
