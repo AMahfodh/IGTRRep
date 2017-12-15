@@ -36,6 +36,8 @@ import rentalServiceModel.impl.RentalServicePackageImpl;
 
 public class RentalModelImpl implements IRentalModel {
 
+	static int COUNT = 0;
+	
 	private Module henshinModule;
 	private JObjectGraph2EMFObjectGraph jObjectGraph2EMFObjectGraph;
 
@@ -56,6 +58,7 @@ public class RentalModelImpl implements IRentalModel {
 
 		henshinModule = new ExportAllToHenshin().createHenshinModuleFromDB();
 
+		dumpHenshinRules("allRules-" + ++COUNT);
 		for (Unit u : henshinModule.getUnits()) {
 			System.out.println(u.getName());
 		}
@@ -144,6 +147,11 @@ public class RentalModelImpl implements IRentalModel {
 			}
 		}
 
+		// If rule is not found, it is not applicable (not yet learned)
+		if (rule == null){
+			return false;
+		}
+		
 		// Find all matches
 		Iterator<Match> matchFinder = engine.findMatches(rule, graph, null).iterator();
 
@@ -161,7 +169,6 @@ public class RentalModelImpl implements IRentalModel {
 			// Params
 			for (RuleArgument arg : args) {
 				if (rule.getParameter(arg.getParamName()) != null){
-					System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + arg.getParamName());
 					ruleApp.setParameterValue(arg.getParamName(), arg.getParamValue());
 				}
 			}
@@ -180,9 +187,9 @@ public class RentalModelImpl implements IRentalModel {
 		HenshinResourceSet resourceSet = new HenshinResourceSet(path);
 		this.henshinModule = resourceSet.getModule(filename, false);
 
-		for (Unit u : henshinModule.getUnits()) {
-			System.out.println(u.getName());
-		}
+//		for (Unit u : henshinModule.getUnits()) {
+//			System.out.println(u.getName());
+//		}
 	}
 
 	public static void main(String[] args) {
