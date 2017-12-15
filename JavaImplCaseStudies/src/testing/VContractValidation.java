@@ -47,7 +47,7 @@ public class VContractValidation {
 	public void setUp() throws Exception {
 
 
-		this.splitPercent= strSplit.p80;
+		this.splitPercent= strSplit.p20;
 		
 		this.testWriter = new PrintWriter("ValidationOutput_" + this.splitPercent.name(), "UTF-8");
 		

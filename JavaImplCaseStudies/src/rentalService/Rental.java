@@ -183,6 +183,53 @@ public class Rental {
 		return true;
 	}
 
+	
+	
+	public Boolean movingABranch(String terminatedBranchName, String movingToBranchName){
+		
+		Branch terminatedBranch = this.getBranch(terminatedBranchName);
+		Branch movingToBranch = this.getBranch(movingToBranchName);
+
+		// check if the pickup and drop-off branches exists
+		if (terminatedBranch==null || 
+			movingToBranch==null){ 
+			return null; 
+		}
+		
+		boolean bReturn=false;
+		
+		String strToRead="";
+		// moving clients
+		for (int i= terminatedBranch.of.size()-1;i>=0; i--){
+			Client c = terminatedBranch.of.get(i);
+			strToRead= c.cName;
+			movingToBranch.of.add(c);
+			terminatedBranch.of.remove(i);
+			bReturn=true;
+		}
+		
+		
+		// moving cars
+		for (int i= terminatedBranch.at.size()-1;i>=0; i--){
+			Car car= terminatedBranch.at.get(i);
+			strToRead = car.registration;
+			movingToBranch.at.add(car);
+			terminatedBranch.at.remove(i);
+			bReturn=true;
+		}
+		
+		
+		// moving reservations
+		for (Reservation r: this.reservations){
+			
+			if (r.pickup.city.equalsIgnoreCase(terminatedBranchName)){
+				r.pickup=movingToBranch;
+				bReturn=true;
+			}
+		}
+				
+		return bReturn;
+	}
 
 
 
