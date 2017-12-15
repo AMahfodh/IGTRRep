@@ -46,8 +46,6 @@ public class AttributeConditionHandler {
 	}
 
 	public void createAttributeConditions() {
-		System.out.println("Create Attribute Conditions...");
-
 		// Load the constraints from DB
 		loadConstraints();
 
@@ -88,7 +86,10 @@ public class AttributeConditionHandler {
 	}
 
 	private void handleDVariable2Variable(DVariable2Variable c) {
-		System.out.println("handle: " + c);
+		if (DEBUG) {
+			System.out.println("handle: " + c);
+		}
+
 		String expr = getStringFromNumeric(c.getLNode().getName()) + "_" + c.attributeL + " == "
 				+ getStringFromNumeric(c.getRNode().getName()) + "_" + c.attributeR;
 
@@ -105,7 +106,10 @@ public class AttributeConditionHandler {
 	}
 
 	private void handleDVariable2Literal(DVariable2Literal c) {
-		System.out.println("handle: " + c);
+		if (DEBUG) {
+			System.out.println("handle: " + c);
+		}
+
 		String literalStr = c.literal;
 		if (c.getAttributeDeclaration().getEType().equals(EcorePackage.eINSTANCE.getEString())) {
 			literalStr = "'" + literalStr + "'";
@@ -123,7 +127,10 @@ public class AttributeConditionHandler {
 	}
 
 	private void handleDVariable2Parameter(DVariable2Parameter c) {
-		System.out.println("handle: " + c);
+		if (DEBUG) {
+			System.out.println("handle: " + c);
+		}
+
 		String expr = getStringFromNumeric(c.getNode().getName()) + "_" + c.attribute + " == " + c.parameter;
 
 		if (DEBUG) {
@@ -138,7 +145,10 @@ public class AttributeConditionHandler {
 	}
 
 	private void handleDParameter2Parameter(DParameter2Parameter c) {
-		System.out.println("handle: " + c);
+		if (DEBUG) {
+			System.out.println("handle: " + c);
+		}
+
 		String expr = c.parameter1 + " == " + c.parameter2;
 
 		if (DEBUG) {
