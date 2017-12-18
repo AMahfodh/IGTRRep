@@ -93,21 +93,22 @@ public class Rental {
 			this.reservations.remove(iIndex);
 			return true;
 		}
-		return null;
+		return false;
 	}
 
 
 	public Boolean cancelClientReservation(String clientID){		
 
+		boolean atLeastOneReservationHasBeencancelled=false;
 		for (int iIndex=this.reservations.size()-1; iIndex>=0; iIndex--){
 
 			if (this.reservations.get(iIndex).made.cID.equalsIgnoreCase(clientID)){
 				this.reservations.remove(iIndex);
-				return true;
+				atLeastOneReservationHasBeencancelled= true;
 			}
 		}
 		
-		return null;
+		return atLeastOneReservationHasBeencancelled;
 	}
 
 
@@ -116,7 +117,7 @@ public class Rental {
 		int iIndex = this.getReservationIndex(Reference);
 
 		if (iIndex==-1){
-			return null;			
+			return false;			
 		}
 		
 		
@@ -142,7 +143,7 @@ public class Rental {
 		}
 
 		if (!isCarExist){
-		//	return false;
+			return false;
 		}
 
 
@@ -162,7 +163,7 @@ public class Rental {
 		int iIndex = this.getReservationIndex(Reference);
 
 		if (iIndex==-1){
-			return null;			
+			return false;			
 		}
 
 		Reservation reservation = this.reservations.get(iIndex);

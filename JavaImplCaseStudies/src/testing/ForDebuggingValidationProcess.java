@@ -22,7 +22,7 @@ import rentalService.Rental;
 
 
 
-public class VContractValidation {
+public class ForDebuggingValidationProcess {
 	
 	
 
@@ -68,12 +68,13 @@ public class VContractValidation {
 		/*
 		 * Training to learn visual contracts with splitting tests based on 5 cross-validation rounds 
 		 */
-		
-		this.round1(); this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
-		this.round2(); this.round2(); this.printRoundPlusPrecisionAndRecallValues("#Round 2");
-		this.round3(); this.round3(); this.printRoundPlusPrecisionAndRecallValues("#Round 3");
-		this.round4(); this.round4(); this.printRoundPlusPrecisionAndRecallValues("#Round 4");
-		this.round5(); this.round5(); this.printRoundPlusPrecisionAndRecallValues("#Round 5");
+		this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
+//		
+//		this.round1(); this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
+//		this.round2(); this.round2(); this.printRoundPlusPrecisionAndRecallValues("#Round 2");
+//		this.round3(); this.round3(); this.printRoundPlusPrecisionAndRecallValues("#Round 3");
+//		this.round4(); this.round4(); this.printRoundPlusPrecisionAndRecallValues("#Round 4");
+//		this.round5(); this.round5(); this.printRoundPlusPrecisionAndRecallValues("#Round 5");
 	}
 	
 	
