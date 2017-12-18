@@ -24,6 +24,7 @@ import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
+import org.eclipse.emf.henshin.model.HenshinPackage;
 import org.eclipse.emf.henshin.model.Module;
 import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.Unit;
@@ -32,6 +33,7 @@ import org.eclipse.emf.henshin.model.resource.HenshinResourceFactory;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 import inferences.ExportAllToHenshin;
+import rentalServiceModel.RentalServicePackage;
 import rentalServiceModel.impl.RentalServicePackageImpl;
 
 public class RentalModelImpl implements IRentalModel {
@@ -43,7 +45,9 @@ public class RentalModelImpl implements IRentalModel {
 
 	static {
 		HenshinPackageImpl.init();
+		HenshinPackage.eINSTANCE.eClass();
 		RentalServicePackageImpl.init();
+		RentalServicePackage.eINSTANCE.eClass();
 
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
@@ -152,11 +156,16 @@ public class RentalModelImpl implements IRentalModel {
 			return false;
 		}
 		
+		// Only DEBUG
+		rule.getAttributeConditions().clear();
+		// End DEBUG
+		
 		// Find all matches
 		Iterator<Match> matchFinder = engine.findMatches(rule, graph, null).iterator();
 
 		// Find all matches
 		while (matchFinder.hasNext()) {
+			System.out.println("MATCH");
 			Match match = matchFinder.next();
 
 			// Create Rule Application with prematch, which is actually a
@@ -174,16 +183,16 @@ public class RentalModelImpl implements IRentalModel {
 			}
 
 			// And now try to execute
-			boolean success = ruleApp.execute(null);
-			if (success) {
-				return true;
-			}
+//			boolean success = ruleApp.execute(null);
+//			if (success) {
+//				return true;
+//			}
 		}
 
 		return false;
 	}
 
-	private void loadModuleFromFile(String path, String filename) {
+	public void loadModuleFromFile(String path, String filename) {
 		HenshinResourceSet resourceSet = new HenshinResourceSet(path);
 		this.henshinModule = resourceSet.getModule(filename, false);
 
@@ -192,6 +201,19 @@ public class RentalModelImpl implements IRentalModel {
 //		}
 	}
 
+	public void loadObjectModelFromFile(String file){
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.getResource(URI.createFileURI(file), true);
+		
+		ArrayList<EObject> allObjects = new ArrayList<EObject>();
+		for (Iterator<EObject> iterator = resource.getAllContents(); iterator.hasNext();) {
+			EObject eObject = iterator.next();
+			allObjects.add(eObject);			
+		}
+		jObjectGraph2EMFObjectGraph = new JRental2EMFRental();
+		jObjectGraph2EMFObjectGraph.allEObjects = allObjects;		
+	}
+	
 	public static void main(String[] args) {
 
 		RentalModelImpl rentalModel = new RentalModelImpl();
