@@ -227,11 +227,12 @@ public class AttributeConditionHandler {
 			// Variable2Literal
 			if (dConstraint instanceof DVariable2Literal) {
 				DVariable2Literal c = (DVariable2Literal) dConstraint;
-				if (c.getKind() != DConstraintKind.PRE) {
-					// System.out.println("\t" + dConstraint);
-					iterator.remove();
-					continue;
-				}
+//				if (c.getKind() != DConstraintKind.PRE) {
+//					// System.out.println("\t" + dConstraint);
+//					iterator.remove();
+//					continue;
+//				}
+				iterator.remove();
 			}
 
 			// Variable2Variable
