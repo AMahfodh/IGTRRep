@@ -28,21 +28,27 @@ public interface IRentalModel {
 	 * model.
 	 * 
 	 * @param ruleName
+	 *            The name of the rule
 	 * @param args
+	 *            The arguments, list of parameters assigned with concrete
+	 *            values
+	 * @param expectedResult
+	 *            Whether we expect applicability or not
+	 * 
 	 * @return
 	 */
-	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args);
+	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args, boolean expectedResult);
 
-	/**
-	 * Assumes that the rule with name ruleName is applicable. The application
-	 * of this rule leads to an update of the internal object model.
-	 * 
-	 * @param ruleName
-	 *            The name of the Henshin rule which is to be applied.
-	 * @param args
-	 *            List of actual parameters to be passed to the rule.
-	 */
-	public void applyRule(String ruleName, List<RuleArgument> args);
+	// /**
+	// * Assumes that the rule with name ruleName is applicable. The application
+	// * of this rule leads to an update of the internal object model.
+	// *
+	// * @param ruleName
+	// * The name of the Henshin rule which is to be applied.
+	// * @param args
+	// * List of actual parameters to be passed to the rule.
+	// */
+	// public void applyRule(String ruleName, List<RuleArgument> args);
 
 	/**
 	 * Creates a argument list from the given actual values. They should be in

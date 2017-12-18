@@ -76,9 +76,7 @@ public class AttributeConditionHandler {
 				handleDVariable2Parameter((DVariable2Parameter) c);
 			} else if (c instanceof DParameter2Parameter) {
 				handleDParameter2Parameter((DParameter2Parameter) c);
-			} else {
-				assert (false);
-			}
+			} 
 		}
 
 		// sort parameter list (by kind and name)

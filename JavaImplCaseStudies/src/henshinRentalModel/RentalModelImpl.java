@@ -39,7 +39,7 @@ import rentalServiceModel.impl.RentalServicePackageImpl;
 public class RentalModelImpl implements IRentalModel {
 
 	static int COUNT = 0;
-	
+
 	private Module henshinModule;
 	private JObjectGraph2EMFObjectGraph jObjectGraph2EMFObjectGraph;
 
@@ -76,7 +76,7 @@ public class RentalModelImpl implements IRentalModel {
 	}
 
 	@Override
-	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args) {
+	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args, boolean expectedResult) {
 		// We first copy the complete object model
 		Copier copier = new Copier();
 		Collection<EObject> clone = copier.copyAll(jObjectGraph2EMFObjectGraph.allEObjects);
@@ -84,13 +84,13 @@ public class RentalModelImpl implements IRentalModel {
 
 		// And then try to apply the rule on the copy (to not change the
 		// original as a side effect)
-		return executeRule(ruleName, args, clone);
+		return executeRule(ruleName, args, clone, expectedResult);
 	}
 
-	@Override
-	public void applyRule(String ruleName, List<RuleArgument> args) {
-		executeRule(ruleName, args, jObjectGraph2EMFObjectGraph.allEObjects);
-	}
+//	@Override
+//	public void applyRule(String ruleName, List<RuleArgument> args) {
+//		executeRule(ruleName, args, jObjectGraph2EMFObjectGraph.allEObjects);
+//	}
 
 	@Override
 	public List<RuleArgument> createArgumentList(Object... values) {
@@ -101,7 +101,7 @@ public class RentalModelImpl implements IRentalModel {
 			RuleArgument arg = new RuleArgument("Par" + argCount, value);
 			args.add(arg);
 		}
-		
+
 		return args;
 	}
 
@@ -133,7 +133,44 @@ public class RentalModelImpl implements IRentalModel {
 		}
 	}
 
-	private boolean executeRule(String ruleName, List<RuleArgument> args, Collection<EObject> eObjects) {
+	private boolean executeRule(String ruleName, List<RuleArgument> args, Collection<EObject> eObjects,
+			boolean expectedResult) {
+
+		// We might have several rules with the same name
+		ArrayList<Rule> rules = new ArrayList<Rule>();
+		for (Unit unit : henshinModule.getUnits()) {
+			if (unit.getName().substring(unit.getName().indexOf("_") + 1, unit.getName().length())
+					.equalsIgnoreCase(ruleName)) {
+				Rule rule = (Rule) unit;
+				rules.add(rule);
+			}
+		}
+
+		// If no rule is found, it is definitely not applicable (because not yet
+		// learned)
+		if (rules.isEmpty()) {
+			return false;
+		}
+
+		boolean atLeastOneExecutable = false;
+		boolean atLeastOneNonExecutable = false;
+		for (Rule rule : rules) {
+			boolean executable = executeRule(rule, args, eObjects);
+			if (executable) {
+				atLeastOneExecutable = true;
+			} else {
+				atLeastOneNonExecutable = true;
+			}
+		}
+
+		if (atLeastOneExecutable && (expectedResult == false)) {
+			return atLeastOneNonExecutable;
+		} else {
+			return atLeastOneExecutable;
+		}
+	}
+
+	private boolean executeRule(Rule rule, List<RuleArgument> args, Collection<EObject> eObjects) {
 		// Engine
 		Engine engine = new EngineImpl();
 
@@ -143,77 +180,71 @@ public class RentalModelImpl implements IRentalModel {
 			graph.add(eObject);
 		}
 
-		// Get Rule
-		Rule rule = null;
-		for (Unit unit : henshinModule.getUnits()) {
-			if (unit.getName().substring(unit.getName().indexOf("_") + 1, unit.getName().length()).equalsIgnoreCase(ruleName)){
-				rule = (Rule) unit;
+		// RuleApplication
+		RuleApplication ruleApp = new RuleApplicationImpl(engine);
+		ruleApp.setEGraph(graph);
+		ruleApp.setRule(rule);
+		
+		// Params
+		for (RuleArgument arg : args) {
+			if (rule.getParameter(arg.getParamName()) != null) {
+				ruleApp.setParameterValue(arg.getParamName(), arg.getParamValue());
 			}
 		}
-
-		// If rule is not found, it is not applicable (not yet learned)
-		if (rule == null){
-			return false;
-		}
 		
-		// Only DEBUG
-		rule.getAttributeConditions().clear();
-		// End DEBUG
+		// And now try to execute
+		boolean success = ruleApp.execute(null);
 		
-		// Find all matches
-		Iterator<Match> matchFinder = engine.findMatches(rule, graph, null).iterator();
-
-		// Find all matches
-		while (matchFinder.hasNext()) {
-			System.out.println("MATCH");
-			Match match = matchFinder.next();
-
-			// Create Rule Application with prematch, which is actually a
-			// complete match)
-			RuleApplication ruleApp = new RuleApplicationImpl(engine);
-			ruleApp.setEGraph(graph);
-			ruleApp.setRule(rule);
-			ruleApp.setCompleteMatch(match);
-
-			// Params
-			for (RuleArgument arg : args) {
-				if (rule.getParameter(arg.getParamName()) != null){
-					ruleApp.setParameterValue(arg.getParamName(), arg.getParamValue());
-				}
-			}
-
-			// And now try to execute
+		return success;
+				
+//		// Find all matches
+//		Iterator<Match> matchFinder = engine.findMatches(rule, graph, null).iterator();
+//
+//		// Find all matches
+//		while (matchFinder.hasNext()) {
+//			Match match = matchFinder.next();
+//
+//			// Create Rule Application with prematch, which is actually a
+//			// complete match)
+//			RuleApplication ruleApp = new RuleApplicationImpl(engine);
+//			ruleApp.setEGraph(graph);
+//			ruleApp.setRule(rule);
+//			ruleApp.setCompleteMatch(match);
+//
+//
+//
+//			// And now try to execute
 //			boolean success = ruleApp.execute(null);
 //			if (success) {
 //				return true;
 //			}
-		}
-
-		return false;
+//		}
+//
+//		return false;
 	}
 
 	public void loadModuleFromFile(String path, String filename) {
 		HenshinResourceSet resourceSet = new HenshinResourceSet(path);
 		this.henshinModule = resourceSet.getModule(filename, false);
 
-//		for (Unit u : henshinModule.getUnits()) {
-//			System.out.println(u.getName());
-//		}
+		// for (Unit u : henshinModule.getUnits()) {
+		// System.out.println(u.getName());
+		// }
 	}
 
-	public void loadObjectModelFromFile(String file){
+	public void loadObjectModelFromFile(String file) {
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createFileURI(file), true);
-		
+
 		ArrayList<EObject> allObjects = new ArrayList<EObject>();
 		for (Iterator<EObject> iterator = resource.getAllContents(); iterator.hasNext();) {
 			EObject eObject = iterator.next();
-			allObjects.add(eObject);			
+			allObjects.add(eObject);
 		}
 		jObjectGraph2EMFObjectGraph = new JRental2EMFRental();
-		jObjectGraph2EMFObjectGraph.allEObjects = allObjects;		
+		jObjectGraph2EMFObjectGraph.allEObjects = allObjects;
 	}
-	
+
 	public static void main(String[] args) {
 
 		RentalModelImpl rentalModel = new RentalModelImpl();
