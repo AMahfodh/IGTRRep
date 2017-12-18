@@ -76,7 +76,7 @@ public class RentalModelImpl implements IRentalModel {
 	}
 
 	@Override
-	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args, boolean expectedResult) {
+	public boolean isRuleApplicable(String ruleID, String ruleName, List<RuleArgument> args, boolean expectedResult) {
 		// We first copy the complete object model
 		Copier copier = new Copier();
 		Collection<EObject> clone = copier.copyAll(jObjectGraph2EMFObjectGraph.allEObjects);
@@ -84,7 +84,13 @@ public class RentalModelImpl implements IRentalModel {
 
 		// And then try to apply the rule on the copy (to not change the
 		// original as a side effect)
-		return executeRule(ruleName, args, clone, expectedResult);
+		
+		Rule rule = (Rule) henshinModule.getUnit(ruleID + "_" + ruleName);
+		if (rule == null){
+			return false;
+		} else {
+			return executeRule(rule, args, clone);
+		}
 	}
 
 //	@Override
@@ -133,42 +139,42 @@ public class RentalModelImpl implements IRentalModel {
 		}
 	}
 
-	private boolean executeRule(String ruleName, List<RuleArgument> args, Collection<EObject> eObjects,
-			boolean expectedResult) {
-
-		// We might have several rules with the same name
-		ArrayList<Rule> rules = new ArrayList<Rule>();
-		for (Unit unit : henshinModule.getUnits()) {
-			if (unit.getName().substring(unit.getName().indexOf("_") + 1, unit.getName().length())
-					.equalsIgnoreCase(ruleName)) {
-				Rule rule = (Rule) unit;
-				rules.add(rule);
-			}
-		}
-
-		// If no rule is found, it is definitely not applicable (because not yet
-		// learned)
-		if (rules.isEmpty()) {
-			return false;
-		}
-
-		boolean atLeastOneExecutable = false;
-		boolean atLeastOneNonExecutable = false;
-		for (Rule rule : rules) {
-			boolean executable = executeRule(rule, args, eObjects);
-			if (executable) {
-				atLeastOneExecutable = true;
-			} else {
-				atLeastOneNonExecutable = true;
-			}
-		}
-
-		if (atLeastOneExecutable && (expectedResult == false)) {
-			return atLeastOneNonExecutable;
-		} else {
-			return atLeastOneExecutable;
-		}
-	}
+//	private boolean executeRule(String ruleName, List<RuleArgument> args, Collection<EObject> eObjects,
+//			boolean expectedResult) {
+//
+//		// We might have several rules with the same name
+//		ArrayList<Rule> rules = new ArrayList<Rule>();
+//		for (Unit unit : henshinModule.getUnits()) {
+//			if (unit.getName().substring(unit.getName().indexOf("_") + 1, unit.getName().length())
+//					.equalsIgnoreCase(ruleName)) {
+//				Rule rule = (Rule) unit;
+//				rules.add(rule);
+//			}
+//		}
+//
+//		// If no rule is found, it is definitely not applicable (because not yet
+//		// learned)
+//		if (rules.isEmpty()) {
+//			return false;
+//		}
+//
+//		boolean atLeastOneExecutable = false;
+//		boolean atLeastOneNonExecutable = false;
+//		for (Rule rule : rules) {
+//			boolean executable = executeRule(rule, args, eObjects);
+//			if (executable) {
+//				atLeastOneExecutable = true;
+//			} else {
+//				atLeastOneNonExecutable = true;
+//			}
+//		}
+//
+//		if (atLeastOneExecutable && (expectedResult == false)) {
+//			return atLeastOneNonExecutable;
+//		} else {
+//			return atLeastOneExecutable;
+//		}
+//	}
 
 	private boolean executeRule(Rule rule, List<RuleArgument> args, Collection<EObject> eObjects) {
 		// Engine

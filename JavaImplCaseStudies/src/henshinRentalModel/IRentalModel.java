@@ -37,7 +37,7 @@ public interface IRentalModel {
 	 * 
 	 * @return
 	 */
-	public boolean isRuleApplicable(String ruleName, List<RuleArgument> args, boolean expectedResult);
+	public boolean isRuleApplicable(String ruleID, String ruleName, List<RuleArgument> args, boolean expectedResult);
 
 	// /**
 	// * Assumes that the rule with name ruleName is applicable. The application

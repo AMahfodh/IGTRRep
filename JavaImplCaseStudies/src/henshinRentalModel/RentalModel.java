@@ -44,7 +44,7 @@ public class RentalModel {
 		
 		this.refreshEMFObjectModel();
 		
-		return this.rmi.isRuleApplicable(strRuleName, args, true);
+		return this.rmi.isRuleApplicable("ID-goes-here", strRuleName, args, true);
 	}
 		
 	
