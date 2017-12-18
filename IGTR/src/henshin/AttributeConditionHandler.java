@@ -38,7 +38,7 @@ public class AttributeConditionHandler {
 	private List<DConstraint> invariantConstraints = new ArrayList<DConstraint>();
 
 	// we count the conditions to give them a generic name
-	private int conditionCounter = 1;
+	private int conditionCounter = 0;
 
 	public AttributeConditionHandler(DBRuleToHenshinRule dbRule2hRule) {
 		super();
