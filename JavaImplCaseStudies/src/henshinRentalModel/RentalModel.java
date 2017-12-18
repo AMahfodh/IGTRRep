@@ -64,4 +64,14 @@ public class RentalModel {
 //		return false;
 		return this.onlyCheckRuleApplicability(strRuleName, strPar1, strPar2, strPar3);
 	}	
+	
+	
+	public void printHenshinRulesAndObjectModel(String strTestCaseAsModelName){
+		this.rmi.dumpHenshinRules(strTestCaseAsModelName);
+		this.rmi.dumpObjectModel(strTestCaseAsModelName);
+	}
+	
+	
 }
+
+
