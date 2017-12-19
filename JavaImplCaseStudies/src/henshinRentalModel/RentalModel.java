@@ -35,24 +35,28 @@ public class RentalModel {
 	
 	
 	public Boolean onlyCheckRuleApplicability(
+			String strRuleID,
 			String strRuleName,
 			String strPar1,
 			String strPar2,
-			String strPar3){
+			String strPar3,
+			boolean expectedResult){
 				
 		List<RuleArgument> args = this.rmi.createArgumentList(strPar1, strPar2, strPar3);
 		
 		this.refreshEMFObjectModel();
 		
-		return this.rmi.isRuleApplicable("ID-goes-here", strRuleName, args, true);
+		return this.rmi.isRuleApplicable(strRuleID, strRuleName, args, expectedResult);
 	}
 		
 	
 	public Boolean checkAndApplyRule(
+			String strRuleID,
 			String strRuleName,
 			String strPar1,
 			String strPar2,
-			String strPar3){
+			String strPar3,
+			boolean expectedResult){
 		
 //		List<RuleArgument> args = this.rmi.createArgumentList(strPar1, strPar2, strPar3);
 //
@@ -62,7 +66,7 @@ public class RentalModel {
 //		}
 //
 //		return false;
-		return this.onlyCheckRuleApplicability(strRuleName, strPar1, strPar2, strPar3);
+		return this.onlyCheckRuleApplicability(strRuleID, strRuleName, strPar1, strPar2, strPar3, expectedResult);
 	}	
 	
 	

@@ -47,7 +47,7 @@ public class VContractValidation {
 	public void setUp() throws Exception {
 
 
-		this.splitPercent= strSplit.p80;
+		this.splitPercent= strSplit.p20;
 		
 		this.testWriter = new PrintWriter("ValidationOutput_" + this.splitPercent.name(), "UTF-8");
 		
@@ -334,67 +334,81 @@ public class VContractValidation {
 	
 	private void ValidationDecisionTree (
 			int iRound, String strTestCaseA_E,
-			Object IsThrownException,
+			Object IsThrownExceptionPlusExpectedResult,
 			String strRuleName, String par1){
-		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownException, strRuleName, par1, null, null);
+		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownExceptionPlusExpectedResult, strRuleName, par1, null, null);
 	}
 	
 	private void ValidationDecisionTree (
 			int iRound, String strTestCaseA_E,
-			Object IsThrownException,
+			Object IsThrownExceptionPlusExpectedResult,
 			String strRuleName, String par1, String par2){
-		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownException, strRuleName, par1, par2, null);
+		this.ValidationDecisionTree(iRound, strTestCaseA_E, IsThrownExceptionPlusExpectedResult, strRuleName, par1, par2, null);
 	}
 	
 	private void ValidationDecisionTree (
 			int iRound, String strTestCaseA_E,
-			Object IsThrownException,
+			Object IsThrownExceptionPlusExpectedResult,
 			String strRuleName, String par1, String par2, String par3){
 		
-		String strDec="";		
-		Boolean isThrownException = null;
+		
+		boolean expectedResult = false;
+		String strDec="";
 		
 		
-		if (IsThrownException!=null){
-			if (IsThrownException instanceof Boolean){
-				isThrownException=(Boolean)IsThrownException;
+		if (IsThrownExceptionPlusExpectedResult!=null){
+			if (IsThrownExceptionPlusExpectedResult instanceof Boolean){
+				expectedResult=(Boolean)IsThrownExceptionPlusExpectedResult;
 			}
-			else if (IsThrownException instanceof String){
-				isThrownException=((String)IsThrownException).length()>0;
+			else if (IsThrownExceptionPlusExpectedResult instanceof String){
+				expectedResult=((String)IsThrownExceptionPlusExpectedResult).length()>0;
 			}
 		}
 		
 		
 		
-		if (isThrownException==null || isThrownException==false){
+		if (!expectedResult){
 			
-			/* check if rule-applicable without changing model state: FN if (Yes), TN  otherwise */
-			if (this.henshinRentalModel.onlyCheckRuleApplicability(strRuleName, par1, par2, par3)){
-				strDec="FN\tincorrect: rule shouldn't be applicable";
+			/* This includes thrown-exception cases or false expectedResult representing failed tests
+			 * check if rule-applicable without changing model state: FP if (Yes), TN  otherwise */
+			if (this.henshinRentalModel.onlyCheckRuleApplicability("", strRuleName, par1, par2, par3, expectedResult)){
+				strDec="FP\tincorrect: rule shouldn't be applicable";
 			}
 			else {
 				strDec="TN\tcomplete";
 			}			
 		}
-		//else if (this.isLastContractInstanceAddedMatched()){
-		else {	
-			/*	check if the minimal rule exists in inferred contracts
-				then, check the applicability of maximal rule TP (Yes), FP (No)*/
+		else {
+			
+			/*  - test has passed 	
+			 *  - check if the minimal rule exists in the inferred contracts
+			 *  - return max-rule id if yes, and negative value if false
+			 *  - check the applicability of maximal rule if max-rule id>0 */
+			
+			int iMaxID= this.isLastContractInstanceAddedMatched();
+			
+			if (iMaxID!=-1){
 				
-			if (this.henshinRentalModel.checkAndApplyRule(strRuleName, par1, par2, par3)){
-				strDec="TP\tcorrect";
+				if (this.henshinRentalModel.checkAndApplyRule(iMaxID+"", strRuleName, par1, par2, par3, expectedResult)){
+					strDec="TP\tcorrect";
+				} 
+				else {
+					strDec="FN\tincomplete: maxRule isn't applicable";
+					
+					/**
+					 * For debugging ..
+					 * this.henshinRentalModel.printHenshinRulesAndObjectModel(
+					 * "r" + iRound + "-tc" + strTestCaseA_E + (this.iInvocationCount+1));
+					 */
+				}
 			} 
 			else {
-				strDec="FP\tincomplete: maxRule isn't applicable";
-				this.henshinRentalModel.printHenshinRulesAndObjectModel(
-						"r" + iRound + "-tc" + strTestCaseA_E + (this.iInvocationCount+1));
+				
+				/*FP (No)*/
+				strDec="FN\tincomplete: minRule doesn't exists";
 			}
-		} 
-		//else {
-			
-			/*FP (No)*/
-		//	strDec="FP\tincomplete: minRule doesn't exists";
-		//}
+
+		}
 		
 		
 		
@@ -447,7 +461,7 @@ public class VContractValidation {
 		return "Validation";
 	}
 		
-	private boolean isLastContractInstanceAddedMatched(){		
+	private int isLastContractInstanceAddedMatched(){		
 		/*
 		 *  - if the rule is empty or no minimal rule found then the return will be FALSE, TRUE otherwise.
 		 *  - Delete last added rule after checking 

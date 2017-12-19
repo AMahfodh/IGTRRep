@@ -1,173 +1,173 @@
-#Round 1	Precision	 0.89	Recall	0.63
-#Round 2	Precision	 0.76	Recall	0.48
-#Round 3	Precision	 0.86	Recall	0.44
-#Round 4	Precision	 0.82	Recall	0.58
-#Round 5	Precision	 0.75	Recall	0.56
+#Round 1	Precision	 1	Recall	0.21
+#Round 2	Precision	 1	Recall	0.12
+#Round 3	Precision	 1	Recall	0.21
+#Round 4	Precision	 1	Recall	0.29
+#Round 5	Precision	 1	Recall	0.3
 
 r1-tcB1	RegisterClient	TP	correct
-r1-tcB2	makeReservation	TP	correct
+r1-tcB2	makeReservation	FN	incomplete: minRule doesn't exists
 r1-tcB3	RegisterClient	TP	correct
 r1-tcB4	dropoffCar	TN	complete
-r1-tcB5	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r1-tcB6	makeReservation	FN	incorrect: rule shouldn't be applicable
-r1-tcB7	makeReservation	TP	correct
-r1-tcB8	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcB5	RegisterClient	TN	complete
+r1-tcB6	makeReservation	TN	complete
+r1-tcB7	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcB8	cancelReservation	TN	complete
 r1-tcB9	dropoffCar	TN	complete
-r1-tcB10	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcB10	cancelReservation	TN	complete
 r1-tcB11	dropoffCar	TN	complete
 r1-tcC12	RegisterClient	TP	correct
 r1-tcC13	RegisterClient	TP	correct
-r1-tcC14	makeReservation	TP	correct
-r1-tcC15	makeReservation	TP	correct
-r1-tcC16	pickupCar	TP	correct
-r1-tcC17	cancelReservation	TP	correct
+r1-tcC14	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcC15	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcC16	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcC17	cancelReservation	FN	incomplete: minRule doesn't exists
 r1-tcC18	dropoffCar	TN	complete
-r1-tcC19	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcC19	pickupCar	TN	complete
 r1-tcC20	dropoffCar	TN	complete
-r1-tcC21	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
-r1-tcC22	cancelClientReservation	TP	correct
-r1-tcD23	registerClient	TP	correct
-r1-tcD24	makeReservation	TP	correct
+r1-tcC21	cancelClientReservation	TN	complete
+r1-tcC22	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r1-tcD23	registerClient	FN	incomplete: maxRule isn't applicable
+r1-tcD24	makeReservation	FN	incomplete: minRule doesn't exists
 r1-tcD25	dropoffCar	TN	complete
-r1-tcD26	pickupCar	TP	correct
-r1-tcD27	pickupCar	FN	incorrect: rule shouldn't be applicable
-r1-tcD28	dropoffCar	FP	incomplete: maxRule isn't applicable
+r1-tcD26	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcD27	pickupCar	TN	complete
+r1-tcD28	dropoffCar	FN	incomplete: minRule doesn't exists
 r1-tcD29	dropoffCar	TN	complete
-r1-tcD30	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD30	pickupCar	TN	complete
 r1-tcD31	dropoffCar	TN	complete
-r1-tcE32	registerClient	TP	correct
-r1-tcE33	makeReservation	TP	correct
-r1-tcE34	pickupCar	TP	correct
-r1-tcE35	pickupCar	FN	incorrect: rule shouldn't be applicable
-r1-tcE36	dropoffCar	FP	incomplete: maxRule isn't applicable
+r1-tcE32	registerClient	FN	incomplete: maxRule isn't applicable
+r1-tcE33	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcE34	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcE35	pickupCar	TN	complete
+r1-tcE36	dropoffCar	FN	incomplete: minRule doesn't exists
 r1-tcE37	dropoffCar	TN	complete
-r1-tcE38	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcE38	pickupCar	TN	complete
 r1-tcE39	dropoffCar	TN	complete
 r1-tcB40	RegisterClient	TP	correct
-r1-tcB41	makeReservation	TP	correct
+r1-tcB41	makeReservation	FN	incomplete: minRule doesn't exists
 r1-tcB42	RegisterClient	TP	correct
 r1-tcB43	dropoffCar	TN	complete
-r1-tcB44	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r1-tcB45	makeReservation	FN	incorrect: rule shouldn't be applicable
-r1-tcB46	makeReservation	TP	correct
-r1-tcB47	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcB44	RegisterClient	TN	complete
+r1-tcB45	makeReservation	TN	complete
+r1-tcB46	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcB47	cancelReservation	TN	complete
 r1-tcB48	dropoffCar	TN	complete
-r1-tcB49	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r1-tcB49	cancelReservation	TN	complete
 r1-tcB50	dropoffCar	TN	complete
 r1-tcC51	RegisterClient	TP	correct
 r1-tcC52	RegisterClient	TP	correct
-r1-tcC53	makeReservation	TP	correct
-r1-tcC54	makeReservation	TP	correct
-r1-tcC55	pickupCar	TP	correct
-r1-tcC56	cancelReservation	TP	correct
+r1-tcC53	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcC54	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcC55	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcC56	cancelReservation	FN	incomplete: minRule doesn't exists
 r1-tcC57	dropoffCar	TN	complete
-r1-tcC58	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcC58	pickupCar	TN	complete
 r1-tcC59	dropoffCar	TN	complete
-r1-tcC60	cancelClientReservation	FN	incorrect: rule shouldn't be applicable
-r1-tcC61	cancelClientReservation	TP	correct
-r1-tcD62	registerClient	TP	correct
-r1-tcD63	makeReservation	TP	correct
+r1-tcC60	cancelClientReservation	TN	complete
+r1-tcC61	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r1-tcD62	registerClient	FN	incomplete: maxRule isn't applicable
+r1-tcD63	makeReservation	FN	incomplete: minRule doesn't exists
 r1-tcD64	dropoffCar	TN	complete
-r1-tcD65	pickupCar	TP	correct
-r1-tcD66	pickupCar	FN	incorrect: rule shouldn't be applicable
-r1-tcD67	dropoffCar	FP	incomplete: maxRule isn't applicable
+r1-tcD65	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcD66	pickupCar	TN	complete
+r1-tcD67	dropoffCar	FN	incomplete: minRule doesn't exists
 r1-tcD68	dropoffCar	TN	complete
-r1-tcD69	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcD69	pickupCar	TN	complete
 r1-tcD70	dropoffCar	TN	complete
-r1-tcE71	registerClient	TP	correct
-r1-tcE72	makeReservation	TP	correct
-r1-tcE73	pickupCar	TP	correct
-r1-tcE74	pickupCar	FN	incorrect: rule shouldn't be applicable
-r1-tcE75	dropoffCar	FP	incomplete: maxRule isn't applicable
+r1-tcE71	registerClient	FN	incomplete: maxRule isn't applicable
+r1-tcE72	makeReservation	FN	incomplete: minRule doesn't exists
+r1-tcE73	pickupCar	FN	incomplete: minRule doesn't exists
+r1-tcE74	pickupCar	TN	complete
+r1-tcE75	dropoffCar	FN	incomplete: minRule doesn't exists
 r1-tcE76	dropoffCar	TN	complete
-r1-tcE77	pickupCar	FN	incorrect: rule shouldn't be applicable
+r1-tcE77	pickupCar	TN	complete
 r1-tcE78	dropoffCar	TN	complete
-#Round 1	Precision	 0.89	Recall	0.63
+#Round 1	Precision	 1	Recall	0.21
 
-r2-tcA79	registerClient	TP	correct
-r2-tcA80	registerClient	TP	correct
-r2-tcA81	makeReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA82	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA79	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcA80	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcA81	makeReservation	TN	complete
+r2-tcA82	makeReservation	TN	complete
 r2-tcA83	pickupCar	TN	complete
-r2-tcA84	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA85	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA86	makeReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA87	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA84	cancelReservation	TN	complete
+r2-tcA85	cancelReservation	TN	complete
+r2-tcA86	makeReservation	TN	complete
+r2-tcA87	cancelReservation	TN	complete
 r2-tcA88	cancelClientReservation	TN	complete
 r2-tcA89	cancelClientReservation	TN	complete
-r2-tcA90	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA90	makeReservation	TN	complete
 r2-tcC91	RegisterClient	TP	correct
 r2-tcC92	RegisterClient	TP	correct
-r2-tcC93	makeReservation	TP	correct
-r2-tcC94	makeReservation	TP	correct
-r2-tcC95	pickupCar	FP	incomplete: maxRule isn't applicable
-r2-tcC96	cancelReservation	TP	correct
-r2-tcC97	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcC93	makeReservation	FN	incomplete: minRule doesn't exists
+r2-tcC94	makeReservation	FN	incomplete: maxRule isn't applicable
+r2-tcC95	pickupCar	FN	incomplete: minRule doesn't exists
+r2-tcC96	cancelReservation	FN	incomplete: minRule doesn't exists
+r2-tcC97	dropoffCar	TN	complete
 r2-tcC98	pickupCar	TN	complete
-r2-tcC99	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcC99	dropoffCar	TN	complete
 r2-tcC100	cancelClientReservation	TN	complete
-r2-tcC101	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r2-tcD102	registerClient	TP	correct
-r2-tcD103	makeReservation	TP	correct
-r2-tcD104	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r2-tcD105	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcC101	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r2-tcD102	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcD103	makeReservation	FN	incomplete: maxRule isn't applicable
+r2-tcD104	dropoffCar	TN	complete
+r2-tcD105	pickupCar	FN	incomplete: minRule doesn't exists
 r2-tcD106	pickupCar	TN	complete
-r2-tcD107	dropoffCar	TP	correct
-r2-tcD108	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD107	dropoffCar	FN	incomplete: minRule doesn't exists
+r2-tcD108	dropoffCar	TN	complete
 r2-tcD109	pickupCar	TN	complete
-r2-tcD110	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r2-tcE111	registerClient	TP	correct
-r2-tcE112	makeReservation	TP	correct
-r2-tcE113	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcD110	dropoffCar	TN	complete
+r2-tcE111	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcE112	makeReservation	FN	incomplete: minRule doesn't exists
+r2-tcE113	pickupCar	FN	incomplete: minRule doesn't exists
 r2-tcE114	pickupCar	TN	complete
-r2-tcE115	dropoffCar	TP	correct
-r2-tcE116	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcE115	dropoffCar	FN	incomplete: minRule doesn't exists
+r2-tcE116	dropoffCar	TN	complete
 r2-tcE117	pickupCar	TN	complete
-r2-tcE118	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r2-tcA119	registerClient	TP	correct
-r2-tcA120	registerClient	TP	correct
-r2-tcA121	makeReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA122	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcE118	dropoffCar	TN	complete
+r2-tcA119	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcA120	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcA121	makeReservation	TN	complete
+r2-tcA122	makeReservation	TN	complete
 r2-tcA123	pickupCar	TN	complete
-r2-tcA124	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA125	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA126	makeReservation	FN	incorrect: rule shouldn't be applicable
-r2-tcA127	cancelReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA124	cancelReservation	TN	complete
+r2-tcA125	cancelReservation	TN	complete
+r2-tcA126	makeReservation	TN	complete
+r2-tcA127	cancelReservation	TN	complete
 r2-tcA128	cancelClientReservation	TN	complete
 r2-tcA129	cancelClientReservation	TN	complete
-r2-tcA130	makeReservation	FN	incorrect: rule shouldn't be applicable
+r2-tcA130	makeReservation	TN	complete
 r2-tcC131	RegisterClient	TP	correct
 r2-tcC132	RegisterClient	TP	correct
-r2-tcC133	makeReservation	TP	correct
-r2-tcC134	makeReservation	TP	correct
-r2-tcC135	pickupCar	FP	incomplete: maxRule isn't applicable
-r2-tcC136	cancelReservation	TP	correct
-r2-tcC137	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcC133	makeReservation	FN	incomplete: minRule doesn't exists
+r2-tcC134	makeReservation	FN	incomplete: maxRule isn't applicable
+r2-tcC135	pickupCar	FN	incomplete: minRule doesn't exists
+r2-tcC136	cancelReservation	FN	incomplete: minRule doesn't exists
+r2-tcC137	dropoffCar	TN	complete
 r2-tcC138	pickupCar	TN	complete
-r2-tcC139	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcC139	dropoffCar	TN	complete
 r2-tcC140	cancelClientReservation	TN	complete
-r2-tcC141	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r2-tcD142	registerClient	TP	correct
-r2-tcD143	makeReservation	TP	correct
-r2-tcD144	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r2-tcD145	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcC141	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r2-tcD142	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcD143	makeReservation	FN	incomplete: maxRule isn't applicable
+r2-tcD144	dropoffCar	TN	complete
+r2-tcD145	pickupCar	FN	incomplete: minRule doesn't exists
 r2-tcD146	pickupCar	TN	complete
-r2-tcD147	dropoffCar	TP	correct
-r2-tcD148	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcD147	dropoffCar	FN	incomplete: minRule doesn't exists
+r2-tcD148	dropoffCar	TN	complete
 r2-tcD149	pickupCar	TN	complete
-r2-tcD150	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r2-tcE151	registerClient	TP	correct
-r2-tcE152	makeReservation	TP	correct
-r2-tcE153	pickupCar	FP	incomplete: maxRule isn't applicable
+r2-tcD150	dropoffCar	TN	complete
+r2-tcE151	registerClient	FN	incomplete: maxRule isn't applicable
+r2-tcE152	makeReservation	FN	incomplete: minRule doesn't exists
+r2-tcE153	pickupCar	FN	incomplete: minRule doesn't exists
 r2-tcE154	pickupCar	TN	complete
-r2-tcE155	dropoffCar	TP	correct
-r2-tcE156	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r2-tcE155	dropoffCar	FN	incomplete: minRule doesn't exists
+r2-tcE156	dropoffCar	TN	complete
 r2-tcE157	pickupCar	TN	complete
-r2-tcE158	dropoffCar	FN	incorrect: rule shouldn't be applicable
-#Round 2	Precision	 0.76	Recall	0.48
+r2-tcE158	dropoffCar	TN	complete
+#Round 2	Precision	 1	Recall	0.12
 
-r3-tcA159	registerClient	TP	correct
-r3-tcA160	registerClient	TP	correct
+r3-tcA159	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcA160	registerClient	FN	incomplete: maxRule isn't applicable
 r3-tcA161	makeReservation	TN	complete
 r3-tcA162	makeReservation	TN	complete
 r3-tcA163	pickupCar	TN	complete
@@ -179,35 +179,35 @@ r3-tcA168	cancelClientReservation	TN	complete
 r3-tcA169	cancelClientReservation	TN	complete
 r3-tcA170	makeReservation	TN	complete
 r3-tcB171	RegisterClient	TP	correct
-r3-tcB172	makeReservation	FP	incomplete: maxRule isn't applicable
+r3-tcB172	makeReservation	FN	incomplete: maxRule isn't applicable
 r3-tcB173	RegisterClient	TP	correct
-r3-tcB174	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcB175	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r3-tcB176	makeReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB177	makeReservation	TP	correct
-r3-tcB178	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB179	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcB180	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB181	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD182	registerClient	TP	correct
-r3-tcD183	makeReservation	TP	correct
-r3-tcD184	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD185	pickupCar	FP	incomplete: maxRule isn't applicable
+r3-tcB174	dropoffCar	TN	complete
+r3-tcB175	RegisterClient	TN	complete
+r3-tcB176	makeReservation	TN	complete
+r3-tcB177	makeReservation	FN	incomplete: maxRule isn't applicable
+r3-tcB178	cancelReservation	TN	complete
+r3-tcB179	dropoffCar	TN	complete
+r3-tcB180	cancelReservation	TN	complete
+r3-tcB181	dropoffCar	TN	complete
+r3-tcD182	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcD183	makeReservation	FN	incomplete: maxRule isn't applicable
+r3-tcD184	dropoffCar	TN	complete
+r3-tcD185	pickupCar	FN	incomplete: maxRule isn't applicable
 r3-tcD186	pickupCar	TN	complete
-r3-tcD187	dropoffCar	TP	correct
-r3-tcD188	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD189	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD190	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE191	registerClient	TP	correct
-r3-tcE192	makeReservation	TP	correct
+r3-tcD187	dropoffCar	FN	incomplete: minRule doesn't exists
+r3-tcD188	dropoffCar	TN	complete
+r3-tcD189	pickupCar	TN	complete
+r3-tcD190	dropoffCar	TN	complete
+r3-tcE191	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcE192	makeReservation	FN	incomplete: maxRule isn't applicable
 r3-tcE193	pickupCar	TP	correct
-r3-tcE194	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE195	dropoffCar	TP	correct
-r3-tcE196	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE197	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE198	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcA199	registerClient	TP	correct
-r3-tcA200	registerClient	TP	correct
+r3-tcE194	pickupCar	TN	complete
+r3-tcE195	dropoffCar	FN	incomplete: minRule doesn't exists
+r3-tcE196	dropoffCar	TN	complete
+r3-tcE197	pickupCar	TN	complete
+r3-tcE198	dropoffCar	TN	complete
+r3-tcA199	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcA200	registerClient	FN	incomplete: maxRule isn't applicable
 r3-tcA201	makeReservation	TN	complete
 r3-tcA202	makeReservation	TN	complete
 r3-tcA203	pickupCar	TN	complete
@@ -219,37 +219,37 @@ r3-tcA208	cancelClientReservation	TN	complete
 r3-tcA209	cancelClientReservation	TN	complete
 r3-tcA210	makeReservation	TN	complete
 r3-tcB211	RegisterClient	TP	correct
-r3-tcB212	makeReservation	FP	incomplete: maxRule isn't applicable
+r3-tcB212	makeReservation	FN	incomplete: maxRule isn't applicable
 r3-tcB213	RegisterClient	TP	correct
-r3-tcB214	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcB215	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r3-tcB216	makeReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB217	makeReservation	TP	correct
-r3-tcB218	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB219	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcB220	cancelReservation	FN	incorrect: rule shouldn't be applicable
-r3-tcB221	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD222	registerClient	TP	correct
-r3-tcD223	makeReservation	TP	correct
-r3-tcD224	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD225	pickupCar	FP	incomplete: maxRule isn't applicable
+r3-tcB214	dropoffCar	TN	complete
+r3-tcB215	RegisterClient	TN	complete
+r3-tcB216	makeReservation	TN	complete
+r3-tcB217	makeReservation	FN	incomplete: maxRule isn't applicable
+r3-tcB218	cancelReservation	TN	complete
+r3-tcB219	dropoffCar	TN	complete
+r3-tcB220	cancelReservation	TN	complete
+r3-tcB221	dropoffCar	TN	complete
+r3-tcD222	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcD223	makeReservation	FN	incomplete: maxRule isn't applicable
+r3-tcD224	dropoffCar	TN	complete
+r3-tcD225	pickupCar	FN	incomplete: maxRule isn't applicable
 r3-tcD226	pickupCar	TN	complete
-r3-tcD227	dropoffCar	TP	correct
-r3-tcD228	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD229	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcD230	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE231	registerClient	TP	correct
-r3-tcE232	makeReservation	TP	correct
+r3-tcD227	dropoffCar	FN	incomplete: minRule doesn't exists
+r3-tcD228	dropoffCar	TN	complete
+r3-tcD229	pickupCar	TN	complete
+r3-tcD230	dropoffCar	TN	complete
+r3-tcE231	registerClient	FN	incomplete: maxRule isn't applicable
+r3-tcE232	makeReservation	FN	incomplete: maxRule isn't applicable
 r3-tcE233	pickupCar	TP	correct
-r3-tcE234	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE235	dropoffCar	TP	correct
-r3-tcE236	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE237	pickupCar	FN	incorrect: rule shouldn't be applicable
-r3-tcE238	dropoffCar	FN	incorrect: rule shouldn't be applicable
-#Round 3	Precision	 0.86	Recall	0.44
+r3-tcE234	pickupCar	TN	complete
+r3-tcE235	dropoffCar	FN	incomplete: minRule doesn't exists
+r3-tcE236	dropoffCar	TN	complete
+r3-tcE237	pickupCar	TN	complete
+r3-tcE238	dropoffCar	TN	complete
+#Round 3	Precision	 1	Recall	0.21
 
-r4-tcA239	registerClient	TP	correct
-r4-tcA240	registerClient	TP	correct
+r4-tcA239	registerClient	FN	incomplete: maxRule isn't applicable
+r4-tcA240	registerClient	FN	incomplete: maxRule isn't applicable
 r4-tcA241	makeReservation	TN	complete
 r4-tcA242	makeReservation	TN	complete
 r4-tcA243	pickupCar	TN	complete
@@ -261,37 +261,37 @@ r4-tcA248	cancelClientReservation	TN	complete
 r4-tcA249	cancelClientReservation	TN	complete
 r4-tcA250	makeReservation	TN	complete
 r4-tcB251	RegisterClient	TP	correct
-r4-tcB252	makeReservation	TP	correct
+r4-tcB252	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcB253	RegisterClient	TP	correct
-r4-tcB254	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r4-tcB255	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r4-tcB256	makeReservation	FN	incorrect: rule shouldn't be applicable
-r4-tcB257	makeReservation	TP	correct
+r4-tcB254	dropoffCar	TN	complete
+r4-tcB255	RegisterClient	TN	complete
+r4-tcB256	makeReservation	TN	complete
+r4-tcB257	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcB258	cancelReservation	TN	complete
-r4-tcB259	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB259	dropoffCar	TN	complete
 r4-tcB260	cancelReservation	TN	complete
-r4-tcB261	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB261	dropoffCar	TN	complete
 r4-tcC262	RegisterClient	TP	correct
 r4-tcC263	RegisterClient	TP	correct
-r4-tcC264	makeReservation	TP	correct
-r4-tcC265	makeReservation	TP	correct
+r4-tcC264	makeReservation	FN	incomplete: minRule doesn't exists
+r4-tcC265	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcC266	pickupCar	TP	correct
-r4-tcC267	cancelReservation	FP	incomplete: maxRule isn't applicable
-r4-tcC268	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r4-tcC269	pickupCar	FN	incorrect: rule shouldn't be applicable
-r4-tcC270	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcC267	cancelReservation	FN	incomplete: minRule doesn't exists
+r4-tcC268	dropoffCar	TN	complete
+r4-tcC269	pickupCar	TN	complete
+r4-tcC270	dropoffCar	TN	complete
 r4-tcC271	cancelClientReservation	TN	complete
-r4-tcC272	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r4-tcE273	registerClient	TP	correct
-r4-tcE274	makeReservation	TP	correct
-r4-tcE275	pickupCar	FP	incomplete: maxRule isn't applicable
+r4-tcC272	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r4-tcE273	registerClient	FN	incomplete: maxRule isn't applicable
+r4-tcE274	makeReservation	FN	incomplete: minRule doesn't exists
+r4-tcE275	pickupCar	FN	incomplete: maxRule isn't applicable
 r4-tcE276	pickupCar	TN	complete
-r4-tcE277	dropoffCar	TP	correct
-r4-tcE278	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcE277	dropoffCar	FN	incomplete: maxRule isn't applicable
+r4-tcE278	dropoffCar	TN	complete
 r4-tcE279	pickupCar	TN	complete
-r4-tcE280	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r4-tcA281	registerClient	TP	correct
-r4-tcA282	registerClient	TP	correct
+r4-tcE280	dropoffCar	TN	complete
+r4-tcA281	registerClient	FN	incomplete: maxRule isn't applicable
+r4-tcA282	registerClient	FN	incomplete: maxRule isn't applicable
 r4-tcA283	makeReservation	TN	complete
 r4-tcA284	makeReservation	TN	complete
 r4-tcA285	pickupCar	TN	complete
@@ -303,122 +303,122 @@ r4-tcA290	cancelClientReservation	TN	complete
 r4-tcA291	cancelClientReservation	TN	complete
 r4-tcA292	makeReservation	TN	complete
 r4-tcB293	RegisterClient	TP	correct
-r4-tcB294	makeReservation	TP	correct
+r4-tcB294	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcB295	RegisterClient	TP	correct
-r4-tcB296	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r4-tcB297	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r4-tcB298	makeReservation	FN	incorrect: rule shouldn't be applicable
-r4-tcB299	makeReservation	TP	correct
+r4-tcB296	dropoffCar	TN	complete
+r4-tcB297	RegisterClient	TN	complete
+r4-tcB298	makeReservation	TN	complete
+r4-tcB299	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcB300	cancelReservation	TN	complete
-r4-tcB301	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB301	dropoffCar	TN	complete
 r4-tcB302	cancelReservation	TN	complete
-r4-tcB303	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcB303	dropoffCar	TN	complete
 r4-tcC304	RegisterClient	TP	correct
 r4-tcC305	RegisterClient	TP	correct
-r4-tcC306	makeReservation	TP	correct
-r4-tcC307	makeReservation	TP	correct
+r4-tcC306	makeReservation	FN	incomplete: minRule doesn't exists
+r4-tcC307	makeReservation	FN	incomplete: maxRule isn't applicable
 r4-tcC308	pickupCar	TP	correct
-r4-tcC309	cancelReservation	FP	incomplete: maxRule isn't applicable
-r4-tcC310	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r4-tcC311	pickupCar	FN	incorrect: rule shouldn't be applicable
-r4-tcC312	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcC309	cancelReservation	FN	incomplete: minRule doesn't exists
+r4-tcC310	dropoffCar	TN	complete
+r4-tcC311	pickupCar	TN	complete
+r4-tcC312	dropoffCar	TN	complete
 r4-tcC313	cancelClientReservation	TN	complete
-r4-tcC314	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r4-tcE315	registerClient	TP	correct
-r4-tcE316	makeReservation	TP	correct
-r4-tcE317	pickupCar	FP	incomplete: maxRule isn't applicable
+r4-tcC314	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r4-tcE315	registerClient	FN	incomplete: maxRule isn't applicable
+r4-tcE316	makeReservation	FN	incomplete: minRule doesn't exists
+r4-tcE317	pickupCar	FN	incomplete: maxRule isn't applicable
 r4-tcE318	pickupCar	TN	complete
-r4-tcE319	dropoffCar	TP	correct
-r4-tcE320	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r4-tcE319	dropoffCar	FN	incomplete: maxRule isn't applicable
+r4-tcE320	dropoffCar	TN	complete
 r4-tcE321	pickupCar	TN	complete
-r4-tcE322	dropoffCar	FN	incorrect: rule shouldn't be applicable
-#Round 4	Precision	 0.82	Recall	0.58
+r4-tcE322	dropoffCar	TN	complete
+#Round 4	Precision	 1	Recall	0.29
 
-r5-tcA323	registerClient	TP	correct
-r5-tcA324	registerClient	TP	correct
+r5-tcA323	registerClient	FN	incomplete: maxRule isn't applicable
+r5-tcA324	registerClient	FN	incomplete: maxRule isn't applicable
 r5-tcA325	makeReservation	TN	complete
-r5-tcA326	makeReservation	TP	correct
-r5-tcA327	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcA326	makeReservation	FN	incomplete: maxRule isn't applicable
+r5-tcA327	pickupCar	FN	incomplete: maxRule isn't applicable
 r5-tcA328	cancelReservation	TN	complete
-r5-tcA329	cancelReservation	FP	incomplete: maxRule isn't applicable
+r5-tcA329	cancelReservation	FN	incomplete: minRule doesn't exists
 r5-tcA330	makeReservation	TN	complete
 r5-tcA331	cancelReservation	TN	complete
 r5-tcA332	cancelClientReservation	TN	complete
 r5-tcA333	cancelClientReservation	TN	complete
 r5-tcA334	makeReservation	TN	complete
 r5-tcB335	RegisterClient	TP	correct
-r5-tcB336	makeReservation	TP	correct
+r5-tcB336	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcB337	RegisterClient	TP	correct
-r5-tcB338	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcB339	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r5-tcB340	makeReservation	FN	incorrect: rule shouldn't be applicable
-r5-tcB341	makeReservation	TP	correct
+r5-tcB338	dropoffCar	TN	complete
+r5-tcB339	RegisterClient	TN	complete
+r5-tcB340	makeReservation	TN	complete
+r5-tcB341	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcB342	cancelReservation	TN	complete
-r5-tcB343	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB343	dropoffCar	TN	complete
 r5-tcB344	cancelReservation	TN	complete
-r5-tcB345	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB345	dropoffCar	TN	complete
 r5-tcC346	RegisterClient	TP	correct
 r5-tcC347	RegisterClient	TP	correct
-r5-tcC348	makeReservation	TP	correct
-r5-tcC349	makeReservation	TP	correct
+r5-tcC348	makeReservation	FN	incomplete: maxRule isn't applicable
+r5-tcC349	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcC350	pickupCar	TP	correct
-r5-tcC351	cancelReservation	FP	incomplete: maxRule isn't applicable
-r5-tcC352	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcC353	pickupCar	FN	incorrect: rule shouldn't be applicable
-r5-tcC354	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC351	cancelReservation	FN	incomplete: minRule doesn't exists
+r5-tcC352	dropoffCar	TN	complete
+r5-tcC353	pickupCar	TN	complete
+r5-tcC354	dropoffCar	TN	complete
 r5-tcC355	cancelClientReservation	TN	complete
-r5-tcC356	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r5-tcD357	registerClient	TP	correct
-r5-tcD358	makeReservation	TP	correct
-r5-tcD359	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD360	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcC356	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r5-tcD357	registerClient	FN	incomplete: maxRule isn't applicable
+r5-tcD358	makeReservation	FN	incomplete: minRule doesn't exists
+r5-tcD359	dropoffCar	TN	complete
+r5-tcD360	pickupCar	FN	incomplete: maxRule isn't applicable
 r5-tcD361	pickupCar	TN	complete
 r5-tcD362	dropoffCar	TP	correct
-r5-tcD363	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD364	pickupCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD365	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcA366	registerClient	TP	correct
-r5-tcA367	registerClient	TP	correct
+r5-tcD363	dropoffCar	TN	complete
+r5-tcD364	pickupCar	TN	complete
+r5-tcD365	dropoffCar	TN	complete
+r5-tcA366	registerClient	FN	incomplete: maxRule isn't applicable
+r5-tcA367	registerClient	FN	incomplete: maxRule isn't applicable
 r5-tcA368	makeReservation	TN	complete
-r5-tcA369	makeReservation	TP	correct
-r5-tcA370	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcA369	makeReservation	FN	incomplete: maxRule isn't applicable
+r5-tcA370	pickupCar	FN	incomplete: maxRule isn't applicable
 r5-tcA371	cancelReservation	TN	complete
-r5-tcA372	cancelReservation	FP	incomplete: maxRule isn't applicable
+r5-tcA372	cancelReservation	FN	incomplete: minRule doesn't exists
 r5-tcA373	makeReservation	TN	complete
 r5-tcA374	cancelReservation	TN	complete
 r5-tcA375	cancelClientReservation	TN	complete
 r5-tcA376	cancelClientReservation	TN	complete
 r5-tcA377	makeReservation	TN	complete
 r5-tcB378	RegisterClient	TP	correct
-r5-tcB379	makeReservation	TP	correct
+r5-tcB379	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcB380	RegisterClient	TP	correct
-r5-tcB381	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcB382	RegisterClient	FN	incorrect: rule shouldn't be applicable
-r5-tcB383	makeReservation	FN	incorrect: rule shouldn't be applicable
-r5-tcB384	makeReservation	TP	correct
+r5-tcB381	dropoffCar	TN	complete
+r5-tcB382	RegisterClient	TN	complete
+r5-tcB383	makeReservation	TN	complete
+r5-tcB384	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcB385	cancelReservation	TN	complete
-r5-tcB386	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB386	dropoffCar	TN	complete
 r5-tcB387	cancelReservation	TN	complete
-r5-tcB388	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcB388	dropoffCar	TN	complete
 r5-tcC389	RegisterClient	TP	correct
 r5-tcC390	RegisterClient	TP	correct
-r5-tcC391	makeReservation	TP	correct
-r5-tcC392	makeReservation	TP	correct
+r5-tcC391	makeReservation	FN	incomplete: maxRule isn't applicable
+r5-tcC392	makeReservation	FN	incomplete: minRule doesn't exists
 r5-tcC393	pickupCar	TP	correct
-r5-tcC394	cancelReservation	FP	incomplete: maxRule isn't applicable
-r5-tcC395	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcC396	pickupCar	FN	incorrect: rule shouldn't be applicable
-r5-tcC397	dropoffCar	FN	incorrect: rule shouldn't be applicable
+r5-tcC394	cancelReservation	FN	incomplete: minRule doesn't exists
+r5-tcC395	dropoffCar	TN	complete
+r5-tcC396	pickupCar	TN	complete
+r5-tcC397	dropoffCar	TN	complete
 r5-tcC398	cancelClientReservation	TN	complete
-r5-tcC399	cancelClientReservation	FP	incomplete: maxRule isn't applicable
-r5-tcD400	registerClient	TP	correct
-r5-tcD401	makeReservation	TP	correct
-r5-tcD402	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD403	pickupCar	FP	incomplete: maxRule isn't applicable
+r5-tcC399	cancelClientReservation	FN	incomplete: minRule doesn't exists
+r5-tcD400	registerClient	FN	incomplete: maxRule isn't applicable
+r5-tcD401	makeReservation	FN	incomplete: minRule doesn't exists
+r5-tcD402	dropoffCar	TN	complete
+r5-tcD403	pickupCar	FN	incomplete: maxRule isn't applicable
 r5-tcD404	pickupCar	TN	complete
 r5-tcD405	dropoffCar	TP	correct
-r5-tcD406	dropoffCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD407	pickupCar	FN	incorrect: rule shouldn't be applicable
-r5-tcD408	dropoffCar	FN	incorrect: rule shouldn't be applicable
-#Round 5	Precision	 0.75	Recall	0.56
+r5-tcD406	dropoffCar	TN	complete
+r5-tcD407	pickupCar	TN	complete
+r5-tcD408	dropoffCar	TN	complete
+#Round 5	Precision	 1	Recall	0.3
 

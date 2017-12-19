@@ -24,8 +24,9 @@ public class RuleInferenceFromJavaTracing {
 		
 	}
 
+	private int iMatchedMaxID=-1;
 	
-	public boolean isMinRuleMatched(){
+	public int isMinRuleMatched(){
 		
 		this.isInferenceForTesting = new Boolean (false);
 		
@@ -38,7 +39,7 @@ public class RuleInferenceFromJavaTracing {
 		// close connection	
 		DBRecord.closeConnection();	
 		
-		return this.isInferenceForTesting;
+		return this.iMatchedMaxID;
 	}
 
 	public void generaliseRuleInstance(int iRepeatedMultiObjects){
@@ -605,9 +606,9 @@ public class RuleInferenceFromJavaTracing {
 					 */
 					if (this.isInferenceForTesting!=null){
 						
-						// delete inserted instance after finding the match ..
+						this.iMatchedMaxID=crsGetGroups.getInt(2);
 						this.isInferenceForTesting=true;						
-						System.out.println("\ttesting rule instance " + this.iObservationId + " : group classification [" + groupID + "]\t ok");
+						System.out.println("\ttesting rule instance " + this.iObservationId + " : group classification [" + groupID + "]\t under the max-rule-id [" + this.iMatchedMaxID + "] ok");
 						return;
 					}
 					
