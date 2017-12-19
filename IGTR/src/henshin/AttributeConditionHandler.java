@@ -29,6 +29,12 @@ import inferences.DBRecord;
 
 public class AttributeConditionHandler {
 
+	public enum Profile {
+		P1_NONE, P2_PARAMETERS, P3_PRE_ATTRIBUTES, P4_POST_ATTRIBUTES, P5_RETURNS
+	}
+
+	private Profile profile = Profile.P2_PARAMETERS;
+
 	private static boolean DEBUG = false;
 
 	// DBRule to Henshin Rule
@@ -76,7 +82,7 @@ public class AttributeConditionHandler {
 				handleDVariable2Parameter((DVariable2Parameter) c);
 			} else if (c instanceof DParameter2Parameter) {
 				handleDParameter2Parameter((DParameter2Parameter) c);
-			} 
+			}
 		}
 
 		// sort parameter list (by kind and name)
@@ -225,22 +231,18 @@ public class AttributeConditionHandler {
 			// Variable2Literal
 			if (dConstraint instanceof DVariable2Literal) {
 				DVariable2Literal c = (DVariable2Literal) dConstraint;
-//				if (c.getKind() != DConstraintKind.PRE) {
-//					// System.out.println("\t" + dConstraint);
-//					iterator.remove();
-//					continue;
-//				}
+				// if (c.getKind() != DConstraintKind.PRE) {
+				// // System.out.println("\t" + dConstraint);
+				// iterator.remove();
+				// continue;
+				// }
 				iterator.remove();
+				continue;
 			}
 
-			// Variable2Variable
-			if (dConstraint instanceof DVariable2Variable) {
-				DVariable2Variable c = (DVariable2Variable) dConstraint;
-				if (c.getKind() != DConstraintKind.PRE_PRE) {
-					// System.out.println("\t" + c);
-					iterator.remove();
-					continue;
-				}
+			if (profile.equals(Profile.P1_NONE)) {
+				iterator.remove();
+				continue;
 			}
 
 			// DVariable2Parameter
@@ -248,6 +250,21 @@ public class AttributeConditionHandler {
 				DVariable2Parameter c = (DVariable2Parameter) dConstraint;
 				if (c.getKind() != DConstraintKind.PRE) {
 					// System.out.println("\t" + c);
+					iterator.remove();
+					continue;
+				}
+			}
+
+			// Variable2Variable
+			if (dConstraint instanceof DVariable2Variable) {
+				DVariable2Variable c = (DVariable2Variable) dConstraint;
+				if (profile.equals(Profile.P3_PRE_ATTRIBUTES)){
+					if (c.getKind() != DConstraintKind.PRE_PRE) {
+						// System.out.println("\t" + c);
+						iterator.remove();
+						continue;
+					}
+				} else {
 					iterator.remove();
 					continue;
 				}
