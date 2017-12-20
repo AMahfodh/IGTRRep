@@ -23,6 +23,7 @@ import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
+import org.eclipse.emf.henshin.interpreter.impl.ProfilingApplicationMonitor;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.model.HenshinPackage;
 import org.eclipse.emf.henshin.model.Module;
@@ -37,9 +38,10 @@ import rentalServiceModel.RentalServicePackage;
 import rentalServiceModel.impl.RentalServicePackageImpl;
 
 public class RentalModelImpl implements IRentalModel {
-
+	
 	static int COUNT = 0;
 
+	private ProfilingApplicationMonitor pam = new ProfilingApplicationMonitor();
 	private Module henshinModule;
 	private JObjectGraph2EMFObjectGraph jObjectGraph2EMFObjectGraph;
 
@@ -85,8 +87,19 @@ public class RentalModelImpl implements IRentalModel {
 		// And then try to apply the rule on the copy (to not change the
 		// original as a side effect)
 		
-		Rule rule = (Rule) henshinModule.getUnit(ruleID + "_" + ruleName);
+		Rule rule = null;		
+		for (Unit u: henshinModule.getUnits()){
+			if (u.getName().equalsIgnoreCase(ruleID + "_" + ruleName)){
+				rule = (Rule)u;
+				break;
+			}
+		}
+		
 		if (rule == null){
+			if (ruleID.trim().length()!=0){
+				System.out.println("Error: Rule doesn't exist " + ruleID + "_" + ruleName);
+				System.exit(0);
+			}			
 			return false;
 		} else {
 			return executeRule(rule, args, clone);
@@ -199,7 +212,12 @@ public class RentalModelImpl implements IRentalModel {
 		}
 		
 		// And now try to execute
-		boolean success = ruleApp.execute(null);
+		
+		boolean success = ruleApp.execute(this.pam);
+		if (!success){
+			this.pam.printStats();
+			//System.exit(0);
+		}
 		
 		return success;
 				
