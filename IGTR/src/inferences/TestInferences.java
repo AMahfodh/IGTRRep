@@ -13,10 +13,6 @@ public class TestInferences {
 
 	public void commitLearning() throws Exception {
 
-		// generate instances
-		new ParseRuleInstances().importExamples();
-		
-		
 		// commit generalisation
 		int iMinRepeatedMultiObjects = 1;
 		new RuleInference().generaliseRuleInstance(iMinRepeatedMultiObjects);
