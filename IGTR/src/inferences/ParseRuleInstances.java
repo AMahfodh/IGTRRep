@@ -65,9 +65,7 @@ public class ParseRuleInstances {
 
 					System.out.println("\n= Negative example " + example.getName());
 
-					String pathOriginal = example.getAbsoluteFile() + File.separator + "Original."
-							+ IDomainConfiguration.MODEL_TYPE;
-					String pathChanged = example.getAbsoluteFile() + File.separator + "Changed."
+					String pathNegative = example.getAbsoluteFile() + File.separator + "Negative."
 							+ IDomainConfiguration.MODEL_TYPE;
 
 					String[] idx = example.getName().replace(PREFIX_NEGATIVE, "").split("_");
@@ -78,7 +76,7 @@ public class ParseRuleInstances {
 						// generalise to their intersection
 						ParseRuleInstance positive = example2RuleInstance.get(idx_positive);
 						ParseRuleInstance parser = new ParseRuleInstance();
-						parser.parseNacExample(operation.getName(), pathOriginal, pathChanged, positive);
+						parser.parseNacExample(operation.getName(), pathNegative, pathNegative, positive);
 					}
 
 				}
