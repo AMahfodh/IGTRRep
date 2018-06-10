@@ -234,7 +234,7 @@ public class Rental {
 
 
 
-/*
+
 
 	public ArrayList<Reservation> showClientReservations(String clientID){
 
@@ -270,7 +270,7 @@ public class Rental {
 
 		return null;
 	}
-*/
+
 
 	private Client getClient(Branch branch, String ClientID){
 
@@ -288,7 +288,7 @@ public class Rental {
 	}
 
 
-	private Branch getBranch(String City){
+	public Branch getBranch(String City){
 
 		City = City.trim();
 		if (City.length()==0){

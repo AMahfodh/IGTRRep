@@ -97,9 +97,34 @@ public class Example {
 		
 		
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
 		
 		
+		//RunToTest.endStartSeparation("makeReservation");
+		//makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
+		
+		
+		
+		RunToTest.endStartSeparation("makeReservation");
+		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
+		
+				
+		
+		RunToTest.endStartSeparation("makeReservation");
+		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
+		
+		
+		RunToTest.endStartSeparation("makeReservation");
+		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
+		
+		
+		
+		RunToTest.endStartSeparation("makeReservation");
+		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Leicester");
+		
+		
+		RunToTest.endStartSeparation("cancelClientReservation");
+		myRentalService.cancelClientReservation(clientReg2_Reiko);
 		
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes2=myRentalService.makeReservation(clientReg2_Reiko, "Leicester", "Nottingham");
@@ -129,7 +154,7 @@ public class Example {
 		RunToTest.endStartSeparation("RegisterClient");
 		clientReg1_Abdullah = myRentalService.registerClient("Leicester", "Abdullah");
 		
-	
+
 		
 		RunToTest.endStartSeparation("makeReservation");
 		makeRes1=myRentalService.makeReservation(clientReg2_Reiko, "Leicester", "Birmingham");
@@ -138,7 +163,7 @@ public class Example {
 		
 		
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes2=myRentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Leicester");
+		makeRes2=myRentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
 		
 		
 		

@@ -68,8 +68,7 @@ public class VContractValidation {
 		/*
 		 * Training to learn visual contracts with splitting tests based on 5 cross-validation rounds 
 		 */
-		
-		this.round1(); this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");
+		this.round1(); this.round1(); this.printRoundPlusPrecisionAndRecallValues("#Round 1");	
 		this.round2(); this.round2(); this.printRoundPlusPrecisionAndRecallValues("#Round 2");
 		this.round3(); this.round3(); this.printRoundPlusPrecisionAndRecallValues("#Round 3");
 		this.round4(); this.round4(); this.printRoundPlusPrecisionAndRecallValues("#Round 4");
@@ -81,7 +80,7 @@ public class VContractValidation {
 	private void round1(){
 
 		System.out.println("#Round 1");		
-		this.clearAllStoredRules();
+		this.clearAllStoredRules(1);
 		
 		switch (splitPercent) {
 		case p20:  
@@ -132,7 +131,7 @@ public class VContractValidation {
 	private void round2(){
 		
 		System.out.println("#Round 2");		
-		this.clearAllStoredRules();
+		this.clearAllStoredRules(2);
 		
 		switch (splitPercent) {
 		case p20:  
@@ -178,7 +177,7 @@ public class VContractValidation {
 	private void round3(){
 		
 		System.out.println("#Round 3");
-		this.clearAllStoredRules();
+		this.clearAllStoredRules(3);
 		
 		switch (splitPercent) {
 		case p20:
@@ -223,7 +222,7 @@ public class VContractValidation {
 	private void round4(){
 		
 		System.out.println("#Round 4");
-		this.clearAllStoredRules();
+		this.clearAllStoredRules(4);
 		
 		switch (splitPercent) {
 		case p20:
@@ -268,7 +267,7 @@ public class VContractValidation {
 	private void round5(){
 		
 		System.out.println("#Round 5");
-		this.clearAllStoredRules();
+		this.clearAllStoredRules(5);
 		
 		switch (splitPercent) {
 		case p20:  
@@ -320,10 +319,10 @@ public class VContractValidation {
 	
 	
 		
-	private void clearAllStoredRules(){
+	private void clearAllStoredRules(int iRound){
 		
 		this.HasRuleBeenExportedToHenshin=false;
-		this.initialiseTestSetUp();
+		this.initialiseTestSetUp(iRound);
 		this.henshinRentalModel= new RentalModel(this.rentalService);
 		
 		
@@ -396,10 +395,9 @@ public class VContractValidation {
 					strDec="FN\tincomplete: maxRule isn't applicable";
 					
 					/**
-					 * For debugging ..
-					 * this.henshinRentalModel.printHenshinRulesAndObjectModel(
-					 * "r" + iRound + "-tc" + strTestCaseA_E + (this.iInvocationCount+1));
-					 */
+					 * For debugging ..*/
+					  this.henshinRentalModel.printHenshinRulesAndObjectModel(
+					  "r" + iRound + "-tc" + strTestCaseA_E  + "-MaxID-" + iMaxID + "-"+ (this.iInvocationCount+1));					 
 				}
 			} 
 			else {
@@ -483,11 +481,30 @@ public class VContractValidation {
 		}
 	}
 	
-	private void initialiseTestSetUp(){
+	
+	
+	private String strParLeicester = "Leicester";
+	private String strParNottingham = "Nottingham";
+	private String strParBirmingham = "Birmingham";
+	private String strParReiko = "Reiko";
+	private String strParAbdullah = "Abdullah";
+	
+	private void updateAllTestInputs(int iRound){
 		
-		Branch b1 = new Branch("Leicester", 0, 0);
-		Branch b2 = new Branch("Nottingham", 1, 1);
-		Branch b3 = new Branch("Birmingham", 2, 2);
+		this.strParLeicester+=iRound;
+		this.strParNottingham+=iRound;
+		this.strParBirmingham+=iRound;
+		this.strParReiko+=iRound;
+		this.strParAbdullah+=iRound;
+	}
+		
+	private void initialiseTestSetUp(int iRound){
+		
+		this.updateAllTestInputs(iRound);
+		
+		Branch b1 = new Branch(strParLeicester, 0, 0);
+		Branch b2 = new Branch(strParNottingham, 1, 1);
+		Branch b3 = new Branch(strParBirmingham, 2, 2);
 		
 		b1.at.add(new Car("A1"));
 		b2.at.add(new Car("B2"));
@@ -512,6 +529,7 @@ public class VContractValidation {
 	
 	
 	
+
 	
 	/**
 	 * 
@@ -535,16 +553,16 @@ public class VContractValidation {
 			RunToTest.endStartSeparation("#doStart");
 					
 			RunToTest.endStartSeparation("RegisterClient");
-			this.clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
+			this.clientReg2_Reiko = this.rentalService.registerClient(strParLeicester, strParReiko);
 						
 			RunToTest.endStartSeparation("RegisterClient");
-			this.clientReg1_Abdullah = this.rentalService.registerClient("Birmingham", "Abdullah");
+			this.clientReg1_Abdullah = this.rentalService.registerClient(strParBirmingham, strParAbdullah);
 			
 			RunToTest.endStartSeparation("makeReservation");
-			this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Nottingham");
+			this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParNottingham);
 						
 			RunToTest.endStartSeparation("makeReservation");
-			this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
+			this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, strParBirmingham, strParLeicester);
 			
 			RunToTest.endStartSeparation("pickupCar");
 			this.rentalService.pickupCar(this.makeRes2);
@@ -556,7 +574,7 @@ public class VContractValidation {
 			this.rentalService.cancelReservation(makeRes2);
 						
 			RunToTest.endStartSeparation("makeReservation");
-			this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Birmingham");			
+			this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParBirmingham);			
 						
 			RunToTest.endStartSeparation("cancelReservation");
 			this.rentalService.cancelReservation(makeRes1);
@@ -592,33 +610,33 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");		
 		RunToTest.endStartSeparation("RegisterClient");
-		this.clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
+		this.clientReg2_Reiko = this.rentalService.registerClient(strParLeicester, strParReiko);
 		RunToTest.endStartSeparation("#doStop");					
-		this.ValidationDecisionTree(iRound, "A", this.clientReg2_Reiko, "registerClient", "Leicester", "Reiko");
+		this.ValidationDecisionTree(iRound, "A", this.clientReg2_Reiko, "registerClient", strParLeicester, strParReiko);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		this.clientReg1_Abdullah = this.rentalService.registerClient("Birmingham", "Abdullah");
+		this.clientReg1_Abdullah = this.rentalService.registerClient(strParBirmingham, strParAbdullah);
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "A", clientReg1_Abdullah, "registerClient", "Leicester", "Abdullah");
+		this.ValidationDecisionTree(iRound, "A", clientReg1_Abdullah, "registerClient", strParLeicester, strParAbdullah);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Nottingham");
+		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParNottingham);
 		RunToTest.endStartSeparation("#doStop");					
-		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, "Leicester", "Nottingham");
+		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, strParLeicester, strParNottingham);
 		
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, "Birmingham", "Leicester");
+		this.makeRes2= this.rentalService.makeReservation(clientReg1_Abdullah, strParBirmingham, strParLeicester);
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "A", makeRes2, "makeReservation", clientReg1_Abdullah, "Birmingham", "Leicester");
+		this.ValidationDecisionTree(iRound, "A", makeRes2, "makeReservation", clientReg1_Abdullah, strParBirmingham, strParLeicester);
 		
 		
 		
@@ -648,9 +666,9 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Birmingham");			
+		this.makeRes1= this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParBirmingham);			
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, "Leicester", "Birmingham");
+		this.ValidationDecisionTree(iRound, "A", makeRes1, "makeReservation", clientReg1_Abdullah, strParLeicester, strParBirmingham);
 		
 		
 		
@@ -702,15 +720,15 @@ public class VContractValidation {
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+			clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+			clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 
 
 			RunToTest.endStartSeparation("dropoffCar");
@@ -718,15 +736,15 @@ public class VContractValidation {
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			rentalService.registerClient("Nottingham2", "Reiko");
+			rentalService.registerClient("Nottingham2", strParReiko);
 
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Nottingham");
+			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParLeicester, strParNottingham);
 
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes2=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+			makeRes2=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 
 
 			RunToTest.endStartSeparation("cancelReservation");
@@ -763,23 +781,23 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+		clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", "Nottingham", "Reiko");
+		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", strParNottingham, strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
+		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, strParNottingham, strParNottingham);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+		clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 		RunToTest.endStartSeparation("#doStop");		
-		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", "Nottingham", "Reiko");
+		this.ValidationDecisionTree(iRound, "B", clientReg2_Reiko, "RegisterClient", strParNottingham, strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
@@ -791,23 +809,23 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		this.clientReg1_Abdullah=rentalService.registerClient("Nottingham2", "Reiko");
+		this.clientReg1_Abdullah=rentalService.registerClient("Nottingham2", strParReiko);
 		RunToTest.endStartSeparation("#doStop");
-		this.ValidationDecisionTree(iRound, "B", clientReg1_Abdullah, "RegisterClient", "Nottingham2", "Reiko");
+		this.ValidationDecisionTree(iRound, "B", clientReg1_Abdullah, "RegisterClient", "Nottingham2", strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Nottingham");
+		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParLeicester, strParNottingham);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, "Leicester", "Nottingham");
+		this.ValidationDecisionTree(iRound, "B", makeRes1, "makeReservation", clientReg2_Reiko, strParLeicester, strParNottingham);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes2=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+		makeRes2=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "B", makeRes2, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
+		this.ValidationDecisionTree(iRound, "B", makeRes2, "makeReservation", clientReg2_Reiko, strParNottingham, strParNottingham);
 		
 
 		RunToTest.endStartSeparation("#doStart");
@@ -855,19 +873,19 @@ public class VContractValidation {
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
+			clientReg2_Reiko = this.rentalService.registerClient(strParLeicester, strParReiko);
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
+			clientReg1_Abdullah = this.rentalService.registerClient(strParLeicester, strParAbdullah);
 
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Birmingham");
+			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParLeicester, strParBirmingham);
 
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes2=this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Leicester");
+			makeRes2=this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParLeicester);
 
 
 			RunToTest.endStartSeparation("pickupCar");
@@ -916,30 +934,30 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg2_Reiko = this.rentalService.registerClient("Leicester", "Reiko");
+		clientReg2_Reiko = this.rentalService.registerClient(strParLeicester, strParReiko);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "C", clientReg2_Reiko, "RegisterClient", "Leicester", "Reiko");
+		this.ValidationDecisionTree(iRound, "C", clientReg2_Reiko, "RegisterClient", strParLeicester, strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg1_Abdullah = this.rentalService.registerClient("Leicester", "Abdullah");
+		clientReg1_Abdullah = this.rentalService.registerClient(strParLeicester, strParAbdullah);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "C", clientReg1_Abdullah, "RegisterClient", "Leicester", "Abdullah");
+		this.ValidationDecisionTree(iRound, "C", clientReg1_Abdullah, "RegisterClient", strParLeicester, strParAbdullah);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Leicester", "Birmingham");
+		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParLeicester, strParBirmingham);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "C", makeRes1, "makeReservation", clientReg2_Reiko, "Leicester", "Birmingham");
+		this.ValidationDecisionTree(iRound, "C", makeRes1, "makeReservation", clientReg2_Reiko, strParLeicester, strParBirmingham);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes2=this.rentalService.makeReservation(clientReg1_Abdullah, "Leicester", "Leicester");
+		makeRes2=this.rentalService.makeReservation(clientReg1_Abdullah, strParLeicester, strParLeicester);
 		RunToTest.endStartSeparation("#doStop");					
-		this.ValidationDecisionTree(iRound, "C", makeRes2, "makeReservation", clientReg1_Abdullah, "Leicester", "Leicester");
+		this.ValidationDecisionTree(iRound, "C", makeRes2, "makeReservation", clientReg1_Abdullah, strParLeicester, strParLeicester);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
@@ -1008,10 +1026,10 @@ public class VContractValidation {
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+			clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 
 			RunToTest.endStartSeparation("dropoffCar");
 			this.rentalService.dropoffCar(makeRes1);
@@ -1053,16 +1071,16 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+		clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "D", clientReg2_Reiko, "registerClient", "Nottingham", "Reiko");
+		this.ValidationDecisionTree(iRound, "D", clientReg2_Reiko, "registerClient", strParNottingham, strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Nottingham");
+		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParNottingham);
 		RunToTest.endStartSeparation("#doStop");					
-		this.ValidationDecisionTree(iRound, "D", this.makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Nottingham");
+		this.ValidationDecisionTree(iRound, "D", this.makeRes1, "makeReservation", clientReg2_Reiko, strParNottingham, strParNottingham);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
@@ -1130,10 +1148,10 @@ public class VContractValidation {
 
 
 			RunToTest.endStartSeparation("RegisterClient");
-			clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+			clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 
 			RunToTest.endStartSeparation("makeReservation");
-			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Birmingham");
+			makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParBirmingham);
 
 			RunToTest.endStartSeparation("pickupCar");
 			this.rentalService.pickupCar(makeRes1);		
@@ -1172,16 +1190,16 @@ public class VContractValidation {
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("RegisterClient");
-		clientReg2_Reiko = this.rentalService.registerClient("Nottingham", "Reiko");
+		clientReg2_Reiko = this.rentalService.registerClient(strParNottingham, strParReiko);
 		RunToTest.endStartSeparation("#doStop");			
-		this.ValidationDecisionTree(iRound, "E", clientReg2_Reiko, "registerClient", "Nottingham", "Reiko");
+		this.ValidationDecisionTree(iRound, "E", clientReg2_Reiko, "registerClient", strParNottingham, strParReiko);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
 		RunToTest.endStartSeparation("makeReservation");
-		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, "Nottingham", "Birmingham");
+		makeRes1=this.rentalService.makeReservation(clientReg2_Reiko, strParNottingham, strParBirmingham);
 		RunToTest.endStartSeparation("#doStop");	
-		this.ValidationDecisionTree(iRound, "E", makeRes1, "makeReservation", clientReg2_Reiko, "Nottingham", "Birmingham");
+		this.ValidationDecisionTree(iRound, "E", makeRes1, "makeReservation", clientReg2_Reiko, strParNottingham, strParBirmingham);
 		
 		
 		RunToTest.endStartSeparation("#doStart");
@@ -1227,8 +1245,6 @@ public class VContractValidation {
 		
 	}
 
-	
-	
 	
 	
 	

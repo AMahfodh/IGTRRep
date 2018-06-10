@@ -1,0 +1,4 @@
+EvoSuite commands: http://www.evosuite.org/documentation/commandline/
+
+java -jar evosuite-1.0.5.jar -class rentalService.Rental -projectCP bin
+java -jar evosuite-1.0.5.jar -prefix rentalService -projectCP bin
