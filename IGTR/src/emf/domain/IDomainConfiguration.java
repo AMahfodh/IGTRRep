@@ -19,7 +19,8 @@ public interface IDomainConfiguration {
 
 	//public static final String MODEL_TYPE = "ecore";
 	//public static final String MODEL_TYPE = "uml";
-	public static final String MODEL_TYPE = "rentalService";
+	//public static final String MODEL_TYPE = "rentalService";
+	public static final String MODEL_TYPE = "graph";
 	
 	public Set<EClass> getUnconsideredNodeTypes();
 

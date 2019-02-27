@@ -17,7 +17,7 @@ import emf.domain.IDomainConfiguration;
  */
 public class NamedElementMatcher extends AbstractMatcher {
 
-	private boolean useQualifiedNames = true;
+	protected boolean useQualifiedNames = true;
 
 	public NamedElementMatcher(IDomainConfiguration domainConfiguration) {
 		super(domainConfiguration);		
