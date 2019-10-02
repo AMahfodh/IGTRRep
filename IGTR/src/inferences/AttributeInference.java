@@ -284,7 +284,8 @@ public class AttributeInference {
 			String strInstanceLine="";
 
 			crsAllAttributeInstances= DBRecord.getByQueryStatement(
-					"select Observation_IDREFF, AttributeValue "
+					"select Observation_IDREFF, "
+							+ "		CASE WHEN MappedAbstractID is null THEN \"\" ELSE AttributeValue END AS AttributeValue "
 							+ "from "
 							+ "    TblGraph "
 							+ "        inner join "
@@ -293,9 +294,12 @@ public class AttributeInference {
 							+ "    TblNodeAttributes ON (TblNode.Graph_IDREFF = TblNodeAttributes.Graph_IDREFF "
 							+ "        and TblNode.nodeID = TblNodeAttributes.node_IDREFF) "
 							+ "where isObjectRelation=false and "
-							+ "MappedAbstractID is not null and "
-							+ "isToBeDeleted is null and "
-							+ "MappedAbstractID in (" + strAbstractIDs.substring(1) + ") "
+							+ "		isToBeDeleted is null and "
+							+ "		Observation_IDREFF in ( "
+							+ "		SELECT res.Observation_IDREFF "
+							+ "			FROM (select Observation_IDREFF, MappedAbstractID from TblGraph inner join  TblNode ON TblGraph.GraphID = tblnode.Graph_IDREFF " 
+							+ "				inner join  TblNodeAttributes ON (tblnode.Graph_IDREFF = tblnodeattributes.Graph_IDREFF  and tblnode.nodeID = tblnodeattributes.node_IDREFF)) as res "
+							+ "			WHERE res.MappedAbstractID is not null and res.MappedAbstractID in ("+ strAbstractIDs.substring(1) + " ) ) "
 							+ "order by Observation_IDREFF , graphType , MappedAbstractID , AttributeName", true);
 
 
