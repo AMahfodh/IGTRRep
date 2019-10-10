@@ -239,7 +239,7 @@ public class AttributeInference {
 						" MappedAbstractID is not null and " +
 						" isToBeDeleted is null and " +
 						" Observation_IDREFF =" + O_ID +				
-						" order by graphType , AttributeName, AbstractID", true);
+						" order by Observation_IDREFF , graphType , AbstractID , AttributeName", true);
 
 		try {
 
@@ -293,14 +293,10 @@ public class AttributeInference {
 							+ "    TblNodeAttributes ON (TblNode.Graph_IDREFF = TblNodeAttributes.Graph_IDREFF "
 							+ "        and TblNode.nodeID = TblNodeAttributes.node_IDREFF) "
 							+ "where isObjectRelation=false and "
-							//+ "MappedAbstractID is not null and "
+							+ "MappedAbstractID is not null and "
 							+ "isToBeDeleted is null and "
-							+ "Observation_IDREFF in ( " 
-							+ 	"SELECT res.Observation_IDREFF "
-							+	"FROM (select Observation_IDREFF, MappedAbstractID from TblGraph inner join  TblNode ON TblGraph.GraphID = tblnode.Graph_IDREFF  inner join  TblNodeAttributes ON (tblnode.Graph_IDREFF = tblnodeattributes.Graph_IDREFF  and tblnode.nodeID = tblnodeattributes.node_IDREFF)) as res "
-							+ 	"WHERE res.MappedAbstractID is not null and res.MappedAbstractID in ( " + strAbstractIDs.substring(1) + " ) )"
-							//+ "MappedAbstractID in (" + strAbstractIDs.substring(1) + ") "
-							+ "order by Observation_IDREFF , graphType , AttributeName, MappedAbstractID", true);
+							+ "MappedAbstractID in (" + strAbstractIDs.substring(1) + ") "
+							+ "order by Observation_IDREFF , graphType , MappedAbstractID , AttributeName", true);
 
 
 			while (crsAllAttributeInstances.next()){
